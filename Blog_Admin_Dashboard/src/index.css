@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme {
+    --font-outfit: "Outfit", sans-serif;
+    --font-inter: "Inter", sans-serif;
+}
+
+:root {
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+body {
+    @apply antialiased text-gray-900 bg-gray-50;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-outfit {
+    font-family: "Outfit", sans-serif;
+}
+
+/* Quill Editor Custom Styles */
+.quill-wrapper {
+    @apply border border-gray-300 rounded-sm overflow-hidden;
+}
+
+.quill-wrapper .ql-toolbar {
+    @apply bg-gray-50 border-b border-gray-300;
+}
+
+.quill-wrapper .ql-container {
+    @apply bg-white;
+    min-height: 200px;
+    font-size: 15px;
+}
+
+.quill-wrapper .ql-editor {
+    min-height: 200px;
+    @apply text-gray-900;
+}
+
+.quill-wrapper .ql-editor.ql-blank::before {
+    @apply text-gray-400 italic;
+}
+
+.quill-wrapper .ql-editor p,
+.quill-wrapper .ql-editor ol,
+.quill-wrapper .ql-editor ul {
+    @apply mb-3;
+}
+
+.quill-wrapper .ql-editor h1 {
+    @apply text-2xl font-bold mb-3;
+}
+
+.quill-wrapper .ql-editor h2 {
+    @apply text-xl font-bold mb-2;
+}
+
+.quill-wrapper .ql-editor h3 {
+    @apply text-lg font-bold mb-2;
+}
+
+.quill-wrapper .ql-editor a {
+    @apply text-blue-600 underline;
+}
+
+.quill-wrapper .ql-editor strong {
+    @apply font-bold;
+}
+
+.quill-wrapper .ql-editor em {
+    @apply italic;
+}
+
+.quill-wrapper .ql-editor ul,
+.quill-wrapper .ql-editor ol {
+    @apply pl-6;
+}
+
+/* Preview Modal Quill Content Styles */
+.ql-editor-preview p {
+    @apply mb-4;
+}
+
+.ql-editor-preview h1,
+.ql-editor-preview h2,
+.ql-editor-preview h3 {
+    @apply font-bold mb-3 text-white;
+}
+
+.ql-editor-preview h1 {
+    @apply text-2xl;
+}
+
+.ql-editor-preview h2 {
+    @apply text-xl;
+}
+
+.ql-editor-preview h3 {
+    @apply text-lg;
+}
+
+.ql-editor-preview ul,
+.ql-editor-preview ol {
+    @apply pl-6 mb-4;
+}
+
+.ql-editor-preview ul {
+    @apply list-disc;
+}
+
+.ql-editor-preview ol {
+    @apply list-decimal;
+}
+
+.ql-editor-preview a {
+    @apply text-[#6b9dc7] underline hover:text-blue-400;
+}
+
+.ql-editor-preview strong {
+    @apply font-bold text-white;
+}
+
+.ql-editor-preview em {
+    @apply italic;
+}
+
+.ql-editor-preview u {
+    @apply underline;
+}
+
+.ql-editor-preview s {
+    @apply line-through;
+}

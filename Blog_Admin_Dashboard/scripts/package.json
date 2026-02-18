@@ -1,0 +1,14 @@
+{
+    "name": "blog-upload-scripts",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Scripts to upload blog data to Firebase",
+    "scripts": {
+        "upload": "node uploadBlogData.js",
+        "upload-delacruz": "node uploadDelacruzInsights.js",
+        "add-orgid": "node addOrgIdToBlogs.js"
+    },
+    "dependencies": {
+        "firebase": "^10.7.1"
+    }
+}

@@ -1,0 +1,194 @@
+{
+  "caseStudies": [
+    {
+      "id": "nutter-butter",
+      "title": "NUTTER BUTTER, YOU GOOD?",
+      "subtitle": "Absurdist Social Media Takeover",
+      "brand": "NUTTER BUTTER",
+      "description": "This 56-year-old cookie's rabbit hole of absurdist escapism consumed the internet.",
+      "image": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&h=600&fit=crop",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "color": "#F4A460",
+      "date": "",
+      "createdBy": "UNITED STATES",
+      "heroImage": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=1600&h=900&fit=crop",
+      "storyBgColor": "#a94442",
+      "storyText": "While some brands on TikTok follow trends and hijack culture, Nutter Butter created culture through a nutty universe entirely of its own. We built a world where nothing seemed to make sense — by design.",
+      "challenge": {
+        "title": "GOING VIRAL WITHOUT MEDIA SPEND",
+        "description": "By 2023, Nutter Butter hadn't advertised in over a decade. Sales were dwindling..."
+      },
+      "solution": {
+        "title": "COMMIT TO THE BIT",
+        "description": "Every TikTok took our fans deeper down our rabbit hole..."
+      },
+      "weirdSection": {
+        "title": "FEED THE WEIRD",
+        "description": "Gen Z rewards brands that are self-aware, subversive and surreal...",
+        "images": [
+          "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=400&h=400&fit=crop"
+        ]
+      },
+      "resultsImages": [
+        "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      "id": "asunwa",
+      "title": "ASUNWA",
+      "subtitle": "Cultural Preservation Campaign",
+      "brand": "ASUNWA",
+      "description": "Stop the future from becoming a nation where everyone is named Sato.",
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "color": "#1e3a8a",
+      "date": "SATO 2581",
+      "createdBy": "JAPAN",
+      "heroImage": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1600&h=900&fit=crop",
+      "storyBgColor": "#1e3a8a",
+      "storyText": "A campaign to preserve cultural diversity in naming conventions for future generations.",
+      "challenge": {
+        "title": "PRESERVING CULTURAL IDENTITY",
+        "description": "How do you make people care about a problem that won't affect them for generations?"
+      },
+      "solution": {
+        "title": "TIME TRAVEL STORYTELLING",
+        "description": "We created a future where everyone is named Sato, making the problem impossible to ignore."
+      },
+      "weirdSection": {
+        "title": "THE SATO FUTURE",
+        "description": "We visualized a dystopian future to spark conversation about cultural preservation today.",
+        "images": [
+          "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=400&h=400&fit=crop"
+        ]
+      },
+      "resultsImages": [
+        "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      "id": "prime-soda",
+      "title": "PRIME SODA – THE DRINK THAT DRANK THE INTERNET",
+      "subtitle": "Influencer Brand Launch",
+      "brand": "PRIME",
+      "description": "What happens when a hydration drink becomes a cultural symbol? Chaos. Beautiful chaos.",
+      "image": "https://images.unsplash.com/photo-1585238342028-6d88c277f3d0?w=800&h=600&fit=crop",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "color": "#0ea5e9",
+      "date": "2024",
+      "createdBy": "UNITED KINGDOM",
+      "heroImage": "https://images.unsplash.com/photo-1585238342028-6d88c277f3d0?w=1600&h=900&fit=crop",
+      "storyBgColor": "#0ea5e9",
+      "storyText": "PRIME wasn't just a drink — it became a flex. Kids collected flavors like NFT drops, stores rationed supply, and resale markets exploded.",
+      "challenge": {
+        "title": "TURNING HYPE INTO LONGEVITY",
+        "description": "Hype dies. Culture doesn't. Our job was to turn internet noise into brand permanence."
+      },
+      "solution": {
+        "title": "MAKE EVERY DROP A MOMENT",
+        "description": "We transformed flavor launches into cultural events using creator collabs, live TikTok drops, and social storytelling."
+      },
+      "weirdSection": {
+        "title": "THE PRIME PARADOX",
+        "description": "We leaned into the chaos of kids fighting over bottles, collectors trading flavors like crypto, and celebrities dueling on who endorsed it first.",
+        "images": [
+          "https://images.unsplash.com/photo-1577801590564-6fdc90f3b6a2?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1598136491232-08a3c67c94c0?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1598136743531-5809e1adcc84?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1585239843014-bfb3917a3997?w=400&h=400&fit=crop"
+        ]
+      },
+      "resultsImages": [
+        "https://images.unsplash.com/photo-1601993382930-965d0b5ae0e0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1601993552217-f48fcf946521?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1601993565973-0ed2b9373528?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      "id": "lagos-traffic-museum",
+      "title": "LAGOS TRAFFIC MUSEUM – CHAOS TURNED CULTURE",
+      "subtitle": "Experiential Installation",
+      "brand": "LAGOS STATE TOURISM",
+      "description": "We turned Africa's most chaotic traffic system into an immersive cultural exhibition.",
+      "image": "https://images.unsplash.com/photo-1505847896095-583f0e6549a4?w=800&h=600&fit=crop",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "color": "#047857",
+      "date": "2023",
+      "createdBy": "NIGERIA",
+      "heroImage": "https://images.unsplash.com/photo-1505847896095-583f0e6549a4?w=1600&h=900&fit=crop",
+      "storyBgColor": "#047857",
+      "storyText": "The Lagos Traffic Museum was a brand experience built from everyday chaos — honking, hawkers, danfo conductors, and unexplainable shortcuts.",
+      "challenge": {
+        "title": "TURNING A PROBLEM INTO PRIDE",
+        "description": "Traffic is a national frustration. How do you convince people to celebrate it?"
+      },
+      "solution": {
+        "title": "MAKE IT ART",
+        "description": "We built an immersive installation where visitors could experience Lagos traffic as theatre, comedy, and culture."
+      },
+      "weirdSection": {
+        "title": "THE DANFO DIMENSION",
+        "description": "Visitors entered an AR-powered danfo simulation with flying hawkers, singing traffic wardens, and impossible traffic loops.",
+        "images": [
+          "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1512427691650-1f8f84c6a60b?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1509228101207-e5536ae0c497?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1487434003444-fb72d1e4c538?w=400&h=400&fit=crop"
+        ]
+      },
+      "resultsImages": [
+        "https://images.unsplash.com/photo-1512427691650-1f8f84c6a60b?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1509228101207-e5536ae0c497?w=800&h=600&fit=crop"
+      ]
+    },
+    {
+      "id": "neo-burger",
+      "title": "NEO BURGER — THE AI-GENERATED RESTAURANT",
+      "subtitle": "AI-Powered Brand Experience",
+      "brand": "NEO",
+      "description": "The world's first burger brand created entirely by artificial intelligence.",
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&h=600&fit=crop",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "color": "#b91c1c",
+      "date": "2025",
+      "createdBy": "UNITED ARAB EMIRATES",
+      "heroImage": "https://images.unsplash.com/photo-1550547660-d9450f859349?w=1600&h=900&fit=crop",
+      "storyBgColor": "#b91c1c",
+      "storyText": "From recipes to restaurant design to ads — everything was generated by AI, curated by chefs and creators.",
+      "challenge": {
+        "title": "CAN AI BUILD A REAL BRAND?",
+        "description": "Consumers trust food made by humans. Could we make them crave something engineered by algorithms?"
+      },
+      "solution": {
+        "title": "HUMAN + MACHINE CREATIVITY",
+        "description": "We blended AI imagination with real culinary craft to create flavors impossible to invent traditionally."
+      },
+      "weirdSection": {
+        "title": "THE AI FLAVOR LAB",
+        "description": "Menus changed in real time based on trending data, mood predictions, and weather patterns.",
+        "images": [
+          "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&h=400&fit=crop",
+          "https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&h=400&fit=crop"
+        ]
+      },
+      "resultsImages": [
+        "https://images.unsplash.com/photo-1550547650-36f21c30b909?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1553621042-f6e147245754?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=800&h=600&fit=crop"
+      ]
+    }
+  ]
+}

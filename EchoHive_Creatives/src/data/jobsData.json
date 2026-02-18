@@ -1,0 +1,496 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Senior Creative Director",
+      "department": "Creative",
+      "location": "Lagos",
+      "type": "Full-time",
+      "salary": "₦15,000,000 - ₦25,000,000",
+      "description": "Lead creative vision and inspire teams to deliver award-winning campaigns for global brands.",
+      "posted": "2 days ago",
+      "fullDescription": "We are seeking an exceptional Senior Creative Director to lead our creative vision and inspire teams to deliver award-winning campaigns for global brands. This role demands a visionary leader who can balance strategic thinking with hands-on creative excellence.",
+      "responsibilities": [
+        "Lead and mentor a team of creatives including art directors, copywriters, and designers",
+        "Develop creative strategies that align with client objectives and brand positioning",
+        "Present creative concepts and campaigns to clients and internal stakeholders",
+        "Oversee multiple projects simultaneously while maintaining quality standards",
+        "Foster a culture of innovation, collaboration, and creative excellence",
+        "Stay ahead of industry trends and emerging technologies",
+        "Collaborate with strategy, production, and account teams to deliver integrated campaigns",
+        "Participate in new business pitches and agency growth initiatives"
+      ],
+      "requirements": [
+        "10+ years of experience in advertising or creative agency environment",
+        "Proven track record of creating award-winning campaigns",
+        "Strong portfolio demonstrating conceptual thinking and execution across multiple channels",
+        "Experience leading and developing creative teams",
+        "Excellent presentation and communication skills",
+        "Deep understanding of brand strategy and consumer insights",
+        "Proficiency in current creative tools and technologies",
+        "Ability to work under pressure and meet tight deadlines"
+      ],
+      "benefits": [
+        "Competitive salary with performance bonuses",
+        "Comprehensive health insurance for you and your family",
+        "Flexible working arrangements including remote options",
+        "Professional development budget for courses and conferences",
+        "Annual leave and additional wellness days",
+        "Modern office space in prime location",
+        "Regular team events and creative workshops",
+        "Opportunity to work on global brands and campaigns"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Strategic Planner",
+      "department": "Strategy",
+      "location": "London",
+      "type": "Full-time",
+      "salary": "£50,000 - £70,000",
+      "description": "Develop insights-driven strategies that transform brands and connect with audiences.",
+      "posted": "5 days ago",
+      "fullDescription": "Join our strategy team to develop insights-driven strategies that transform brands and connect with audiences. You'll work closely with creative and account teams to shape compelling brand narratives.",
+      "responsibilities": [
+        "Conduct market research and consumer insights analysis",
+        "Develop strategic briefs that inspire creative excellence",
+        "Present strategic recommendations to clients and stakeholders",
+        "Monitor campaign performance and provide strategic optimization recommendations",
+        "Identify emerging trends and cultural insights",
+        "Collaborate with creative teams to ensure strategic alignment",
+        "Lead workshops and brainstorming sessions",
+        "Contribute to new business pitches and proposals"
+      ],
+      "requirements": [
+        "5+ years of experience in strategic planning or brand strategy",
+        "Strong analytical and research skills",
+        "Excellent written and verbal communication abilities",
+        "Experience presenting to senior clients and stakeholders",
+        "Understanding of consumer behavior and market dynamics",
+        "Ability to translate data into actionable insights",
+        "Proficiency in research tools and methodologies",
+        "Bachelor's degree in Marketing, Business, or related field"
+      ],
+      "benefits": [
+        "Competitive salary and annual bonus scheme",
+        "Private healthcare and dental coverage",
+        "Hybrid working model with flexible hours",
+        "Learning and development opportunities",
+        "25 days annual leave plus bank holidays",
+        "Pension scheme with employer contributions",
+        "Cycle to work scheme and wellness programs",
+        "Regular team social events and outings"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Full Stack Developer",
+      "department": "Technology",
+      "location": "Remote",
+      "type": "Full-time",
+      "salary": "$80,000 - $120,000",
+      "description": "Build cutting-edge digital experiences using modern web technologies and frameworks.",
+      "posted": "1 week ago",
+      "fullDescription": "We're looking for a talented Full Stack Developer to build cutting-edge digital experiences using modern web technologies and frameworks. You'll work on innovative projects for leading brands.",
+      "responsibilities": [
+        "Design and develop responsive web applications using React, Node.js, and modern frameworks",
+        "Build and maintain RESTful APIs and microservices",
+        "Implement database solutions and optimize performance",
+        "Collaborate with designers and product managers to implement features",
+        "Write clean, maintainable, and well-documented code",
+        "Participate in code reviews and technical discussions",
+        "Troubleshoot and debug applications",
+        "Stay current with emerging technologies and best practices"
+      ],
+      "requirements": [
+        "4+ years of experience in full stack development",
+        "Strong proficiency in JavaScript/TypeScript, React, and Node.js",
+        "Experience with database technologies (SQL and NoSQL)",
+        "Knowledge of cloud platforms (AWS, Azure, or GCP)",
+        "Understanding of web security best practices",
+        "Experience with version control (Git) and CI/CD pipelines",
+        "Strong problem-solving and debugging skills",
+        "Bachelor's degree in Computer Science or equivalent experience"
+      ],
+      "benefits": [
+        "Competitive salary with equity options",
+        "Fully remote work environment",
+        "Flexible working hours",
+        "Home office setup allowance",
+        "Professional development and conference budget",
+        "Health and wellness benefits",
+        "Unlimited PTO policy",
+        "Latest technology and tools provided"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Art Director",
+      "department": "Design",
+      "location": "New York",
+      "type": "Full-time",
+      "salary": "$90,000 - $130,000",
+      "description": "Create visually stunning work that brings brand stories to life across all touchpoints.",
+      "posted": "3 days ago",
+      "fullDescription": "Join our design team to create visually stunning work that brings brand stories to life across all touchpoints. You'll lead design projects from concept to execution for premium brands.",
+      "responsibilities": [
+        "Develop creative concepts and visual directions for campaigns",
+        "Lead design projects across digital, print, and experiential media",
+        "Collaborate with copywriters and creative directors",
+        "Present design work to clients and stakeholders",
+        "Mentor junior designers and provide creative guidance",
+        "Ensure brand consistency across all deliverables",
+        "Stay current with design trends and innovative techniques",
+        "Manage multiple projects and deadlines simultaneously"
+      ],
+      "requirements": [
+        "6+ years of experience in art direction or graphic design",
+        "Strong portfolio showcasing conceptual thinking and execution",
+        "Expert proficiency in Adobe Creative Suite",
+        "Experience with digital design tools (Figma, Sketch)",
+        "Understanding of typography, color theory, and layout",
+        "Excellent presentation and communication skills",
+        "Ability to work collaboratively in a fast-paced environment",
+        "Bachelor's degree in Design, Fine Arts, or related field"
+      ],
+      "benefits": [
+        "Competitive salary and performance bonuses",
+        "Comprehensive health, dental, and vision insurance",
+        "Hybrid work schedule",
+        "401(k) with company match",
+        "Professional development opportunities",
+        "Creative software subscriptions covered",
+        "Generous PTO and paid holidays",
+        "Vibrant office space in Manhattan"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Account Director",
+      "department": "Account Management",
+      "location": "Lagos",
+      "type": "Full-time",
+      "salary": "₦12,000,000 - ₦18,000,000",
+      "description": "Build strong client relationships and drive business growth through strategic partnership.",
+      "posted": "1 week ago",
+      "fullDescription": "We're seeking an experienced Account Director to build strong client relationships and drive business growth through strategic partnership. You'll be the primary liaison between clients and our creative teams.",
+      "responsibilities": [
+        "Manage key client accounts and relationships",
+        "Develop account strategies to drive growth and retention",
+        "Lead client meetings and presentations",
+        "Oversee project timelines, budgets, and deliverables",
+        "Identify opportunities for account expansion",
+        "Collaborate with internal teams to deliver exceptional work",
+        "Resolve client issues and ensure satisfaction",
+        "Contribute to new business development initiatives"
+      ],
+      "requirements": [
+        "8+ years of experience in account management or client services",
+        "Proven track record of managing strategic client relationships",
+        "Strong business acumen and financial understanding",
+        "Excellent communication and negotiation skills",
+        "Experience managing cross-functional teams",
+        "Ability to think strategically and solve complex problems",
+        "Understanding of marketing and advertising principles",
+        "Bachelor's degree in Business, Marketing, or related field"
+      ],
+      "benefits": [
+        "Competitive salary with quarterly bonuses",
+        "Health insurance for employee and family",
+        "Flexible working arrangements",
+        "Professional development and training",
+        "Annual leave and wellness days",
+        "Modern office environment",
+        "Team building activities and events",
+        "Career advancement opportunities"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Motion Graphics Designer",
+      "department": "Production",
+      "location": "Tokyo",
+      "type": "Contract",
+      "salary": "¥5,000,000 - ¥7,500,000",
+      "description": "Craft dynamic motion content that captures attention and tells compelling stories.",
+      "posted": "4 days ago",
+      "fullDescription": "Join our production team to craft dynamic motion content that captures attention and tells compelling stories. You'll create animations and motion graphics for digital campaigns and brand experiences.",
+      "responsibilities": [
+        "Design and animate motion graphics for various digital platforms",
+        "Create storyboards and style frames for motion projects",
+        "Collaborate with creative and production teams",
+        "Develop animated content for social media, web, and broadcast",
+        "Ensure projects are delivered on time and meet quality standards",
+        "Stay current with motion design trends and techniques",
+        "Work with 2D and 3D animation as needed",
+        "Optimize animations for different formats and platforms"
+      ],
+      "requirements": [
+        "4+ years of experience in motion graphics design",
+        "Expert proficiency in After Effects, Cinema 4D, or similar tools",
+        "Strong understanding of animation principles",
+        "Experience with Adobe Creative Suite",
+        "Portfolio showcasing motion design work",
+        "Ability to work independently and meet deadlines",
+        "Good communication skills in English and Japanese",
+        "Understanding of video production workflows"
+      ],
+      "benefits": [
+        "Competitive contract rate",
+        "Flexible schedule with remote options",
+        "Access to latest software and hardware",
+        "Opportunity to work on high-profile projects",
+        "Collaborative creative environment",
+        "Potential for contract extension or full-time conversion",
+        "Central Tokyo office location",
+        "Professional networking opportunities"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "UX/UI Designer",
+      "department": "Design",
+      "location": "Singapore",
+      "type": "Full-time",
+      "salary": "S$70,000 - S$100,000",
+      "description": "Design intuitive user experiences that delight and engage across digital platforms.",
+      "posted": "6 days ago",
+      "fullDescription": "We're looking for a UX/UI Designer to design intuitive user experiences that delight and engage across digital platforms. You'll create user-centered designs for web and mobile applications.",
+      "responsibilities": [
+        "Conduct user research and usability testing",
+        "Create wireframes, prototypes, and high-fidelity designs",
+        "Design intuitive user interfaces for web and mobile",
+        "Collaborate with developers to ensure design implementation",
+        "Develop and maintain design systems",
+        "Present design concepts to stakeholders",
+        "Iterate designs based on user feedback and data",
+        "Ensure accessibility and best practices across all designs"
+      ],
+      "requirements": [
+        "5+ years of experience in UX/UI design",
+        "Strong portfolio demonstrating user-centered design",
+        "Proficiency in Figma, Sketch, and prototyping tools",
+        "Understanding of responsive and mobile-first design",
+        "Experience with user research methodologies",
+        "Knowledge of HTML/CSS is a plus",
+        "Excellent communication and collaboration skills",
+        "Bachelor's degree in Design, HCI, or related field"
+      ],
+      "benefits": [
+        "Competitive salary with annual increments",
+        "Medical and dental insurance",
+        "Hybrid working arrangement",
+        "Annual learning and development budget",
+        "18 days annual leave",
+        "CPF contributions and AWS",
+        "Modern office in central business district",
+        "Regular team activities and wellness programs"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Copywriter",
+      "department": "Creative",
+      "location": "Remote",
+      "type": "Full-time",
+      "salary": "$60,000 - $85,000",
+      "description": "Write compelling copy that moves people and creates memorable brand moments.",
+      "posted": "2 days ago",
+      "fullDescription": "Join our creative team to write compelling copy that moves people and creates memorable brand moments. You'll craft words that inspire action across all media channels.",
+      "responsibilities": [
+        "Write creative copy for advertising campaigns across all channels",
+        "Collaborate with art directors and designers on concepts",
+        "Develop brand voice and messaging guidelines",
+        "Create headlines, taglines, and long-form content",
+        "Present copy concepts to clients and stakeholders",
+        "Edit and proofread all written materials",
+        "Adapt copy for different audiences and platforms",
+        "Stay current with cultural trends and language evolution"
+      ],
+      "requirements": [
+        "3+ years of copywriting experience in advertising or agency",
+        "Portfolio showcasing conceptual thinking and writing skills",
+        "Strong understanding of brand voice and tone",
+        "Ability to write for various formats and channels",
+        "Excellent grammar and editing skills",
+        "Experience collaborating with creative teams",
+        "Ability to work under tight deadlines",
+        "Bachelor's degree in English, Communications, or related field"
+      ],
+      "benefits": [
+        "Competitive salary with annual bonuses",
+        "Fully remote position",
+        "Flexible working hours",
+        "Home office setup allowance",
+        "Professional development opportunities",
+        "Health and wellness benefits",
+        "Generous PTO policy",
+        "Access to creative tools and resources"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Data Analyst",
+      "department": "Strategy",
+      "location": "London",
+      "type": "Full-time",
+      "salary": "£45,000 - £65,000",
+      "description": "Turn data into actionable insights that drive smarter business decisions.",
+      "posted": "1 week ago",
+      "fullDescription": "Join our strategy team to turn data into actionable insights that drive smarter business decisions. You'll analyze campaign performance and consumer data to inform strategic recommendations.",
+      "responsibilities": [
+        "Analyze marketing and campaign data to identify trends and insights",
+        "Create dashboards and reports for clients and internal teams",
+        "Conduct statistical analysis and predictive modeling",
+        "Collaborate with strategy and creative teams on data-driven solutions",
+        "Present findings and recommendations to stakeholders",
+        "Monitor KPIs and campaign performance metrics",
+        "Develop data visualization and reporting frameworks",
+        "Ensure data accuracy and quality across all projects"
+      ],
+      "requirements": [
+        "3+ years of experience in data analysis or business intelligence",
+        "Proficiency in SQL, Python, or R",
+        "Experience with data visualization tools (Tableau, Power BI)",
+        "Strong analytical and problem-solving skills",
+        "Understanding of statistical methods and modeling",
+        "Excellent communication skills to present complex data",
+        "Experience with Google Analytics and marketing analytics platforms",
+        "Bachelor's degree in Mathematics, Statistics, or related field"
+      ],
+      "benefits": [
+        "Competitive salary and performance bonuses",
+        "Private healthcare coverage",
+        "Hybrid working with flexible hours",
+        "Professional development and training",
+        "25 days annual leave plus bank holidays",
+        "Pension scheme",
+        "Modern office space with latest technology",
+        "Social events and team activities"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Video Producer",
+      "department": "Production",
+      "location": "Lagos",
+      "type": "Full-time",
+      "salary": "₦8,000,000 - ₦12,000,000",
+      "description": "Produce high-quality video content from concept through post-production.",
+      "posted": "5 days ago",
+      "fullDescription": "We're seeking a Video Producer to produce high-quality video content from concept through post-production. You'll manage all aspects of video production for diverse client campaigns.",
+      "responsibilities": [
+        "Oversee video production from pre-production to delivery",
+        "Develop production schedules and budgets",
+        "Coordinate with directors, crew, and vendors",
+        "Manage on-set production and ensure quality standards",
+        "Supervise post-production including editing and color grading",
+        "Ensure projects are delivered on time and within budget",
+        "Scout locations and coordinate logistics",
+        "Maintain production equipment and resources"
+      ],
+      "requirements": [
+        "5+ years of experience in video production",
+        "Strong understanding of production workflows and techniques",
+        "Experience managing crews and vendors",
+        "Knowledge of cameras, lighting, and audio equipment",
+        "Proficiency in production management tools",
+        "Excellent organizational and project management skills",
+        "Ability to problem-solve under pressure",
+        "Portfolio showcasing produced video work"
+      ],
+      "benefits": [
+        "Competitive salary with project bonuses",
+        "Health insurance coverage",
+        "Access to state-of-the-art production equipment",
+        "Flexible working arrangements",
+        "Professional development opportunities",
+        "Annual leave and wellness days",
+        "Creative collaborative environment",
+        "Opportunity to work on diverse projects"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Brand Strategist",
+      "department": "Strategy",
+      "location": "New York",
+      "type": "Full-time",
+      "salary": "$75,000 - $105,000",
+      "description": "Shape brand identities and positioning that resonate in competitive markets.",
+      "posted": "3 days ago",
+      "fullDescription": "Join our team to shape brand identities and positioning that resonate in competitive markets. You'll develop comprehensive brand strategies that drive business growth and customer engagement.",
+      "responsibilities": [
+        "Develop brand positioning and strategy frameworks",
+        "Conduct competitive analysis and market research",
+        "Define brand architecture and messaging hierarchies",
+        "Create brand guidelines and identity systems",
+        "Present strategic recommendations to clients",
+        "Collaborate with creative teams on brand expression",
+        "Monitor brand health and performance metrics",
+        "Lead brand workshops and stakeholder sessions"
+      ],
+      "requirements": [
+        "6+ years of experience in brand strategy or marketing",
+        "Strong portfolio of brand strategy work",
+        "Deep understanding of brand development and positioning",
+        "Excellent presentation and storytelling skills",
+        "Experience conducting research and analysis",
+        "Ability to think strategically and creatively",
+        "Strong project management capabilities",
+        "MBA or Master's degree preferred"
+      ],
+      "benefits": [
+        "Competitive salary and annual bonuses",
+        "Comprehensive health benefits",
+        "Hybrid work schedule",
+        "401(k) with company match",
+        "Professional development budget",
+        "Unlimited PTO policy",
+        "Modern Manhattan office",
+        "Team events and wellness programs"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Frontend Developer",
+      "department": "Technology",
+      "location": "Remote",
+      "type": "Contract",
+      "salary": "$70 - $100/hour",
+      "description": "Build responsive, performant web applications with modern JavaScript frameworks.",
+      "posted": "4 days ago",
+      "fullDescription": "We're looking for a Frontend Developer to build responsive, performant web applications with modern JavaScript frameworks. You'll work on innovative digital experiences for leading brands.",
+      "responsibilities": [
+        "Develop responsive web applications using React and Next.js",
+        "Implement pixel-perfect designs from Figma mockups",
+        "Optimize applications for performance and accessibility",
+        "Write clean, maintainable, and reusable code",
+        "Collaborate with designers and backend developers",
+        "Participate in code reviews and technical discussions",
+        "Stay current with frontend technologies and best practices",
+        "Debug and troubleshoot cross-browser issues"
+      ],
+      "requirements": [
+        "3+ years of frontend development experience",
+        "Expert proficiency in React, JavaScript/TypeScript, and CSS",
+        "Experience with modern frontend tools and workflows",
+        "Strong understanding of responsive design principles",
+        "Knowledge of web performance optimization",
+        "Experience with Git and version control",
+        "Excellent attention to detail",
+        "Portfolio showcasing frontend work"
+      ],
+      "benefits": [
+        "Competitive hourly rate",
+        "Fully remote with flexible schedule",
+        "Long-term contract opportunity",
+        "Work with cutting-edge technologies",
+        "Collaborative team environment",
+        "Potential for contract-to-hire",
+        "Access to premium tools and software",
+        "Opportunity to work on high-profile projects"
+      ]
+    }
+  ]
+}

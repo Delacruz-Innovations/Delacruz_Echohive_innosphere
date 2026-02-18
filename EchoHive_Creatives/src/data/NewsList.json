@@ -1,0 +1,85 @@
+[
+  {
+    "id": "creative-trends-2025",
+    "type": "INDUSTRY TRENDS",
+    "title": "Top 10 Creative Trends Shaping Nigeria’s Media Industry in 2025",
+    "date": "January 14, 2025",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&h=900&fit=crop",
+    "hasRegister": false,
+    "category": "TRENDS",
+    "subtitle": "FUTURE OF MEDIA",
+    "description": [
+      "Nigeria’s media industry is evolving faster than ever. From AI-powered storytelling to immersive event coverage, 2025 is shaping up to be a defining year for creatives, brands, and agencies that want to stay relevant and competitive.",
+      "The top trends shaping the industry include: AI-Assisted Content Creation for faster workflow; Short-Form Video Dominance on platforms like TikTok and Reels; Drone-First Event Coverage becoming standard; Immersive Brand Storytelling focusing on experiences; and Vertical-First Design for mobile-first audiences.",
+      "Other key trends are Hyperlocal Content tailored to Nigerian cities; Hybrid Live Streaming for events; Data-Driven Creativity analytics; Authentic African Aesthetics celebrating cultural pride; and Creative Automation for speed without quality loss.",
+      "Why This Matters: Brands that fail to adapt risk becoming invisible. Audiences now expect high-quality visuals, speed, and authenticity."
+    ]
+  },
+  {
+    "id": "drone-technology-transforming-events",
+    "type": "TECHNOLOGY",
+    "title": "How Drone Technology Is Transforming Event Coverage in Nigeria",
+    "date": "February 2, 2025",
+    "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=600&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=1600&h=900&fit=crop",
+    "hasRegister": false,
+    "category": "INNOVATION",
+    "subtitle": "AERIAL REVOLUTION",
+    "description": [
+      "Event coverage in Nigeria has moved beyond ground cameras. Drone technology is redefining how weddings, concerts, corporate events, and festivals are captured.",
+      "Drones are changing events by providing Cinematic Aerial Shots that add prestige and scale, Better Crowd Coverage for large venues, Dynamic Storytelling with smooth transitions, Cost-Effective Production where one drone replaces multiple angles, and Real-Time Streaming capabilities.",
+      "Primary use cases in Nigeria now include corporate conferences, luxury weddings, music concerts & festivals, and real estate & brand activations.",
+      "Compliance Matters: Licensed pilots and aviation compliance (NCAA regulations) are critical for safe operations."
+    ]
+  },
+  {
+    "id": "professional-photography-gear-2025",
+    "type": "PHOTOGRAPHY",
+    "title": "Best Gear to Use for Professional Photography in 2025",
+    "date": "March 10, 2025",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&h=600&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1600&h=900&fit=crop",
+    "hasRegister": false,
+    "category": "GEAR GUIDE",
+    "subtitle": "TOOLS OF THE TRADE",
+    "description": [
+      "Professional photography in 2025 demands more than talent—it requires the right gear. Whether you’re shooting portraits, events, or commercial content, here’s what professionals are using.",
+      "Must-Have Photography Gear includes Mirrorless Cameras (Sony A7 IV, Canon R6 II), Fast Prime Lenses (35mm, 50mm, 85mm), Hybrid Zoom Lenses, Portable LED Lights, Gimbals & Stabilizers, High-Speed SD & CFexpress Cards, and Cloud-Based Backup Systems.",
+      "Great gear improves low-light performance, speed, and reliability—especially during live events."
+    ]
+  },
+  {
+    "id": "business-visual-branding",
+    "type": "BRANDING",
+    "title": "Why Your Business Needs Strong Visual Branding",
+    "date": "April 5, 2025",
+    "image": "https://images.unsplash.com/photo-1493612276216-9c592732048f?w=800&h=600&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1493612276216-9c592732048f?w=1600&h=900&fit=crop",
+    "hasRegister": false,
+    "category": "BRAND STRATEGY",
+    "subtitle": "VISUAL IDENTITY",
+    "description": [
+      "In today’s crowded Nigerian market, visual branding is no longer optional. Your logo, colors, photos, and videos shape how customers perceive and trust your business.",
+      "Strong visual branding builds instant recognition, increases trust and credibility, improves marketing consistency, drives higher engagement, and positions your brand as premium.",
+      "Elements of visual branding include Logo & brand identity, Professional photography, Brand videos & motion graphics, Social media templates, and Event visuals.",
+      "Nigerian Market Reality: Consumers judge brands fast. Poor visuals signal poor quality—no matter how good your service is."
+    ]
+  },
+  {
+    "id": "stress-free-corporate-event",
+    "type": "EVENTS",
+    "title": "How to Plan a Stress-Free Corporate Event",
+    "date": "May 12, 2025",
+    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&h=900&fit=crop",
+    "hasRegister": false,
+    "category": "EVENT PLANNING",
+    "subtitle": "EXPERT GUIDE",
+    "description": [
+      "Corporate events don’t have to be chaotic. With the right planning and creative partners, you can host a stress-free, high-impact corporate event.",
+      "Step-by-Step Guide: 1. Define event goals, 2. Set a realistic budget, 3. Choose the right venue, 4. Plan professional media coverage, 5. Coordinate vendors early, 6. Prepare a clear event timeline, 7. Rehearse and test equipment.",
+      "Why Professional Coverage Matters: Quality photos and videos extend the life of your event long after it ends—boosting brand visibility and ROI."
+    ]
+  }
+]

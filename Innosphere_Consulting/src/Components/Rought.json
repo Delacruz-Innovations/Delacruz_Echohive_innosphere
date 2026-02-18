@@ -1,0 +1,403 @@
+New chat
+
+import React, { useState } from 'react'; import { CheckCircle, Rocket, TrendingUp, Cpu, Layers, Users, Phone, Clock, ArrowRight, ArrowLeft } from 'lucide-react'; export default function ConsultantForm() { const [step, setStep] = useState(1); const [formData, setFormData] = useState({
+
+pasted
+
+I want am other setup for this 
+I don't want this format
+
+I'd be happy to help you redesign this consultation form! To create something that better fits your needs, could you tell me more about what you're looking for?
+
+For example:
+
+Layout style: Single-page form, tabbed interface, accordion style, or something else?
+Visual direction: More minimal/clean, colorful/playful, corporate/professional, or modern/sleek?
+Key changes: What specifically don't you like about the current multi-step format?
+Functionality: Do you still want to collect the same information, or would you like to change what data you gather?
+Or, if you'd like, I can create a completely different approach with:
+
+A single-page scrollable form (no steps)
+A slide-in/modal style experience
+A conversational chatbot-style interface
+A card-based selection system
+Something more visual/interactive
+Let me know what direction appeals to you, and I'll create a fresh design!
+
+A single-page scrollable form (no steps)
+Something more visual/interactive
+
+Interactive Consultation Form
+Interactive artifact 
+I've created a completely redesigned single-page scrollable form with a modern, visual, and interactive design! Here's what's new:
+
+Key Features:
+
+✨ Single-page layout - No steps, everything visible at once
+🎨 Glassmorphism design - Beautiful frosted glass cards with backdrop blur
+🌈 Gradient backgrounds - Eye-catching color gradients throughout
+🎯 Interactive goal cards - Large, clickable cards with icons that scale and animate on hover/selection
+💫 Smooth animations - Hover effects, scale transitions, and glowing shadows
+🎭 Visual hierarchy - Each section has its own icon and color theme
+📱 Fully responsive - Works great on all screen sizes
+Visual Improvements:
+
+Hero header with sparkle badge and gradient text
+Color-coded sections (blue for personal, purple for goals, green for business, orange for consultation)
+Interactive cards that glow and scale when selected
+Premium badge on the paid consultation option
+Dynamic submit button that changes based on form completion
+Celebratory success screen with animations
+The form collects the same information but in a much more engaging, modern way that feels premium and exciting!
+
+
+
+Session limit reached ∙ resets 4:00 PM
+Upgrade
+
+
+
+
+
+16.10 KB •339 lines
+•
+Formatting may be inconsistent from source
+import React, { useState } from 'react';
+import { CheckCircle, Rocket, TrendingUp, Cpu, Layers, Users, Phone, Clock, ArrowRight, ArrowLeft } from 'lucide-react';
+
+export default function ConsultantForm() {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    businessName: '',
+    contact: '',
+    businessGoal: '',
+    businessSize: '',
+    startTime: '',
+    consultationType: ''
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  const isStep1Valid = () => {
+    return formData.fullName && formData.businessName && formData.contact;
+  };
+
+  const isStep2Valid = () => {
+    return formData.businessGoal && formData.businessSize;
+  };
+
+  const isStep3Valid = () => {
+    return formData.startTime && formData.consultationType;
+  };
+
+  const handleNext = () => {
+    if (step === 1 && isStep1Valid()) setStep(2);
+    else if (step === 2 && isStep2Valid()) setStep(3);
+  };
+
+  const handleSubmit = () => {
+    if (isStep3Valid()) {
+      console.log('Form submitted:', formData);
+      setSubmitted(true);
+    }
+  };
+
+  const goalOptions = [
+    { label: 'Grow revenue & attract more customers', icon: <TrendingUp size={20} /> },
+    { label: 'Automate and digitize our operations', icon: <Cpu size={20} /> },
+    { label: 'Develop a digital product or SaaS platform', icon: <Layers size={20} /> },
+    { label: 'Improve team efficiency & performance', icon: <Users size={20} /> },
+    { label: 'Not sure — I need expert advice', icon: <Phone size={20} /> }
+  ];
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+        <div className="max-w-lg w-full bg-gray-800 rounded-2xl p-8 text-center">
+          <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle size={32} className="text-white" />
+          </div>
+          <h2 className="text-3xl font-bold text-white mb-3">Request Submitted!</h2>
+          <p className="text-gray-300 mb-6">You'll hear from one of our consultants within 24 hours to discuss your business goals.</p>
+          <button
+            onClick={() => {
+              setSubmitted(false);
+              setStep(1);
+              setFormData({
+                fullName: '',
+                businessName: '',
+                contact: '',
+                businessGoal: '',
+                businessSize: '',
+                startTime: '',
+                consultationType: ''
+              });
+            }}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
+          >
+            Submit Another Request
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-900 py-12 px-4">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold text-white mb-3">Business Consultation Request</h1>
+          <p className="text-gray-400 text-lg">Let's discuss your business goals and create a strategy</p>
+        </div>
+
+        {/* Progress Steps */}
+        <div className="flex items-center justify-between mb-10 px-4">
+          <div className="flex items-center gap-2">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${step >= 1 ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-400'}`}>
+              {step > 1 ? '✓' : '1'}
+            </div>
+            <span className={`text-sm font-medium hidden sm:inline ${step >= 1 ? 'text-white' : 'text-gray-500'}`}>Contact</span>
+          </div>
+          <div className={`flex-1 h-1 mx-3 ${step >= 2 ? 'bg-blue-600' : 'bg-gray-700'}`}></div>
+          <div className="flex items-center gap-2">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${step >= 2 ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-400'}`}>
+              {step > 2 ? '✓' : '2'}
+            </div>
+            <span className={`text-sm font-medium hidden sm:inline ${step >= 2 ? 'text-white' : 'text-gray-500'}`}>Details</span>
+          </div>
+          <div className={`flex-1 h-1 mx-3 ${step >= 3 ? 'bg-blue-600' : 'bg-gray-700'}`}></div>
+          <div className="flex items-center gap-2">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${step >= 3 ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-400'}`}>
+              3
+            </div>
+            <span className={`text-sm font-medium hidden sm:inline ${step >= 3 ? 'text-white' : 'text-gray-500'}`}>Schedule</span>
+          </div>
+        </div>
+
+        {/* Form Container */}
+        <div className="bg-gray-800 rounded-2xl p-8 shadow-xl">
+          {/* Step 1: Quick Contact */}
+          {step === 1 && (
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">Quick Contact</h2>
+              <p className="text-gray-400 mb-6">Trust & Ease First</p>
+
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">Full Name *</label>
+                  <input
+                    type="text"
+                    value={formData.fullName}
+                    onChange={(e) => handleChange('fullName', e.target.value)}
+                    placeholder="Enter your full name"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">Business Name *</label>
+                  <input
+                    type="text"
+                    value={formData.businessName}
+                    onChange={(e) => handleChange('businessName', e.target.value)}
+                    placeholder="Enter your business name"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">Email or WhatsApp Number *</label>
+                  <input
+                    type="text"
+                    value={formData.contact}
+                    onChange={(e) => handleChange('contact', e.target.value)}
+                    placeholder="your@email.com or +1234567890"
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  />
+                  <p className="text-gray-500 text-xs mt-2">👉 One contact point only — reduces friction</p>
+                </div>
+
+                <button
+                  onClick={handleNext}
+                  disabled={!isStep1Valid()}
+                  className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
+                    isStep1Valid()
+                      ? 'bg-blue-600 text-white hover:bg-blue-700'
+                      : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  Continue <ArrowRight size={18} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Identify the Need */}
+          {step === 2 && (
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">Identify the Need</h2>
+              <p className="text-gray-400 mb-6">Qualification Without Overload</p>
+
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-3">What's your biggest business goal right now? *</label>
+                  <div className="space-y-2">
+                    {goalOptions.map((goal) => (
+                      <button
+                        key={goal.label}
+                        onClick={() => handleChange('businessGoal', goal.label)}
+                        className={`w-full p-3 rounded-lg text-left flex items-center gap-3 transition ${
+                          formData.businessGoal === goal.label
+                            ? 'bg-blue-600 text-white border-2 border-blue-500'
+                            : 'bg-gray-700 text-gray-300 border-2 border-transparent hover:border-gray-600'
+                        }`}
+                      >
+                        {goal.icon}
+                        <span className="text-sm font-medium">{goal.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">What's your business size? *</label>
+                  <select
+                    value={formData.businessSize}
+                    onChange={(e) => handleChange('businessSize', e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition cursor-pointer"
+                  >
+                    <option value="">Select business size</option>
+                    <option value="Startup (1–10 employees)">Startup (1–10 employees)</option>
+                    <option value="Small Business (11–50 employees)">Small Business (11–50 employees)</option>
+                    <option value="Mid-size (51–200 employees)">Mid-size (51–200 employees)</option>
+                    <option value="Large Organization (200+)">Large Organization (200+)</option>
+                  </select>
+                </div>
+
+                <div className="flex gap-3 pt-2">
+                  <button
+                    onClick={() => setStep(1)}
+                    className="px-6 py-3 bg-gray-700 text-gray-300 rounded-lg font-semibold hover:bg-gray-600 transition flex items-center gap-2"
+                  >
+                    <ArrowLeft size={18} /> Back
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={!isStep2Valid()}
+                    className={`flex-1 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
+                      isStep2Valid()
+                        ? 'bg-blue-600 text-white hover:bg-blue-700'
+                        : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                    }`}
+                  >
+                    Continue <ArrowRight size={18} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Set Expectation */}
+          {step === 3 && (
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">Set Expectation</h2>
+              <p className="text-gray-400 mb-6">Permission to Engage</p>
+
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-2">When would you like to start? *</label>
+                  <select
+                    value={formData.startTime}
+                    onChange={(e) => handleChange('startTime', e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition cursor-pointer"
+                  >
+                    <option value="">Select timeline</option>
+                    <option value="Immediately">Immediately</option>
+                    <option value="Within the next 30 days">Within the next 30 days</option>
+                    <option value="Within 3 months">Within 3 months</option>
+                    <option value="Just exploring for now">Just exploring for now</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 text-sm font-medium mb-3">Preferred Consultation Type: *</label>
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => handleChange('consultationType', 'Free Discovery Call (15 mins)')}
+                      className={`w-full p-4 rounded-lg text-left transition ${
+                        formData.consultationType === 'Free Discovery Call (15 mins)'
+                          ? 'bg-blue-600 text-white border-2 border-blue-500'
+                          : 'bg-gray-700 text-gray-300 border-2 border-transparent hover:border-gray-600'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-bold">Free Discovery Call</span>
+                        <Clock size={20} />
+                      </div>
+                      <p className={`text-sm ${formData.consultationType === 'Free Discovery Call (15 mins)' ? 'text-blue-100' : 'text-gray-400'}`}>
+                        15 minutes · Quick consultation to understand your needs
+                      </p>
+                    </button>
+
+                    <button
+                      onClick={() => handleChange('consultationType', 'Full Strategy Session (60 mins, paid)')}
+                      className={`w-full p-4 rounded-lg text-left transition ${
+                        formData.consultationType === 'Full Strategy Session (60 mins, paid)'
+                          ? 'bg-blue-600 text-white border-2 border-blue-500'
+                          : 'bg-gray-700 text-gray-300 border-2 border-transparent hover:border-gray-600'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-bold">Full Strategy Session</span>
+                        <Rocket size={20} />
+                      </div>
+                      <p className={`text-sm ${formData.consultationType === 'Full Strategy Session (60 mins, paid)' ? 'text-blue-100' : 'text-gray-400'}`}>
+                        60 minutes · Deep dive strategy session (paid)
+                      </p>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-gray-700 border border-gray-600 rounded-lg p-4">
+                  <p className="text-gray-300 text-sm">
+                    ✅ You'll hear from one of our consultants within 24 hours to discuss your business goals.
+                  </p>
+                </div>
+
+                <div className="flex gap-3 pt-2">
+                  <button
+                    onClick={() => setStep(2)}
+                    className="px-6 py-3 bg-gray-700 text-gray-300 rounded-lg font-semibold hover:bg-gray-600 transition flex items-center gap-2"
+                  >
+                    <ArrowLeft size={18} /> Back
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!isStep3Valid()}
+                    className={`flex-1 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition ${
+                      isStep3Valid()
+                        ? 'bg-green-600 text-white hover:bg-green-700'
+                        : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+                    }`}
+                  >
+                    Let's Get Started <Rocket size={18} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Security Badge */}
+        <div className="text-center mt-6">
+          <p className="text-gray-500 text-sm">🔒 Your information is secure and confidential</p>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,248 @@
+{
+  "services": [
+    {
+      "id": "event-management",
+      "number": "01",
+      "title": "EVENT MANAGEMENT",
+      "subtitle": "WE PLAN. WE DESIGN. WE EXECUTE.",
+      "description": "Echohive creatives offers comprehensive event management services for individuals, corporates, brands, and organisations, delivering precision and innovation.",
+      "shape": "helix",
+      "details": {
+        "heroTitle": "EVENT MANAGEMENT & PRODUCTION",
+        "heroSubtitle": "Comprehensive event/production services for individuals, corporates, and brands.",
+        "heroImage": "https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&h=1200&fit=crop",
+        "whyTitle": "WHY ECHOHIVE EVENTS?",
+        "whyContent": [
+          "We specialise in transforming visions into unforgettable experiences through meticulous planning and creative execution.",
+          "From intimate weddings to large-scale corporate launches, we handle every detail with precision."
+        ],
+        "capabilities": [
+          {
+            "title": "Full Event Planning & Coordination",
+            "description": "End-to-end management of your entire event lifecycle."
+          },
+          {
+            "title": "Corporate Event Production",
+            "description": "Professional production for conferences, seminars, and meetings."
+          },
+          {
+            "title": "Brand Activations & Launches",
+            "description": "Immersive experiences to launch products and engage customers."
+          },
+          {
+            "title": "Weddings & Private Celebrations",
+            "description": "Bespoke planning for your most special personal moments."
+          },
+          {
+            "title": "Stage, Sound & Lighting Management",
+            "description": "Technical excellence to ensure your event looks and sounds perfect."
+          },
+          {
+            "title": "Vendor Sourcing & Management",
+            "description": "Curating and managing the best vendors for your needs."
+          },
+          {
+            "title": "Event Photography & Videography",
+            "description": "Capturing every moment with professional visual coverage."
+          },
+          {
+            "title": "Live Streaming & Multimedia Coverage",
+            "description": "Broadcasting your event to a global audience in real-time."
+          }
+        ]
+      }
+    },
+    {
+      "id": "photography",
+      "number": "02",
+      "title": "PHOTOGRAPHY",
+      "subtitle": "CAPTURING YOUR BEST MOMENTS.",
+      "description": "Professional photography that captures your best moments in crisp detail, from brand campaigns to lifestyle shoots.",
+      "shape": "pyramid",
+      "details": {
+        "heroTitle": "PROFESSIONAL PHOTOGRAPHY",
+        "heroSubtitle": "Capturing your best moments in crisp detail.",
+        "heroImage": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200&h=1200&fit=crop",
+        "whyTitle": "WHY ECHOHIVE PHOTOGRAPHY?",
+        "whyContent": [
+          "We believe in the power of visual storytelling to elevate brands and preserve memories.",
+          "Our team uses high-end equipment to deliver studio-quality results in any setting."
+        ],
+        "capabilities": [
+          {
+            "title": "Event Photography",
+            "description": "Documenting your events with style and clarity."
+          },
+          {
+            "title": "Product Photography",
+            "description": "High-quality images that make your products shine."
+          },
+          {
+            "title": "Brand Campaign Photography",
+            "description": "Visuals that communicate your brand's unique identity."
+          },
+          {
+            "title": "Studio & Outdoor Shoots",
+            "description": "Versatile shooting environments to match your vision."
+          },
+          {
+            "title": "Portraits & Headshots",
+            "description": "Professional profiles that make a strong first impression."
+          },
+          {
+            "title": "Lifestyle Photography",
+            "description": "Authentic imagery that resonates with your audience."
+          }
+        ]
+      }
+    },
+    {
+      "id": "videography",
+      "number": "03",
+      "title": "VIDEOGRAPHY",
+      "subtitle": "HIGH-QUALITY VISUAL STORYTELLING.",
+      "description": "High-quality visuals using modern equipment and industry-standard production techniques for commercials, documentaries, and more.",
+      "shape": "sphere",
+      "details": {
+        "heroTitle": "VIDEOGRAPHY & CINEMATOGRAPHY",
+        "heroSubtitle": "Modern equipment and industry-standard production techniques.",
+        "heroImage": "https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=1200&h=1200&fit=crop",
+        "whyTitle": "WHY ECHOHIVE VIDEO?",
+        "whyContent": [
+          "Video is the most powerful medium for storytelling in the digital age.",
+          "We produce cinematic content that engages audiences and delivers your message effectively."
+        ],
+        "capabilities": [
+          {
+            "title": "Event Videography",
+            "description": "Cinematic coverage of your important occasions."
+          },
+          {
+            "title": "Documentary Filmmaking",
+            "description": "Telling real stories with depth and emotion."
+          },
+          {
+            "title": "Commercial Videos",
+            "description": "Promotional content that drives sales and awareness."
+          },
+          {
+            "title": "Real Estate Videography",
+            "description": "Showcasing properties to attract potential buyers."
+          },
+          {
+            "title": "Social Media Videos",
+            "description": "Short-form content designed for engagement."
+          },
+          {
+            "title": "Music Videos",
+            "description": "Creative visual production for artists and musicians."
+          },
+          {
+            "title": "Corporate Storytelling",
+            "description": "Narratives that define and elevate your corporate identity."
+          }
+        ]
+      }
+    },
+    {
+      "id": "drone-services",
+      "number": "04",
+      "title": "DRONE SERVICES",
+      "subtitle": "AERIAL SHOOTS & RENTALS.",
+      "description": "Premium drone services handled by certified pilots, covering aerial photography, videography, surveying, and cost-effective rentals.",
+      "shape": "blob",
+      "details": {
+        "heroTitle": "DRONE AERIAL SERVICES",
+        "heroSubtitle": "Premium drone services by certified pilots + Rentals.",
+        "heroImage": "https://images.unsplash.com/photo-1508624177265-27dc5142171c?w=1200&h=1200&fit=crop",
+        "whyTitle": "WHY ECHOHIVE DRONE SERVICES?",
+        "whyContent": [
+          "Aerial perspectives add a unique and professional dimension to any project.",
+          "We offer both full-service piloting and rental options to suit your specific needs."
+        ],
+        "capabilities": [
+          {
+            "title": "Aerial Photography",
+            "description": "Stunning high-resolution shots from the sky."
+          },
+          {
+            "title": "Aerial Videography",
+            "description": "Smooth, cinematic 4K video from unique angles."
+          },
+          {
+            "title": "Drone Event Coverage",
+            "description": "Dynamic overhead perspectives of large gatherings."
+          },
+          {
+            "title": "Real Estate Aerial Shoots",
+            "description": "Comprehensive property views for listings."
+          },
+          {
+            "title": "Construction Site Monitoring",
+            "description": "Tracking progress and safety from above."
+          },
+          {
+            "title": "Surveying & Mapping Support",
+            "description": "Technical aerial data for planning and analysis."
+          },
+          {
+            "title": "Drone Rentals (DJI Mavic, Mini, Air, FPV)",
+            "description": "Rent the latest drones with extra batteries and accessories."
+          }
+        ]
+      }
+    },
+    {
+      "id": "gear-rentals",
+      "number": "05",
+      "title": "GEAR RENTALS",
+      "subtitle": "PROFESSIONAL CREATIVE EQUIPMENT.",
+      "description": "Affordable rental of professional creative equipment including cameras, lenses, lighting, and audio gear for your production needs.",
+      "shape": "hourglass",
+      "details": {
+        "heroTitle": "CREATIVE GEAR RENTALS",
+        "heroSubtitle": "Affordable rental of professional equipment for events and shoots.",
+        "heroImage": "https://images.unsplash.com/photo-1516724562728-afc824a36e84?w=1200&h=1200&fit=crop",
+        "whyTitle": "WHY RENT FROM ECHOHIVE?",
+        "whyContent": [
+          "Access industry-standard equipment without the high upfront cost.",
+          "We maintain our gear meticulously to ensure reliability on your shoot."
+        ],
+        "capabilities": [
+          {
+            "title": "Cameras",
+            "description": "Canon, Sony, Nikon (mirrorless & DSLR) bodies."
+          },
+          {
+            "title": "Lenses",
+            "description": "Prime, Zoom, Telephoto, and Wide-angle options."
+          },
+          {
+            "title": "Lighting Gear",
+            "description": "Softboxes, LED panels, RGB lights, and strobes."
+          },
+          {
+            "title": "Audio Gear",
+            "description": "Boom mics, lavaliers, and wireless audio sets."
+          },
+          {
+            "title": "Accessories",
+            "description": "Tripods, gimbals, stabilisers, and sliders."
+          }
+        ]
+      }
+    }
+  ],
+  "additionalServices": [
+    {
+      "title": "DENTSU LAB",
+      "description": "Innovation proposition applying creative R&D to unlock new value in emerging tech.",
+      "image": "https://placehold.co/800x600/0f172a/00FFFF?text=LAB+INNOVATION"
+    },
+    {
+      "title": "DENTSU M",
+      "description": "A cutting-edge virtual identity solution for unique online and metaverse presence.",
+      "image": "https://placehold.co/800x600/1e293b/00FFFF?text=VIRTUAL+IDENTITY"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  /* Your custom colors */
+  --color-primary-blue: #2B4FFF;
+  --color-primary-yellow: #FFD85C;
+  --color-primary-navy: #1A1F3D;
+  
+  --color-secondary-violet: #6B4FFF;
+  --color-secondary-coral: #FF6B6B;
+  --color-secondary-mint: #4ECDC4;
+  --color-secondary-amber: #FFB347;
+  
+  /* Add all your custom theme values from your original tailwind.config.js here */
+}
+
+/* Your custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* Add other keyframes from your original config */
