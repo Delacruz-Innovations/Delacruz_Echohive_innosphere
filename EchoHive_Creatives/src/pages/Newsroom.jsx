@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import * as THREE from 'three';
-import newsData from '../data/NewsList.json';
-
-gsap.registerPlugin(ScrollTrigger);
+// Import blog service
+import { blogService } from '../services/blogService';
 
 export default function Newsroom() {
   const navigate = useNavigate();
@@ -17,11 +16,24 @@ export default function Newsroom() {
   const [newsItems, setNewsItems] = useState([]);
   const [filteredNews, setFilteredNews] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState('All');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setNewsItems(newsData);
-    setFilteredNews(newsData);
+    fetchNews();
   }, []);
+
+  const fetchNews = async () => {
+    try {
+      setLoading(true);
+      const data = await blogService.getPublishedBlogs();
+      setNewsItems(data);
+      setFilteredNews(data);
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (selectedFilter === 'All') {
@@ -229,12 +241,16 @@ export default function Newsroom() {
       </section>
 
       {/* Featured Section */}
-      {featuredNews && (
+      {loading ? (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      ) : featuredNews && (
         <section
           ref={featuredRef}
           className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 opacity-0 cursor-pointer"
           style={{ transform: 'translateY(30px)' }}
-          onClick={() => handleNewsClick(featuredNews.id)}
+          onClick={() => handleNewsClick(featuredNews.slug)}
         >
           <div className="max-w-7xl w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
@@ -274,11 +290,9 @@ export default function Newsroom() {
               onChange={(e) => setSelectedFilter(e.target.value)}
             >
               <option>All</option>
-              <option>TRENDS</option>
-              <option>INNOVATION</option>
-              <option>GEAR GUIDE</option>
-              <option>BRAND STRATEGY</option>
-              <option>EVENT PLANNING</option>
+              {Array.from(new Set(newsItems.map(item => item.category))).map(cat => (
+                <option key={cat}>{cat}</option>
+              ))}
             </select>
           </div>
 
@@ -290,12 +304,12 @@ export default function Newsroom() {
                 ref={(el) => (cardsRef.current[index] = el)}
                 className="opacity-0 cursor-pointer"
                 style={{ transform: 'translateY(30px)' }}
-                onClick={() => handleNewsClick(item.id)}
+                onClick={() => handleNewsClick(item.slug)}
               >
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                   <div className="relative h-48 sm:h-56 md:h-64">
                     <img
-                      src={item.image}
+                      src={item.media?.coverImage || item.image}
                       alt={item.title}
                       className="w-full h-full object-cover"
                     />

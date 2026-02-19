@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, CheckCircle, BookOpen, Clock, Calendar, Search, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import insightsData from '../Components/insightsData';
+// Import blog service
+import { blogService } from '../services/blogService';
 
 const InsightsList = () => {
   const navigate = useNavigate();
@@ -9,8 +10,26 @@ const InsightsList = () => {
   const cardsRef = useRef([]);
   const [showAll, setShowAll] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [insights, setInsights] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const categories = ['All', ...new Set(insightsData.insights.map(i => i.category))];
+  useEffect(() => {
+    fetchInsights();
+  }, []);
+
+  const fetchInsights = async () => {
+    try {
+      setLoading(true);
+      const data = await blogService.getPublishedBlogs();
+      setInsights(data);
+    } catch (error) {
+      console.error("Failed to fetch insights:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const categories = ['All', ...new Set(insights.map(i => i.category))];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,11 +69,11 @@ const InsightsList = () => {
     });
 
     return () => observer.disconnect();
-  }, [showAll, activeCategory]);
+  }, [showAll, activeCategory, insights]);
 
   const filteredInsights = activeCategory === 'All'
-    ? insightsData.insights
-    : insightsData.insights.filter(i => i.category === activeCategory);
+    ? insights
+    : insights.filter(i => i.category === activeCategory);
 
   const displayedInsights = showAll ? filteredInsights : filteredInsights.slice(0, 6);
 
@@ -65,7 +84,7 @@ const InsightsList = () => {
   return (
     <div className="min-h-screen bg-[#050b1a] text-white selection:bg-[#6b9dc7]/30 selection:text-[#6b9dc7]">
       {/* Hero Section */}
-      <section className="relative pt-40 pb-24 overflow-hidden">
+      <section className="relative pt-40 pb-40 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#6b9dc7]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4"></div>
@@ -94,8 +113,8 @@ const InsightsList = () => {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 border ${activeCategory === cat
-                    ? 'bg-[#6b9dc7] border-[#6b9dc7] text-white shadow-lg shadow-[#6b9dc7]/20'
-                    : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 hover:bg-white/10'
+                  ? 'bg-[#6b9dc7] border-[#6b9dc7] text-white shadow-lg shadow-[#6b9dc7]/20'
+                  : 'bg-white/5 border-white/10 text-gray-400 hover:border-white/30 hover:bg-white/10'
                   }`}
               >
                 {cat}
@@ -106,16 +125,16 @@ const InsightsList = () => {
       </section>
 
       {/* Featured Insight (if exists) */}
-      {activeCategory === 'All' && !showAll && insightsData.insights.some(i => i.featured) && (
+      {activeCategory === 'All' && !showAll && insights.some(i => i.featured) && (
         <section className="container mx-auto px-6 pb-24">
-          {insightsData.insights.filter(i => i.featured).map(featured => (
+          {insights.filter(i => i.featured).map(featured => (
             <div
               key={featured.id}
               onClick={() => handleInsightClick(featured.slug)}
               className="group relative h-[500px] rounded-3xl overflow-hidden cursor-pointer border border-white/10"
             >
               <img
-                src={featured.image}
+                src={featured.media?.coverImage || featured.image}
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 alt={featured.title}
               />
@@ -146,61 +165,74 @@ const InsightsList = () => {
       )}
 
       {/* Insights Grid */}
-      <section className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {displayedInsights.map((insight, index) => (
-            <div
-              key={insight.id}
-              ref={el => (cardsRef.current[index] = el)}
-              onClick={() => handleInsightClick(insight.slug)}
-              className="group flex flex-col bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-[#6b9dc7]/50 transition-all duration-500 cursor-pointer"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img
-                  src={insight.image}
-                  alt={insight.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-[#050b1a]/20 group-hover:bg-transparent transition-colors"></div>
-                <div className="absolute top-4 left-4">
-                  <span className="px-2 py-1 bg-[#050b1a]/60 backdrop-blur-md border border-white/10 rounded text-[10px] font-bold text-[#6b9dc7] uppercase tracking-widest">
-                    {insight.category}
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-8 flex flex-col flex-1">
-                <div className="flex items-center gap-4 text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-4">
-                  <span>{insight.date}</span>
-                  <span className="w-1 h-1 rounded-full bg-gray-700"></span>
-                  <span>{insight.readTime}</span>
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-4 leading-tight group-hover:text-[#6b9dc7] transition-colors uppercase italic">
-                  {insight.title}
-                </h3>
-
-                <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-1 line-clamp-3 font-light">
-                  {insight.excerpt}
-                </p>
-
-                <div className="flex items-center text-xs font-bold text-white uppercase tracking-widest group-hover:gap-3 transition-all">
-                  Read Article <ArrowRight size={14} className="ml-2 text-[#6b9dc7]" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredInsights.length > displayedInsights.length && (
-          <div className="text-center mt-20">
-            <button
-              onClick={() => setShowAll(true)}
-              className="px-10 py-4 rounded-full border border-white/10 hover:border-[#6b9dc7] text-sm font-bold tracking-widest uppercase transition-all hover:bg-[#6b9dc7]/10"
-            >
-              View More Insights
-            </button>
+      <section className="container mx-auto px-6 py-12 pb-32">
+        {loading ? (
+          <div className="text-center py-20">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#6b9dc7]"></div>
+            <p className="text-gray-400 mt-4 font-light tracking-widest text-xs uppercase">Loading Strategic Insights...</p>
           </div>
+        ) : insights.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-400 font-light tracking-widest text-xs uppercase">No insights available for this category.</p>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {displayedInsights.map((insight, index) => (
+                <div
+                  key={insight.id}
+                  ref={el => (cardsRef.current[index] = el)}
+                  onClick={() => handleInsightClick(insight.slug)}
+                  className="group flex flex-col bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-[#6b9dc7]/50 transition-all duration-500 cursor-pointer"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img
+                      src={insight.media?.coverImage || insight.image}
+                      alt={insight.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-[#050b1a]/20 group-hover:bg-transparent transition-colors"></div>
+                    <div className="absolute top-4 left-4">
+                      <span className="px-2 py-1 bg-[#050b1a]/60 backdrop-blur-md border border-white/10 rounded text-[10px] font-bold text-[#6b9dc7] uppercase tracking-widest">
+                        {insight.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className="flex items-center gap-4 text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-4">
+                      <span>{insight.date}</span>
+                      <span className="w-1 h-1 rounded-full bg-gray-700"></span>
+                      <span>{insight.readTime}</span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-4 leading-tight group-hover:text-[#6b9dc7] transition-colors uppercase italic">
+                      {insight.title}
+                    </h3>
+
+                    <p className="text-gray-400 text-sm leading-relaxed mb-8 flex-1 line-clamp-3 font-light">
+                      {insight.excerpt}
+                    </p>
+
+                    <div className="flex items-center text-xs font-bold text-white uppercase tracking-widest group-hover:gap-3 transition-all">
+                      Read Article <ArrowRight size={14} className="ml-2 text-[#6b9dc7]" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {filteredInsights.length > displayedInsights.length && (
+              <div className="text-center mt-20">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="px-10 py-4 rounded-full border border-white/10 hover:border-[#6b9dc7] text-sm font-bold tracking-widest uppercase transition-all hover:bg-[#6b9dc7]/10"
+                >
+                  View More Insights
+                </button>
+              </div>
+            )}
+          </>
         )}
       </section>
 

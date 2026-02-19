@@ -11,15 +11,25 @@ import {
 import { getServiceByOrgId } from '../services/serviceFactory';
 import { formatFirebaseDate } from '../utils/blogUtils';
 import NetworkError from './NetworkError';
+import { useNotifications } from '../context/NotificationContext';
+import Modal from './Modal';
+import LoadingOverlay from './LoadingOverlay';
 
 const BlogList = () => {
     const { orgId } = useParams();
     const blogService = getServiceByOrgId(orgId);
 
     const [blogs, setBlogs] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); // Initial load
+    const [isActionLoading, setIsActionLoading] = useState(false); // Background actions
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+
+    // Delete Confirmation State
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [blogToDelete, setBlogToDelete] = useState(null);
+
+    const { showNotification } = useNotifications();
 
     useEffect(() => {
         fetchBlogs();
@@ -39,14 +49,24 @@ const BlogList = () => {
         }
     };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to delete this blog post? This action cannot be undone.')) {
-            try {
-                await blogService.deleteBlog(id);
-                setBlogs(blogs.filter(blog => blog.id !== id));
-            } catch (error) {
-                alert('Error deleting blog: ' + error.message);
-            }
+    const handleDeleteClick = (blog) => {
+        setBlogToDelete(blog);
+        setIsDeleteModalOpen(true);
+    };
+
+    const confirmDelete = async () => {
+        if (!blogToDelete) return;
+
+        try {
+            setIsActionLoading(true);
+            await blogService.deleteBlog(blogToDelete.id);
+            setBlogs(blogs.filter(blog => blog.id !== blogToDelete.id));
+            showNotification(`${terminology.entry} deleted successfully`, 'success');
+        } catch (error) {
+            showNotification(`Error deleting ${terminology.entry.toLowerCase()}: ` + error.message, 'error');
+        } finally {
+            setIsActionLoading(false);
+            setBlogToDelete(null);
         }
     };
 
@@ -57,10 +77,14 @@ const BlogList = () => {
         }
         const newStatus = blog.status === 'published' ? 'draft' : 'published';
         try {
+            setIsActionLoading(true);
             await blogService.updateBlog(blog.id, { status: newStatus }, "public-admin-id");
             setBlogs(blogs.map(b => b.id === blog.id ? { ...b, status: newStatus } : b));
+            showNotification(`Entry moved to ${newStatus === 'published' ? 'Live Access' : 'Staging'}`, 'success');
         } catch (error) {
-            alert('Error updating status: ' + error.message);
+            showNotification('Error updating status: ' + error.message, 'error');
+        } finally {
+            setIsActionLoading(false);
         }
     };
 
@@ -258,7 +282,7 @@ const BlogList = () => {
                                             <Edit className="h-4 w-4" />
                                         </Link>
                                         <button
-                                            onClick={() => handleDelete(blog.id)}
+                                            onClick={() => handleDeleteClick(blog)}
                                             className="text-gray-400 hover:text-red-600 transition-colors"
                                             title="Permanently Delete"
                                         >
@@ -277,6 +301,19 @@ const BlogList = () => {
                     </tbody>
                 </table>
             </div>
+
+            <Modal
+                isOpen={isDeleteModalOpen}
+                onClose={() => setIsDeleteModalOpen(false)}
+                onConfirm={confirmDelete}
+                title={`Delete ${terminology.entry}`}
+                message={`Are you sure you want to delete "${blogToDelete?.title}"? This protocol is irreversible and will remove all associated data from the production database.`}
+                confirmText="Terminate Access"
+                cancelText="Keep Data"
+                type="danger"
+            />
+
+            {isActionLoading && <LoadingOverlay message="PROCESSING TRANSACTION..." />}
         </div>
     );
 };

@@ -7,8 +7,8 @@ import insight3 from '../assets/Images/insight3.png';
 import insight4 from '../assets/Images/insight4.png';
 import insight5 from '../assets/Images/insight5.png';
 import insight6 from '../assets/Images/insight6.png';
-// Import insights data
-import insightsData from '../InsightsData.json';
+// Import blog service
+import { blogService } from '../services/blogService';
 import CalendlyPopup from '../Components/CalendlyPopup';
 
 const InsightDetailPage = () => {
@@ -17,22 +17,49 @@ const InsightDetailPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [copied, setCopied] = useState(false);
-  const { insightId } = useParams(); // <-- Must come FIRST
+  const [insight, setInsight] = useState(null);
+  const [allInsights, setAllInsights] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { insightId } = useParams(); // This will now be the slug from the URL
 
-  // Find the insight based on URL parameter
-  const insight = insightsData.insights.find(i => i.id === insightId) || insightsData.insights[0]; // <-- Must come SECOND
+  useEffect(() => {
+    fetchInsight();
+    fetchRelated();
+  }, [insightId]);
 
-  const insightIndex = insightsData.insights.findIndex(i => i.id === insightId); // <-- Now this can work
+  const fetchInsight = async () => {
+    try {
+      setLoading(true);
+      const data = await blogService.getBlogBySlug(insightId);
+      setInsight(data);
+    } catch (error) {
+      console.error("Error fetching insight:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchRelated = async () => {
+    try {
+      const data = await blogService.getPublishedBlogs();
+      setAllInsights(data);
+    } catch (error) {
+      console.error("Error fetching related insights:", error);
+    }
+  };
 
   useEffect(() => {
     setIsVisible(true);
     window.scrollTo(0, 0);
   }, [insightId]);
 
+  // Index for placeholder images based on slug
+  const insightIndex = allInsights.findIndex(i => i.slug === insightId);
+
   // Get current URL for sharing
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = insight.title;
-  const shareText = insight.excerpt;
+  const shareTitle = insight?.title || '';
+  const shareText = insight?.excerpt || '';
 
   // Share handlers
   const handleCopyLink = () => {
@@ -59,6 +86,25 @@ const InsightDetailPage = () => {
     window.open(facebookUrl, '_blank', 'width=550,height=420');
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white">
+        <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500 mb-4"></div>
+        <p className="text-gray-400">Loading insight...</p>
+      </div>
+    );
+  }
+
+  if (!insight) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white px-4 text-center">
+        <h2 className="text-3xl font-bold mb-4 italic">Insight Not Found</h2>
+        <p className="text-gray-400 mb-8">The insight you're looking for might have been moved or unpublished.</p>
+        <Link to="/insights" className="px-8 py-3 bg-purple-600 rounded-full font-bold hover:bg-purple-700 transition-all">Back to Insights</Link>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
@@ -66,7 +112,7 @@ const InsightDetailPage = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
-            src={placeholderImages[insightIndex !== -1 ? insightIndex % 6 : 0]}
+            src={insight.media?.coverImage || insight.image || placeholderImages[insightIndex !== -1 ? insightIndex % 6 : 0]}
             alt={insight.title}
             className="w-full h-full object-cover"
           />
@@ -109,7 +155,7 @@ const InsightDetailPage = () => {
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5" />
-              <span>{insight.readTime}</span>
+              <span>{insight.reading?.readTime || insight.readTime}</span>
             </div>
 
             {/* Share Button */}
@@ -182,11 +228,22 @@ const InsightDetailPage = () => {
                 <div className="w-1 h-8 bg-purple-500 rounded-full"></div>
                 ABOUT THE AUTHOR(S)
               </h3>
-              <p className="text-gray-300 leading-relaxed mb-4 text-base sm:text-lg">
-                {insight.author.bio}
-              </p>
-              <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
-                Magna rhofus consectetur ar ausent illas. Rhofus erat quisque ut pellentesque nec niitra mafus. Diam turpis nunc vel turpis lectus mattis. Magna rhofus consectetrut ar ausent illas. Rhofus erat quisque ut pellentesque nec niitra mafus. Diam turpis nunc vel turpis lectus mattis. A tortor tinci consectetrer hendreerit accumsan. Placeret pulvinar ultrices at urna elits. Magna et gravida porttitor quis ullamcorper hendreerit aaccumsan. Placeret pulvinar ortra prestre.
+              {(insight.authors || [insight.author]).map((auth, idx) => (
+                <div key={idx} className={idx > 0 ? "mt-8 pt-8 border-t border-gray-800" : ""}>
+                  <div className="flex items-center gap-4 mb-4">
+                    {auth.image && <img src={auth.image} alt={auth.name} className="w-16 h-16 rounded-full object-cover border border-purple-500" />}
+                    <div>
+                      <h4 className="text-xl font-bold text-white">{auth.name}</h4>
+                      <p className="text-purple-400 text-sm font-medium">{auth.title || (auth === insight.author ? "Author" : "")}</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
+                    {auth.bio}
+                  </p>
+                </div>
+              ))}
+              <p className="text-gray-300 leading-relaxed text-base sm:text-lg mt-6 italic opacity-60">
+                Delacruz Innovations is committed to delivering strategic excellence and digital transformation at scale.
               </p>
             </div>
 
@@ -203,13 +260,13 @@ const InsightDetailPage = () => {
               Related Insights
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
-              {insightsData.insights
-                .filter(i => i.id !== insight.id)
+              {(allInsights || [])
+                .filter(i => i.slug !== insight.slug)
                 .slice(0, 2)
                 .map((relatedInsight) => (
                   <Link
                     key={relatedInsight.id}
-                    to={`/insights/${relatedInsight.id}`}
+                    to={`/insights/${relatedInsight.slug}`}
                   >
                     <div className="group bg-gray-900 rounded-lg p-6 hover:bg-gray-800 hover:border-purple-500 transition-all duration-300 border border-gray-800">
                       <span className="text-xs font-semibold text-purple-400 uppercase tracking-wide">

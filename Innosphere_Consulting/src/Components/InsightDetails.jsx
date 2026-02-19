@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, Share2, Linkedin, Twitter, Facebook, Lightbulb, ChevronRight } from 'lucide-react';
-import insightsData from '../Components/insightsData';
+// Import blog service
+import { blogService } from '../services/blogService';
 
 const InsightDetails = () => {
   const { slug } = useParams();
@@ -9,12 +10,33 @@ const InsightDetails = () => {
   const contentRef = useRef(null);
   const heroRef = useRef(null);
   const [activeSection, setActiveSection] = useState('');
-
-  const article = insightsData.insights.find(ins => ins.slug === slug);
+  const [article, setArticle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [allInsights, setAllInsights] = useState([]);
 
   useEffect(() => {
-    if (!article) navigate('/insights');
-  }, [article, navigate]);
+    fetchArticle();
+  }, [slug]);
+
+  const fetchArticle = async () => {
+    try {
+      setLoading(true);
+      const data = await blogService.getBlogBySlug(slug);
+      if (!data) {
+        navigate('/insights');
+        return;
+      }
+      setArticle(data);
+
+      // Fetch related
+      const related = await blogService.getPublishedBlogs();
+      setAllInsights(related);
+    } catch (error) {
+      console.error("Error fetching article:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,6 +88,15 @@ const InsightDetails = () => {
     window.open(shareUrls[platform], '_blank', 'width=600,height=400');
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#050b1a] flex flex-col items-center justify-center text-white">
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#6b9dc7] mb-4"></div>
+        <p className="text-gray-400 font-light tracking-widest text-xs uppercase">Loading Perspective...</p>
+      </div>
+    );
+  }
+
   if (!article) return null;
 
   return (
@@ -74,7 +105,7 @@ const InsightDetails = () => {
       <div className="fixed top-0 left-0 w-full h-1 z-50 bg-white/5">
         <div
           className="h-full bg-gradient-to-r from-[#6b9dc7] to-blue-400 transition-all duration-300 ease-out"
-          style={{ width: `${(insightsData.insights.findIndex(i => i.slug === slug) + 1) / insightsData.insights.length * 100}%` }}
+          style={{ width: `${((allInsights.findIndex(i => i.slug === slug) + 1) || 1) / (allInsights.length || 1) * 100}%` }}
         ></div>
       </div>
 
@@ -112,11 +143,16 @@ const InsightDetails = () => {
 
             <div className="flex items-center gap-6">
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-[#6b9dc7]/20 border border-[#6b9dc7]/30 flex items-center justify-center text-[#6b9dc7] font-bold text-lg mr-4">
-                  {article.author.name.charAt(0)}
+                <div className="w-12 h-12 rounded-full bg-[#6b9dc7]/20 border border-[#6b9dc7]/30 flex items-center justify-center text-[#6b9dc7] font-bold text-lg mr-4 overflow-hidden">
+                  {(article.authors?.[0]?.image || article.author?.image) ?
+                    <img src={article.authors?.[0]?.image || article.author?.image} alt="" className="w-full h-full object-cover" /> :
+                    (article.authors?.[0]?.name || article.author?.name || "I").charAt(0)
+                  }
                 </div>
                 <div>
-                  <div className="text-white font-semibold">{article.author.name}</div>
+                  <div className="text-white font-semibold">
+                    {article.authors?.map(a => a.name).join(", ") || article.author?.name}
+                  </div>
                   <div className="text-gray-400 text-sm flex items-center">
                     <Calendar size={12} className="mr-1.5" />
                     {article.date}
@@ -144,8 +180,8 @@ const InsightDetails = () => {
                           <a
                             href={`#section-${index}`}
                             className={`group flex items-center text-sm transition-all duration-300 ${activeSection === `section-${index}`
-                                ? 'text-[#6b9dc7] font-bold'
-                                : 'text-gray-400 hover:text-white'
+                              ? 'text-[#6b9dc7] font-bold'
+                              : 'text-gray-400 hover:text-white'
                               }`}
                           >
                             <span className={`w-1.5 h-1.5 rounded-full mr-3 transition-all duration-300 ${activeSection === `section-${index}` ? 'bg-[#6b9dc7] scale-125' : 'bg-gray-700'
@@ -183,7 +219,7 @@ const InsightDetails = () => {
               {/* Featured Image */}
               <div className="relative aspect-[21/9] rounded-2xl overflow-hidden mb-16 group">
                 <img
-                  src={article.image}
+                  src={article.media?.coverImage || article.media?.heroImage || article.image}
                   alt={article.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -212,8 +248,21 @@ const InsightDetails = () => {
 
                     <div className="prose prose-invert prose-lg max-w-none">
                       <div className="text-gray-300 leading-relaxed space-y-6 whitespace-pre-line">
-                        {section.body}
+                        {section.body || section.content}
                       </div>
+                      {section.hasPoints && section.points && (
+                        <ul className="mt-8 space-y-4">
+                          {section.points.map((point, pIdx) => (
+                            <li key={pIdx} className="flex gap-4">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#6b9dc7] mt-2.5 flex-shrink-0"></div>
+                              <div>
+                                <span className="text-white font-bold">{point.title}:</span>
+                                <span className="text-gray-400 ml-2">{point.description}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
 
                     {/* Innosphere Insight Box */}
@@ -240,15 +289,15 @@ const InsightDetails = () => {
               </div>
 
               {/* Author Note / Conclusion */}
-              {article.content.authorNote && (
+              {(article.conclusion?.body || article.content.authorNote) && (
                 <div className="mt-24 p-1 rounded-2xl bg-gradient-to-r from-[#6b9dc7] to-blue-500">
                   <div className="bg-[#050b1a] rounded-[15px] p-10 md:p-14">
                     <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
                       <ChevronRight className="text-[#6b9dc7] mr-2" />
-                      Final Takeaway
+                      {article.conclusion?.heading || "Final Takeaway"}
                     </h3>
                     <p className="text-xl text-gray-300 leading-relaxed font-light whitespace-pre-line">
-                      {article.content.authorNote}
+                      {article.conclusion?.body || article.content.authorNote}
                     </p>
                   </div>
                 </div>
@@ -256,19 +305,21 @@ const InsightDetails = () => {
 
               {/* Author Bio */}
               <div className="mt-24 pt-16 border-t border-white/10">
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white/5 p-8 rounded-2xl border border-white/10">
-                  <div className="w-24 h-24 rounded-full bg-[#6b9dc7]/20 border border-[#6b9dc7]/30 flex items-center justify-center text-[#6b9dc7] text-3xl font-bold flex-shrink-0">
-                    {article.author.name.charAt(0)}
+                {(article.authors || [article.author]).map((auth, idx) => (
+                  <div key={idx} className={`flex flex-col md:flex-row items-center md:items-start gap-8 bg-white/5 p-8 rounded-2xl border border-white/10 ${idx > 0 ? "mt-8" : ""}`}>
+                    <div className="w-24 h-24 rounded-full bg-[#6b9dc7]/20 border border-[#6b9dc7]/30 flex items-center justify-center text-[#6b9dc7] text-3xl font-bold flex-shrink-0 overflow-hidden">
+                      {auth.image ? <img src={auth.image} alt="" className="w-full h-full object-cover" /> : auth.name.charAt(0)}
+                    </div>
+                    <div className="text-center md:text-left">
+                      <h4 className="text-2xl font-bold text-white mb-4 italic uppercase">
+                        About <span className="text-[#6b9dc7]">{auth.name}</span>
+                      </h4>
+                      <p className="text-gray-400 leading-relaxed text-lg">
+                        {auth.bio}
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-center md:text-left">
-                    <h4 className="text-2xl font-bold text-white mb-4 italic uppercase">
-                      About <span className="text-[#6b9dc7]">{article.author.name}</span>
-                    </h4>
-                    <p className="text-gray-400 leading-relaxed text-lg">
-                      {article.author.bio}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
             </article>
           </div>
@@ -293,7 +344,7 @@ const InsightDetails = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {insightsData.insights
+              {allInsights
                 .filter(i => i.slug !== slug)
                 .slice(0, 3)
                 .map((related, idx) => (
@@ -303,7 +354,7 @@ const InsightDetails = () => {
                     className="group cursor-pointer"
                   >
                     <div className="relative aspect-video rounded-xl overflow-hidden mb-6">
-                      <img src={related.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="" />
+                      <img src={related.media?.coverImage || related.media?.heroImage || related.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="" />
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
                     </div>
                     <div className="text-[#6b9dc7] text-xs font-bold uppercase tracking-widest mb-3">{related.category}</div>
