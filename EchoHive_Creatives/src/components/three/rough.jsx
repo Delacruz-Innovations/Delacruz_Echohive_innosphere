@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
-import Home from './Pages/Home';
+import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Contact from './pages/Contact';
 import Header from './components/layout/Header';
@@ -18,7 +18,7 @@ import CaseStudyDetail from './pages/CaseStudyDetail';
 // Scroll to Top Component
 const ScrollToTop = () => {
   const location = useLocation();
-  
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -26,7 +26,7 @@ const ScrollToTop = () => {
       behavior: 'instant' // Use 'instant' for immediate scroll, 'smooth' for animated
     });
   }, [location.pathname]);
-  
+
   return null;
 };
 
@@ -34,17 +34,17 @@ const ScrollToTop = () => {
 const PageTransition = ({ children }) => {
   return (
     <motion.div
-      initial={{ 
+      initial={{
         opacity: 0,
         y: 100,
         scale: 0.95
       }}
-      animate={{ 
+      animate={{
         opacity: 1,
         y: 0,
         scale: 1
       }}
-      exit={{ 
+      exit={{
         opacity: 0,
         y: -100,
         scale: 1.05
@@ -74,85 +74,85 @@ const AppContent = () => {
       <main className="relative">
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
-            <Route 
-              index 
+            <Route
+              index
               element={
                 <PageTransition>
                   <Home />
                 </PageTransition>
-              } 
+              }
             />
-            <Route 
-              path="/contact" 
+            <Route
+              path="/contact"
               element={
                 <PageTransition>
                   <Contact />
                 </PageTransition>
-              } 
+              }
             />
-            <Route 
-              path="/careers" 
+            <Route
+              path="/careers"
               element={
                 <PageTransition>
                   <Careers />
                 </PageTransition>
-              } 
+              }
             />
-            <Route 
-              path="/news" 
+            <Route
+              path="/news"
               element={
                 <PageTransition>
                   <Newsroom />
                 </PageTransition>
-              } 
+              }
             />
-             <Route 
-              path="/locations" 
+            <Route
+              path="/locations"
               element={
                 <PageTransition>
                   <Locations />
                 </PageTransition>
-              } 
+              }
             />
-              <Route 
-              path="/work" 
+            <Route
+              path="/work"
               element={
                 <PageTransition>
                   <Work />
                 </PageTransition>
-              } 
+              }
             />
-             <Route 
-              path="/services" 
+            <Route
+              path="/services"
               element={
                 <PageTransition>
                   <Services />
                 </PageTransition>
-              } 
+              }
             />
-             <Route 
-              path="/svsDt" 
+            <Route
+              path="/svsDt"
               element={
                 <PageTransition>
                   <ServiceDetails />
                 </PageTransition>
-              } 
+              }
             />
-             <Route 
-              path="case" 
+            <Route
+              path="case"
               element={
                 <PageTransition>
                   <CaseStudyDetail />
                 </PageTransition>
-              } 
+              }
             />
-            <Route 
-              path="*" 
+            <Route
+              path="*"
               element={
                 <PageTransition>
                   <NotFound />
                 </PageTransition>
-              } 
+              }
             />
           </Routes>
         </AnimatePresence>
@@ -181,25 +181,25 @@ const BeeOverlay = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    
+
     // Initialize position securely
     beeRef.current.x = window.innerWidth / 2;
     beeRef.current.y = window.innerHeight / 2;
-    beeRef.current.wanderTarget = { 
-      x: Math.random() * window.innerWidth, 
-      y: Math.random() * window.innerHeight 
+    beeRef.current.wanderTarget = {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight
     };
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
+
     // Track mouse globally so it works over other UI elements
     const handleMouseMove = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
-    
+
     const handleMouseLeave = () => {
       mouseRef.current = { x: null, y: null };
     };
@@ -207,7 +207,7 @@ const BeeOverlay = () => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
-    
+
     handleResize();
 
     const drawBee = (x, y, angle, wingAngle) => {
@@ -228,7 +228,7 @@ const BeeOverlay = () => {
       // Right Wing
       ctx.save();
       ctx.translate(5, -10);
-      ctx.rotate(Math.PI / 4 + wingOffset * 0.05); 
+      ctx.rotate(Math.PI / 4 + wingOffset * 0.05);
       ctx.beginPath();
       ctx.ellipse(20, -20, 25, 12, Math.PI / 4, 0, Math.PI * 2);
       ctx.fill();
@@ -254,11 +254,11 @@ const BeeOverlay = () => {
       ctx.stroke();
 
       // Body
-      ctx.fillStyle = '#fbbf24'; 
+      ctx.fillStyle = '#fbbf24';
       ctx.beginPath();
       ctx.ellipse(0, 0, 30, 18, 0, 0, Math.PI * 2);
       ctx.fill();
-      
+
       // Stripes
       ctx.strokeStyle = '#000';
       ctx.lineWidth = 6;
@@ -277,10 +277,10 @@ const BeeOverlay = () => {
       // Smile & Antennae
       ctx.beginPath(); ctx.arc(20, 2, 5, 0.2, Math.PI / 2);
       ctx.strokeStyle = '#000'; ctx.lineWidth = 1.5; ctx.stroke();
-      
+
       ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(22, -10); ctx.quadraticCurveTo(30, -20, 25, -25); ctx.stroke();
-      ctx.beginPath(); ctx.arc(25, -25, 2, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(25, -25, 2, 0, Math.PI * 2); ctx.fill();
       ctx.beginPath(); ctx.moveTo(22, -10); ctx.quadraticCurveTo(35, -15, 32, -22); ctx.stroke();
 
       ctx.restore();
@@ -291,17 +291,17 @@ const BeeOverlay = () => {
 
       const bee = beeRef.current;
       let targetX, targetY;
-      
+
       if (mouseRef.current.x !== null && mouseRef.current.y !== null) {
         targetX = mouseRef.current.x;
         targetY = mouseRef.current.y;
       } else {
         const distToTarget = Math.hypot(bee.wanderTarget.x - bee.x, bee.wanderTarget.y - bee.y);
         if (distToTarget < 50) {
-            bee.wanderTarget = {
-                x: 50 + Math.random() * (canvas.width - 100),
-                y: 50 + Math.random() * (canvas.height - 100)
-            };
+          bee.wanderTarget = {
+            x: 50 + Math.random() * (canvas.width - 100),
+            y: 50 + Math.random() * (canvas.height - 100)
+          };
         }
         targetX = bee.wanderTarget.x;
         targetY = bee.wanderTarget.y;
@@ -314,7 +314,7 @@ const BeeOverlay = () => {
       let diff = targetAngle - bee.angle;
       while (diff <= -Math.PI) diff += Math.PI * 2;
       while (diff > Math.PI) diff -= Math.PI * 2;
-      
+
       bee.angle += diff * bee.turnSpeed;
       bee.x += Math.cos(bee.angle) * bee.speed;
       bee.y += Math.sin(bee.angle) * bee.speed;
@@ -373,7 +373,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-           
+
           </Routes>
         </main>
         <Footer />

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { motion, AnimatePresence } from 'framer-motion';
 import * as ReactGA from 'react-ga4';
 import './App.css';
-import Home from './Pages/Home';
+import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Contact from './pages/Contact';
 import Header from './components/layout/Header';
