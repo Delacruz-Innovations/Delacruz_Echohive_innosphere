@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Minimize2 } from 'lucide-react';
-import Amari from '../assets/amari.png'
+import Amari from '../assets/Amari.png'
 
 // KNOWLEDGE BASE - Delacruz Innovations
 const knowledgeBase = {
@@ -8,7 +8,7 @@ const knowledgeBase = {
     keywords: ['who are you', 'about', 'delacruz', 'what is delacruz', 'company'],
     response: `We're Delacruz Innovations - a Nigerian IT consultancy delivering digital transformation, SaaS/PaaS solutions, and IT consulting tailored for businesses across Nigeria and internationally. Founded in 2017, we serve tech, finance, education, government, and SMEs with practical, scalable solutions.`
   },
-  
+
   services: {
     keywords: ['service', 'offer', 'what do you do', 'help with', 'provide'],
     response: `Our Services:
@@ -22,17 +22,17 @@ const knowledgeBase = {
 
 Which service interests you?`
   },
-  
+
   digitalTransformation: {
     keywords: ['digital transformation', 'automation', 'process', 'streamline', 'integrate'],
     response: `We help businesses streamline operations, reduce manual tasks, integrate systems, and implement automation solutions to boost productivity and efficiency. Our solutions are designed for the Nigerian business environment with measurable outcomes.`
   },
-  
+
   saas: {
     keywords: ['saas', 'paas', 'software', 'platform', 'custom software'],
     response: `We design and build scalable, secure SaaS/PaaS platforms customized for your business needs. Your team can access software, collaborate efficiently, and scale operations without heavy IT infrastructure costs. Request a demo through our consultation page!`
   },
-  
+
   pricing: {
     keywords: ['price', 'cost', 'pricing', 'package', 'how much', 'fee', 'payment'],
     response: `Our Packages:
@@ -44,7 +44,7 @@ Which service interests you?`
 
 We offer monthly subscriptions, long-term discounts, and flexible payment plans (30% deposit, remainder on milestones). Book a free consultation for a detailed quote!`
   },
-  
+
   consultation: {
     keywords: ['consultation', 'schedule', 'appointment', 'meeting', 'book', 'demo', 'free'],
     response: `📞 Book a FREE 30-minute consultation!
@@ -55,7 +55,7 @@ We offer monthly subscriptions, long-term discounts, and flexible payment plans 
 
 We respond within 24 hours and offer virtual meetings via Zoom, Teams, or Google Meet. Ready to get started?`
   },
-  
+
   process: {
     keywords: ['process', 'how do you work', 'delivery', 'timeline', 'steps'],
     response: `Our 7-Step Process:
@@ -70,12 +70,12 @@ We respond within 24 hours and offer virtual meetings via Zoom, Teams, or Google
 
 Typical projects take 4-12 weeks for SMEs. We measure success through KPIs, ROI analysis, and user satisfaction. Want to learn more?`
   },
-  
+
   training: {
     keywords: ['training', 'support', 'learn', 'ongoing', 'help'],
     response: `Yes! We provide comprehensive role-based training, user manuals, online resources, and ongoing support to ensure your team confidently uses the systems. Training is included in all packages, with continuous optimization available through retainer agreements.`
   },
-  
+
   industries: {
     keywords: ['industry', 'sector', 'serve', 'tech', 'finance', 'education', 'government', 'sme'],
     response: `Industries We Serve:
@@ -89,19 +89,19 @@ Typical projects take 4-12 weeks for SMEs. We measure success through KPIs, ROI 
 
 Every solution considers local challenges and growth potential. What's your industry?`
   },
-  
+
   location: {
     keywords: ['location', 'where', 'office', 'address', 'lagos', 'nigeria'],
     response: `📍 Main Office: Lagos, Nigeria
 
 We operate remotely to serve clients across Nigeria and internationally. You can visit our Lagos office by appointment, or we can meet virtually. Contact us to schedule!`
   },
-  
+
   founder: {
     keywords: ['founder', 'tosin', 'who founded', 'ceo', 'leadership'],
     response: `Delacruz Innovations was founded by Tosin Samuel Ojo, who brings over a decade of expertise in business consulting, IT transformation, and digital strategy. Our leadership team holds SC Clearance and complies with industry standards.`
   },
-  
+
   mission: {
     keywords: ['mission', 'vision', 'values', 'why'],
     response: `🎯 Vision: A digitally empowered Africa where innovation drives inclusion and growth.
@@ -110,12 +110,12 @@ We operate remotely to serve clients across Nigeria and internationally. You can
 
 We combine international best practices with local market expertise for practical, measurable results.`
   },
-  
+
   portfolio: {
     keywords: ['portfolio', 'case study', 'projects', 'examples', 'references', 'testimonials'],
     response: `We have proven results across government, finance, education, and SMEs with measurable business outcomes. Visit our Case Study / Portfolio page to see client testimonials and detailed project examples. Want to discuss your specific needs?`
   },
-  
+
   brandMarketing: {
     keywords: ['brand', 'marketing', 'digital marketing', 'seo', 'social media', 'content'],
     response: `Our Brand & Marketing Services:
@@ -128,7 +128,7 @@ We combine international best practices with local market expertise for practica
 
 We create strong, consistent branding that resonates with your target audience and drives revenue. Interested?`
   },
-  
+
   changeManagement: {
     keywords: ['change management', 'adoption', 'stakeholder', 'migration'],
     response: `We guide businesses through technology adoption, system migration, and stakeholder engagement with proven change management frameworks. This ensures smooth transitions and maximizes system adoption across your organization.`
@@ -244,7 +244,7 @@ const DeChatbot = () => {
   useEffect(() => {
     if (isOpen && !isMinimized) {
       inputRef.current?.focus();
-      
+
       // Show welcome message only once when chat first opens
       if (!hasInteracted && messages.length === 0) {
         setIsTyping(true);
@@ -266,21 +266,21 @@ const DeChatbot = () => {
   // Intelligent response matching
   const getBotResponse = (userMessage) => {
     const lowerMessage = userMessage.toLowerCase();
-    
+
     // Greetings
     if (/^(hello|hi|hey|greetings|good morning|good afternoon|good evening)/.test(lowerMessage)) {
       return "👋 Hello! I'm Amari, your virtual assistant at Delacruz Innovations. I'm here to help you explore our solutions, answer your questions, and guide you every step of the way. How can I assist you today?";
     }
-    
+
     // Thanks
     if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
       return "You're very welcome! Feel free to ask if you have any other questions. We're here to help! 😊";
     }
-    
+
     // Search through knowledge base
     let bestMatch = null;
     let highestScore = 0;
-    
+
     for (const [key, data] of Object.entries(knowledgeBase)) {
       let score = 0;
       for (const keyword of data.keywords) {
@@ -288,18 +288,18 @@ const DeChatbot = () => {
           score++;
         }
       }
-      
+
       if (score > highestScore) {
         highestScore = score;
         bestMatch = data.response;
       }
     }
-    
+
     // If we found a good match
     if (bestMatch && highestScore > 0) {
       return bestMatch;
     }
-    
+
     // Default response for unmatched queries
     return `I'd be happy to help! I can assist you with:
 
@@ -364,8 +364,8 @@ What would you like to know?`;
           className="bg-white hover:shadow-xl rounded-full p-1 shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center group border-4 border-purple-600"
           aria-label="Open chat"
         >
-          <img 
-            src={Amari} 
+          <img
+            src={Amari}
             alt="Amari Avatar"
             className="w-14 h-14 rounded-full object-cover"
           />
@@ -379,8 +379,8 @@ What would you like to know?`;
           <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="bg-white rounded-full p-0.5">
-                <img 
-                  src={Amari} 
+                <img
+                  src={Amari}
                   alt="Amari Avatar"
                   className="w-10 h-10 rounded-full object-cover"
                 />
@@ -418,11 +418,10 @@ What would you like to know?`;
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-lg p-3 ${
-                        message.sender === 'user'
+                      className={`max-w-[85%] rounded-lg p-3 ${message.sender === 'user'
                           ? 'bg-purple-600 text-white'
                           : 'bg-white text-gray-800 border border-gray-200 shadow-sm'
-                      }`}
+                        }`}
                     >
                       <p className="text-sm whitespace-pre-line">{message.text}</p>
                       <span className={`text-xs mt-1 block ${message.sender === 'user' ? 'text-purple-100' : 'text-gray-500'}`}>
