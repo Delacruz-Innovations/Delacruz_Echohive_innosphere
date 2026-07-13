@@ -130,7 +130,7 @@ const Hero = () => {
                 }`}
             >
               {[
-                { number: '36+', label: 'Projects Delivered' },
+                { number: '40+', label: 'Projects Delivered' },
                 { number: '91%', label: 'Client Satisfaction' },
                 { number: '11+', label: 'Expert Consultants' },
                 { number: '15+', label: 'Years Experience' }
