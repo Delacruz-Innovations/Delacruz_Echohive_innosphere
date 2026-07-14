@@ -12,7 +12,7 @@ const CTABanner = () => {
   useHoverGlow(ctaRef);
 
   return (
-    <section className="relative bg-black py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-black py-10 px-3 sm:px-5 lg:px-6 overflow-hidden">
         {/* Animated Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
 

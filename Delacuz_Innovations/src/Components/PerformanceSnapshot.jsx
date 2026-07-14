@@ -194,7 +194,7 @@ const PerformanceSnapshot = () => {
   return (
     <>
       {/* Second hero — full-height intro + dashboard */}
-      <section className="relative flex min-h-screen items-center bg-black px-4 py-16 sm:px-6 lg:px-8">
+      <section className="relative flex min-h-screen items-center bg-black px-3 py-10 sm:px-5 lg:px-6">
         <div className="mx-auto w-full max-w-7xl">
           <div ref={introRef} className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -237,7 +237,7 @@ const PerformanceSnapshot = () => {
       </SnapshotModal>
 
       {/* Outcomes + transition CTA */}
-      <section className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+      <section className="bg-black px-3 py-10 sm:px-5 lg:px-6">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 30 }}
@@ -251,7 +251,7 @@ const PerformanceSnapshot = () => {
 
           <div
             ref={transitionRef}
-            className="mx-auto mt-16 max-w-3xl border-t border-white/10 pt-14 text-center"
+            className="mx-auto mt-8 max-w-3xl border-t border-white/10 pt-8 text-center"
           >
             <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
               {snapshotContent.transitionHeading}

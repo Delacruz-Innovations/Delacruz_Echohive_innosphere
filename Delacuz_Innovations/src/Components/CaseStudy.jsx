@@ -61,7 +61,7 @@ const Casestudy = () => {
   useHoverGlow(ctaRef);
 
   return (
-    <section className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-black px-3 py-10 sm:px-5 lg:px-6">
       <div className="mx-auto max-w-7xl">
         <div ref={headerRef} className="mx-auto max-w-3xl text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300 sm:text-sm">
@@ -81,12 +81,12 @@ const Casestudy = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="mx-auto mt-14 max-w-3xl"
+          className="mx-auto mt-8 max-w-3xl"
         >
           <AutoScrollCarousel items={caseSlides} />
         </motion.div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-8 text-center">
           <span ref={ctaRef} className="inline-block rounded-full">
             <Link
               to="/case-studies"

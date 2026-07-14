@@ -39,10 +39,10 @@ const HelpOurClient = () => {
   };
 
   return (
-    <section className="bg-black py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-black py-10 px-3 sm:px-5 lg:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div ref={headerRef} className="text-center mb-12">
+        <div ref={headerRef} className="text-center mb-8">
           <p className="text-purple-300 text-sm font-semibold tracking-widest uppercase mb-3">
             Practice Area Highlights
           </p>
