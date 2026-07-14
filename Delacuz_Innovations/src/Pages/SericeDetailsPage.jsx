@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Check, Eye, Lightbulb, Palette, Rocket, TrendingUp, Users, Shield, Server } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import CalendlyPopup from '../Components/CalendlyPopup';
+import SEO, { SITE_URL } from '../utils/SEO';
 
 // Import your services data
 import servicesData from '../ServicesData.json';
+
+const truncate = (text, max = 155) =>
+  text && text.length > max ? `${text.substring(0, max).trim()}…` : text;
 
 const ServiceDetailsPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,6 +20,20 @@ const ServiceDetailsPage = () => {
   useEffect(() => {
     setIsVisible(true);
   }, [serviceId]);
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title.replace(/\.$/, ''),
+    description: service.shortDescription,
+    url: `${SITE_URL}/services/${service.slug}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'Delacruz Innovations',
+      url: SITE_URL,
+    },
+    areaServed: ['Nigeria', 'United Arab Emirates'],
+  };
 
   const processIcons = {
     '01': <Eye className="w-6 h-6" />,
@@ -35,6 +53,12 @@ const ServiceDetailsPage = () => {
 
   return (
     <div className="min-h-screen bg-black py-28 px-4 sm:px-6 lg:px-8">
+      <SEO
+        title={service.title.replace(/\.$/, '')}
+        description={truncate(service.shortDescription)}
+        canonical={`${SITE_URL}/services/${service.slug}`}
+        jsonLd={serviceSchema}
+      />
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className={`mb-12 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'

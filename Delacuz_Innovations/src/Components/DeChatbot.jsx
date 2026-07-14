@@ -374,7 +374,7 @@ What would you like to know?`;
           </span>
         </button>
       ) : (
-        <div className={`bg-white rounded-lg shadow-2xl transition-all duration-300 ${isMinimized ? 'h-16' : 'h-[600px]'} w-96 flex flex-col overflow-hidden border border-gray-200`}>
+        <div className={`bg-white rounded-lg shadow-2xl transition-all duration-300 ${isMinimized ? 'h-16' : 'h-[min(600px,80vh)]'} w-[calc(100vw-3rem)] sm:w-96 flex flex-col overflow-hidden border border-gray-200`}>
           {/* Header */}
           <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">

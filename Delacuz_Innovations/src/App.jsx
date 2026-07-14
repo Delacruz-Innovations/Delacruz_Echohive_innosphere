@@ -1,7 +1,9 @@
 import React, { Suspense, lazy, useEffect, useRef } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
+import Breadcrumbs from './components/Breadcrumbs'
 import PersonalInformation from './Components/PersonalInformation'
 import JobPortalApp from './Pages/JobPortalApp'
 import ContactPage from './Pages/ContactPage'
@@ -385,6 +387,7 @@ const AppRoutes = () => {
       <RouteTracker />
       <PageTimeTracker />
       <SessionManager />
+      <Breadcrumbs />
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route index element={<Homepage />} />
@@ -483,15 +486,23 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <HelmetProvider>
       <Router>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-purple-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg"
+        >
+          Skip to main content
+        </a>
         <Navbar />
-        <AppRoutes />
+        <main id="main-content">
+          <AppRoutes />
+        </main>
         <Footer />
         <DeChatbot />
         <CalendlyTracker />
       </Router>
-    </div>
+    </HelmetProvider>
   )
 }
 

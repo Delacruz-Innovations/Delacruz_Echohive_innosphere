@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, Clock, Globe, Facebook, Linkedin, Instagram, Youtube } from 'lucide-react';
+import SEO, { SITE_URL } from '../utils/SEO';
 
 
 const ContactPage = () => {
@@ -112,6 +113,28 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="bg-black py-20 min-h-screen">
+      <SEO
+        title="Contact Us | Delacruz Innovations — Lagos & UAE"
+        description="Get in touch with Delacruz Innovations. Email, call, or visit our offices in Lagos, Nigeria or Ajman, UAE. Mon-Fri 9AM-6PM."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          name: 'Contact Delacruz Innovations',
+          url: `${SITE_URL}/contact`,
+          mainEntity: {
+            '@type': 'LocalBusiness',
+            name: 'Delacruz Innovations',
+            telephone: '+234-905-276-5358',
+            email: 'info@delacruzinnovation.com',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '29A, Salimonu Ayinde Street',
+              addressLocality: 'Lagos',
+              addressCountry: 'NG',
+            },
+          },
+        }}
+      />
       {/* Hero Section */}
       <div className="relative py-20 px-4 overflow-hidden">
         {/* Background Image with Overlay */}

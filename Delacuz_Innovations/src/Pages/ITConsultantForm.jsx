@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../utils/SEO';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -255,6 +256,10 @@ const handleSubmit = async () => {
 
   return (
     <div className="min-h-screen bg-black py-12 px-4">
+      <SEO
+        title="Free IT Consultation | Delacruz Innovations"
+        description="Schedule a free discovery call with Delacruz Innovations. Tell us about your business goals and we'll design a tailored transformation roadmap."
+      />
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

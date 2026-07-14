@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 // Import services data
 import servicesData from '../ServicesData.json';
+import SEO from '../utils/SEO';
+import { SITE_URL } from '../utils/SEO';
+import PageHero from '../Components/PageHero';
 
 const ServicesPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,28 +15,36 @@ const ServicesPage = () => {
     setIsVisible(true);
   }, []);
 
-  return (
-    <div className="min-h-screen bg-black py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className={`mb-16 transition-all duration-1000 transform ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-        }`}>
-          <p className="text-purple-400 text-sm font-semibold tracking-widest uppercase mb-4">
-            Our Services
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Strategic services for <br />
-            <span className="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">
-              sustainable growth
-            </span>
-          </h1>
-          <p className="text-gray-400 text-lg max-w-3xl">
-            Build differentiated positioning that drives market share and customer loyalty.
-          </p>
-        </div>
+  const servicesSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: servicesData.services.map((service, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: service.title.replace(/\.$/, ''),
+      url: `${SITE_URL}/services/${service.slug}`,
+    })),
+  };
 
-        {/* Services Grid */}
+  return (
+    <>
+      <SEO
+        title="Our Services | Digital Transformation, SaaS, IT Consulting & More"
+        description="Explore Delacruz Innovations' service portfolio: digital transformation, SaaS/PaaS development, IT consulting, training & support, brand management, and digital marketing."
+        jsonLd={servicesSchema}
+      />
+      <PageHero
+        eyebrow="OUR SERVICES"
+        headline="Strategic Services for Sustainable Growth"
+        copy="Build differentiated positioning that drives market share and customer loyalty through digital transformation, consultancy, and training."
+        primaryCTALabel="Book a Consultation"
+        scrollLabel="Explore Our Services"
+        ghostWord="SERVICES"
+        heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1974"
+      />
+      <div className="bg-black py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Services Grid */}
         <div className="space-y-12">
           {servicesData.services.map((service, index) => (
             <div
@@ -87,6 +98,7 @@ const ServicesPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

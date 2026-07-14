@@ -6,7 +6,7 @@ export default function DelacruzLeadership() {
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <section className="px-6 py-16 md:py-24 max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold text-purple-700 mb-6 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-purple-700 mb-6 text-center">
           Leadership & Expertise
         </h1>
         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">

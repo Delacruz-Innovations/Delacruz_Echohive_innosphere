@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import CalendlyPopup from '../Components/CalendlyPopup';
+import SEO, { SITE_URL } from '../utils/SEO';
+import PageHero from '../Components/PageHero';
 
 // JSON Data
 const caseStudiesData = {
@@ -243,25 +245,41 @@ const CaseStudies = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black py-28 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12 opacity-0 animate-fadeIn" style={{ animation: 'fadeIn 0.8s ease-out forwards' }}>
-          <h1 className="text-4xl sm:text-5xl font-bold text-purple-700 mb-4">
-            {caseStudiesData.title}
-          </h1>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-            {caseStudiesData.subtitle}
-          </p>
-        </div>
+    <>
+      <SEO
+        title="Case Studies | Delacruz Innovations — Real Client Results"
+        description="See how Delacruz Innovations helped UK Government, NHS England, easyJet, Sky Betting & Gaming, and Lloyds Banking Group transform operations and drive measurable results."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          itemListElement: caseStudiesData.cases.map((c, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: c.title,
+            description: c.challenge.description,
+          })),
+        }}
+      />
+      <PageHero
+        eyebrow="CASE STUDIES"
+        headline="Real Results from Real Clients"
+        copy="See how we helped organisations transform their operations, modernise digital systems, and improve business performance."
+        primaryCTALabel="Book a Consultation"
+        scrollLabel="Explore Case Studies"
+        ghostWord="IMPACT"
+        heroImage="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&auto=format&fit=crop"
+      />
+      <div className="bg-black py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
 
         {/* Case Studies */}
         <div className="space-y-12">
           {caseStudiesData.cases.map((caseStudy, index) => (
             <div
               key={caseStudy.id}
+              id={`case-${caseStudy.id}`}
               data-id={caseStudy.id}
-              className={`case-card transition-all duration-700 ${visibleCards.has(String(caseStudy.id))
+              className={`case-card scroll-mt-24 transition-all duration-700 ${visibleCards.has(String(caseStudy.id))
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
                 }`}
@@ -366,6 +384,7 @@ const CaseStudies = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 

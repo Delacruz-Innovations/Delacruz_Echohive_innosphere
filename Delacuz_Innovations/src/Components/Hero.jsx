@@ -1,188 +1,179 @@
-import { ArrowRight } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ArrowRight, ArrowLeft, ArrowDown } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CalendlyPopup from './CalendlyPopup';
-import heroBg from '../assets/Images/bghero.png';
+import Blog02 from '../assets/Images/blog02.png';
+import usePrefersReducedMotion from '../utils/usePrefersReducedMotion';
+import useGsapReveal from '../utils/useGsapReveal';
+import useHoverGlow from '../utils/useHoverGlow';
+
+// ----------------------------------------------------------------------------
+// CMS content model (maps to the canonical 9-field schema:
+// eyebrow, headline, subheadline, primaryCTA, secondaryCTA,
+// trustStatement, heroGraphic, backgroundVideo, scrollLabel)
+// The fuller subheadline/secondary CTA/trust statement/dashboard now live in
+// PerformanceSnapshot.jsx — this compact block matches the reference layout.
+// ----------------------------------------------------------------------------
+const heroContent = {
+  eyebrow: 'BUSINESS PERFORMANCE ENGINEERING™',
+  headline: 'Your Organisation Can Perform Better. We Help You Engineer It.',
+  copy: 'Engineering measurable performance gains through strategy, governance, data and AI across Nigeria and Africa.',
+  primaryCTA: { label: 'Request an Executive Performance Assessment' },
+  scrollLabel: 'Discover How We Engineer Performance',
+  ghostWord: 'PERFORM',
+  heroImage:
+    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1974',
+};
+
+const caseStudyThumbs = [
+  { title: 'Case Study', image: Blog02, link: '/case-studies' },
+  { title: 'Insights', image: 'https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=400&auto=format&fit=crop', link: '/insights' },
+  { title: 'About Us', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&auto=format&fit=crop', link: '/about' },
+];
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const reduced = usePrefersReducedMotion();
+  const heroRef = useRef(null);
+  const contentRef = useRef(null);
+  const primaryCtaRef = useRef(null);
+  const [thumbIndex, setThumbIndex] = useState(0);
 
-  // Text rotation phrases
-  const phrases = [
-    'Ready to innovate?',
-    'What\'s your next brilliant move?',
-    'Transform your digital future...',
+  useGsapReveal(contentRef, { y: 28, stagger: 0.15, duration: 0.9 });
+  useHoverGlow(primaryCtaRef);
+
+  const visibleThumbs = [
+    caseStudyThumbs[thumbIndex % caseStudyThumbs.length],
+    caseStudyThumbs[(thumbIndex + 1) % caseStudyThumbs.length],
   ];
 
-  useEffect(() => {
-    // Trigger visibility animation
-    setTimeout(() => setIsVisible(true), 100);
-  }, []);
+  const prevThumb = () =>
+    setThumbIndex((i) => (i - 1 + caseStudyThumbs.length) % caseStudyThumbs.length);
+  const nextThumb = () => setThumbIndex((i) => (i + 1) % caseStudyThumbs.length);
 
-  // Auto-typing effect
-  useEffect(() => {
-    const handleTyping = () => {
-      const currentPhrase = phrases[loopNum % phrases.length];
-      const updatedText = isDeleting
-        ? currentPhrase.substring(0, displayText.length - 1)
-        : currentPhrase.substring(0, displayText.length + 1);
-
-      setDisplayText(updatedText);
-
-      if (!isDeleting && updatedText === currentPhrase) {
-        // Pause at end of phrase
-        setTimeout(() => setIsDeleting(true), 2000);
-        setTypingSpeed(150);
-      } else if (isDeleting && updatedText === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        setTypingSpeed(150);
-      } else {
-        setTypingSpeed(isDeleting ? 50 : 150);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, loopNum, typingSpeed]);
+  const scrollToNext = () => {
+    const next = heroRef.current?.nextElementSibling;
+    const behavior = reduced ? 'auto' : 'smooth';
+    if (next) {
+      next.scrollIntoView({ behavior });
+    } else {
+      window.scrollTo({ top: window.innerHeight, behavior });
+    }
+  };
 
   return (
-    <>
-      <div id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Image Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src={heroBg}
-            alt="Background"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+    <section
+      id="hero"
+      ref={heroRef}
+      className="relative flex min-h-screen w-full items-end overflow-hidden bg-black"
+    >
+      {/* Background photo — full-bleed, edge to edge */}
+      <div className="absolute inset-0">
+        <img
+          src={heroContent.heroImage}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-purple-900/30"></div>
 
-          {/* Dark Overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/60"></div>
+        {/* Oversized ghost word — ambient brand motif */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-2 top-24 select-none whitespace-nowrap text-[7rem] font-bold uppercase leading-none text-purple-900/25 sm:top-28 sm:text-[11rem] lg:top-32 lg:text-[15rem]"
+        >
+          {heroContent.ghostWord}
+        </span>
+      </div>
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
-        </div>
-
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 relative z-10">
-          <div className="hero-container max-w-6xl mx-auto text-center">
-            {/* Auto-typing Heading with Cursor */}
-            <div
-              className={`min-h-[120px] sm:min-h-[140px] md:min-h-[180px] lg:min-h-[200px] flex items-center justify-center mb-6 md:mb-8 transition-all duration-1000 ${isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 -translate-y-10'
-                }`}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-                {displayText}
-                <span className="inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-16 bg-purple-500 ml-1 animate-blink"></span>
-              </h1>
-            </div>
-
-            {/* Description with Delayed Animation */}
-            <p
-              className={`text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4 transition-all duration-1000 delay-300 ${isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 -translate-y-10'
-                }`}
-            >
-              Empowering Nigerian businesses through smart digital systems, automation, and enterprise-grade technology.
+      <div
+        ref={contentRef}
+        className="relative z-10 flex w-full flex-col items-start justify-between gap-8 px-6 pb-16 pt-32 sm:flex-row sm:items-end sm:px-10 sm:pb-20 lg:px-16"
+      >
+        {/* Bottom-left: eyebrow, headline, copy, primary CTA */}
+        <div className="max-w-xl">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300 sm:text-sm">
+              {heroContent.eyebrow}
             </p>
-
-            {/* CTA Button with Delayed Animation */}
-            <div
-              className={`transition-all duration-1000 delay-600 ${isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-10'
-                }`}
-            >
+            <h1 className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+              {heroContent.headline}
+            </h1>
+            <p className="mb-6 max-w-md text-sm leading-relaxed text-gray-300 sm:text-base">
+              {heroContent.copy}
+            </p>
+            <span ref={primaryCtaRef} className="inline-block rounded-full">
               <CalendlyPopup
-                text="Get A Free Discovery Call"
-                className="group relative inline-flex items-center gap-2 sm:gap-3 bg-purple-600 hover:bg-purple-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-lg font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-2xl hover:shadow-purple-600/50 transition-all duration-500 hover:scale-105 overflow-hidden"
+                text={heroContent.primaryCTA.label}
+                className="inline-flex items-center rounded-full bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-8 sm:py-4 sm:text-base"
+              />
+            </span>
+          </div>
+
+          {/* Bottom-right: case-study thumbnail carousel */}
+          <div className="hidden shrink-0 flex-col items-end gap-3 sm:flex">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={prevThumb}
+                aria-label="Previous case study"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
               >
-                {/* Button Background Animation */}
-                <span className="absolute inset-0 bg-purple-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-
-                <span className="relative z-10">Get A Free Discovery Call</span>
-
-                <ArrowRight className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform duration-300" />
-
-                {/* Shine Effect */}
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></span>
-              </CalendlyPopup>
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={nextThumb}
+                aria-label="Next case study"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
-
-            {/* Stats Section */}
-            <div
-              className={`mt-12 md:mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-4xl mx-auto transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-            >
-              {[
-                { number: '40+', label: 'Projects Delivered' },
-                { number: '91%', label: 'Client Satisfaction' },
-                { number: '11+', label: 'Expert Consultants' },
-                { number: '15+', label: 'Years Experience' }
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-white/10 backdrop-blur-md rounded-lg p-4 md:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300"
+            <div className="flex gap-3">
+              {visibleThumbs.map((thumb) => (
+                <Link
+                  key={thumb.title}
+                  to={thumb.link}
+                  className="group h-24 w-36 overflow-hidden rounded-xl border border-white/10 transition-colors duration-300 hover:border-purple-400"
                 >
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-1 md:mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-xs sm:text-sm md:text-base text-gray-300">
-                    {stat.label}
-                  </div>
-                </div>
+                  <img
+                    src={thumb.image}
+                    alt={thumb.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </Link>
               ))}
             </div>
           </div>
         </div>
-      </div>
 
-      <style jsx>{`
-        .bg-grid-pattern {
-          background-image: linear-gradient(#ffffff08 1px, transparent 1px),
-            linear-gradient(90deg, #ffffff08 1px, transparent 1px);
-          background-size: 50px 50px;
-        }
+        {/* Scroll indicator */}
+        <button
+          type="button"
+          onClick={scrollToNext}
+          aria-label={heroContent.scrollLabel}
+          className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-xs font-medium uppercase tracking-wider text-gray-300 transition-colors hover:text-purple-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+        >
+          <ArrowDown className="h-4 w-4 animate-bounce motion-reduce:animate-none" />
+        </button>
 
-        @keyframes blink {
-          0%, 49% {
-            opacity: 1;
-          }
-          50%, 100% {
-            opacity: 0;
-          }
-        }
+      {/* Sticky tertiary CTA */}
+      <StickyExpertCta />
+    </section>
+  );
+};
 
-        .animate-blink {
-          animation: blink 1s infinite;
-        }
+const StickyExpertCta = () => {
+  const stickyCtaRef = useRef(null);
+  useHoverGlow(stickyCtaRef);
 
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-
-        @media (max-width: 640px) {
-          .bg-grid-pattern {
-            background-size: 30px 30px;
-          }
-        }
-      `}</style>
-    </>
+  return (
+    <span ref={stickyCtaRef} className="fixed bottom-6 right-6 z-40 inline-block rounded-full">
+      <CalendlyPopup
+        text="Speak to an Expert"
+        className="inline-flex items-center rounded-full bg-purple-600 px-5 py-3 text-sm font-semibold text-white shadow-2xl shadow-purple-900/50 transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      />
+    </span>
   );
 };
 

@@ -1,178 +1,116 @@
-import { ArrowRight, ChevronRight } from 'lucide-react'
-import React, { useState, useEffect, useRef } from 'react'
-import BackgroundImage from '../assets/Images/studyhero.png'
-import Blog01 from '../assets/Images/blog1.png'
-import Blog02 from '../assets/Images/blog02.png'
-import Article from '../assets/Images/articlecase.png'
+import { ArrowRight, HeartPulse, Landmark, Plane } from 'lucide-react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import useGsapReveal from '../utils/useGsapReveal'
+import useHoverGlow from '../utils/useHoverGlow'
+
+const featuredCases = [
+  {
+    id: 2,
+    icon: HeartPulse,
+    tags: ['CRM Modernisation', 'Healthcare'],
+    title: 'NHS England – Replatforming & CRM Modernisation',
+    client: 'Healthcare / Public Sector',
+    metricValue: 'Enhanced UX',
+    metricDescription: 'Improved experience for call handlers and administrators.',
+  },
+  {
+    id: 3,
+    icon: Plane,
+    tags: ['Digital Retail', 'Revenue Growth'],
+    title: 'Easyjet – Digital Retail & Ancillary Revenue Growth',
+    client: 'Aviation / Travel',
+    metricValue: 'Revenue Growth',
+    metricDescription: 'Increased ancillary revenue through personalised retail experiences.',
+  },
+  {
+    id: 5,
+    icon: Landmark,
+    tags: ['Systems Consolidation', 'Banking'],
+    title: 'Lloyds Banking Group – Legacy Systems Consolidation',
+    client: 'Banking / Financial Services',
+    metricValue: '30%',
+    metricDescription: 'Reduction in loan processing times.',
+  },
+];
 
 const Casestudy = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [cardsVisible, setCardsVisible] = useState([false, false, false]);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const caseStudyRef = useRef(null);
-  const cardsRef = useRef([]);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const ctaRef = useRef(null);
 
-  const cards = [
-    { title: 'About Us', subtitle: 'Expanding economic opportunities for rural farmers in East Africa', description: 'Shaping Africa’s Digital Future One Solution at a Time.', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600', link:'/about' },
-    { title: 'Insights', subtitle: 'The future of digital banking', description: 'Expert analysis on strategic transformation', image: 'https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=600', link:'/insights'  },
-    { title: 'Case Study', subtitle: 'Transforming healthcare delivery', description: 'NHS England – Replatforming & CRM Modernisation', image: Blog02, link:'/case-studies' }
-  ];
-
-  // Auto-slide effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % cards.length);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [cards.length]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === caseStudyRef.current) {
-            setIsVisible(entry.isIntersecting);
-          } else {
-            const index = cardsRef.current.indexOf(entry.target);
-            if (index !== -1 && entry.isIntersecting) {
-              setTimeout(() => {
-                setCardsVisible((prev) => {
-                  const newState = [...prev];
-                  newState[index] = true;
-                  return newState;
-                });
-              }, index * 200);
-            }
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (caseStudyRef.current) {
-      observer.observe(caseStudyRef.current);
-    }
-
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  useGsapReveal(headerRef);
+  useGsapReveal(gridRef, { stagger: 0.15 });
+  useHoverGlow(ctaRef);
 
   return (
-    <>
-      <div className='bg-black py-16 px-4 sm:px-6 lg:px-8'>
-        {/* Desktop: Large Case Study Card */}
-        <div 
-          ref={caseStudyRef}
-          style={{ backgroundImage: `url(${BackgroundImage})`, backgroundPosition: 'center' }} 
-          className={`hidden md:flex max-w-7xl mx-auto my-3 rounded-md text-gray-50 items-end overflow-hidden relative  transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div 
-            className={`absolute inset-0 transition-transform duration-700 ${isHovered ? 'scale-100' : 'scale-110'}`}
-            style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-          />
-          <div className='h-[25rem] w-full p-8 md:p-6 flex flex-col justify-end relative z-10'>
-            <h1 className={`text-4xl md:text-5xl font-semibold mb-4 transition-all duration-500 ${isHovered ? 'opacity-100 scale-102' : 'opacity-70'}`}>
-              Case Study
-            </h1>
-            <p className={`text-lg md:text-xl mb-6 max-w-2xl transition-all duration-500 ${isHovered ? 'opacity-100 scale-102' : 'opacity-70'}`}>
-              Leading Fin-tech drives end to end transformation for profitable growth.
-            </p>
-            <div className={`transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-70'}`}>
-              <Link to='/case-studies' className="group relative inline-flex items-center gap-3 bg-black text-white px-8 py-4 md:px-6 md:py-3 rounded-lg font-semibold text-base md:text-lg shadow-lg hover:shadow-2xl hover:shadow-[#4a90b8]/50 transition-all duration-500 hover:scale-105 overflow-hidden">
-                <span className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
-                <span className="relative z-10">Learn More </span>
-                <ArrowRight className="relative z-10 w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform duration-300" />
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></span>
-              </Link>
-            </div>
-          </div>
+    <section className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div ref={headerRef} className="mx-auto max-w-3xl text-center">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300 sm:text-sm">
+            Case Studies
+          </p>
+          <h2 className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl">
+            Real Results for Real Organisations
+          </h2>
+          <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+            See how we've helped organisations across healthcare, aviation and banking transform
+            operations, modernise systems and improve business performance.
+          </p>
         </div>
 
-        {/* Mobile: Carousel Layout */}
-        <div className='md:hidden relative overflow-hidden'>
-          <div 
-            className='flex transition-transform duration-500 ease-out'
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-          >
-            {cards.map((card, index) => (
-              <div 
-                key={index}
-                className='min-w-full px-2'
+        <div ref={gridRef} className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredCases.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.id}
+                to={`/case-studies#case-${item.id}`}
+                className="group flex flex-col rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60"
               >
-                <Link to ={card.link}>
-                <div 
-                  className='relative h-[25rem] rounded-lg overflow-hidden'
-                  style={{ backgroundImage: `url(${card.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-                >
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent'></div>
-                  
-                  <div className='absolute bottom-0 left-0 p-6 text-white w-full'>
-                    <p className='text-xs uppercase tracking-wider mb-2 text-gray-300'>{card.title}</p>
-                    <h2 className='text-2xl font-semibold mb-3 leading-tight'>
-                      {card.subtitle}
-                    </h2>
-                    <ArrowRight className='w-5 h-5' />
-                  </div>
-                </div>
-                </Link>
-              </div>
-            ))}
-          </div>
+                <Icon className="mb-4 h-8 w-8 text-purple-400" aria-hidden="true" />
 
-          {/* Dots Navigation */}
-          <div className='flex justify-center gap-2 mt-4'>
-            {cards.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-               className={`h-2 rounded-full transition-all duration-300 ${
-  currentSlide === index ? 'w-8 bg-purple-600' : 'w-2 bg-purple-400'
-}`}
-              />
-            ))}
-          </div>
+                <div className="mb-4 flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-gray-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <h3 className="mb-1 text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mb-4 text-sm text-gray-500">{item.client}</p>
+
+                <div className="mt-auto border-t border-white/10 pt-4">
+                  <p className="text-xl font-bold text-purple-300">{item.metricValue}</p>
+                  <p className="text-sm leading-relaxed text-gray-300">{item.metricDescription}</p>
+                </div>
+
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-300 group-hover:text-purple-300">
+                  Read case study
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Desktop: Grid Cards */}
-        <div className='hidden md:block mx-2'>
-          <div className='mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4'>
-            {cards.map((card, index) => (
-              <Link to ={card.link}>
-              <div 
-                key={index}
-                ref={(el) => (cardsRef.current[index] = el)}
-                className={`relative flex-1 h-[20rem] rounded-lg overflow-hidden group cursor-pointer transition-all duration-700 ${
-                  cardsVisible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ backgroundImage: `url(${card.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              >
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent'></div>
-                
-                <div className='absolute bottom-0 left-0 p-6 text-white'>
-                  <h1 className='text-2xl md:text-3xl font-semibold mb-2 transition-transform duration-300 group-hover:translate-y-[-4px]'>
-                    {card.title}
-                  </h1>
-                  <p className='text-sm md:text-base text-gray-200 transition-opacity duration-300 group-hover:opacity-100 opacity-80'>
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-              </Link>
-            ))}
-          </div>
+        <div className="mt-12 text-center">
+          <span ref={ctaRef} className="inline-block rounded-full">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-8 py-4 font-semibold text-white transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              View All Case Studies
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </span>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 

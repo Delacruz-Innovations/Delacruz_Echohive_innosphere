@@ -37,7 +37,7 @@ const FAQ = () => {
     return (
         <div className="bg-black py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-start justify-between mb-12">
+                <div className="flex flex-col sm:flex-row items-start sm:justify-between mb-12">
                     <div className="flex-1">
                         <h2 className="text-4xl lg:text-5xl font-bold text-purple-400 mb-3">
                             Frequently Asked Questions

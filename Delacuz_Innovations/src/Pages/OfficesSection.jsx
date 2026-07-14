@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, MapPin, Phone, Mail, Globe } from 'lucide-react';
+import SEO, { SITE_URL } from '../utils/SEO';
+import PageHero from '../Components/PageHero';
 
 const OfficesSection = () => {
   const [expandedRegions, setExpandedRegions] = useState({
@@ -66,59 +68,53 @@ const OfficesSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black pt-36">
-      {/* Hero Section with Map Background */}
-      <div className="relative h-[70vh] overflow-hidden">
-        {/* Map Background - Using a world map pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-900/20 to-black">
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239333ea' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-            backgroundSize: '100px 100px'
-          }}></div>
-        </div>
-
-        {/* Animated Globe Icon */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10">
-          <Globe className="w-96 h-96 text-purple-500 animate-spin-slow" />
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative h-full flex items-center justify-center px-4">
-          <div className="text-center max-w-4xl mx-auto animate-fade-in">
-            <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-purple-700/20 border border-purple-500/30 rounded-full text-purple-300 text-sm font-semibold tracking-wider uppercase">
-                Global Presence
-              </span>
-            </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white">We're </span>
-              <span className="text-purple-400">Everywhere</span>
-              <br />
-              <span className="text-white">You Need Us</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              With offices spanning across continents, we bring innovation and expertise to your doorstep, wherever you are in the world.
-            </p>
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <div className="bg-purple-700/10 backdrop-blur-sm border border-purple-500/30 rounded-lg px-8 py-4">
-                <div className="text-4xl font-bold text-purple-400 mb-1">3+</div>
-                <div className="text-gray-300 text-sm uppercase tracking-wide">Countries</div>
-              </div>
-              <div className="bg-purple-700/10 backdrop-blur-sm border border-purple-500/30 rounded-lg px-8 py-4">
-                <div className="text-4xl font-bold text-purple-400 mb-1">3</div>
-                <div className="text-gray-300 text-sm uppercase tracking-wide">Continents</div>
-              </div>
-              <div className="bg-purple-700/10 backdrop-blur-sm border border-purple-500/30 rounded-lg px-8 py-4">
-                <div className="text-4xl font-bold text-purple-400 mb-1">24/7</div>
-                <div className="text-gray-300 text-sm uppercase tracking-wide">Support</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
-      </div>
+    <>
+      <SEO
+        title="Our Offices | Delacruz Innovations — Lagos & Ajman"
+        description="Delacruz Innovations operates from Lagos, Nigeria and Ajman, UAE, serving clients across Africa, the Middle East, and Europe."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'Delacruz Innovations',
+          url: SITE_URL,
+          telephone: '+234-905-276-5358',
+          address: [
+            {
+              '@type': 'PostalAddress',
+              streetAddress: '29A, Salimonu Ayinde Street',
+              addressLocality: 'Lagos',
+              addressCountry: 'NG',
+            },
+            {
+              '@type': 'PostalAddress',
+              streetAddress: 'Ajman Media City, AMC - BL A - 3M1819',
+              addressLocality: 'Ajman',
+              addressCountry: 'AE',
+            },
+          ],
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: 6.5244,
+            longitude: 3.3792,
+          },
+          openingHoursSpecification: {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            opens: '09:00',
+            closes: '18:00',
+          },
+          areaServed: ['Nigeria', 'United Arab Emirates', 'Africa', 'Europe'],
+        }}
+      />
+      <PageHero
+        eyebrow="GLOBAL PRESENCE"
+        headline="We're Everywhere You Need Us"
+        copy="With offices spanning across Lagos, Nigeria and Ajman, UAE, we bring innovation and expertise to your doorstep."
+        primaryCTALabel="Speak to an Expert"
+        scrollLabel="Explore Our Offices"
+        ghostWord="GLOBAL"
+        heroImage="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1974"
+      />
 
       {/* Offices List Section */}
       <div className="py-20 px-4 sm:px-6 lg:px-8">
@@ -333,7 +329,7 @@ const OfficesSection = () => {
           animation: spin-slow 60s linear infinite;
         }
       `}</style>
-    </div>
+    </>
   );
 };
 

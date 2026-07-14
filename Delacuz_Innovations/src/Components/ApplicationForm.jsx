@@ -99,7 +99,7 @@ const ApplicationForm = () => {
                       : 'border-gray-300 bg-black hover:border-purple-400'
                   }`}
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                     <label className="flex-shrink-0">
                       <input
                         type="file"

@@ -10,8 +10,8 @@ const AboutFeatures = () => {
         {/* Who we are */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center mb-20">
           <img 
-            src={feature1} 
-            className="flex-1 w-full lg:max-w-2xl h-80 object-cover rounded-lg shadow-lg" 
+            src={feature1}
+            className="flex-1 w-full lg:max-w-2xl h-64 sm:h-72 lg:h-80 object-cover rounded-lg shadow-lg"
             alt="Business strategy" 
           />
           <div className="flex-1 space-y-4">
@@ -25,8 +25,8 @@ const AboutFeatures = () => {
         {/* How we work */}
         <div className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12 items-center mb-20">
           <img 
-            src={feature2} 
-            className="flex-1 w-full lg:max-w-2xl h-80 object-cover rounded-lg shadow-lg" 
+            src={feature2}
+            className="flex-1 w-full lg:max-w-2xl h-64 sm:h-72 lg:h-80 object-cover rounded-lg shadow-lg"
             alt="How we work" 
           />
           <div className="flex-1 space-y-4">
@@ -40,8 +40,8 @@ const AboutFeatures = () => {
         {/* Our Commitments */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
           <img 
-            src={feature3} 
-            className="flex-1 w-full lg:max-w-2xl h-80 object-cover rounded-lg shadow-lg" 
+            src={feature3}
+            className="flex-1 w-full lg:max-w-2xl h-64 sm:h-72 lg:h-80 object-cover rounded-lg shadow-lg"
             alt="Our commitment" 
           />
           <div className="flex-1 space-y-4">

@@ -10,6 +10,7 @@ import insight6 from '../assets/Images/insight6.png';
 // Import blog service
 import { blogService } from '../services/blogService';
 import CalendlyPopup from '../Components/CalendlyPopup';
+import SEO, { SITE_URL } from '../utils/SEO';
 
 const InsightDetailPage = () => {
   const placeholderImages = [insight1, insight2, insight3, insight4, insight5, insight6];
@@ -107,8 +108,36 @@ const InsightDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO
+        title={insight.title}
+        description={insight.excerpt ? insight.excerpt.substring(0, 155) : undefined}
+        canonical={`${SITE_URL}/insights/${insight.slug}`}
+        ogType="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: insight.title,
+          description: insight.excerpt,
+          datePublished: insight.date,
+          dateModified: insight.date,
+          author: (insight.authors || [insight.author]).map((a) => ({
+            '@type': 'Person',
+            name: a.name,
+            ...(a.title ? { jobTitle: a.title } : {}),
+          })),
+          publisher: {
+            '@type': 'Organization',
+            name: 'Delacruz Innovations',
+            url: SITE_URL,
+          },
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${SITE_URL}/insights/${insight.slug}`,
+          },
+        }}
+      />
       {/* Hero Section */}
-      <div className="relative py-28 px-4 sm:px-6 lg:px-8 min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden">
+      <div className="relative py-28 px-4 sm:px-6 lg:px-8 min-h-[70vh] sm:min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
@@ -194,7 +223,7 @@ const InsightDetailPage = () => {
             </p>
 
             {/* Content Sections */}
-            {insight.content.sections.map((section, index) => (
+            {(insight.content?.sections || []).map((section, index) => (
               <div key={index} className="mb-8">
                 {section.heading && (
                   <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 mt-10">
@@ -249,7 +278,7 @@ const InsightDetailPage = () => {
 
             {/* Editor Note */}
             <p className="text-sm text-gray-500 italic mt-8 border-t border-gray-800 pt-6">
-              {insight.content.authorNote}
+              {insight.content?.authorNote}
             </p>
           </article>
 
@@ -337,7 +366,7 @@ const InsightDetailPage = () => {
             {/* Modal Body */}
             <div className="px-6 py-4">
               {/* Social Share Buttons */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6">
                 <button
                   onClick={handleTwitterShare}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-gray-800 transition-all duration-300 group border border-gray-800"

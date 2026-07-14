@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Search, MapPin, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../utils/SEO';
+import PageHero from '../Components/PageHero';
 
 const JobListingsPage = ({ jobsData }) => {
   const navigate = useNavigate();
@@ -13,12 +15,12 @@ const JobListingsPage = ({ jobsData }) => {
   });
 
   // Extract unique values for dropdowns
- const uniqueLocations = ['Africa', 'Asia', 'Central & South America', 'Europe', 'North America', 'Oceania'];
-  const uniqueIndustries = ['Aerospace & Defence', 'Agriculture', 'Automotive & Assembly', 'capital Projects & infastucture', 'Chemicals', 'Consumer Packaged Goods', 'Electrical Power and Natural Gas',
+  const uniqueLocations = ['Africa', 'Asia', 'Central & South America', 'Europe', 'North America', 'Oceania'];
+  const uniqueIndustries = ['Aerospace & Defence', 'Agriculture', 'Automotive & Assembly', 'Capital Projects & Infrastructure', 'Chemicals', 'Consumer Packaged Goods', 'Electrical Power and Natural Gas',
     'Financial Services', 'Healthcare System & Services', 'High Tech', 'Infrastructure', 'Life Science',
-    'Media & Entertiainment ', 'Metal & Mining ', 'Oil & Gas', 'Paper & Forest Products', 'Private Capital', 'Public Sector', 'Retail', 'Semiconductos', 'Social Sector', 'Telecommunications', 'Travel, Transport & Logisics'
+    'Media & Entertainment', 'Metal & Mining', 'Oil & Gas', 'Paper & Forest Products', 'Private Capital', 'Public Sector', 'Retail', 'Semiconductors', 'Social Sector', 'Telecommunications', 'Travel, Transport & Logistics'
   ];
-  const uniqueCapabilities = ['Firm Administration', 'Maketing & Sales', 'Oprations', 'Organizational Structure', 'Risk & Resilience', 'Strategy & coperate finance', 'Sustanability', 'Technology', 'Transformation', ];
+  const uniqueCapabilities = ['Firm Administration', 'Marketing & Sales', 'Operations', 'Organizational Structure', 'Risk & Resilience', 'Strategy & Corporate Finance', 'Sustainability', 'Technology', 'Transformation'];
   const uniqueTypes = ['Full-time', 'Part-time', 'Contract', 'Internship'];
 
   const filteredJobs = jobsData.filter(job => {
@@ -42,8 +44,22 @@ const JobListingsPage = ({ jobsData }) => {
   };
 
   return (
-    <div className="pt-24 bg-black text-white">
-      <div className="bg-gradient-to-r from-purple-900 to-purple-700 p-6 shadow-lg">
+    <>
+      <SEO
+        title="Careers | Open Positions at Delacruz Innovations"
+        description="Explore open career opportunities at Delacruz Innovations across consulting, operations, and technology roles in Nigeria, the UAE, and beyond."
+      />
+      <PageHero
+        eyebrow="CAREERS"
+        headline="Join Our Mission to Transform African Business"
+        copy="Explore open opportunities to work with high-performing, cross-functional teams adopting cutting-edge strategy, data, and AI."
+        primaryCTALabel="Speak to an Expert"
+        scrollLabel="View Open Positions"
+        ghostWord="CAREERS"
+        heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop"
+      />
+      <div className="bg-black text-white">
+        <div className="bg-gradient-to-r from-purple-900 to-purple-700 p-6 shadow-lg">
         <div className="max-w-6xl mx-auto">
           <div className="relative mb-6">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 z-10" size={20} />
@@ -186,7 +202,7 @@ const JobListingsPage = ({ jobsData }) => {
 
       <div className="max-w-6xl bg-black mx-auto py-8 px-6">
         <div className="text-center mb-8">
-          <h1 className="text-6xl font-bold text-purple-500 mb-2">{filteredJobs.length}+</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-purple-500 mb-2">{filteredJobs.length}+</h1>
           <p className="text-gray-400 text-lg">Jobs Available</p>
         </div>
 
@@ -218,6 +234,7 @@ const JobListingsPage = ({ jobsData }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

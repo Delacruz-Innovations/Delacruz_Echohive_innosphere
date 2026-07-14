@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, ArrowLeft, Share2 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+import SEO, { SITE_URL } from '../utils/SEO';
 
 const JobDetailsPage = ({ jobsData }) => {
   const [showShareNotification, setShowShareNotification] = useState(false);
@@ -43,6 +44,30 @@ const handleShare = async () => {
   // Replace onApply with handleApplyNow
    return (
       <div className="py-24 bg-black text-white">
+        <SEO
+          title={`${job.title} — Careers | Delacruz Innovations`}
+          description={job.description ? job.description.substring(0, 155) : undefined}
+          jsonLd={{
+            '@context': 'https://schema.org',
+            '@type': 'JobPosting',
+            title: job.title,
+            description: job.description,
+            datePosted: new Date().toISOString().split('T')[0],
+            employmentType: job.type,
+            hiringOrganization: {
+              '@type': 'Organization',
+              name: job.company,
+              sameAs: SITE_URL,
+            },
+            jobLocation: job.locations.map((loc) => ({
+              '@type': 'Place',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: loc,
+              },
+            })),
+          }}
+        />
         <div className="bg-gradient-to-r from-purple-900 to-purple-700 p-6">
           <div className="max-w-4xl mx-auto">
             <button
@@ -63,7 +88,7 @@ const handleShare = async () => {
             <span>{job.locations.join(' | ')}</span>
           </div>
   
-         <div className="flex gap-4 mb-8">
+         <div className="flex flex-wrap gap-4 mb-8">
   <button 
     onClick={handleApplyNow}
     className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
