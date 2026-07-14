@@ -519,6 +519,16 @@ const logPageTime = (path, timeInSeconds) => {
 };
 
 /**
+ * Fire a named custom event with arbitrary params (e.g. CTA/card clicks)
+ */
+const trackEvent = (eventName, params = {}) => {
+  if (!window.gtag) return;
+
+  window.gtag('event', eventName, params);
+  console.log(`📌 Event: ${eventName}`, params);
+};
+
+/**
  * Track orientation changes
  */
 const trackOrientationChange = () => {
@@ -705,6 +715,7 @@ export {
   logDeviceType,
   logUserType,
   logPageTime,
+  trackEvent,
   trackOrientationChange,
 
   // Backend Communication

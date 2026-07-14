@@ -4,6 +4,7 @@ import Logo from '../assets/Images/logo.png'
 import { Link, useLocation } from 'react-router-dom';
 import CalendlyPopup from './CalendlyPopup';
 import useHoverGlow from '../utils/useHoverGlow';
+import servicesData from '../ServicesData.json';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -41,14 +42,7 @@ const closeMobileMenu = () => {
     };
   }, [isMobileMenuOpen]);
 
-const services = [
-  { name: 'Digital Transformation', slug: 'digital-transformation' },
-  { name: 'SaaS/PaaS Development', slug: 'SaaS-PaaS-Development' },
-  { name: 'IT Consulting', slug: 'it-consulting' },
-  { name: 'Training & Support', slug: 'training-support' },
-  { name: 'Brand Management', slug: 'brand_management' },
-  { name: 'Digital Marketing', slug: 'digital_marketing' },
-]
+const services = servicesData.services.map((area) => ({ name: area.title, slug: area.slug }));
 
   return (
     <>
@@ -97,7 +91,7 @@ const services = [
                   onMouseLeave={() => setIsDropdownOpen(false)}
                 >
                  <div className="flex items-center gap-1 hover:text-purple-300 cursor-pointer transition-colors duration-300">
-                    Our Services
+                    Practice Areas
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-300 ${
                         isDropdownOpen ? 'rotate-180' : ''
@@ -206,7 +200,7 @@ const services = [
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center gap-2 text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
             >
-              Our Services
+              Practice Areas
               <ChevronDown
                 className={`h-5 w-5 transition-transform duration-300 ${
                   isDropdownOpen ? 'rotate-180' : ''

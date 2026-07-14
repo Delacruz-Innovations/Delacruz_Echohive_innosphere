@@ -6,6 +6,7 @@ import Blog02 from '../assets/Images/blog02.png';
 import usePrefersReducedMotion from '../utils/usePrefersReducedMotion';
 import useGsapReveal from '../utils/useGsapReveal';
 import useHoverGlow from '../utils/useHoverGlow';
+import { trackEvent } from '../utils/analytics';
 
 const caseStudyThumbs = [
   { title: 'Case Study', image: Blog02, link: '/case-studies' },
@@ -13,15 +14,28 @@ const caseStudyThumbs = [
   { title: 'About Us', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&auto=format&fit=crop', link: '/about' },
 ];
 
-const PageHero = ({ eyebrow, headline, copy, primaryCTALabel, scrollLabel, ghostWord, heroImage, showCarousel = true }) => {
+const PageHero = ({
+  eyebrow,
+  headline,
+  copy,
+  primaryCTALabel,
+  secondaryCTALabel,
+  secondaryCTATo,
+  scrollLabel,
+  ghostWord,
+  heroImage,
+  showCarousel = true,
+}) => {
   const reduced = usePrefersReducedMotion();
   const heroRef = useRef(null);
   const contentRef = useRef(null);
   const primaryCtaRef = useRef(null);
+  const secondaryCtaRef = useRef(null);
   const [thumbIndex, setThumbIndex] = useState(0);
 
   useGsapReveal(contentRef, { y: 28, stagger: 0.15, duration: 0.9 });
   useHoverGlow(primaryCtaRef);
+  useHoverGlow(secondaryCtaRef, { scale: 1.03 });
 
   const visibleThumbs = [
     caseStudyThumbs[thumbIndex % caseStudyThumbs.length],
@@ -87,14 +101,31 @@ const PageHero = ({ eyebrow, headline, copy, primaryCTALabel, scrollLabel, ghost
           <p className="mb-6 max-w-md text-sm leading-relaxed text-gray-300 sm:text-base">
             {copy}
           </p>
-          {primaryCTALabel && (
-            <span ref={primaryCtaRef} className="inline-block rounded-full">
-              <CalendlyPopup
-                text={primaryCTALabel}
-                className="inline-flex items-center rounded-full bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-8 sm:py-4 sm:text-base"
-              />
-            </span>
-          )}
+          <div className="flex flex-wrap items-center gap-4">
+            {primaryCTALabel && (
+              <span
+                ref={primaryCtaRef}
+                className="inline-block rounded-full"
+                onClick={() => trackEvent('hero_cta_click', { label: primaryCTALabel })}
+              >
+                <CalendlyPopup
+                  text={primaryCTALabel}
+                  className="inline-flex items-center rounded-full bg-purple-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-8 sm:py-4 sm:text-base"
+                />
+              </span>
+            )}
+            {secondaryCTALabel && secondaryCTATo && (
+              <span ref={secondaryCtaRef} className="inline-block rounded-full">
+                <Link
+                  to={secondaryCTATo}
+                  onClick={() => trackEvent('framework_link_click', { label: secondaryCTALabel })}
+                  className="inline-flex items-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-8 sm:py-4"
+                >
+                  {secondaryCTALabel}
+                </Link>
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Bottom-right: case-study thumbnail carousel */}

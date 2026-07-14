@@ -6,7 +6,7 @@ export const SITE_NAME = 'Delacruz Innovations';
 const BRAND_SUFFIX = ` | ${SITE_NAME}`;
 
 const DEFAULT_DESCRIPTION =
-  'Delacruz Innovations delivers digital transformation, SaaS/PaaS development, IT consulting, and brand management for businesses across Nigeria, the UAE, and beyond.';
+  'Delacruz Innovations helps organisations across Nigeria and Africa improve business performance through strategy, governance, data, AI and technology, powered by our Business Performance Engineering Framework™.';
 
 // Shared Organization + WebSite schema injected on every page
 const getBaseSchema = () => {

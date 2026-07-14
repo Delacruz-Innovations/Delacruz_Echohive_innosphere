@@ -1,8 +1,12 @@
 import { ArrowRight, HeartPulse, Landmark, Plane } from 'lucide-react'
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
+// eslint-disable-next-line no-unused-vars -- used as JSX tag <motion.div>, false-positive in this eslint version
+import { motion } from 'framer-motion'
 import useGsapReveal from '../utils/useGsapReveal'
 import useHoverGlow from '../utils/useHoverGlow'
+import usePrefersReducedMotion from '../utils/usePrefersReducedMotion'
+import AutoScrollCarousel from './AutoScrollCarousel'
 
 const featuredCases = [
   {
@@ -13,6 +17,8 @@ const featuredCases = [
     client: 'Healthcare / Public Sector',
     metricValue: 'Enhanced UX',
     metricDescription: 'Improved experience for call handlers and administrators.',
+    image:
+      'https://images.unsplash.com/photo-1587351021355-a479a299d2f9?auto=format&fit=crop&q=85&w=1600',
   },
   {
     id: 3,
@@ -22,6 +28,8 @@ const featuredCases = [
     client: 'Aviation / Travel',
     metricValue: 'Revenue Growth',
     metricDescription: 'Increased ancillary revenue through personalised retail experiences.',
+    image:
+      'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=85&w=1600',
   },
   {
     id: 5,
@@ -31,16 +39,25 @@ const featuredCases = [
     client: 'Banking / Financial Services',
     metricValue: '30%',
     metricDescription: 'Reduction in loan processing times.',
+    image:
+      'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&q=85&w=1600',
   },
 ];
 
+const caseSlides = featuredCases.map((item) => ({
+  icon: item.icon,
+  title: item.title,
+  description: `${item.client} — ${item.metricValue}: ${item.metricDescription}`,
+  image: item.image,
+  to: `/case-studies#case-${item.id}`,
+}));
+
 const Casestudy = () => {
   const headerRef = useRef(null);
-  const gridRef = useRef(null);
   const ctaRef = useRef(null);
+  const reduced = usePrefersReducedMotion();
 
   useGsapReveal(headerRef);
-  useGsapReveal(gridRef, { stagger: 0.15 });
   useHoverGlow(ctaRef);
 
   return (
@@ -59,44 +76,15 @@ const Casestudy = () => {
           </p>
         </div>
 
-        <div ref={gridRef} className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredCases.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.id}
-                to={`/case-studies#case-${item.id}`}
-                className="group flex flex-col rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60"
-              >
-                <Icon className="mb-4 h-8 w-8 text-purple-400" aria-hidden="true" />
-
-                <div className="mb-4 flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-gray-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className="mb-1 text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mb-4 text-sm text-gray-500">{item.client}</p>
-
-                <div className="mt-auto border-t border-white/10 pt-4">
-                  <p className="text-xl font-bold text-purple-300">{item.metricValue}</p>
-                  <p className="text-sm leading-relaxed text-gray-300">{item.metricDescription}</p>
-                </div>
-
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-300 group-hover:text-purple-300">
-                  Read case study
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="mx-auto mt-14 max-w-3xl"
+        >
+          <AutoScrollCarousel items={caseSlides} />
+        </motion.div>
 
         <div className="mt-12 text-center">
           <span ref={ctaRef} className="inline-block rounded-full">

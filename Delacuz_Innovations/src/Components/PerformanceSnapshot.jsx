@@ -1,7 +1,11 @@
 import { ArrowRight, BarChart3, BrainCircuit, Gauge, Rocket, ShieldCheck, TrendingDown, TrendingUp, Workflow } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars -- used as JSX tag <motion.div>, false-positive in this eslint version
+import { motion } from 'framer-motion';
 import CalendlyPopup from './CalendlyPopup';
+import AutoScrollCarousel from './AutoScrollCarousel';
+import SnapshotModal from './SnapshotModal';
 import usePrefersReducedMotion from '../utils/usePrefersReducedMotion';
 import useGsapReveal from '../utils/useGsapReveal';
 import useHoverGlow from '../utils/useHoverGlow';
@@ -32,36 +36,48 @@ const snapshotContent = {
       title: 'Improve Operational Efficiency',
       description:
         'Reduce operational waste, simplify complex processes and improve productivity across the enterprise.',
+      image:
+        'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=85&w=1600',
     },
     {
       icon: ShieldCheck,
       title: 'Strengthen Governance & Compliance',
       description:
         'Build resilient governance structures, strengthen internal controls and improve regulatory confidence.',
+      image:
+        'https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=85&w=1600',
     },
     {
       icon: Rocket,
       title: 'Accelerate Sustainable Growth',
       description:
         'Design scalable operating models that support business expansion and long-term competitiveness.',
+      image:
+        'https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&q=85&w=1600',
     },
     {
       icon: BarChart3,
       title: 'Improve Executive Decision-Making',
       description:
         'Enable leaders with trusted data, actionable insights and better organisational visibility.',
+      image:
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=85&w=1600',
     },
     {
       icon: BrainCircuit,
       title: 'Adopt AI with Confidence',
       description:
         'Implement artificial intelligence responsibly through governance, business strategy and measurable value creation.',
+      image:
+        'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=85&w=1600',
     },
     {
       icon: Workflow,
       title: 'Deliver Transformation That Works',
       description:
         'Move beyond technology implementation by embedding sustainable organisational capability and measurable business outcomes.',
+      image:
+        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=85&w=1600',
     },
   ],
   transitionHeading: "Technology Doesn't Transform Organisations. Business Performance Does.",
@@ -162,27 +178,15 @@ const BusinessPerformanceDashboard = ({ metrics, note, reduced }) => {
   );
 };
 
-const OutcomeCard = ({ outcome }) => {
-  const Icon = outcome.icon;
-  return (
-    <div className="group rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60">
-      <Icon className="mb-4 h-8 w-8 text-purple-400" aria-hidden="true" />
-      <h3 className="mb-2 text-lg font-semibold text-white">{outcome.title}</h3>
-      <p className="text-sm leading-relaxed text-gray-300">{outcome.description}</p>
-    </div>
-  );
-};
-
 const PerformanceSnapshot = () => {
   const reduced = usePrefersReducedMotion();
   const introRef = useRef(null);
-  const cardsRef = useRef(null);
   const transitionRef = useRef(null);
   const primaryCtaRef = useRef(null);
   const secondaryCtaRef = useRef(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useGsapReveal(introRef, { y: 28, stagger: 0.15, duration: 0.9 });
-  useGsapReveal(cardsRef, { stagger: 0.1 });
   useGsapReveal(transitionRef, { selector: ':scope > *', stagger: 0.12 });
   useHoverGlow(primaryCtaRef);
   useHoverGlow(secondaryCtaRef, { scale: 1.03 });
@@ -203,28 +207,47 @@ const PerformanceSnapshot = () => {
               <p className="max-w-2xl border-l-2 border-purple-500/60 pl-4 text-sm italic text-gray-400">
                 {snapshotContent.trustStatement}
               </p>
+
+              <button
+                type="button"
+                onClick={() => setModalOpen(true)}
+                className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-gray-900/60 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:hidden"
+              >
+                View Performance Snapshot
+              </button>
             </div>
 
-            <BusinessPerformanceDashboard
-              metrics={snapshotContent.dashboardMetrics}
-              note={snapshotContent.dashboardNote}
-              reduced={reduced}
-            />
+            <div className="hidden lg:block">
+              <BusinessPerformanceDashboard
+                metrics={snapshotContent.dashboardMetrics}
+                note={snapshotContent.dashboardNote}
+                reduced={reduced}
+              />
+            </div>
           </div>
         </div>
       </section>
 
+      <SnapshotModal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <BusinessPerformanceDashboard
+          metrics={snapshotContent.dashboardMetrics}
+          note={snapshotContent.dashboardNote}
+          reduced={reduced}
+        />
+      </SnapshotModal>
+
       {/* Outcomes + transition CTA */}
       <section className="bg-black px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div
-            ref={cardsRef}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="mx-auto max-w-3xl"
           >
-            {snapshotContent.outcomes.map((outcome) => (
-              <OutcomeCard key={outcome.title} outcome={outcome} />
-            ))}
-          </div>
+            <AutoScrollCarousel items={snapshotContent.outcomes} />
+          </motion.div>
 
           <div
             ref={transitionRef}

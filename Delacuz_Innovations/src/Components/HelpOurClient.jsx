@@ -1,10 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Globe, Database } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import CalendlyPopup from './CalendlyPopup';
+import servicesData from '../ServicesData.json';
+import practiceAreaIcons from '../utils/practiceAreaIcons';
 import useGsapReveal from '../utils/useGsapReveal';
 import useHoverGlow from '../utils/useHoverGlow';
+
+const featuredSlugs = ['strategy-transformation', 'data-intelligence-ai', 'governance-risk-compliance'];
 
 const HelpOurClient = () => {
   const [currentCard, setCurrentCard] = useState(0);
@@ -12,32 +15,16 @@ const HelpOurClient = () => {
   const gridRef = useRef(null);
   const bottomCtaRef = useRef(null);
 
-  const services = [
-    {
-      icon: <Globe className="w-12 h-12" />,
-      title: 'Digital Transformation & Process Automation – Streamline operations, cut waste, and boost productivity.',
-      description:
-        'Streamline operations, cut waste, and boost productivity.From manual chaos to digital clarity — we design smarter systems that help your business move faster, stronger, and smarter',
-      delay: '0ms',
-      link: '/services/digital-transformation'
-    },
-    {
-      icon: <Database className="w-12 h-12" />,
-      title: 'SaaS / PaaS Development – Tailored platforms built for Nigerian markets.',
-      description:
-        'At Delacruz, we design and develop custom SaaS and PaaS solutions that solve real business problems in Nigeria’s fast-evolving digital economy. Our platforms are locally optimized — built to handle regional infrastructure challenges, payment systems, and user behaviors.',
-      delay: '200ms',
-      link: '/services/SaaS-PaaS-Development'
-    },
-    {
-      icon: <Database className="w-12 h-12" />,
-      title: 'IT Consulting & Change Management – Strategy, migration, and user adoption that stick.',
-      description:
-        'Enhance organizational performance and efficiency through strategic planning, process optimization, and leadership development.',
-      delay: '200ms',
-      link: '/services/it-consulting'
-    }
-  ];
+  const services = featuredSlugs.map((slug) => {
+    const area = servicesData.services.find((s) => s.slug === slug);
+    const Icon = practiceAreaIcons[area.icon];
+    return {
+      icon: <Icon className="w-12 h-12" />,
+      title: area.title,
+      description: area.shortDescription,
+      link: `/services/${area.slug}`,
+    };
+  });
 
   useGsapReveal(headerRef);
   useGsapReveal(gridRef, { stagger: 0.15 });
@@ -57,7 +44,7 @@ const HelpOurClient = () => {
         {/* Header Section */}
         <div ref={headerRef} className="text-center mb-12">
           <p className="text-purple-300 text-sm font-semibold tracking-widest uppercase mb-3">
-            Services Highlights
+            Practice Area Highlights
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
             Let's turn your biggest opportunities
@@ -181,7 +168,7 @@ const HelpOurClient = () => {
         <div className="mt-10 text-center">
           <span ref={bottomCtaRef} className="inline-block rounded-full">
             <Link to="/services" className="group relative inline-flex items-center gap-2 px-8 py-4 bg-purple-600 text-white font-semibold rounded-full transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
-              Explore All Services
+              Explore All Practice Areas
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </span>

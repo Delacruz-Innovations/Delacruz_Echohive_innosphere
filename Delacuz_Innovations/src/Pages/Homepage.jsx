@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
 import Hero from '../Components/Hero'
 import PerformanceSnapshot from '../Components/PerformanceSnapshot'
 import Casestudy from '../Components/CaseStudy'
@@ -25,7 +24,6 @@ const Homepage = () => {
         <Casestudy />
      
         <HelpOurClient />
-        <Careers />
         
         <CTABanner />
        
