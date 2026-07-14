@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
-import Breadcrumbs from './components/Breadcrumbs'
+import Breadcrumbs from './Components/Breadcrumbs'
 import PersonalInformation from './Components/PersonalInformation'
 import JobPortalApp from './Pages/JobPortalApp'
 import ContactPage from './Pages/ContactPage'
