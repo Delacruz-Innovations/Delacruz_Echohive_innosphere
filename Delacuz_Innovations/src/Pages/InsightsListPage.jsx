@@ -62,7 +62,7 @@ const InsightsListPage = () => {
         copy="Explore cutting-edge insights on digital transformation, business growth, and strategic innovation in African markets."
         primaryCTALabel="Speak to an Expert"
         scrollLabel="Read Insights"
-        heroImage="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=70&w=1600"
       />
 
       {/* Articles Grid Section */}

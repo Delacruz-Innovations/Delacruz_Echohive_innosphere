@@ -47,7 +47,7 @@ const ServicesPage = () => {
         secondaryCTALabel="Explore Business Performance Engineering™"
         secondaryCTATo="/business-performance-engineering"
         scrollLabel="Explore Our Solutions"
-        heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=70&w=1600"
       />
 
       {/* Introduction */}

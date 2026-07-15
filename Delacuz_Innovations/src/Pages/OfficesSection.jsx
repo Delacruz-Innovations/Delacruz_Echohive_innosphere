@@ -113,7 +113,7 @@ const OfficesSection = () => {
         copy="With offices spanning across Lagos, Nigeria and Ajman, UAE, we bring innovation and expertise to your doorstep."
         primaryCTALabel="Speak to an Expert"
         scrollLabel="Explore Our Offices"
-        heroImage="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=70&w=1600"
       />
 
       {/* Offices List Section */}

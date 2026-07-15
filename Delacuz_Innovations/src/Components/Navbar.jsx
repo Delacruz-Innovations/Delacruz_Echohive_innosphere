@@ -7,6 +7,7 @@ import useHoverGlow from '../utils/useHoverGlow';
 import servicesData from '../ServicesData.json';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -25,17 +26,29 @@ const closeMobileMenu = () => {
   setIsDropdownOpen(false);
 };
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const currentScrollY = window.scrollY;
+
+      setIsScrolled(currentScrollY > 50);
+
+      // Keep the navbar visible near the top, while a menu is open, and while
+      // scrolling up. Only hide it once scrolling down past that point.
+      if (currentScrollY < 150 || isMobileMenuOpen || isDropdownOpen) {
+        setIsHidden(false);
+      } else if (currentScrollY > lastScrollY) {
+        setIsHidden(true);
+      } else if (currentScrollY < lastScrollY) {
+        setIsHidden(false);
       }
+
+      lastScrollY = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobileMenuOpen, isDropdownOpen]);
 
   // Lock page scroll while the full-screen mobile menu is open
   useEffect(() => {
@@ -52,6 +65,8 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
       <header
         id="navbar"
        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+  isHidden ? '-translate-y-full' : 'translate-y-0'
+} ${
   isScrolled
     ? 'bg-black backdrop-blur-md shadow-lg py-2'
     : transparent
@@ -198,7 +213,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
             onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
-            Business Performance Engineering™
+            BPE™
           </Link>
 
           {/* Mobile Services */}

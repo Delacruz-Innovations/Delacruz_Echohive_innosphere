@@ -138,7 +138,7 @@ const AboutPage = () => {
         copy="We help organisations align strategy, governance, people, processes, data and technology around clearly defined business outcomes."
         primaryCTALabel="Request an Executive Performance Assessment"
         scrollLabel="Learn More About Us"
-        heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop"
+        heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=70&auto=format&fit=crop"
       />
 
       {/* Intro */}

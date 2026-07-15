@@ -266,7 +266,7 @@ const CaseStudies = () => {
         copy="See how we helped organisations transform their operations, modernise digital systems, and improve business performance."
         primaryCTALabel="Book a Consultation"
         scrollLabel="Explore Case Studies"
-        heroImage="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=70&w=1600"
       />
       <div className="bg-black py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

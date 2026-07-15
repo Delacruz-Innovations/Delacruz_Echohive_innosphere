@@ -70,7 +70,7 @@ const ServiceDetailsPage = () => {
         copy={service.tagline || service.shortDescription}
         primaryCTALabel="Request an Executive Performance Assessment"
         scrollLabel="Explore This Practice Area"
-        heroImage="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=70&w=1600"
         showCarousel={false}
       />
 

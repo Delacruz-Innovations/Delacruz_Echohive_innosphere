@@ -67,6 +67,7 @@ const PageHero = ({
           src={heroImage}
           alt=""
           aria-hidden="true"
+          fetchpriority="high"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div>

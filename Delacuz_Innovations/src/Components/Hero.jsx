@@ -20,7 +20,7 @@ const heroContent = {
   primaryCTA: { label: 'Request an Executive Performance Assessment' },
   scrollLabel: 'Discover How We Engineer Performance',
   heroImage:
-    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1974',
+    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=70&w=1600',
 };
 
 const caseStudyThumbs = [

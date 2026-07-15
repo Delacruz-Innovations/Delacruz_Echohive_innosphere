@@ -169,7 +169,7 @@ const BusinessPerformanceEngineeringPage = () => {
         copy="A structured, measurable and practical approach to improving organisational performance."
         primaryCTALabel="Request an Executive Performance Assessment"
         scrollLabel="Explore Business Performance Engineering™"
-        heroImage="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=70&w=1600"
         showCarousel={false}
       />
 
