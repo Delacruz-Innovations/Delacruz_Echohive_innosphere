@@ -1,196 +1,325 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SEO, { SITE_URL } from '../utils/SEO';
+
+const EFFECTIVE_DATE = 'July 14, 2026';
+
+const ORG = {
+  name: 'Delacruz Innovations (RC 8432281)',
+  email: 'info@delacruzinnovation.com',
+  phone: '+234-905-276-5358',
+  address: '5th Floor, Mosesola House, 103 Allen Ave, Allen, Ikeja 101233, Lagos',
+};
+
+const sections = [
+  {
+    id: 'who-we-are',
+    title: 'Who We Are',
+    body: [
+      'Delacruz Innovations is a Business Performance Engineering™ company providing advisory, consulting, transformation, governance, operational excellence, artificial intelligence, data, business analysis and enterprise technology services to organisations across Nigeria, Africa and international markets.',
+    ],
+    contact: true,
+  },
+  {
+    id: 'information-we-collect',
+    title: 'Information We Collect',
+    body: ['Depending on how you interact with us, we may collect:'],
+    groups: [
+      { heading: 'Identity Information', items: ['Name', 'Job title', 'Employer', 'Business email address', 'Telephone number'] },
+      { heading: 'Business Information', items: ['Organisation', 'Industry', 'Business requirements', 'Project details', 'Executive Performance Assessment responses'] },
+      { heading: 'Technical Information', items: ['Browser type', 'Device information', 'IP address', 'Operating system', 'Session information', 'Website usage', 'Referral source'] },
+      { heading: 'Marketing Information', items: ['Newsletter subscriptions', 'Download history', 'Webinar registrations', 'Communication preferences'] },
+    ],
+  },
+  {
+    id: 'how-we-collect-information',
+    title: 'How We Collect Information',
+    body: ['Information may be collected when you:'],
+    list: ['Contact us', 'Submit a website enquiry', 'Request a proposal', 'Download resources', 'Subscribe to updates', 'Complete an assessment', 'Register for an event', 'Apply for employment', 'Browse our website'],
+    footer: 'Some information is collected automatically through cookies and analytics technologies.',
+  },
+  {
+    id: 'why-we-process-personal-information',
+    title: 'Why We Process Personal Information',
+    body: ['We process personal information to:'],
+    list: ['Respond to enquiries', 'Deliver professional services', 'Conduct Executive Performance Assessments', 'Improve website performance', 'Send requested resources', 'Deliver newsletters where consent has been provided', 'Manage events', 'Improve customer experience', 'Meet legal obligations', 'Protect website security', 'Prevent fraud'],
+  },
+  {
+    id: 'legal-basis',
+    title: 'Legal Basis',
+    body: ['Where applicable, we process information based upon:'],
+    list: ['Consent', 'Contractual necessity', 'Legitimate interests', 'Legal obligations'],
+  },
+  {
+    id: 'cookies',
+    title: 'Cookies',
+    body: ['Our website uses cookies to:'],
+    list: ['Improve website functionality', 'Remember user preferences', 'Understand website performance', 'Analyse visitor behaviour', 'Improve security'],
+    footer: 'Users can manage cookie preferences through browser settings or our Cookie Preferences tool where available.',
+  },
+  {
+    id: 'analytics',
+    title: 'Analytics',
+    body: ['We may use analytics technologies to understand:'],
+    list: ['Visitor journeys', 'Popular content', 'Traffic sources', 'Website performance', 'User engagement'],
+    footer: 'Analytics information is aggregated where possible and used to improve our services.',
+  },
+  {
+    id: 'marketing-communications',
+    title: 'Marketing Communications',
+    body: ['Where consent has been provided, we may send:'],
+    list: ['Executive insights', 'Business Performance Engineering™ research', 'Industry updates', 'Event invitations', 'Product announcements', 'Service updates'],
+    footer: 'You may unsubscribe at any time using the unsubscribe link or by contacting us directly.',
+  },
+  {
+    id: 'sharing-information',
+    title: 'Sharing Information',
+    body: ['We do not sell personal information.', 'Information may be shared with carefully selected service providers supporting:'],
+    list: ['Website hosting', 'Email delivery', 'Customer relationship management', 'Analytics', 'Event management', 'Professional advisers', 'Regulatory authorities where required by law'],
+  },
+  {
+    id: 'international-transfers',
+    title: 'International Transfers',
+    body: ['Where personal information is transferred internationally, we implement appropriate safeguards to protect personal information in accordance with applicable laws.'],
+  },
+  {
+    id: 'data-security',
+    title: 'Data Security',
+    body: [
+      'We maintain administrative, organisational and technical safeguards designed to protect personal information against unauthorised access, alteration, disclosure or destruction.',
+      'Although we strive to protect all information, no internet transmission can be guaranteed to be completely secure.',
+    ],
+  },
+  {
+    id: 'data-retention',
+    title: 'Data Retention',
+    body: ['Personal information is retained only for as long as necessary to:'],
+    list: ['Deliver requested services', 'Meet legal obligations', 'Resolve disputes', 'Protect legitimate interests', 'Improve customer service'],
+    footer: 'When no longer required, information is securely deleted or anonymised.',
+  },
+  {
+    id: 'your-rights',
+    title: 'Your Rights',
+    body: ['Subject to applicable law, individuals may have the right to:'],
+    list: ['Request access', 'Request correction', 'Request deletion', 'Restrict processing', 'Object to processing', 'Withdraw consent', 'Request portability where applicable', 'Submit a complaint to the relevant supervisory authority'],
+    footer: 'Requests may be submitted using the contact details above.',
+  },
+  {
+    id: 'artificial-intelligence',
+    title: 'Artificial Intelligence',
+    body: [
+      'Delacruz Innovations may use artificial intelligence to support research, business analysis, operational improvement and professional advisory services.',
+      'Where AI-assisted tools are used, we implement appropriate governance measures designed to protect confidentiality, maintain data integrity and support responsible use in line with our Business Performance Engineering™ principles.',
+    ],
+  },
+  {
+    id: 'third-party-websites',
+    title: 'Third-Party Websites',
+    body: [
+      'Our website may contain links to external websites.',
+      'We are not responsible for their privacy practices and encourage users to review their privacy policies before providing personal information.',
+    ],
+  },
+  {
+    id: 'changes-to-this-privacy-policy',
+    title: 'Changes to This Privacy Policy',
+    body: [
+      'We may update this Privacy Policy periodically to reflect changes in legal requirements, technology, business operations or services.',
+      'The latest version will always be published on this page together with the updated effective date.',
+    ],
+  },
+];
+
+const relatedLegalPages = [
+  { label: 'Terms of Use', to: '/terms-of-use' },
+  { label: 'Accessibility Statement', to: '/accessibility-statement' },
+  { label: 'Business Performance Engineering™', to: '/business-performance-engineering' },
+  { label: 'Solutions', to: '/services' },
+  { label: 'Contact', to: '/contact' },
+];
 
 const PrivacyPolicy = () => {
-  const sections = [
-    {
-      title: "Introduction",
-      content: "Delacruz Innovations (“we”, “us”, “our”) is committed to protecting and respecting your privacy. This Privacy Policy explains what personal data we collect, how we use it, how we share it, and your rights in relation to it. This policy applies to our website, services, and engagements across Nigeria and beyond."
-    },
-    {
-      title: " Scope and Legal Basis",
-      content: "This policy covers all personal data we process about clients, prospects, candidates, staff, suppliers, and visitors. We process data in accordance with the Nigeria Data Protection Act 2023 and other applicable laws. ",
-      // subsections: [
-      //   {
-      //     subtitle: "Personal Information",
-      //     list: [
-      //       "Name and contact information (email address, phone number, mailing address)",
-      //       "Professional information (job title, company name, industry)",
-      //       "Account credentials (username and password)",
-      //       "Payment information (credit card details, billing address)",
-      //       "Communications and correspondence with us"
-      //     ]
-      //   },
-      //   {
-      //     subtitle: "Automatically Collected Information",
-      //     list: [
-      //       "Device information (IP address, browser type, operating system)",
-      //       "Usage data (pages visited, time spent on pages, click patterns)",
-      //       "Cookies and similar tracking technologies",
-      //       "Location data (general geographic location)",
-      //       "Referral sources and search terms"
-      //     ]
-      //   }
-      // ]
-    },
-    {
-      title: " Types of Data We Collect",
-      content: "We may collect:",
-      list: [
-        "Contact information (name, email address, telephone number)",
-        "Organisation details (company name, job title, industry)",
-        "Project information (scope, requirements, deliverables)",
-        "Usage data (website visits, service usage metrics)",
-        "Sensitive/regulated data only where required and with explicit consent.",
-       
-      ]
-    },
-    {
-      title: "How and Why We Use Your Data",
-      content: "We use your data for:",
-      list: [
-        "Delivering consultancy, platform development, automation and training services",
-        "Contract fulfilment, billing, project management and client communications",
-        "Improving our services, conducting audits, analytics and business improvement",
-        "Marketing communications (only with your consent)",
-        "Fulfilling legal, regulatory and contractual obligations."
-      ]
-    },
-    {
-      title: "Data Sharing",
-      content: "We may share your personal data with:",
-      list: [
-        "Our trusted sub‑contractors, vendors or technology partners (under strict agreements)",
-        "Regulatory authorities if required by law",
-        "Acquirers or business partners in the event of a merger or sale (with appropriate protections).",
-      
-      ]
-    },
-    {
-      title: "International Transfers",
-      content: "If we transfer personal data outside Nigeria (e.g., to cloud services or partners), we ensure appropriate safeguards are in place, such as contractual clauses or recognised frameworks. nse.org.ng"
-    },
-    {
-      title: "Data Retention",
-      content: "We retain personal data only for as long as necessary to fulfil the purpose of collection or as required by law. When your data is no longer needed, we securely dispose of or anonymise it."
-    },
-    {
-      title: "Security",
-      content: "You have the right to:",
-      list: [
-        "Be informed about how your data is processed",
-        "Access your personal data and obtain a copy",
-        "Request correction or deletion of your data",
-        "Object to processing on legitimate grounds",
-        "Request data portability where applicable",
-        "Withdraw consent at any time (where applicable)",
-        "Lodge a complaint with the Nigeria Data Protection Commission. ",
-     
-      ]
-    },
-    {
-      title: "Cookies and Website Tracking",
-      content: "Our website uses cookies and tracking technologies to enhance user experience and gather usage statistics. You may disable non‑essential cookies via your browser settings."
-    },
-    {
-      title: "Changes to This Policy",
-      content: "We review this policy periodically and may update it. The latest version will always be posted on our website and dated accordingly."
-    },
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Privacy Policy',
+    url: `${SITE_URL}/privacy-policy`,
+  };
 
-    {
-      title: "Contact Us",
-      content: "If you have questions or would like to exercise your rights, please contact: Data Protection Officer (DPO)",
-      contact: {
-        email: "dpo@delacruzinnovations.com",
-        phone: " +44 (0)7342274470 (UK) | +234 9052765358 (NG)",
-        address: "22 Fellery Street, Lagos, Nigeria",
-        dpo: "Data Protection Officer: dpo@delacruzinnovation.com"
-      }
-    }
-  ]
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Delacruz Innovations',
+    url: SITE_URL,
+    email: ORG.email,
+    telephone: ORG.phone,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '5th Floor, Mosesola House, 103 Allen Ave, Allen',
+      addressLocality: 'Ikeja, Lagos',
+      postalCode: '101233',
+      addressCountry: 'NG',
+    },
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-purple-700 mb-6 text-center">
-          Privacy Policy
-        </h1>
-        
-        <div className="bg-gray-900 rounded-lg p-8 mb-12 border border-gray-800">
-          <p className="text-gray-300 leading-relaxed text-center mb-2">
-            <span className="font-semibold text-purple-700">Last Updated:</span> October 30, 2025
-          </p>
-          <p className="text-gray-400 text-sm text-center">
-            Effective Date: October 30, 2025
-          </p>
-        </div>
+      <SEO
+        title="Privacy Policy | Delacruz Innovations"
+        description="Learn how Delacruz Innovations collects, uses, stores and protects personal information when you use our website, services and digital platforms."
+        canonical={`${SITE_URL}/privacy-policy`}
+        jsonLd={[webPageSchema, organizationSchema]}
+      />
 
-        <div className="space-y-10">
-          {sections.map((section, index) => (
-            <div key={index} className="border-l-4 border-purple-700 pl-6 py-4 bg-gray-900 rounded-r-lg">
-              <div className="flex items-start gap-4">
-                <span className="text-2xl font-bold text-purple-700 min-w-[2rem]">
-                  {index + 1}.
-                </span>
-                <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-purple-700 mb-4">
-                    {section.title}
-                  </h2>
-                  <p className="text-gray-300 leading-relaxed mb-4">
-                    {section.content}
+      {/* Hero */}
+      <div className="border-b border-white/10 px-6 py-8 sm:py-10 md:text-center">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+          Legal &amp; Trust Centre
+        </p>
+        <h1 className="mb-6 text-4xl font-bold text-white sm:text-5xl">Privacy Policy</h1>
+        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-gray-400 sm:text-base">
+          Delacruz Innovations (“Delacruz Innovations”, “we”, “our”, or “us”) respects your
+          privacy and is committed to protecting your personal information.
+        </p>
+        <div className="mx-auto mt-6 inline-flex flex-col gap-1 rounded-2xl border border-white/10 bg-gray-900/60 px-6 py-4 text-sm text-gray-400">
+          <span><span className="font-semibold text-purple-300">Effective Date:</span> {EFFECTIVE_DATE}</span>
+          <span><span className="font-semibold text-purple-300">Last Updated:</span> {EFFECTIVE_DATE}</span>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-5xl px-6 py-6 lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">
+        {/* Table of Contents */}
+        <nav aria-label="Table of contents" className="mb-6 lg:mb-0">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+            On This Page
+          </p>
+          <ul className="space-y-2 border-l border-white/10 pl-4 text-sm">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a
+                  href={`#${section.id}`}
+                  className="text-gray-400 transition-colors hover:text-purple-300"
+                >
+                  {section.title}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a href="#contact" className="text-gray-400 transition-colors hover:text-purple-300">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Policy Sections */}
+        <div>
+          <p className="mb-10 text-sm leading-relaxed text-gray-300 sm:text-base">
+            This Privacy Policy explains how we collect, use, disclose, store and safeguard your
+            information when you visit our website, request our services, complete an Executive
+            Performance Assessment, subscribe to updates, download resources, participate in
+            events or otherwise interact with us. By accessing or using our website, you
+            acknowledge that you have read and understood this Privacy Policy.
+          </p>
+
+          <div className="space-y-14">
+            {sections.map((section) => (
+              <section key={section.id} id={section.id} className="scroll-mt-24">
+                <h2 className="mb-4 text-2xl font-semibold text-purple-400">{section.title}</h2>
+
+                {section.body.map((paragraph) => (
+                  <p key={paragraph} className="mb-4 text-sm leading-relaxed text-gray-300 sm:text-base">
+                    {paragraph}
                   </p>
-                  
-                  {section.list && (
-                    <ul className="list-disc list-inside space-y-2 text-gray-300 ml-4">
-                      {section.list.map((item, i) => (
-                        <li key={i} className="leading-relaxed">{item}</li>
-                      ))}
-                    </ul>
-                  )}
+                ))}
 
-                  {section.subsections && (
-                    <div className="space-y-4 mt-4">
-                      {section.subsections.map((subsection, i) => (
-                        <div key={i}>
-                          <h3 className="text-lg font-semibold text-purple-600 mb-3">
-                            {subsection.subtitle}
-                          </h3>
-                          <ul className="list-disc list-inside space-y-2 text-gray-300 ml-4">
-                            {subsection.list.map((item, j) => (
-                              <li key={j} className="leading-relaxed">{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  
-                  {section.contact && (
-                    <div className="mt-4 space-y-2 text-gray-300 bg-black bg-opacity-40 p-4 rounded">
-                      <p><span className="font-semibold text-purple-700">Email:</span> {section.contact.email}</p>
-                      <p><span className="font-semibold text-purple-700">Phone:</span> {section.contact.phone}</p>
-                      <p><span className="font-semibold text-purple-700">Address:</span> {section.contact.address}</p>
-                      {section.contact.dpo && (
-                        <p><span className="font-semibold text-purple-700">DPO:</span> {section.contact.dpo}</p>
-                      )}
-                      <p className="mt-4 text-sm text-gray-400">
-                        We will respond to your privacy-related inquiries within 30 days.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                {section.groups && (
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    {section.groups.map((group) => (
+                      <div key={group.heading}>
+                        <h3 className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+                          {group.heading}
+                        </h3>
+                        <ul className="list-inside list-disc space-y-1 text-sm text-gray-300">
+                          {group.items.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {section.list && (
+                  <ul className="list-inside list-disc space-y-1 text-sm text-gray-300 sm:text-base">
+                    {section.list.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {section.footer && (
+                  <p className="mt-4 text-sm leading-relaxed text-gray-400">{section.footer}</p>
+                )}
+
+                {section.contact && (
+                  <div className="mt-4 space-y-1 rounded-2xl border border-white/10 bg-gray-900/60 p-4 text-sm text-gray-300">
+                    <p><span className="font-semibold text-purple-300">Organisation:</span> {ORG.name}</p>
+                    <p><span className="font-semibold text-purple-300">Email:</span> {ORG.email}</p>
+                    <p><span className="font-semibold text-purple-300">Telephone:</span> {ORG.phone}</p>
+                    <p><span className="font-semibold text-purple-300">Registered Address:</span> {ORG.address}</p>
+                  </div>
+                )}
+              </section>
+            ))}
+
+            {/* Contact Card */}
+            <section id="contact" className="scroll-mt-24">
+              <h2 className="mb-4 text-2xl font-semibold text-purple-400">Contact</h2>
+              <p className="mb-4 text-sm leading-relaxed text-gray-300 sm:text-base">
+                For privacy-related enquiries, please contact:
+              </p>
+              <div className="space-y-1 rounded-2xl border border-white/10 bg-gray-900/60 p-6 text-sm text-gray-300">
+                <p className="mb-2 font-semibold text-white">Privacy Officer — Delacruz Innovations</p>
+                <p>
+                  <span className="font-semibold text-purple-300">Email:</span>{' '}
+                  <a href={`mailto:${ORG.email}`} className="hover:text-purple-300">{ORG.email}</a>
+                </p>
+                <p><span className="font-semibold text-purple-300">Telephone:</span> {ORG.phone}</p>
+                <p><span className="font-semibold text-purple-300">Address:</span> {ORG.address}</p>
               </div>
-            </div>
-          ))}
-        </div>
+            </section>
+          </div>
 
-        <div className="mt-12 bg-purple-900 bg-opacity-20 border border-purple-700 rounded-lg p-6">
-          <p className="text-gray-300 text-center leading-relaxed">
-            By using our website and services, you acknowledge that you have read and understood this Privacy Policy and agree to its terms. If you do not agree with this Privacy Policy, please discontinue use of our services immediately.
-          </p>
+          <div className="mt-6 rounded-2xl border border-purple-700/40 bg-purple-900/10 p-6">
+            <p className="text-sm leading-relaxed text-gray-300 md:text-center">
+              By using our website and services, you acknowledge that you have read and understood
+              this Privacy Policy and agree to its terms. If you do not agree with this Privacy
+              Policy, please discontinue use of our services immediately.
+            </p>
+          </div>
+
+          {/* Related Legal Pages */}
+          <div className="mt-6 border-t border-white/10 pt-10">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+              Related Pages
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {relatedLegalPages.map((page) => (
+                <Link
+                  key={page.to}
+                  to={page.to}
+                  className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-gray-300 transition-colors duration-300 hover:border-purple-400/60 hover:text-white"
+                >
+                  {page.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PrivacyPolicy
+export default PrivacyPolicy;

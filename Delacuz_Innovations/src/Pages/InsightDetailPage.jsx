@@ -202,9 +202,9 @@ const InsightDetailPage = () => {
 
       {/* Content Section */}
       <div className="bg-black">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Quote Section */}
-          <div className={`mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          <div className={`mb-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
             <div className="bg-gray-900 border-l-4 border-purple-500 p-6 sm:p-8 rounded-r-lg">
               <p className="text-xl sm:text-2xl font-semibold text-gray-300 italic leading-relaxed">
@@ -283,7 +283,7 @@ const InsightDetailPage = () => {
           </article>
 
           {/* Related Insights Section */}
-          <div className={`mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          <div className={`mt-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
             <h3 className="text-2xl sm:text-3xl font-bold text-white mb-8">
               Related Insights
@@ -321,7 +321,7 @@ const InsightDetailPage = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-black py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-900">
+      <div className="bg-black py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-900">
         <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
           <h3 className="text-3xl sm:text-4xl font-bold text-white mb-6">

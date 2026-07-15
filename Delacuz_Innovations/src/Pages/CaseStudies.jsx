@@ -266,10 +266,9 @@ const CaseStudies = () => {
         copy="See how we helped organisations transform their operations, modernise digital systems, and improve business performance."
         primaryCTALabel="Book a Consultation"
         scrollLabel="Explore Case Studies"
-        ghostWord="IMPACT"
-        heroImage="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&auto=format&fit=crop"
+        heroImage="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1974"
       />
-      <div className="bg-black py-24 px-4 sm:px-6 lg:px-8">
+      <div className="bg-black py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
         {/* Case Studies */}
@@ -361,7 +360,7 @@ const CaseStudies = () => {
           ))}
         </div>
 
-        <div className='flex flex-col items-center justify-center text-white py-16 my-10 border border-purple-700 rounded-lg text-center'>
+        <div className='flex flex-col items-center justify-center text-white py-8 my-10 border border-purple-700 rounded-lg text-center'>
           <h1 className='text-4xl font-bold mb-4'>Want Results Like These?</h1>
           <p className='text-gray-300'>Let's discuss how we can help your business achieve similar transformational outcomes.</p>
           <CalendlyPopup

@@ -45,8 +45,8 @@ const sections = [
       "We welcome your feedback on the accessibility of Delacruz Innovations. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:",
     contact: {
       email: "accessibility@delacruzinnovations.com",
-      phone: "+44 (0)7342274470 (UK) | +234 9052765358 (NG)",
-      address: "29A Salimonu Ayinde Street, Lagos, Nigeria"
+      phone: "+234 9052765358 (NG)",
+      address: "5th Floor, Mosesola House, 103 Allen Ave, Allen, Ikeja 101233, Lagos"
     }
   },
   {
@@ -69,13 +69,13 @@ const sections = [
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-purple-700 mb-6 text-center">
+      <div className="max-w-4xl mx-auto px-6 py-6">
+        <h1 className="text-4xl font-bold text-purple-700 mb-6 md:text-center">
           Accessibility Statement
         </h1>
-        
-        <div className="bg-gray-900 rounded-lg p-8 mb-12 border border-gray-800">
-          <p className="text-gray-300 leading-relaxed text-center">
+
+        <div className="bg-gray-900 rounded-lg p-8 mb-6 border border-gray-800">
+          <p className="text-gray-300 leading-relaxed md:text-center">
             Last Updated: October 30, 2025
           </p>
         </div>
@@ -119,8 +119,8 @@ const sections = [
           ))}
         </div>
 
-        <div className="mt-12 bg-purple-900 bg-opacity-20 border border-purple-700 rounded-lg p-6">
-          <p className="text-gray-300 text-center leading-relaxed">
+        <div className="mt-6 bg-purple-900 bg-opacity-20 border border-purple-700 rounded-lg p-6">
+          <p className="text-gray-300 leading-relaxed md:text-center">
             This accessibility statement was created on October 30, 2025, and reflects our current efforts and commitment to accessibility. We review and update this statement regularly to ensure it accurately represents our accessibility practices.
           </p>
         </div>

@@ -10,8 +10,11 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const transparentPaths = ['/', '/about', '/services', '/case-studies', '/jobs', '/Offices', '/insights'];
-  const isTransparentPage = transparentPaths.includes(location.pathname);
+  // Prefix match so dynamic hero routes (e.g. /services/:slug) also blend with the navbar at the top.
+  const transparentPathPrefixes = ['/about', '/services', '/business-performance-engineering', '/industries', '/products', '/case-studies', '/jobs', '/offices', '/insights'];
+  const isTransparentPage =
+    location.pathname === '/' ||
+    transparentPathPrefixes.some((prefix) => location.pathname.toLowerCase().startsWith(prefix));
   const transparent = isTransparentPage && !isScrolled;
   const ghostCtaRef = useRef(null);
   const primaryCtaRef = useRef(null);
@@ -79,8 +82,8 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
             <div className="hidden lg:flex items-center gap-8">
               <ul className="flex gap-8 font-medium items-center text-gray-400">
               <li>
-                <Link to='/about' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
-                  About Us
+                <Link to='/business-performance-engineering' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                  BPE™
                 </Link>
               </li>
 
@@ -91,7 +94,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
                   onMouseLeave={() => setIsDropdownOpen(false)}
                 >
                  <div className="flex items-center gap-1 hover:text-purple-300 cursor-pointer transition-colors duration-300">
-                    Practice Areas
+                    Solutions
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-300 ${
                         isDropdownOpen ? 'rotate-180' : ''
@@ -127,23 +130,28 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
                 </li>
 
                 <li>
-                  <Link to='/case-studies' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
-                    Case Studies
+                  <Link to='/industries' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                    Industries
                   </Link>
                 </li>
                 <li>
-                  <Link to='/jobs' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
-                    Careers
-                  </Link>
-                </li>
-                <li>
-                  <Link to='/Offices' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
-                    Location
+                  <Link to='/products' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                    Products
                   </Link>
                 </li>
                 <li>
                   <Link to='/insights' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
                     Insights
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/about' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/contact' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                    Contact
                   </Link>
                 </li>
               </ul>
@@ -186,11 +194,11 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
       >
         <nav className="flex flex-col items-center gap-6 text-center">
           <Link
-            to='/about'
+            to='/business-performance-engineering'
             onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
-            About Us
+            Business Performance Engineering™
           </Link>
 
           {/* Mobile Services */}
@@ -200,7 +208,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center gap-2 text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
             >
-              Practice Areas
+              Solutions
               <ChevronDown
                 className={`h-5 w-5 transition-transform duration-300 ${
                   isDropdownOpen ? 'rotate-180' : ''
@@ -229,25 +237,18 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
           </div>
 
           <Link
-            to='/case-studies'
+            to='/industries'
             onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
-            Case Studies
+            Industries
           </Link>
           <Link
-            to='/jobs'
+            to='/products'
             onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
-            Careers
-          </Link>
-          <Link
-            to='/Offices'
-            onClick={closeMobileMenu}
-            className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
-          >
-            Location
+            Products
           </Link>
           <Link
             to='/insights'
@@ -255,6 +256,20 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
             Insights
+          </Link>
+          <Link
+            to='/about'
+            onClick={closeMobileMenu}
+            className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
+          >
+            About
+          </Link>
+          <Link
+            to='/contact'
+            onClick={closeMobileMenu}
+            className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
+          >
+            Contact
           </Link>
 
           <div className="mt-4 flex flex-col items-center gap-4">

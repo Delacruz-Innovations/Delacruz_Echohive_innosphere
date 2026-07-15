@@ -22,7 +22,6 @@ const PageHero = ({
   secondaryCTALabel,
   secondaryCTATo,
   scrollLabel,
-  ghostWord,
   heroImage,
   showCarousel = true,
 }) => {
@@ -72,16 +71,6 @@ const PageHero = ({
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-purple-900/30"></div>
-
-        {/* Oversized ghost word — ambient brand motif */}
-        {ghostWord && (
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-2 top-24 select-none whitespace-nowrap text-[7rem] font-bold uppercase leading-none text-purple-900/25 sm:top-28 sm:text-[11rem] lg:top-32 lg:text-[15rem]"
-          >
-            {ghostWord}
-          </span>
-        )}
       </div>
 
       <div

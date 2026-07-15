@@ -139,18 +139,18 @@ return (
             </p>
             
            <div>
-  <div className="flex gap-2 mb-6">
+  <div className="flex flex-col gap-3 mb-6 sm:flex-row">
     <input
       type="email"
       placeholder="Email address"
       value={newsletterEmail}
       onChange={(e) => setNewsletterEmail(e.target.value)}
-      className="flex-1 bg-white text-black border-2 border-gray-300 rounded px-4 py-2.5 text-sm focus:outline-none focus:border-purple-600 transition-colors"
+      className="flex-1 bg-gray-900 text-white placeholder-gray-500 border border-white/10 rounded-full px-5 py-2.5 text-sm focus:outline-none focus:border-purple-500 transition-colors"
     />
-    <button 
+    <button
       onClick={handleNewsletterSubmit}
       disabled={isSubmittingNewsletter}
-      className="bg-purple-700 hover:bg-purple-600 disabled:bg-purple-900 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded font-semibold text-sm transition-colors duration-300"
+      className="bg-purple-700 hover:bg-purple-600 disabled:bg-purple-900 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-full font-semibold text-sm transition-colors duration-300 shrink-0"
     >
       {isSubmittingNewsletter ? 'Submitting...' : 'Submit'}
     </button>
@@ -193,9 +193,12 @@ return (
           {/* Right: Links and Social */}
           <div className="md:text-right space-y-6">
             {/* Quick Links */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-sm">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-sm uppercase tracking-wide">
               <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact us</Link>
               <Link to="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link>
+              <Link to="/case-studies" className="text-gray-400 hover:text-white transition-colors">Case Studies</Link>
+              <Link to="/jobs" className="text-gray-400 hover:text-white transition-colors">Careers</Link>
+              <Link to="/offices" className="text-gray-400 hover:text-white transition-colors">Location</Link>
               <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy policy</Link>
               <Link to="/terms-of-use" className="text-gray-400 hover:text-white transition-colors">Terms of use</Link>
               <Link to="/accessibility-statement" className="text-gray-400 hover:text-white transition-colors">Accessibility statement</Link>

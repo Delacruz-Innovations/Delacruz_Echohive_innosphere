@@ -16,18 +16,19 @@ const PracticeAreasCTA = () => {
   useHoverGlow(secondaryCtaRef, { scale: 1.03 });
 
   return (
-    <section className="bg-black px-4 py-20 sm:px-6 lg:px-8">
-      <div ref={contentRef} className="mx-auto max-w-3xl text-center">
+    <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+      <div ref={contentRef} className="mx-auto max-w-3xl md:text-center">
         <h2 className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl">
-          Engineer Better Business Performance.
+          Ready to Solve Your Next Business Challenge?
         </h2>
         <p className="mb-10 text-base leading-relaxed text-gray-300 sm:text-lg">
-          Whether your organisation is pursuing growth, operational excellence, stronger governance
-          or responsible AI adoption, the first step is understanding where performance can be
-          improved.
+          The first step is understanding where performance can improve. Request an Executive
+          Performance Assessment and discover how Business Performance Engineering™ can help your
+          organisation improve performance, strengthen governance and accelerate sustainable
+          growth.
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center gap-4 md:justify-center">
           <span ref={primaryCtaRef} className="inline-block rounded-full">
             <CalendlyPopup
               text="Request an Executive Performance Assessment"

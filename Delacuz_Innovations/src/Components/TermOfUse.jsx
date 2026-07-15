@@ -62,12 +62,12 @@ const terms = [
     
   return (
     <div className="min-h-screen bg-black text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-6 py-6">
         <h1 className="text-4xl font-bold text-purple-700 mb-8 text-center">
           Terms of Use
         </h1>
         
-        {/* <div className="bg-gray-900 rounded-lg p-8 mb-12 border border-gray-800">
+        {/* <div className="bg-gray-900 rounded-lg p-8 mb-6 border border-gray-800">
           <p className="text-gray-300 leading-relaxed">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae eligendi necessitatibus praesentium maiores? Explicabo placeat in vitae porro quam, dolore similique animi temporibus, assumenda aliquid sit praesentium! Sint, libero. Iusto vel ipsam dicta rem libero corporis temporibus qui sunt alias animi rerum, sapiente amet quidem hic enim minima cumque itaque.
           </p>

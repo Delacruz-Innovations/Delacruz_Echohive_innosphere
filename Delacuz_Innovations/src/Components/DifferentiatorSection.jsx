@@ -3,11 +3,11 @@ import React, { useRef } from 'react';
 import useGsapReveal from '../utils/useGsapReveal';
 
 const differentiators = [
-  'Business-first advisory, not technology-first implementation.',
-  'Proprietary Business Performance Engineering Framework™ (BPEF™).',
-  'Enterprise consulting capabilities tailored to African business realities.',
-  'Outcome-focused engagements with measurable success criteria.',
-  'Integrated expertise spanning strategy, governance, data, AI, operations and technology.',
+  'Start with business outcomes, not technology.',
+  'Apply a structured, evidence-based methodology.',
+  'Integrate strategy, governance, operations, data, AI and technology.',
+  'Focus on measurable business performance.',
+  'Build organisational capability, not dependency.',
 ];
 
 const DifferentiatorSection = () => {
@@ -15,11 +15,19 @@ const DifferentiatorSection = () => {
   useGsapReveal(contentRef, { stagger: 0.1 });
 
   return (
-    <section className="bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <h2 className="mb-10 text-center text-3xl font-bold leading-tight text-white sm:text-4xl">
-          Why Delacruz Innovations
+        <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-center">
+          Why Delacruz Innovations?
         </h2>
+        <p className="mx-auto mb-4 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg md:text-center">
+          Every solution is delivered through the Business Performance Engineering Framework™.
+          This ensures a consistent approach to understanding business challenges, designing
+          practical solutions, executing transformation and measuring long-term business value.
+        </p>
+        <p className="mb-10 text-base leading-relaxed text-gray-300 sm:text-lg md:text-center">
+          Our clients choose Delacruz Innovations because we:
+        </p>
 
         <ul ref={contentRef} className="space-y-4">
           {differentiators.map((item) => (

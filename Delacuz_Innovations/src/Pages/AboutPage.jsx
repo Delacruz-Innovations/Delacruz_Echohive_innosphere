@@ -1,70 +1,444 @@
-import {useEffect} from 'react'
-import PageHero from '../Components/PageHero'
-import BetterBusiness from '../Components/BetterBusiness'
-import MissionVision from '../Components/MissionVission'
-import BrandEcoSyst from '../Components/BandEcoSystem'
-import AboutFeatures from '../Components/AboutFeatures'
-import FeaturedImpact from '../Components/FeaturedImpact'
-import FAQ from '../Components/FQA'
-import OurHistory from '../Components/OurHistory'
-import MissionVisionValues from '../Components/MissionVission'
-import DelacruzLeadership from '../Components/DelacruzLeadership'
-import SEO from '../utils/SEO'
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { CheckCircle2 } from 'lucide-react';
+import PageHero from '../Components/PageHero';
+import CalendlyPopup from '../Components/CalendlyPopup';
+import SEO, { SITE_URL } from '../utils/SEO';
+import useGsapReveal from '../utils/useGsapReveal';
+import useHoverGlow from '../utils/useHoverGlow';
+
+const whatWeBelieve = [
+  {
+    title: 'Business outcomes come before technology.',
+    description: 'Technology creates lasting value only when it supports clearly defined business objectives.',
+  },
+  {
+    title: 'Strategy creates value only when it can be executed.',
+    description: 'Successful execution requires effective governance, accountable leadership, capable people and practical operating models.',
+  },
+  {
+    title: 'Good governance enables sustainable growth.',
+    description: 'Strong governance strengthens decision-making, improves accountability and creates confidence for responsible innovation.',
+  },
+  {
+    title: 'Trusted information supports better decisions.',
+    description: 'Reliable data should empower leaders to make informed, timely and evidence-based decisions.',
+  },
+  {
+    title: 'Organisations become stronger by building capability.',
+    description: 'Every engagement should leave an organisation more capable than when it began through knowledge transfer, governance and continuous improvement.',
+  },
+  {
+    title: 'Continuous improvement is a leadership discipline.',
+    description: 'Improving organisational performance is not a one-time initiative. It is an ongoing commitment to learning, adapting and delivering better outcomes.',
+  },
+];
+
+const engagementPrinciples = [
+  'Evidence before assumption.',
+  'Business outcomes before technology.',
+  'Governance throughout delivery.',
+  'Practical recommendations over unnecessary complexity.',
+  'Capability transfer over long-term dependency.',
+  'Measurable value realisation.',
+  'Continuous improvement.',
+];
+
+const corporateInfo = [
+  { label: 'Legal Entity', value: 'Delacruz Innovation Limited' },
+  { label: 'Company Registration Number', value: '8432281' },
+  { label: 'Company Type', value: 'Private Company Limited by Shares' },
+  { label: 'Jurisdiction', value: 'Federal Republic of Nigeria' },
+  { label: 'Date of Incorporation', value: '23 April 2025' },
+];
+
+const bpefCapabilities = [
+  'Improve strategy execution.',
+  'Strengthen governance and accountability.',
+  'Optimise business processes and operational performance.',
+  'Improve executive decision-making.',
+  'Build trusted data foundations.',
+  'Adopt artificial intelligence responsibly.',
+  'Align technology investments with business priorities.',
+  'Deliver measurable and sustainable business outcomes.',
+];
 
 const AboutPage = () => {
   useEffect(() => {
-  const start = Date.now();
+    const start = Date.now();
 
-  const handleBeforeUnload = () => {
-    const duration = (Date.now() - start) / 1000; // seconds
-    window.gtag('event', 'time_on_page', {
-      event_category: 'engagement',
-      value: duration,
-    });
+    const handleBeforeUnload = () => {
+      const duration = (Date.now() - start) / 1000;
+      window.gtag('event', 'time_on_page', {
+        event_category: 'engagement',
+        value: duration,
+      });
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
+
+  const introRef = useRef(null);
+  const storyRef = useRef(null);
+  const philosophyRef = useRef(null);
+  const believeHeaderRef = useRef(null);
+  const believeRef = useRef(null);
+  const principlesRef = useRef(null);
+  const differentRef = useRef(null);
+  const governanceRef = useRef(null);
+  const bpefRef = useRef(null);
+  const primaryCtaRef = useRef(null);
+  const secondaryCtaRef = useRef(null);
+
+  useGsapReveal(introRef, { selector: ':scope > *', stagger: 0.1 });
+  useGsapReveal(storyRef, { selector: ':scope > *', stagger: 0.1 });
+  useGsapReveal(philosophyRef, { selector: ':scope > *', stagger: 0.1 });
+  useGsapReveal(believeHeaderRef);
+  useGsapReveal(believeRef, { stagger: 0.08 });
+  useGsapReveal(principlesRef, { stagger: 0.06 });
+  useGsapReveal(differentRef, { selector: ':scope > *', stagger: 0.1 });
+  useGsapReveal(governanceRef, { selector: ':scope > *', stagger: 0.1 });
+  useGsapReveal(bpefRef, { selector: ':scope > *', stagger: 0.1 });
+  useHoverGlow(primaryCtaRef);
+  useHoverGlow(secondaryCtaRef, { scale: 1.03 });
+
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Delacruz Innovations',
+    url: `${SITE_URL}/about`,
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Delacruz Innovation Limited',
+      alternateName: 'Delacruz Innovations',
+      url: SITE_URL,
+      foundingDate: '2025-04-23',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '5th Floor, Mosesola House, 103 Allen Ave, Allen',
+        addressLocality: 'Ikeja, Lagos',
+        postalCode: '101233',
+        addressCountry: 'NG',
+      },
+    },
   };
-
-  window.addEventListener('beforeunload', handleBeforeUnload);
-  return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-}, []);
 
   return (
     <>
-    <SEO
-      title="About Delacruz Innovations | 15+ Years of Strategic IT Excellence"
-      description="Learn about Delacruz Innovations' mission, leadership, and history. We are a global consultancy with offices in Lagos, Nigeria and Ajman, UAE."
-      jsonLd={{
-        '@context': 'https://schema.org',
-        '@type': 'AboutPage',
-        name: 'About Delacruz Innovations',
-        url: 'https://delacruzinnovation.com/about',
-        mainEntity: {
-          '@type': 'Organization',
-          name: 'Delacruz Innovations',
-          url: 'https://delacruzinnovation.com',
-        },
-      }}
-    />
-    <div>
-         <PageHero
-           eyebrow="ABOUT US"
-           headline="Shaping Africa’s Digital Future One Solution at a Time."
-           copy="A digitally empowered Africa where innovation drives inclusion, efficiency, and sustainable growth."
-           primaryCTALabel="Speak to an Expert"
-           scrollLabel="Learn More About Us"
-           ghostWord="FUTURE"
-           heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop"
-         />
-         <OurHistory />
-    {/* <BetterBusiness /> */}
-    <MissionVisionValues />
-    {/* <AboutFeatures /> */}
-    <DelacruzLeadership/>
-    <BrandEcoSyst />
-    {/* <FeaturedImpact /> */}
-    
-    </div>
-    </>
-  )
-}
+      <SEO
+        title="About Delacruz Innovations | Business Performance Engineering™"
+        description="Delacruz Innovation Limited helps organisations improve measurable business performance by aligning strategy, governance, people, processes, data and technology through Business Performance Engineering™."
+        jsonLd={aboutSchema}
+      />
 
-export default AboutPage
+      <PageHero
+        eyebrow="About Us"
+        headline="Engineering Better Business Performance."
+        copy="We help organisations align strategy, governance, people, processes, data and technology around clearly defined business outcomes."
+        primaryCTALabel="Request an Executive Performance Assessment"
+        scrollLabel="Learn More About Us"
+        heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop"
+      />
+
+      {/* Intro */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div ref={introRef}>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Organisations today operate in an environment shaped by economic uncertainty,
+              evolving customer expectations, increasing regulatory requirements and rapid
+              technological change. As organisations grow, so does the complexity of executing
+              strategy, managing operations and delivering sustainable business value.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Many invest significantly in digital transformation, enterprise technology and
+              operational initiatives with the expectation that business performance will
+              improve. Yet many continue to experience the same challenges: strategies that are
+              difficult to execute, fragmented operations, reactive governance, slow
+              decision-making, inconsistent processes and technology investments that do not
+              deliver the expected business outcomes.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              At Delacruz Innovation Limited, we believe these are not simply technology
+              challenges. They are business performance challenges.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              To address them, we developed Business Performance Engineering™—our proprietary
+              approach to helping organisations improve measurable business performance by
+              aligning strategy, governance, people, processes, data and technology around
+              clearly defined business outcomes.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Our philosophy is simple:
+            </p>
+            <p className="mb-6 max-w-2xl border-l-2 border-purple-500/60 pl-4 text-xl font-semibold italic leading-relaxed text-white">
+              Technology should enable business performance, not define it!
+            </p>
+            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+              Every engagement begins by understanding the business outcome an organisation is
+              trying to achieve before recommending solutions, technologies or transformation
+              initiatives.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div ref={storyRef}>
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Our Story
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Delacruz Innovation Limited was established because we observed a recurring pattern
+              across organisations.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Technology was often introduced before the underlying business problem had been
+              fully understood. Transformation programmes were frequently measured by activity
+              rather than measurable business outcomes. Business processes became increasingly
+              complex as organisations expanded. Leadership teams had access to more information
+              than ever before but often lacked the clarity needed to make timely, confident
+              decisions.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              These observations shaped our thinking.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Rather than creating another technology consultancy, we established Delacruz
+              Innovation Limited to help organisations improve how they execute strategy,
+              strengthen governance, optimise operations, make informed decisions and realise
+              sustainable business value.
+            </p>
+            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+              This thinking became the foundation of Business Performance Engineering™.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* The Delacruz Philosophy */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div ref={philosophyRef}>
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl">
+              The Delacruz Philosophy
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              We believe better organisations are engineered—not simply digitised.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Technology alone does not improve organisational performance. Sustainable
+              improvement occurs when strategy, governance, people, processes, data and
+              technology work together in a structured, measurable and disciplined way.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              For this reason, every engagement begins with one question:
+            </p>
+            <p className="mb-6 max-w-2xl border-l-2 border-purple-500/60 pl-4 text-xl font-semibold italic leading-relaxed text-white">
+              “What business outcome is your organisation trying to achieve?”
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              The answer shapes every recommendation we make. It informs our assessments,
+              advisory engagements, transformation programmes and implementation approach.
+            </p>
+            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+              We do not begin with technology. We begin with the business.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Believe */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div ref={believeHeaderRef} className="mx-auto max-w-3xl md:text-center">
+            <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
+              What We Believe
+            </h2>
+          </div>
+
+          <div
+            ref={believeRef}
+            className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {whatWeBelieve.map((belief) => (
+              <div
+                key={belief.title}
+                className="rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60"
+              >
+                <h3 className="mb-2 text-lg font-semibold text-white">{belief.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-300">{belief.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Engagement Principles */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl">
+            Our Engagement Principles
+          </h2>
+          <p className="mb-10 text-base leading-relaxed text-gray-300 sm:text-lg">
+            Every engagement is guided by principles that reinforce consistency, transparency and
+            measurable value.
+          </p>
+
+          <ul ref={principlesRef} className="mb-6 space-y-3">
+            {engagementPrinciples.map((principle) => (
+              <li key={principle} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-purple-400" aria-hidden="true" />
+                <span className="text-sm leading-relaxed text-gray-300 sm:text-base">{principle}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-sm leading-relaxed text-gray-400 sm:text-base">
+            These principles shape how we assess business challenges, develop recommendations and
+            support organisational transformation.
+          </p>
+        </div>
+      </section>
+
+      {/* What Makes Delacruz Different */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div ref={differentRef}>
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl">
+              What Makes Delacruz Different?
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Many consulting firms begin with technology. We begin with the business.
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Rather than asking, <span className="italic text-white">“Which system should we implement?”</span>, we ask,{' '}
+              <span className="italic text-white">“What business problem are we trying to solve?”</span>
+            </p>
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
+              That distinction changes the quality of every decision that follows.
+            </p>
+            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+              By focusing on organisational performance before technology selection, we help
+              organisations make better investment decisions, strengthen governance, improve
+              operational effectiveness and increase the likelihood of achieving sustainable
+              business outcomes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Governance & Trust */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div ref={governanceRef}>
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Governance &amp; Trust
+            </h2>
+            <p className="mb-8 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Delacruz Innovation Limited is incorporated in the Federal Republic of Nigeria as a
+              Private Company Limited by Shares under the Companies and Allied Matters Act (CAMA)
+              2020.
+            </p>
+
+            <div className="mb-8 overflow-hidden rounded-3xl border border-white/10 bg-gray-900/60">
+              <p className="border-b border-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+                Corporate Information
+              </p>
+              <dl className="divide-y divide-white/10">
+                {corporateInfo.map((item) => (
+                  <div key={item.label} className="flex flex-col gap-1 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+                    <dt className="text-sm text-gray-400">{item.label}</dt>
+                    <dd className="text-sm font-semibold text-white">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+              We are committed to conducting our business with professionalism, integrity,
+              transparency and accountability while supporting organisations across Nigeria and
+              beyond with practical, business-led advisory and transformation services.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Performance Engineering */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl">
+          <div ref={bpefRef}>
+            <h2 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Business Performance Engineering™
+            </h2>
+            <p className="mb-4 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Business Performance Engineering™ is the foundation of every engagement we
+              undertake.
+            </p>
+            <p className="mb-8 text-base leading-relaxed text-gray-300 sm:text-lg">
+              Supported by the Business Performance Engineering Framework™ (BPEF™), our
+              methodology helps organisations:
+            </p>
+
+            <ul className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {bpefCapabilities.map((capability) => (
+                <li key={capability} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-purple-400" aria-hidden="true" />
+                  <span className="text-sm leading-relaxed text-gray-300">{capability}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
+              Rather than treating these disciplines independently, Business Performance
+              Engineering™ integrates them into a single, business led approach that helps
+              organisations perform better.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl md:text-center">
+          <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
+            Begin with an Executive Performance Assessment
+          </h2>
+          <p className="mb-4 text-sm leading-relaxed text-gray-400 sm:text-base">
+            Every successful transformation begins with understanding where performance can
+            improve. Our Executive Performance Assessment helps leadership teams identify
+            organisational constraints, prioritise improvement opportunities and build a
+            practical roadmap for measurable business performance.
+          </p>
+          <p className="mb-8 text-sm leading-relaxed text-gray-400 sm:text-base">
+            Whether your organisation is pursuing growth, strengthening governance, improving
+            operational efficiency, preparing for AI adoption or undertaking enterprise
+            transformation, we can help you establish a stronger foundation for long term
+            success.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4 md:justify-center">
+            <span ref={primaryCtaRef} className="inline-block rounded-full">
+              <CalendlyPopup
+                text="Request an Executive Performance Assessment"
+                className="inline-flex items-center rounded-full bg-purple-600 px-6 py-3 font-semibold text-white shadow-lg transition-colors duration-300 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-8 sm:py-4 sm:text-base"
+              />
+            </span>
+            <span ref={secondaryCtaRef} className="inline-block rounded-full">
+              <Link
+                to="/business-performance-engineering"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:px-8 sm:py-4"
+              >
+                Explore Business Performance Engineering™
+              </Link>
+            </span>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default AboutPage;

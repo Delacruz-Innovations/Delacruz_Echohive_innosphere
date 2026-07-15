@@ -100,7 +100,7 @@ const handleSubmit = async (e) => {
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: ' 29A, Salimonu Ayinde Street. Lagos, Nigeria',
+      details: '5th Floor, Mosesola House, 103 Allen Ave, Allen, Ikeja 101233, Lagos',
       link: '#'
     },
     {
@@ -112,7 +112,7 @@ const handleSubmit = async (e) => {
   ];
 
   return (
-    <div className="bg-black py-20 min-h-screen">
+    <div className="bg-black py-10 min-h-screen">
       <SEO
         title="Contact Us | Delacruz Innovations — Lagos & UAE"
         description="Get in touch with Delacruz Innovations. Email, call, or visit our offices in Lagos, Nigeria or Ajman, UAE. Mon-Fri 9AM-6PM."
@@ -128,15 +128,16 @@ const handleSubmit = async (e) => {
             email: 'info@delacruzinnovation.com',
             address: {
               '@type': 'PostalAddress',
-              streetAddress: '29A, Salimonu Ayinde Street',
-              addressLocality: 'Lagos',
+              streetAddress: '5th Floor, Mosesola House, 103 Allen Ave, Allen',
+              addressLocality: 'Ikeja, Lagos',
+              postalCode: '101233',
               addressCountry: 'NG',
             },
           },
         }}
       />
       {/* Hero Section */}
-      <div className="relative py-20 px-4 overflow-hidden">
+      <div className="relative py-10 px-4 overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img 
@@ -162,7 +163,7 @@ const handleSubmit = async (e) => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Form */}
           <div className={`lg:col-span-2 transition-all duration-1000 ${
@@ -331,7 +332,7 @@ const handleSubmit = async (e) => {
         </div>
 
         {/* Map Section */}
-        <div className={`mt-16 transition-all duration-1000 ${
+        <div className={`mt-8 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`} style={{ transitionDelay: '600ms' }}>
           <div className="bg-gradient-to-br from-purple-950/30 to-black border border-purple-700/30 rounded-2xl overflow-hidden">

@@ -16,11 +16,9 @@ import useHoverGlow from '../utils/useHoverGlow';
 // ----------------------------------------------------------------------------
 const heroContent = {
   eyebrow: 'BUSINESS PERFORMANCE ENGINEERING™',
-  headline: 'Your Organisation Can Perform Better. We Help You Engineer It.',
-  copy: 'Engineering measurable performance gains through strategy, governance, data and AI across Nigeria and Africa.',
+  headline: 'Engineering Better Business Performance Across Nigeria & Africa',
   primaryCTA: { label: 'Request an Executive Performance Assessment' },
   scrollLabel: 'Discover How We Engineer Performance',
-  ghostWord: 'PERFORM',
   heroImage:
     'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1974',
 };
@@ -77,14 +75,6 @@ const Hero = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-purple-900/30"></div>
-
-        {/* Oversized ghost word — ambient brand motif */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-2 top-24 select-none whitespace-nowrap text-[7rem] font-bold uppercase leading-none text-purple-900/25 sm:top-28 sm:text-[11rem] lg:top-32 lg:text-[15rem]"
-        >
-          {heroContent.ghostWord}
-        </span>
       </div>
 
       <div
@@ -96,12 +86,9 @@ const Hero = () => {
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300 sm:text-sm">
               {heroContent.eyebrow}
             </p>
-            <h1 className="mb-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mb-6 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
               {heroContent.headline}
             </h1>
-            <p className="mb-6 max-w-md text-sm leading-relaxed text-gray-300 sm:text-base">
-              {heroContent.copy}
-            </p>
             <span ref={primaryCtaRef} className="inline-block rounded-full">
               <CalendlyPopup
                 text={heroContent.primaryCTA.label}

@@ -17,7 +17,7 @@ const Slide = ({ item, reduced }) => {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
 
-      <div className="absolute inset-0 flex flex-col items-end justify-end gap-3 p-7 text-right sm:p-9">
+      <div className="absolute inset-0 flex flex-col items-start justify-end gap-3 p-7 text-left sm:p-9">
         {Icon && (
           <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/30 backdrop-blur-sm">
             <Icon className="h-5 w-5 text-purple-300" aria-hidden="true" />

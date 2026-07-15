@@ -1,62 +1,127 @@
 import React from 'react'
 import SEO from '../utils/SEO'
+import HorizontalScrollRow from './HorizontalScrollRow'
 
-const faqItems = [
+const faqCategories = [
   {
-    question: 'What industries do you serve?',
-    answer:
-      'We serve a wide range of sectors across Nigeria and internationally, including finance & banking, education & training, public sector (government agencies), SMEs, and technology platforms. Whether you’re a Lagos‑based SME or a national public body, we tailor our digital transformation and platform services to your environment.',
+    category: 'About Delacruz',
+    items: [
+      {
+        question: 'What is Business Performance Engineering™?',
+        answer:
+          'Business Performance Engineering™ is Delacruz Innovations’ proprietary approach to improving organisational performance by aligning strategy, governance, people, processes, data and technology. Rather than implementing technology in isolation, we help organisations achieve measurable business outcomes through structured transformation.',
+      },
+      {
+        question: 'How is Delacruz different from a traditional IT consulting company?',
+        answer:
+          'Traditional IT consultancies often focus on implementing technology. Delacruz begins with your business objectives. We assess organisational performance, identify constraints and design solutions that improve measurable outcomes using our Business Performance Engineering Framework™ (BPEF™).',
+      },
+      {
+        question: 'Which countries do you serve?',
+        answer:
+          'We primarily support organisations across Nigeria and Africa while also partnering with international organisations delivering programmes within the region.',
+      },
+    ],
   },
   {
-    question:
-      'Are your solutions suitable for Nigerian business conditions (power, connectivity, regulation)?',
-    answer:
-      'Yes. Our solutions are engineered with the Nigerian context in mind — from hybrid cloud architectures and mobile‑first interfaces to compliance with Nigerian regulatory frameworks. We factor in local infrastructure, regulatory requirements and user‑behaviour so your systems are robust, relevant and ready for growth.',
+    category: 'Services',
+    items: [
+      {
+        question: 'What industries do you work with?',
+        answer:
+          'We support organisations in financial services, government, healthcare, telecommunications, retail, manufacturing, construction, agriculture, education, hospitality and other sectors seeking sustainable business transformation.',
+      },
+      {
+        question: 'Do you work with SMEs or only large enterprises?',
+        answer:
+          'We work with ambitious organisations of different sizes. Our methodologies scale from growing businesses to large enterprises and public sector institutions.',
+      },
+      {
+        question: 'Can you support digital transformation without replacing our existing systems?',
+        answer:
+          'Yes. In many engagements, we improve performance by optimising existing processes, strengthening governance and integrating current technologies before recommending replacement.',
+      },
+      {
+        question: 'Do you provide AI consulting?',
+        answer:
+          'Yes. We help organisations identify practical AI opportunities, assess readiness, establish governance and implement AI responsibly to improve business performance.',
+      },
+      {
+        question: 'Do you offer Business Analysis as a standalone service?',
+        answer:
+          'Yes, but we generally recommend integrating Business Analysis within broader transformation initiatives to maximise value and reduce delivery risk.',
+      },
+      {
+        question: 'Do you provide Governance, Risk and Compliance (GRC) services?',
+        answer:
+          'Yes. Our GRC services include governance frameworks, enterprise risk management, cybersecurity governance, regulatory compliance, internal controls and audit readiness.',
+      },
+    ],
   },
   {
-    question: 'How long does a typical project take?',
-    answer:
-      'Each project is unique, but as a rule of thumb: a smaller scale CRM or workflow automation project may complete within 8‑12 weeks; a full‑scale SaaS/PaaS development or digital transformation initiative may span 4‑6+ months depending on scope. We always define milestones, deliverables and timelines during the project planning phase.',
+    category: 'Delivery',
+    items: [
+      {
+        question: 'How does an engagement begin?',
+        answer:
+          'Every engagement begins with an Executive Performance Assessment. This helps us understand your organisation’s strategic priorities, current challenges and opportunities before recommending solutions.',
+      },
+      {
+        question: 'How long do consulting engagements typically last?',
+        answer:
+          'Timelines vary depending on scope. Strategic assessments may take a few weeks, while enterprise transformation programmes can span several months. Each engagement is tailored to the organisation’s objectives.',
+      },
+      {
+        question: 'Do you provide implementation support or only advisory services?',
+        answer:
+          'We provide end-to-end support, from strategy and planning through implementation, change management, governance and continuous improvement.',
+      },
+    ],
   },
   {
-    question:
-      'How do you ensure user adoption and minimise disruption?',
-    answer:
-      'Adoption is at the heart of our methodology. We engage stakeholders from day one, provide tailored training and change‑management support, and ensure your people are empowered to use the new systems confidently. We also deliver migration artefacts, pilot phases and continuous support to minimise disruption to daily operations.',
+    category: 'Technology',
+    items: [
+      {
+        question: 'Which technologies do you work with?',
+        answer:
+          'Our advisory services are technology-agnostic. Depending on client needs, we support cloud platforms, enterprise applications, AI solutions, analytics, automation and modern integration technologies.',
+      },
+      {
+        question: 'Do you build custom software?',
+        answer:
+          'Yes. Where appropriate, we design and deliver bespoke digital platforms, enterprise applications and SaaS solutions that align with business objectives.',
+      },
+    ],
   },
   {
-    question: 'What kind of support do you provide after implementation?',
-    answer:
-      'Our relationship doesn’t end at “go‑live”. We provide ongoing support and maintenance packages, training refreshers, performance reviews and optimisation sprints to ensure your systems continue to deliver value well beyond the initial launch. We also monitor for system health, analytics and improvement opportunities.',
-  },
-  {
-    question:
-      'Are your services compliant with Nigerian data and privacy laws?',
-    answer:
-      'Absolutely. We ensure compliance with the Nigeria Data Protection Commission (NDPC) frameworks including the Nigeria Data Protection Act 2023 and relevant directives. We also support international compliance when working with global clients and cross‑border data flows.',
-  },
-  {
-    question: 'What is the first step if we want to engage you?',
-    answer:
-      'Simply contact us for a free discovery call. We’ll review your current state, identify priority challenges, suggest an approach and quote the estimated scope. There’s no obligation — just real insight to help you decide your next step.',
-  },
-  {
-    question: 'Can you work with organisations outside Lagos or Nigeria?',
-    answer:
-      'Yes. We design solutions for clients across Nigeria and internationally. Whether you’re operating in Abuja, Kaduna, London or New York, our cross‑border experience enables us to deliver effectively, collaborate virtually and accommodate multi‑region teams and stakeholders.',
+    category: 'Commercial',
+    items: [
+      {
+        question: 'How do I request a proposal?',
+        answer:
+          'The first step is to schedule an Executive Performance Assessment. Following the assessment, we prepare a tailored proposal aligned with your business priorities.',
+      },
+      {
+        question: 'Do you provide managed services?',
+        answer:
+          'Yes. Following implementation, we can provide ongoing advisory, governance and optimisation support where required.',
+      },
+    ],
   },
 ];
+
+const allFaqItems = faqCategories.flatMap((category) => category.items);
 
 const FAQ = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       <SEO
         title="FAQ | Delacruz Innovations"
-        description="Answers to frequently asked questions about Delacruz Innovations' digital transformation, SaaS/PaaS development, and IT consulting services."
+        description="Answers to frequently asked questions about Delacruz Innovations' Business Performance Engineering™ methodology, services, delivery approach and technology."
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: faqItems.map((item) => ({
+          mainEntity: allFaqItems.map((item) => ({
             '@type': 'Question',
             name: item.question,
             acceptedAnswer: {
@@ -66,17 +131,32 @@ const FAQ = () => {
           })),
         }}
       />
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-purple-700 mb-12 text-center">
+      <div className="max-w-4xl mx-auto px-6 py-6">
+        <h1 className="text-4xl font-bold text-purple-500 mb-6 md:text-center">
           Frequently Asked Questions
         </h1>
 
-        {faqItems.map((item, index) => (
-          <div key={index} className="mb-10 border-l-4 border-purple-700 pl-6 py-4">
-            <h2 className="text-2xl font-semibold text-purple-700 mb-4">
-              {item.question}
+        {faqCategories.map((category) => (
+          <div key={category.category} className="mb-6">
+            <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+              {category.category}
             </h2>
-            <p className="text-gray-300 leading-relaxed">{item.answer}</p>
+
+            <HorizontalScrollRow>
+              <div className="contents">
+                {category.items.map((item) => (
+                  <div
+                    key={item.question}
+                    className="w-[85vw] shrink-0 snap-start rounded-2xl border-l-4 border-purple-700 bg-gray-900/40 p-6 sm:w-[420px]"
+                  >
+                    <h3 className="text-xl font-semibold text-purple-500 mb-4">
+                      {item.question}
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed text-sm">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </HorizontalScrollRow>
           </div>
         ))}
       </div>

@@ -19,9 +19,9 @@ const FrameworkHighlight = () => {
   useGsapReveal(stagesRef, { stagger: 0.1 });
 
   return (
-    <section id="framework" className="scroll-mt-24 bg-black px-4 py-20 sm:px-6 lg:px-8">
+    <section id="framework" className="scroll-mt-24 bg-black px-4 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div ref={headerRef} className="mx-auto max-w-3xl text-center">
+        <div ref={headerRef} className="mx-auto max-w-3xl md:text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300 sm:text-sm">
             Business Performance Engineering™
           </p>
@@ -32,14 +32,14 @@ const FrameworkHighlight = () => {
             Technology projects rarely fail because of technology alone. Performance improves when
             strategy, governance, people, processes, data and technology work together. Every
             Delacruz engagement follows the Business Performance Engineering Framework™ (BPEF™),
-            a structured approach to diagnosing challenges, designing solutions, delivering
-            transformation and embedding continuous improvement.
+            a structured approach to discovering context, diagnosing root causes, designing
+            solutions, delivering transformation and driving continuous performance improvement.
           </p>
         </div>
 
         <div
           ref={stagesRef}
-          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5"
+          className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5"
         >
           {servicesData.bpefProcess.map((stage) => {
             const Icon = stageIcons[stage.number];

@@ -55,8 +55,7 @@ const JobListingsPage = ({ jobsData }) => {
         copy="Explore open opportunities to work with high-performing, cross-functional teams adopting cutting-edge strategy, data, and AI."
         primaryCTALabel="Speak to an Expert"
         scrollLabel="View Open Positions"
-        ghostWord="CAREERS"
-        heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop"
+        heroImage="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&q=80&w=1974"
       />
       <div className="bg-black text-white">
         <div className="bg-gradient-to-r from-purple-900 to-purple-700 p-6 shadow-lg">

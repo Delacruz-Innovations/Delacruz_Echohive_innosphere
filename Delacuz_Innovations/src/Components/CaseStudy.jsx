@@ -61,9 +61,9 @@ const Casestudy = () => {
   useHoverGlow(ctaRef);
 
   return (
-    <section className="bg-black px-3 py-10 sm:px-5 lg:px-6">
+    <section className="bg-black px-3 py-2 sm:px-5 lg:px-6">
       <div className="mx-auto max-w-7xl">
-        <div ref={headerRef} className="mx-auto max-w-3xl text-center">
+        <div ref={headerRef} className="mx-auto max-w-3xl md:text-center">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300 sm:text-sm">
             Case Studies
           </p>

@@ -42,7 +42,7 @@ const HelpOurClient = () => {
     <section className="bg-black py-10 px-3 sm:px-5 lg:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
-        <div ref={headerRef} className="text-center mb-8">
+        <div ref={headerRef} className="mb-8 md:text-center">
           <p className="text-purple-300 text-sm font-semibold tracking-widest uppercase mb-3">
             Practice Area Highlights
           </p>

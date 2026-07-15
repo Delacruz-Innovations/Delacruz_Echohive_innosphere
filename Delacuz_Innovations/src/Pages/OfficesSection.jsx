@@ -39,7 +39,7 @@ const OfficesSection = () => {
           cities: [
             {
               name: "Lagos",
-              address: "Address - 29A, Salimonu Ayinde Street. Lagos",
+              address: "Address - 5th Floor, Mosesola House, 103 Allen Ave, Allen, Ikeja 101233, Lagos",
               city: "Lagos, Nigeria",
               phone: "+234 9052765358"
             }
@@ -58,7 +58,7 @@ const OfficesSection = () => {
               name: "Ajman",
               address: "Ajman Media City",
               details: "Address: AMC - BL A - 3M1819",
-              email: "info@delacruz.com",
+              email: "info@delacruzinnovation.com",
               phone: "Tel: +971 558838304"
             }
           ]
@@ -81,8 +81,9 @@ const OfficesSection = () => {
           address: [
             {
               '@type': 'PostalAddress',
-              streetAddress: '29A, Salimonu Ayinde Street',
-              addressLocality: 'Lagos',
+              streetAddress: '5th Floor, Mosesola House, 103 Allen Ave, Allen',
+              addressLocality: 'Ikeja, Lagos',
+              postalCode: '101233',
               addressCountry: 'NG',
             },
             {
@@ -112,15 +113,14 @@ const OfficesSection = () => {
         copy="With offices spanning across Lagos, Nigeria and Ajman, UAE, we bring innovation and expertise to your doorstep."
         primaryCTALabel="Speak to an Expert"
         scrollLabel="Explore Our Offices"
-        ghostWord="GLOBAL"
-        heroImage="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1974"
+        heroImage="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80&w=1974"
       />
 
       {/* Offices List Section */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+      <div className="py-10 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="mb-12 animate-fade-in">
+          <div className="mb-6 animate-fade-in">
             <p className="text-purple-400 text-sm font-semibold tracking-wide uppercase mb-3">
               Our offices
             </p>

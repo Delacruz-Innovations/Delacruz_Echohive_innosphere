@@ -62,20 +62,19 @@ const InsightsListPage = () => {
         copy="Explore cutting-edge insights on digital transformation, business growth, and strategic innovation in African markets."
         primaryCTALabel="Speak to an Expert"
         scrollLabel="Read Insights"
-        ghostWord="INSIGHTS"
-        heroImage="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=1600&auto=format&fit=crop"
+        heroImage="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1974"
       />
 
       {/* Articles Grid Section */}
-      <div id="insights" className="min-h-screen bg-black py-16 px-4 sm:px-6 lg:px-8">
+      <div id="insights" className="min-h-screen bg-black py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {loading ? (
-            <div className="text-center py-20">
+            <div className="text-center py-10">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500 mb-4"></div>
               <p className="text-gray-400">Loading insights...</p>
             </div>
           ) : allInsights.length === 0 ? (
-            <div className="text-center py-20">
+            <div className="text-center py-10">
               <p className="text-gray-400 text-xl font-light italic">No live insights found at the moment. Please check back later!</p>
             </div>
           ) : (
