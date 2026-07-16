@@ -161,7 +161,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
                 </li>
                 <li>
                   <Link to='/about' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
-                    About
+                    About Us
                   </Link>
                 </li>
                 <li>
@@ -277,7 +277,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
             onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
-            About
+            About Us
           </Link>
           <Link
             to='/contact'

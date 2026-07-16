@@ -76,29 +76,6 @@ const businessValueOutcomes = [
   'Long-term value realisation.',
 ];
 
-const faqItems = [
-  {
-    question: 'What is Business Performance Engineering™?',
-    answer:
-      'Business Performance Engineering™ is Delacruz Innovations’ proprietary approach to improving organisational performance by aligning strategy, governance, people, processes, data and technology around measurable business outcomes.',
-  },
-  {
-    question: 'Is BPEF™ a consulting framework?',
-    answer:
-      'BPEF™ is more than a consulting framework. It is a structured methodology that guides how organisations diagnose performance challenges, design solutions, execute transformation and sustain long-term value.',
-  },
-  {
-    question: 'Is Business Performance Engineering™ suitable for public sector organisations?',
-    answer:
-      'Yes. The methodology is designed to support both public and private sector organisations by improving governance, operational performance and service delivery.',
-  },
-  {
-    question: 'How does BPEF™ differ from traditional digital transformation?',
-    answer:
-      'Traditional transformation programmes often focus on implementing technology. BPEF™ begins with the business outcome, ensuring technology, governance, people and processes work together to improve measurable organisational performance.',
-  },
-];
-
 const BusinessPerformanceEngineeringPage = () => {
   const introRef = useRef(null);
   const underperformRef = useRef(null);
@@ -106,7 +83,6 @@ const BusinessPerformanceEngineeringPage = () => {
   const domainsHeaderRef = useRef(null);
   const domainsRef = useRef(null);
   const valueRef = useRef(null);
-  const faqRef = useRef(null);
   const primaryCtaRef = useRef(null);
   const secondaryCtaRef = useRef(null);
 
@@ -116,7 +92,6 @@ const BusinessPerformanceEngineeringPage = () => {
   useGsapReveal(domainsHeaderRef);
   useGsapReveal(domainsRef, { stagger: 0.08 });
   useGsapReveal(valueRef, { selector: ':scope > *', stagger: 0.1 });
-  useGsapReveal(faqRef, { stagger: 0.08 });
   useHoverGlow(primaryCtaRef);
   useHoverGlow(secondaryCtaRef, { scale: 1.03 });
 
@@ -141,26 +116,13 @@ const BusinessPerformanceEngineeringPage = () => {
     url: `${SITE_URL}/business-performance-engineering`,
   };
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqItems.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
-
   return (
     <div className="min-h-screen bg-black">
       <SEO
         title="Business Performance Engineering™ | BPEF™ Framework | Delacruz Innovations"
         description="Discover Business Performance Engineering™ and the Business Performance Engineering Framework™ (BPEF™). Learn how Delacruz Innovations helps organisations across Nigeria and Africa improve performance through strategy, governance, operations, data, AI and technology."
         canonical={`${SITE_URL}/business-performance-engineering`}
-        jsonLd={[pageSchema, webPageSchema, faqSchema]}
+        jsonLd={[pageSchema, webPageSchema]}
       />
 
       <PageHero
@@ -323,23 +285,6 @@ const BusinessPerformanceEngineeringPage = () => {
               Business Performance Engineering™ provides the structure that connects these
               outcomes to practical execution.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-10 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-center">
-            Frequently Asked Questions
-          </h2>
-          <div ref={faqRef} className="space-y-8">
-            {faqItems.map((item) => (
-              <div key={item.question} className="border-l-4 border-purple-700 pl-6 py-2">
-                <h3 className="mb-2 text-xl font-semibold text-purple-400">{item.question}</h3>
-                <p className="text-gray-300 leading-relaxed">{item.answer}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

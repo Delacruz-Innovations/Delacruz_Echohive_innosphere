@@ -12,9 +12,11 @@ const CTABanner = () => {
   useHoverGlow(ctaRef);
 
   return (
-    <section className="relative bg-black py-10 px-3 sm:px-5 lg:px-6 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-purple-950/60 via-black to-purple-950/40 py-10 px-3 sm:px-5 lg:px-6 overflow-hidden">
         {/* Animated Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.08)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+        {/* Ambient glow */}
+        <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600/30 blur-3xl"></div>
 
         <div ref={contentRef} className="max-w-5xl mx-auto relative z-10 text-center">
           {/* Decorative Element */}

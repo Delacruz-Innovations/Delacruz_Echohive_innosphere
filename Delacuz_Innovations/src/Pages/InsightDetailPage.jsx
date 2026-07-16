@@ -12,6 +12,46 @@ import { blogService } from '../services/blogService';
 import CalendlyPopup from '../Components/CalendlyPopup';
 import SEO, { SITE_URL } from '../utils/SEO';
 
+// Split a body string into paragraph and bullet-list blocks so multi-paragraph
+// content (uploaded with \n breaks and "* " bullets) renders properly
+const parseBodyBlocks = (body) => {
+  const blocks = [];
+  let list = null;
+  (body || '').split('\n').forEach((line) => {
+    const text = line.trim();
+    if (text.startsWith('* ') || text.startsWith('- ')) {
+      if (!list) list = [];
+      list.push(text.slice(2).trim());
+    } else {
+      if (list) {
+        blocks.push({ type: 'ul', items: list });
+        list = null;
+      }
+      if (text) blocks.push({ type: 'p', text });
+    }
+  });
+  if (list) blocks.push({ type: 'ul', items: list });
+  return blocks;
+};
+
+const BodyBlocks = ({ body }) => (
+  <>
+    {parseBodyBlocks(body).map((block, i) =>
+      block.type === 'ul' ? (
+        <ul key={i} className="list-disc list-outside pl-6 mb-6 space-y-2 text-lg leading-relaxed text-gray-300">
+          {block.items.map((item, j) => (
+            <li key={j}>{item}</li>
+          ))}
+        </ul>
+      ) : (
+        <p key={i} className="text-lg leading-relaxed mb-6 text-gray-300">
+          {block.text}
+        </p>
+      )
+    )}
+  </>
+);
+
 const InsightDetailPage = () => {
   const placeholderImages = [insight1, insight2, insight3, insight4, insight5, insight6];
 
@@ -203,24 +243,32 @@ const InsightDetailPage = () => {
       {/* Content Section */}
       <div className="bg-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Quote Section */}
-          <div className={`mb-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
-            <div className="bg-gray-900 border-l-4 border-purple-500 p-6 sm:p-8 rounded-r-lg">
-              <p className="text-xl sm:text-2xl font-semibold text-gray-300 italic leading-relaxed">
-                "Companies are facing agents. A growing public. Here's what CEOs can do to move past them and position their companies for sustained growth."
-              </p>
-            </div>
-          </div>
-
           {/* Article Body */}
           <article className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'
             }`}>
-            {/* First Paragraph with Drop Cap */}
-            <p className="text-lg leading-relaxed mb-6 text-gray-300">
-              <span className="text-7xl float-left mr-4 mt-1 text-purple-500 font-serif leading-none">E</span>
-              ducators are tired of young hockey great Wayne Gretzky, who is famous for staying "I skate to where I think the puck is going," not where it has been." There could be better advice with one twist. But that route is only a piece of hockey and player mentality, and CEOs can learn at least three things about facing down uncertainty and managing their way into a better place from his celebrated approach.
-            </p>
+            {/* Intro with Drop Cap */}
+            {insight.content?.intro && (
+              <div className="mb-2">
+                {parseBodyBlocks(insight.content.intro).map((block, i) =>
+                  block.type === 'ul' ? (
+                    <ul key={i} className="list-disc list-outside pl-6 mb-6 space-y-2 text-lg leading-relaxed text-gray-300">
+                      {block.items.map((item, j) => (
+                        <li key={j}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p key={i} className="text-lg leading-relaxed mb-6 text-gray-300">
+                      {i === 0 && (
+                        <span className="text-7xl float-left mr-4 mt-1 text-purple-500 font-serif leading-none">
+                          {block.text.charAt(0)}
+                        </span>
+                      )}
+                      {i === 0 ? block.text.slice(1) : block.text}
+                    </p>
+                  )
+                )}
+              </div>
+            )}
 
             {/* Content Sections */}
             {(insight.content?.sections || []).map((section, index) => (
@@ -230,19 +278,33 @@ const InsightDetailPage = () => {
                     {section.heading}
                   </h2>
                 )}
-                <p className="text-lg leading-relaxed text-gray-300">
-                  {section.body}
-                </p>
+                {section.hasSubtitle && section.subtitle && (
+                  <h3 className="text-xl sm:text-2xl font-semibold text-purple-300 mb-4">
+                    {section.subtitle}
+                  </h3>
+                )}
+                <BodyBlocks body={section.body} />
+                {section.hasInsight && section.insight && (
+                  <div className="bg-gray-900 border-l-4 border-purple-500 p-6 sm:p-8 rounded-r-lg my-6">
+                    <p className="text-xl font-semibold text-gray-300 italic leading-relaxed">
+                      {section.insight}
+                    </p>
+                    {section.sources && section.sources.length > 0 && (
+                      <p className="text-sm text-gray-500 mt-3 uppercase tracking-wide">
+                        {section.sources.join(' • ')}
+                      </p>
+                    )}
+                  </div>
+                )}
+                {section.hasImage && section.image && (
+                  <img
+                    src={section.image}
+                    alt={section.heading || insight.title}
+                    className="w-full rounded-lg my-6 border border-gray-800"
+                  />
+                )}
               </div>
             ))}
-
-            <p className="text-lg leading-relaxed mb-6 text-gray-300">
-              Though it may seem hard for CTOs and their senior managers to see the road ahead, they can still manage to make hard choices about making the right long-run decisions. The secret? Use all sorts and smart and unconstrained thought. As agent's and their significant change, big choices means much more ambitious goals and we'd also expect a massive increase back from more tremendous efforts.
-            </p>
-
-            <p className="text-lg leading-relaxed mb-8 text-gray-300">
-              And CIOs changes life, even as leadership quote for their CEO's software systems built with the ability they have, leaving them better equipped. As we'd seen in numerous deals now industry wide - and companies are not just how the general public sees abilities. "We brand reputations being at an impasse", a CEO told us. "We've been skeptical but now our choice is an opportunity to build a brand by being a leader." This was his response.
-            </p>
 
             {/* Divider */}
             <div className="border-t-2 border-gray-800 my-12"></div>
@@ -277,9 +339,11 @@ const InsightDetailPage = () => {
             </div>
 
             {/* Editor Note */}
-            <p className="text-sm text-gray-500 italic mt-8 border-t border-gray-800 pt-6">
-              {insight.content?.authorNote}
-            </p>
+            {insight.content?.authorNote && (
+              <p className="text-sm text-gray-500 italic mt-8 border-t border-gray-800 pt-6">
+                {insight.content.authorNote}
+              </p>
+            )}
           </article>
 
           {/* Related Insights Section */}

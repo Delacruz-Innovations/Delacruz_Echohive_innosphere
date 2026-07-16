@@ -135,7 +135,7 @@ return (
             
             <h4 className="font-semibold mb-3 text-white text-lg">Subscribe</h4>
             <p className="text-gray-400 text-sm mb-4 max-w-md">
-              Select topics and stay current with our latest insights
+              Get our latest insights on business performance, straight to your inbox.
             </p>
             
            <div>
@@ -193,15 +193,16 @@ return (
           {/* Right: Links and Social */}
           <div className="md:text-right space-y-6">
             {/* Quick Links */}
-            <div className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-sm uppercase tracking-wide">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end text-sm">
+              <Link to="/about" className="text-gray-400 hover:text-white transition-colors">About us</Link>
               <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact us</Link>
               <Link to="/faq" className="text-gray-400 hover:text-white transition-colors">FAQ</Link>
-              <Link to="/case-studies" className="text-gray-400 hover:text-white transition-colors">Case Studies</Link>
-              <Link to="/jobs" className="text-gray-400 hover:text-white transition-colors">Careers</Link>
-              <Link to="/offices" className="text-gray-400 hover:text-white transition-colors">Location</Link>
               <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy policy</Link>
               <Link to="/terms-of-use" className="text-gray-400 hover:text-white transition-colors">Terms of use</Link>
               <Link to="/accessibility-statement" className="text-gray-400 hover:text-white transition-colors">Accessibility statement</Link>
+              <Link to="/case-studies" className="text-gray-400 hover:text-white transition-colors">Case studies</Link>
+              <Link to="/jobs" className="text-gray-400 hover:text-white transition-colors">Careers</Link>
+              <Link to="/offices" className="text-gray-400 hover:text-white transition-colors">Location</Link>
             </div>
             
             {/* Social Media Icons */}
