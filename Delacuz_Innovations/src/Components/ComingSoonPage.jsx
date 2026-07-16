@@ -4,7 +4,7 @@ import CalendlyPopup from './CalendlyPopup';
 import useGsapReveal from '../utils/useGsapReveal';
 import useHoverGlow from '../utils/useHoverGlow';
 
-const ComingSoonPage = ({ eyebrow, title, description }) => {
+const ComingSoonPage = ({ eyebrow, title, description, relatedLinks }) => {
   const contentRef = useRef(null);
   const primaryCtaRef = useRef(null);
   const secondaryCtaRef = useRef(null);
@@ -40,6 +40,20 @@ const ComingSoonPage = ({ eyebrow, title, description }) => {
             </Link>
           </span>
         </div>
+
+        {relatedLinks && relatedLinks.length > 0 && (
+          <div className="mt-10 flex flex-wrap items-center gap-3 md:justify-center">
+            {relatedLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-gray-300 transition-colors duration-300 hover:border-purple-400/60 hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

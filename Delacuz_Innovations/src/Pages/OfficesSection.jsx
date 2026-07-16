@@ -58,7 +58,7 @@ const OfficesSection = () => {
               name: "Ajman",
               address: "Ajman Media City",
               details: "Address: AMC - BL A - 3M1819",
-              email: "info@delacruzinnovation.com",
+              email: "info@delacruzinnovations.com",
               phone: "Tel: +971 558838304"
             }
           ]

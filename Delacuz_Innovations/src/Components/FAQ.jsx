@@ -112,7 +112,47 @@ const faqCategories = [
 
 const allFaqItems = faqCategories.flatMap((category) => category.items);
 
-const FAQ = () => {
+// `standalone` controls whether this renders its own SEO tags and full-height
+// page wrapper (true, for the real /faq route) or just the content block, so
+// it can be embedded inside another page (e.g. ProductsPage) without
+// duplicating <SEO> or stacking two min-h-screen wrappers.
+const FAQ = ({ standalone = true }) => {
+  const content = (
+    <div className={standalone ? 'max-w-4xl mx-auto px-6 py-6' : ''}>
+      {standalone && (
+        <h1 className="text-4xl font-bold text-purple-500 mb-6 md:text-center">
+          Frequently Asked Questions
+        </h1>
+      )}
+
+      {faqCategories.map((category) => (
+        <div key={category.category} className="mb-6">
+          <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+            {category.category}
+          </h2>
+
+          <HorizontalScrollRow>
+            <div className="contents">
+              {category.items.map((item) => (
+                <div
+                  key={item.question}
+                  className="w-[85vw] shrink-0 snap-start rounded-2xl border-l-4 border-purple-700 bg-gray-900/40 p-6 sm:w-[420px]"
+                >
+                  <h3 className="text-xl font-semibold text-purple-500 mb-4">
+                    {item.question}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed text-sm">{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          </HorizontalScrollRow>
+        </div>
+      ))}
+    </div>
+  );
+
+  if (!standalone) return content;
+
   return (
     <div className="min-h-screen bg-black text-white">
       <SEO
@@ -131,35 +171,7 @@ const FAQ = () => {
           })),
         }}
       />
-      <div className="max-w-4xl mx-auto px-6 py-6">
-        <h1 className="text-4xl font-bold text-purple-500 mb-6 md:text-center">
-          Frequently Asked Questions
-        </h1>
-
-        {faqCategories.map((category) => (
-          <div key={category.category} className="mb-6">
-            <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
-              {category.category}
-            </h2>
-
-            <HorizontalScrollRow>
-              <div className="contents">
-                {category.items.map((item) => (
-                  <div
-                    key={item.question}
-                    className="w-[85vw] shrink-0 snap-start rounded-2xl border-l-4 border-purple-700 bg-gray-900/40 p-6 sm:w-[420px]"
-                  >
-                    <h3 className="text-xl font-semibold text-purple-500 mb-4">
-                      {item.question}
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed text-sm">{item.answer}</p>
-                  </div>
-                ))}
-              </div>
-            </HorizontalScrollRow>
-          </div>
-        ))}
-      </div>
+      {content}
     </div>
   );
 };

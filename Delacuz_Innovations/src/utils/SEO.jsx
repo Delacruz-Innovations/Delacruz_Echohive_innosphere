@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
-export const SITE_URL = 'https://delacruzinnovation.com';
+export const SITE_URL = 'https://delacruzinnovations.com';
 export const SITE_NAME = 'Delacruz Innovations';
 const BRAND_SUFFIX = ` | ${SITE_NAME}`;
 

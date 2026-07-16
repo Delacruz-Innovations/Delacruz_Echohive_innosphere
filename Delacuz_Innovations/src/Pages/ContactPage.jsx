@@ -88,8 +88,8 @@ const handleSubmit = async (e) => {
     {
       icon: Mail,
       title: 'Email Us',
-      details: 'info@delacruzinnovation.com',
-      link: 'mailto:info@delacruzinnovation.com'
+      details: 'info@delacruzinnovations.com',
+      link: 'mailto:info@delacruzinnovations.com'
     },
     {
       icon: Phone,
@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
             '@type': 'LocalBusiness',
             name: 'Delacruz Innovations',
             telephone: '+234-905-276-5358',
-            email: 'info@delacruzinnovation.com',
+            email: 'info@delacruzinnovations.com',
             address: {
               '@type': 'PostalAddress',
               streetAddress: '5th Floor, Mosesola House, 103 Allen Ave, Allen',
