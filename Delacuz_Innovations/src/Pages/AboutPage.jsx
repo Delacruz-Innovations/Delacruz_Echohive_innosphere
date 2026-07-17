@@ -1,11 +1,31 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars -- motion used as JSX tag <motion.div>, false-positive in this eslint version
+import { motion, AnimatePresence } from 'framer-motion';
 import PageHero from '../Components/PageHero';
 import CalendlyPopup from '../Components/CalendlyPopup';
 import SEO, { SITE_URL } from '../utils/SEO';
 import useGsapReveal from '../utils/useGsapReveal';
 import useHoverGlow from '../utils/useHoverGlow';
+
+const faqPreview = [
+  {
+    question: 'What is Business Performance Engineering™?',
+    answer:
+      'Business Performance Engineering™ is Delacruz Innovations’ proprietary approach to improving organisational performance by aligning strategy, governance, people, processes, data and technology. Rather than implementing technology in isolation, we help organisations achieve measurable business outcomes through structured transformation.',
+  },
+  {
+    question: 'How is Delacruz different from a traditional IT consulting company?',
+    answer:
+      'Traditional IT consultancies often focus on implementing technology. Delacruz begins with your business objectives. We assess organisational performance, identify constraints and design solutions that improve measurable outcomes using our Business Performance Engineering Framework™ (BPEF™).',
+  },
+  {
+    question: 'Which countries do you serve?',
+    answer:
+      'We primarily support organisations across Nigeria and Africa while also partnering with international organisations delivering programmes within the region.',
+  },
+];
 
 const whatWeBelieve = [
   {
@@ -88,8 +108,10 @@ const AboutPage = () => {
   const differentRef = useRef(null);
   const governanceRef = useRef(null);
   const bpefRef = useRef(null);
+  const faqHeaderRef = useRef(null);
   const primaryCtaRef = useRef(null);
   const secondaryCtaRef = useRef(null);
+  const [openFaqQuestion, setOpenFaqQuestion] = useState(faqPreview[0].question);
 
   useGsapReveal(introRef, { selector: ':scope > *', stagger: 0.1 });
   useGsapReveal(storyRef, { selector: ':scope > *', stagger: 0.1 });
@@ -100,6 +122,7 @@ const AboutPage = () => {
   useGsapReveal(differentRef, { selector: ':scope > *', stagger: 0.1 });
   useGsapReveal(governanceRef, { selector: ':scope > *', stagger: 0.1 });
   useGsapReveal(bpefRef, { selector: ':scope > *', stagger: 0.1 });
+  useGsapReveal(faqHeaderRef);
   useHoverGlow(primaryCtaRef);
   useHoverGlow(secondaryCtaRef, { scale: 1.03 });
 
@@ -396,6 +419,69 @@ const AboutPage = () => {
               Engineering™ integrates them into a single, business led approach that helps
               organisations perform better.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Preview */}
+      <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <div ref={faqHeaderRef} className="mb-10 md:text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+              Frequently Asked Questions
+            </p>
+            <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
+              Have Questions About Working With Us?
+            </h2>
+          </div>
+
+          <div>
+            {faqPreview.map((item) => {
+              const isOpen = openFaqQuestion === item.question;
+              return (
+                <div key={item.question} className="border-b border-white/10">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenFaqQuestion((current) => (current === item.question ? null : item.question))
+                    }
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+                  >
+                    <span className="text-base font-semibold text-white sm:text-lg">{item.question}</span>
+                    <ChevronDown
+                      className={`h-5 w-5 flex-shrink-0 text-purple-400 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-5 text-sm leading-relaxed text-gray-300 sm:text-base">
+                          {item.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 md:text-center">
+            <Link
+              to="/faq"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            >
+              View More FAQs
+            </Link>
           </div>
         </div>
       </section>

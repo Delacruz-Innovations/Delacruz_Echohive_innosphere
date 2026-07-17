@@ -138,11 +138,7 @@ const relatedLegalPages = [
   { label: 'Contact', to: '/contact' },
 ];
 
-// `standalone` controls whether this renders its own SEO tags and full-height
-// page wrapper (true, for the real /privacy-policy route) or just the content
-// block, so it can be embedded inside another page (e.g. ProductsPage)
-// without duplicating <SEO> or stacking two min-h-screen wrappers.
-const PrivacyPolicy = ({ standalone = true }) => {
+const PrivacyPolicy = () => {
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -166,8 +162,15 @@ const PrivacyPolicy = ({ standalone = true }) => {
     },
   };
 
-  const content = (
-    <>
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <SEO
+        title="Privacy Policy | Delacruz Innovations"
+        description="Learn how Delacruz Innovations collects, uses, stores and protects personal information when you use our website, services and digital platforms."
+        canonical={`${SITE_URL}/privacy-policy`}
+        jsonLd={[webPageSchema, organizationSchema]}
+      />
+
       {/* Hero */}
       <div className="border-b border-white/10 px-6 py-8 sm:py-10 md:text-center">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
@@ -315,20 +318,6 @@ const PrivacyPolicy = ({ standalone = true }) => {
           </div>
         </div>
       </div>
-    </>
-  );
-
-  if (!standalone) return content;
-
-  return (
-    <div className="min-h-screen bg-black text-white">
-      <SEO
-        title="Privacy Policy | Delacruz Innovations"
-        description="Learn how Delacruz Innovations collects, uses, stores and protects personal information when you use our website, services and digital platforms."
-        canonical={`${SITE_URL}/privacy-policy`}
-        jsonLd={[webPageSchema, organizationSchema]}
-      />
-      {content}
     </div>
   );
 };

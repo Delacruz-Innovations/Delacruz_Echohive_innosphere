@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+// eslint-disable-next-line no-unused-vars -- motion used as JSX tag <motion.div>, false-positive in this eslint version
+import { motion, AnimatePresence } from 'framer-motion'
 import SEO from '../utils/SEO'
-import HorizontalScrollRow from './HorizontalScrollRow'
 
 const faqCategories = [
   {
@@ -112,46 +114,39 @@ const faqCategories = [
 
 const allFaqItems = faqCategories.flatMap((category) => category.items);
 
-// `standalone` controls whether this renders its own SEO tags and full-height
-// page wrapper (true, for the real /faq route) or just the content block, so
-// it can be embedded inside another page (e.g. ProductsPage) without
-// duplicating <SEO> or stacking two min-h-screen wrappers.
-const FAQ = ({ standalone = true }) => {
-  const content = (
-    <div className={standalone ? 'max-w-4xl mx-auto px-6 py-6' : ''}>
-      {standalone && (
-        <h1 className="text-4xl font-bold text-purple-500 mb-6 md:text-center">
-          Frequently Asked Questions
-        </h1>
+const AccordionItem = ({ item, isOpen, onToggle }) => (
+  <div className="border-b border-white/10">
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={isOpen}
+      className="flex w-full items-center justify-between gap-4 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+    >
+      <span className="text-base font-semibold text-white sm:text-lg">{item.question}</span>
+      <ChevronDown
+        className={`h-5 w-5 flex-shrink-0 text-purple-400 transition-transform duration-300 ${
+          isOpen ? 'rotate-180' : ''
+        }`}
+      />
+    </button>
+    <AnimatePresence initial={false}>
+      {isOpen && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="overflow-hidden"
+        >
+          <p className="pb-5 text-sm leading-relaxed text-gray-300 sm:text-base">{item.answer}</p>
+        </motion.div>
       )}
+    </AnimatePresence>
+  </div>
+);
 
-      {faqCategories.map((category) => (
-        <div key={category.category} className="mb-6">
-          <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
-            {category.category}
-          </h2>
-
-          <HorizontalScrollRow>
-            <div className="contents">
-              {category.items.map((item) => (
-                <div
-                  key={item.question}
-                  className="w-[85vw] shrink-0 snap-start rounded-2xl border-l-4 border-purple-700 bg-gray-900/40 p-6 sm:w-[420px]"
-                >
-                  <h3 className="text-xl font-semibold text-purple-500 mb-4">
-                    {item.question}
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed text-sm">{item.answer}</p>
-                </div>
-              ))}
-            </div>
-          </HorizontalScrollRow>
-        </div>
-      ))}
-    </div>
-  );
-
-  if (!standalone) return content;
+const FAQ = () => {
+  const [openQuestion, setOpenQuestion] = useState(allFaqItems[0].question);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -171,7 +166,32 @@ const FAQ = ({ standalone = true }) => {
           })),
         }}
       />
-      {content}
+      <div className="max-w-3xl mx-auto px-6 py-10">
+        <h1 className="text-4xl font-bold text-purple-500 mb-10 md:text-center">
+          Frequently Asked Questions
+        </h1>
+
+        {faqCategories.map((category) => (
+          <div key={category.category} className="mb-10">
+            <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-purple-300">
+              {category.category}
+            </h2>
+
+            <div>
+              {category.items.map((item) => (
+                <AccordionItem
+                  key={item.question}
+                  item={item}
+                  isOpen={openQuestion === item.question}
+                  onToggle={() =>
+                    setOpenQuestion((current) => (current === item.question ? null : item.question))
+                  }
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
