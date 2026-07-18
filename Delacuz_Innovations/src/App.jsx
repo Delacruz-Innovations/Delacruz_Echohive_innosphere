@@ -47,7 +47,7 @@ const ServicesPage = lazy(() => import('./Pages/ServicesPage'))
 const ServiceDetailsPage = lazy(() => import('./Pages/SericeDetailsPage'))
 const BusinessPerformanceEngineeringPage = lazy(() => import('./Pages/BusinessPerformanceEngineeringPage'))
 const IndustriesPage = lazy(() => import('./Pages/IndustriesPage'))
-const ProductsPage = lazy(() => import('./Pages/ProductsPage'))
+const BusinessPerformancePlatformPage = lazy(() => import('./Pages/BusinessPerformancePlatformPage'))
 const CaseStudies = lazy(() => import('./Pages/CaseStudies'))
 const OfficesSection = lazy(() => import('./Pages/OfficesSection'))
 const InsightsListPage = lazy(() => import('./Pages/InsightsListPage'))
@@ -372,7 +372,7 @@ const AppRoutes = () => {
           <Route path="services/:serviceId" element={<ServiceDetailsPage />} />
           <Route path="business-performance-engineering" element={<BusinessPerformanceEngineeringPage />} />
           <Route path="industries" element={<IndustriesPage />} />
-          <Route path="products" element={<ProductsPage />} />
+          <Route path="business-performance-platform" element={<BusinessPerformancePlatformPage />} />
           <Route path="case-studies" element={<CaseStudies />} />
           <Route path="offices" element={<OfficesSection />} />
           <Route path="insights" element={<InsightsListPage />} />

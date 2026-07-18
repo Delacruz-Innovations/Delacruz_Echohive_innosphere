@@ -1,5 +1,253 @@
 @import "tailwindcss";
 
+/* Navbar — cinematic curtain-wipe page transition */
+.nav-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.nav-curtain-layer {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-curtain-layer.layer-1 {
+  background-color: #120626;
+}
+
+.nav-curtain-layer.layer-2 {
+  background-color: #1e0b3c;
+}
+
+.nav-curtain-layer.layer-3 {
+  background-color: #000000;
+}
+
+.nav-curtain-layer.animate.layer-1 {
+  animation: navCurtainWipe 0.8s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+.nav-curtain-layer.animate.layer-2 {
+  animation: navCurtainWipe 0.8s cubic-bezier(0.85, 0, 0.15, 1) 0.04s forwards;
+}
+
+.nav-curtain-layer.animate.layer-3 {
+  animation: navCurtainWipe 0.8s cubic-bezier(0.85, 0, 0.15, 1) 0.08s forwards;
+}
+
+@keyframes navCurtainWipe {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-curtain-layer.animate {
+    animation: none !important;
+  }
+}
+
+/* Industries page — "Industries We Are Expanding Into" 3D rotating carousel */
+@keyframes expanding3dSpin {
+  from {
+    transform: rotateY(-360deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes expanding3dBrightness {
+  10% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.35);
+  }
+  90% {
+    filter: brightness(1);
+  }
+}
+
+.expanding-3d-ring {
+  transform-style: preserve-3d;
+  animation: expanding3dSpin 28s linear infinite;
+  will-change: transform;
+}
+
+.expanding-3d-card {
+  animation: expanding3dBrightness 28s linear infinite;
+  transition: filter 200ms;
+  will-change: transform, filter;
+}
+
+.expanding-3d-ring:hover,
+.expanding-3d-ring:focus-within {
+  animation-play-state: paused;
+}
+
+.expanding-3d-ring:hover .expanding-3d-card,
+.expanding-3d-ring:focus-within .expanding-3d-card {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expanding-3d-ring,
+  .expanding-3d-card {
+    animation: none !important;
+  }
+}
+
+/* About page — "What We Believe" click-to-expand image card carousel */
+.belief-carousel {
+  --belief-active-width: 320px;
+  --belief-inactive-width: 48px;
+  --belief-height: 360px;
+  height: var(--belief-height);
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem 1rem;
+  scrollbar-width: none;
+}
+
+.belief-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .belief-carousel {
+    --belief-active-width: 460px;
+    --belief-inactive-width: 60px;
+    --belief-height: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .belief-carousel {
+    --belief-active-width: 480px;
+    --belief-inactive-width: 68px;
+    --belief-height: 440px;
+    justify-content: center;
+  }
+}
+
+.belief-card {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  width: var(--belief-inactive-width);
+  height: 100%;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1.5rem;
+  margin: 0 6px;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.8);
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.belief-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0.05) 100%);
+  z-index: 1;
+}
+
+.belief-card-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  padding: 1.25rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.belief-card-icon {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: #fff;
+  border-radius: 9999px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.belief-card-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+  padding-left: 1rem;
+}
+
+.belief-card.active .belief-card-description {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+
+.belief-card-description h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.belief-card-description p {
+  color: #d1d5db;
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.belief-card.active {
+  width: var(--belief-active-width);
+}
+
+.belief-card:focus-visible {
+  outline: 2px solid #a855f7;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .belief-card,
+  .belief-card-description {
+    transition: none !important;
+  }
+}
+
 .PhoneInputInput {
   background-color: black !important;
   color: white !important;

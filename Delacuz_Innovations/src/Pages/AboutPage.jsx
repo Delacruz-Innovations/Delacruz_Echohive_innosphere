@@ -31,26 +31,32 @@ const whatWeBelieve = [
   {
     title: 'Business outcomes come before technology.',
     description: 'Technology creates lasting value only when it supports clearly defined business objectives.',
+    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1200',
   },
   {
     title: 'Strategy creates value only when it can be executed.',
     description: 'Successful execution requires effective governance, accountable leadership, capable people and practical operating models.',
+    image: 'https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&q=80&w=1200',
   },
   {
     title: 'Good governance enables sustainable growth.',
     description: 'Strong governance strengthens decision-making, improves accountability and creates confidence for responsible innovation.',
+    image: 'https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80&w=1200',
   },
   {
     title: 'Trusted information supports better decisions.',
     description: 'Reliable data should empower leaders to make informed, timely and evidence-based decisions.',
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1200',
   },
   {
     title: 'Organisations become stronger by building capability.',
     description: 'Every engagement should leave an organisation more capable than when it began through knowledge transfer, governance and continuous improvement.',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1200',
   },
   {
     title: 'Continuous improvement is a leadership discipline.',
     description: 'Improving organisational performance is not a one-time initiative. It is an ongoing commitment to learning, adapting and delivering better outcomes.',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200',
   },
 ];
 
@@ -117,7 +123,7 @@ const AboutPage = () => {
   useGsapReveal(storyRef, { selector: ':scope > *', stagger: 0.1 });
   useGsapReveal(philosophyRef, { selector: ':scope > *', stagger: 0.1 });
   useGsapReveal(believeHeaderRef);
-  useGsapReveal(believeRef, { stagger: 0.08 });
+  useGsapReveal(believeRef, { selector: '.belief-card', stagger: 0.06, y: 24 });
   useGsapReveal(principlesRef, { stagger: 0.06 });
   useGsapReveal(differentRef, { selector: ':scope > *', stagger: 0.1 });
   useGsapReveal(governanceRef, { selector: ':scope > *', stagger: 0.1 });
@@ -161,7 +167,7 @@ const AboutPage = () => {
         copy="We help organisations align strategy, governance, people, processes, data and technology around clearly defined business outcomes."
         primaryCTALabel="Request an Executive Performance Assessment"
         scrollLabel="Learn More About Us"
-        heroImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=70&auto=format&fit=crop"
+        heroImage="https://i.pinimg.com/736x/b7/0e/ed/b70eed55c37ed66369a46208175a0413.jpg"
       />
 
       {/* Intro */}
@@ -283,19 +289,8 @@ const AboutPage = () => {
             </h2>
           </div>
 
-          <div
-            ref={believeRef}
-            className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {whatWeBelieve.map((belief) => (
-              <div
-                key={belief.title}
-                className="rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60"
-              >
-                <h3 className="mb-2 text-lg font-semibold text-white">{belief.title}</h3>
-                <p className="text-sm leading-relaxed text-gray-300">{belief.description}</p>
-              </div>
-            ))}
+          <div ref={believeRef} className="mt-6">
+            <WhatWeBelieveCarousel items={whatWeBelieve} />
           </div>
         </div>
       </section>
@@ -524,6 +519,37 @@ const AboutPage = () => {
         </div>
       </section>
     </>
+  );
+};
+
+const WhatWeBelieveCarousel = ({ items }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  return (
+    <div className="belief-carousel">
+      {items.map((item, index) => {
+        const isActive = index === activeIndex;
+        return (
+          <button
+            key={item.title}
+            type="button"
+            className={`belief-card${isActive ? ' active' : ''}`}
+            style={{ backgroundImage: `url(${item.image})` }}
+            onClick={() => setActiveIndex(index)}
+            aria-expanded={isActive}
+            aria-label={`View belief: ${item.title}`}
+          >
+            <div className="belief-card-row">
+              <div className="belief-card-icon">{index + 1}</div>
+              <div className="belief-card-description">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          </button>
+        );
+      })}
+    </div>
   );
 };
 

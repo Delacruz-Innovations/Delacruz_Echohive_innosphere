@@ -1,18 +1,59 @@
 import { ChevronDown, Menu, X } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import Logo from '../assets/Images/logo.png'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import CalendlyPopup from './CalendlyPopup';
 import useHoverGlow from '../utils/useHoverGlow';
+import usePrefersReducedMotion from '../utils/usePrefersReducedMotion';
 import servicesData from '../ServicesData.json';
+
+// Wraps react-router's Link with the cinematic curtain-wipe transition:
+// the curtain fully covers the screen, the route swaps underneath while
+// hidden, then the curtain sweeps off revealing the new page.
+const CURTAIN_COVER_MS = 480;
+const CURTAIN_TOTAL_MS = 880;
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const reduced = usePrefersReducedMotion();
+
+  const goTo = (path) => {
+    if (path === location.pathname || isTransitioning) return;
+
+    setIsMobileMenuOpen(false);
+    setIsDropdownOpen(false);
+
+    if (reduced) {
+      navigate(path);
+      return;
+    }
+
+    setIsTransitioning(true);
+    setTimeout(() => navigate(path), CURTAIN_COVER_MS);
+    setTimeout(() => setIsTransitioning(false), CURTAIN_TOTAL_MS);
+  };
+
+  const NavLink = ({ to, className, children, ...rest }) => (
+    <Link
+      to={to}
+      onClick={(e) => {
+        e.preventDefault();
+        goTo(to);
+      }}
+      className={className}
+      {...rest}
+    >
+      {children}
+    </Link>
+  );
   // Prefix match so dynamic hero routes (e.g. /services/:slug) also blend with the navbar at the top.
-  const transparentPathPrefixes = ['/about', '/services', '/business-performance-engineering', '/industries', '/products', '/case-studies', '/jobs', '/offices', '/insights'];
+  const transparentPathPrefixes = ['/about', '/services', '/business-performance-engineering', '/industries', '/business-performance-platform', '/case-studies', '/jobs', '/offices', '/insights'];
   const isTransparentPage =
     location.pathname === '/' ||
     transparentPathPrefixes.some((prefix) => location.pathname.toLowerCase().startsWith(prefix));
@@ -21,10 +62,6 @@ const Navbar = () => {
   const primaryCtaRef = useRef(null);
   useHoverGlow(ghostCtaRef, { scale: 1.03 });
   useHoverGlow(primaryCtaRef);
-const closeMobileMenu = () => {
-  setIsMobileMenuOpen(false);
-  setIsDropdownOpen(false);
-};
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
@@ -60,8 +97,31 @@ const closeMobileMenu = () => {
 
 const services = servicesData.services.map((area) => ({ name: area.title, slug: area.slug }));
 
+  const isActive = (path) => location.pathname === path;
+
+  const topLinkClass = (path) =>
+    `relative pb-1 hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg ${
+      isActive(path) ? 'text-white' : ''
+    }`;
+
+  const underline = (path) => (
+    <span
+      aria-hidden="true"
+      className={`pointer-events-none absolute bottom-0 left-0 h-px w-full origin-left bg-purple-400 transition-transform duration-300 ${
+        isActive(path) ? 'scale-x-100' : 'scale-x-0'
+      }`}
+    />
+  );
+
   return (
     <>
+      {/* Cinematic curtain-wipe transition overlay */}
+      <div className="nav-curtain">
+        <div className={`nav-curtain-layer layer-1 ${isTransitioning ? 'animate' : ''}`} />
+        <div className={`nav-curtain-layer layer-2 ${isTransitioning ? 'animate' : ''}`} />
+        <div className={`nav-curtain-layer layer-3 ${isTransitioning ? 'animate' : ''}`} />
+      </div>
+
       <header
         id="navbar"
        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -97,9 +157,10 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
             <div className="hidden lg:flex items-center gap-8">
               <ul className="flex gap-8 font-medium items-center text-gray-400">
               <li>
-                <Link to='/business-performance-engineering' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                <NavLink to='/business-performance-engineering' className={topLinkClass('/business-performance-engineering')}>
                   BPE™
-                </Link>
+                  {underline('/business-performance-engineering')}
+                </NavLink>
               </li>
 
                 {/* Dropdown Menu */}
@@ -128,7 +189,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
                     <ul className="py-2">
                      {services.map((service, index) => (
   <li key={index}>
-  <Link
+  <NavLink
     to={`/services/${service.slug}`}
     className="block px-4 py-3 hover:bg-white/5 hover:text-purple-300 cursor-pointer transition-colors duration-200 text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
     style={{
@@ -137,7 +198,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
     }}
   >
       {service.name}
-  </Link>
+  </NavLink>
   </li>
 ))}
                     </ul>
@@ -145,40 +206,45 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
                 </li>
 
                 <li>
-                  <Link to='/about' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                  <NavLink to='/about' className={topLinkClass('/about')}>
                     About Us
-                  </Link>
+                    {underline('/about')}
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to='/industries' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                  <NavLink to='/industries' className={topLinkClass('/industries')}>
                     Industries
-                  </Link>
+                    {underline('/industries')}
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to='/products' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
-                    Products
-                  </Link>
+                  <NavLink to='/business-performance-platform' className={topLinkClass('/business-performance-platform')}>
+                    BPP
+                    {underline('/business-performance-platform')}
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to='/insights' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                  <NavLink to='/insights' className={topLinkClass('/insights')}>
                     Insights
-                  </Link>
+                    {underline('/insights')}
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to='/contact' className="hover:text-purple-300 cursor-pointer transition-colors duration-300 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-lg">
+                  <NavLink to='/contact' className={topLinkClass('/contact')}>
                     Contact
-                  </Link>
+                    {underline('/contact')}
+                  </NavLink>
                 </li>
               </ul>
 
               <div className="flex items-center gap-3">
                 <span ref={ghostCtaRef} className="inline-block rounded-full">
-                  <Link
+                  <NavLink
                     to="/about"
                     className="inline-flex items-center rounded-full border border-white/10 px-5 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:border-purple-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
                   >
                     Learn More
-                  </Link>
+                  </NavLink>
                 </span>
                 <span ref={primaryCtaRef} className="inline-block rounded-full">
                   <CalendlyPopup
@@ -208,13 +274,12 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
         }`}
       >
         <nav className="flex flex-col items-center gap-6 text-center">
-          <Link
+          <NavLink
             to='/business-performance-engineering'
-            onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
             BPE™
-          </Link>
+          </NavLink>
 
           {/* Mobile Services */}
           <div className="flex flex-col items-center">
@@ -238,63 +303,56 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
               <ul className="flex flex-col items-center gap-4">
                 {services.map((service) => (
                   <li key={service.slug}>
-                    <Link
+                    <NavLink
                       to={`/services/${service.slug}`}
-                      onClick={closeMobileMenu}
                       className="text-base text-gray-400 transition-colors duration-200 hover:text-purple-300"
                     >
                       {service.name}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <Link
+          <NavLink
             to='/about'
-            onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
             About Us
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to='/industries'
-            onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
             Industries
-          </Link>
-          <Link
-            to='/products'
-            onClick={closeMobileMenu}
+          </NavLink>
+          <NavLink
+            to='/business-performance-platform'
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
-            Products
-          </Link>
-          <Link
+            BPP
+          </NavLink>
+          <NavLink
             to='/insights'
-            onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
             Insights
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to='/contact'
-            onClick={closeMobileMenu}
             className="text-2xl font-semibold text-gray-200 transition-colors duration-300 hover:text-purple-300"
           >
             Contact
-          </Link>
+          </NavLink>
 
           <div className="mt-4 flex flex-col items-center gap-4">
-            <Link
+            <NavLink
               to="/about"
-              onClick={closeMobileMenu}
               className="inline-flex items-center rounded-full border border-white/10 px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:border-purple-400"
             >
               Learn More
-            </Link>
+            </NavLink>
             <CalendlyPopup
               text="Book a Consultation"
               className="inline-flex items-center rounded-full bg-purple-600 px-6 py-3 text-sm font-medium text-white transition-colors duration-300 hover:bg-purple-700"

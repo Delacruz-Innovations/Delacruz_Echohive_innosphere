@@ -14,7 +14,7 @@ const PracticeCard = ({ area }) => {
   useHoverGlow(ctaRef, { scale: 1.03 });
 
   return (
-    <div className="w-[85vw] shrink-0 snap-start rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60 sm:w-[440px] sm:p-8">
+    <div className="practice-card w-[85vw] shrink-0 snap-start rounded-3xl border border-white/10 bg-gray-900/60 p-6 transition-colors duration-300 hover:border-purple-400/60 sm:w-[440px] sm:p-8">
       {Icon && (
         <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-600/20">
           <Icon className="h-7 w-7 text-purple-400" aria-hidden="true" />
@@ -76,11 +76,11 @@ const PracticeCard = ({ area }) => {
 
 const PracticeCardGrid = () => {
   const gridRef = useRef(null);
-  useGsapReveal(gridRef, { selector: ':scope > *', stagger: 0.12, y: 24 });
+  useGsapReveal(gridRef, { selector: '.practice-card', stagger: 0.12, y: 24 });
 
   return (
     <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+      <div ref={gridRef} className="mx-auto max-w-6xl">
         <div className="mb-6 md:text-center">
           <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
             Our Solutions
@@ -88,7 +88,7 @@ const PracticeCardGrid = () => {
         </div>
 
         <HorizontalScrollRow>
-          <div ref={gridRef} className="contents">
+          <div className="contents">
             {servicesData.services.map((area) => (
               <PracticeCard key={area.slug} area={area} />
             ))}
