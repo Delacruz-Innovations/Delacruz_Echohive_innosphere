@@ -55,7 +55,7 @@ const StatsBar = () => {
     { number: 36, suffix: '+', label: 'Project Delivered' },
     { number: 91, suffix: '%', label: 'Client Satisfaction' },
     { number: 11, suffix: '+', label: 'Expert Consultants' },
-    { number: 15, suffix: '+', label: 'Years Of Expreince' }
+    { number: 15, suffix: '+', label: 'Years of Experience' }
   ];
 
   return (

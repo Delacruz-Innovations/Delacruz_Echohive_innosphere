@@ -137,7 +137,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-white font-medium">
-                      Dubai Internet City, UAE
+                      Ajman Media City, UAE
                     </p>
                   </div>
                 </div>

@@ -9,7 +9,7 @@ const AboutUs = () => {
   const rightContentRef = useRef(null);
   const cardRef = useRef(null);
 
-   const fullText = `Inosphere Consulting was founded by our Lead Business Consultant - Tosin Samuel Ojo. Boasting over 15 years of international experience spanning the UK, Europe, and Africa. The firm now operates in Dubai, serving MENA-based companies seeking practical, tech-driven strategies for sustainable growth. Our work is grounded in execution every recommendation is backed by hands-on implementation and measurable results.`;
+   const fullText = `Innosphere Consulting was founded by our Lead Business Consultant - Tosin Samuel Ojo. Boasting over 15 years of international experience spanning the UK, Europe, and Africa. The firm operates across the UAE, serving MENA-based companies seeking practical, tech-driven strategies for sustainable growth. Our work is grounded in execution every recommendation is backed by hands-on implementation and measurable results.`;
 
   const [displayedText, setDisplayedText] = useState("");
   const index = useRef(0);
@@ -120,7 +120,7 @@ const AboutUs = () => {
             {/* Left Column */}
          <div ref={leftContentRef} className="space-y-6">
   <p className="text-gray-300 leading-relaxed">
-    <span className="text-white font-semibold">Innosphere Consulting FZE LLC</span> is a Dubai-based consultancy firm helping organisations transform through 
+    <span className="text-white font-semibold">Innosphere Consulting FZE LLC</span> is a UAE-based consultancy firm helping organisations transform through 
     <span className="text-white font-semibold"> technology, innovation, and strategic advisory</span>. 
     Registered under a wide range of technology, consultancy, and marketing activities, Innosphere is uniquely positioned to act as a 
     <span className="text-white font-semibold"> 360° partner</span> for enterprises, SMEs, and government-linked organisations in the UAE.

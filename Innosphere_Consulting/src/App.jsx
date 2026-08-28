@@ -20,6 +20,7 @@ import TermsAndConditions from './Components/TermsAndConditions';
 import Policy from './Pages/Policy';
 import Academy from './Pages/Academy';
 import Industries from './Pages/Industries';
+import Assessment from './Pages/Assessment';
 import CalendlyTracker from './Components/CalendlyTracker';
 
 import { initGA, logPageView, logEvent } from './utils/analytics';
@@ -40,6 +41,7 @@ const getPageTitle = (pathname) => {
     '/Term_&_Condition': 'Terms & Conditions',
     '/Academy': 'Academy',
     '/Industries': 'Industries',
+    '/assessment': 'Business Transformation Assessment',
     '/our_services': 'Our Services'
   };
 
@@ -337,6 +339,7 @@ const App = () => {
         <Route path='Term_&_Condition' element={<TermsAndConditions />} />
         <Route path='Academy' element={<Academy />} />
         <Route path='Industries' element={<Industries />} />
+        <Route path='assessment' element={<Assessment />} />
         <Route path='our_services' element={<SolutionPages />} />
         <Route path='*' element={<Notfound />} />
       </Routes>

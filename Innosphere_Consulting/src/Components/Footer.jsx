@@ -93,8 +93,8 @@ const handleSubscribe = async (e) => {
     },
     { 
       icon: MapPin, 
-      text: 'Dubai Internet City, UAE',
-      href: 'https://maps.app.goo.gl/Hk6C2E1Eeu7dSKUg8'
+      text: 'Ajman Media City, UAE',
+      href: 'https://maps.google.com/?q=Ajman+Media+City+Free+Zone'
     },
     { 
       icon: Linkedin, 
@@ -179,15 +179,15 @@ const handleSubscribe = async (e) => {
            
             </div>
 
-            <div className='' >
-              <ul className='flex flex-col text-gray-300 uppercase font-medium gap-4'>
-            
-              <li className='cursor-pointer hover:text-[#4a7ba7] animation-all duration-300'>About US</li>
-              <li className='cursor-pointer hover:text-[#4a7ba7] animation-all duration-300'>our services</li>
-              <li className='cursor-pointer hover:text-[#4a7ba7] animation-all duration-300'>Industries</li>
-              <li className='cursor-pointer hover:text-[#4a7ba7] animation-all duration-300'>Case Studies</li>
-              <li className='cursor-pointer hover:text-[#4a7ba7] animation-all duration-300'>Academy</li>
-
+            <div>
+              <ul className='flex flex-col text-gray-300 uppercase font-medium gap-3 text-xs sm:text-sm'>
+                <li><Link to='/' className='hover:text-blue-400 transition-colors'>Home</Link></li>
+                <li><Link to='/our_services' className='hover:text-blue-400 transition-colors'>Our Services</Link></li>
+                <li><Link to='/assessment' className='text-blue-400 hover:text-blue-300 transition-colors font-semibold'>Assessment™️</Link></li>
+                <li><Link to='/cases' className='hover:text-blue-400 transition-colors'>Case Studies</Link></li>
+                <li><Link to='/insights' className='hover:text-blue-400 transition-colors'>Insights</Link></li>
+                <li><Link to='/academy' className='hover:text-blue-400 transition-colors'>Training (Academy)</Link></li>
+                <li><Link to='/contact' className='hover:text-blue-400 transition-colors'>Contact Us</Link></li>
               </ul>
             </div>
 
@@ -220,7 +220,7 @@ const handleSubscribe = async (e) => {
         <div className="py-5 border-t border-gray-800/50">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
             <p className="text-gray-400">
-              © {new Date().getFullYear()} Innosphare Consulting FZE LLC. RC-4435 All rights reserved.
+              © {new Date().getFullYear()} Innosphere Consulting FZE LLC. Licence No. 44357. All rights reserved.
             </p>
             
             <div className="flex items-center gap-4">

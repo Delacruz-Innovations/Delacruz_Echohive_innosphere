@@ -1,57 +1,167 @@
 const insightsData = {
-        insights: [
-                {
-                        id: "uae-trends-business-2025",
-                        slug: "uae-trends-strategic-look-business-2025",
-                        category: "Market Trends",
-                        title: "A Strategic Look at What’s Trending in the UAE — With a Dash of Business",
-                        excerpt: "The UAE is at the forefront of innovation, from groundbreaking gene therapies to viral weather trends. Discover what these momentum-driven shifts mean for business leaders and future thinkers.",
-                        content: {
-                                intro: "The UAE is like that over-achieving colleague who never misses a chance to win at life — whether it’s pioneering gene therapies, hosting global summits, sending rockets, or launching viral weather videos when Dubai skies decide to throw a tantrum. (Yes, even the sandstorms have VIP status here.) But what does all this mean for business leaders, innovators, and future-centric thinkers?",
-                                sections: [
-                                        {
-                                                heading: "1. Health Innovation Goes Beyond Dates and Dunes",
-                                                body: "In December 2025, the UAE became only the second country in the world to approve a breakthrough gene therapy for spinal muscular atrophy.\n\nThis isn’t just a headline, it signals a broader strategic push to position the UAE at the forefront of life sciences, healthcare R&D, and biotech investment. For businesses and investors, this opens doors to partnerships, clinical services, and ecosystem expansion.\n\nSource: The Times of India",
-                                                insight: "Healthcare innovation is no longer a siloed sector — it’s a corridor for strategic collaborations spanning tech, logistics, regulatory consulting, and workforce training."
-                                        },
-                                        {
-                                                heading: "2. Innovation, Tech, and (Yes) Elon Musk",
-                                                body: "When the Crown Prince of Dubai personally chauffeured Elon Musk around town and the world promptly swooned - it was more than a social-media moment.\n\nIt broadcast the UAE’s intent: to be the neighbour Silicon Valley pretends not to care about.\n\nSource: The Times of India\n\nWhether it’s AI summits, digital finance forums, or global tech gatherings, UAE is staking its claim as a hub for future tech and dialogue.",
-                                                insight: "Trendspotting in the UAE isn’t about catching the next TikTok dance; it’s about spotting where capital, policy, and innovation intersect."
-                                        },
-                                        {
-                                                heading: "3. Climate & Weather (Yes, Trends Come in Strangely Viral Forms)",
-                                                body: "A viral clip of an Emirates flight aborting landing due to extreme weather got everyone’s attention - not just because it was dramatic, but because climate trends are directly affecting infrastructure, operations, and risk management in sectors like aviation, logistics, and insurance.\n\nSource: The Economic Times",
-                                                insight: "Climate and risk assessment are now core business functions - not just CSR bullet points."
-                                        },
-                                        {
-                                                heading: "4. Humanitarian Leadership & Soft Power",
-                                                body: "The UAE’s global aid footprint — $1.46 billion and counting — reinforces a narrative of strategic generosity.\n\nSource: The Times of India\n\nThis isn’t philanthropy for the sake of a good Instagram story; it’s building long-term influence, diplomatic goodwill, and economic engagement across continents.",
-                                                insight: "Global impact initiatives are now part of national brand equity and companies can align with them for purpose-driven growth."
-                                        },
-                                        {
-                                                heading: "5. What Residents Really Care About",
-                                                body: "Turns out, UAE Google trends show interest in everything from cricket fever to Dubai chocolate. (Yes, delicious diplomacy exists too.)\n\nSource: Gulf News\n\nBut beyond fun content, digital consumer behaviour tells us what drives engagement, community interests, and the future of digital marketing here.",
-                                                insight: "Strategy without consumer context is like a falafel without hummus technically fine, but spiritually lacking."
-                                        },
-                                        {
-                                                heading: "6. Workforce & Economic Sentiments",
-                                                body: "Local workers are shifting how they utilise income — embracing digital payments and financial inclusion.\n\nSource: Gulf News\n\nThis trend points to evolving economic behaviours that businesses need to plug into when building customer journeys, loyalty models, and fintech products.",
-                                                insight: "Today’s paycheck habits are tomorrow’s market segments."
-                                        }
-                                ],
-                                authorNote: "In the UAE today, everything is trending from healthcare breakthroughs and space-age governance forums to tornado-level storms and chocolate cravings. The common thread? Momentum: technological, humanitarian, economic, and cultural.\n\nFor leaders, innovators, and strategic thinkers, the UAE isn’t just a trending Google topic — it’s a living, breathing testbed of what the future economy feels like."
-                        },
-                        author: {
-                                name: "Innosphere Editorial",
-                                bio: "Strategic analysis team at Innosphere Consulting, tracking global trends and their local business implications."
-                        },
-                        date: "December 22, 2025",
-                        readTime: "8 min",
-                        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80",
-                        featured: true
-                }
-        ]
+  insights: [
+    {
+      id: "uae-trends-business-2025",
+      slug: "uae-trends-strategic-look-business-2025",
+      category: "UAE Business",
+      title: "A Strategic Look at What’s Trending in the UAE — With a Dash of Business",
+      excerpt: "The UAE is at the forefront of innovation, from groundbreaking healthcare tech to visionary AI summits. Discover what these momentum-driven shifts mean for enterprise leaders.",
+      content: {
+        intro: "The UAE continues to set global benchmarks in digital government, economic diversification, and business innovation. For regional leaders, understanding these macroeconomic and technological tailwinds is critical to driving strategic growth.",
+        sections: [
+          {
+            heading: "1. Visionary Policy Meets Digital Acceleration",
+            body: "Initiatives like Dubai D33 and the UAE Digital Economy Strategy are creating unprecedented opportunities for tech-enabled businesses.",
+            insight: "Trendspotting in the UAE is about identifying where regulatory support, capital, and digital transformation intersect."
+          },
+          {
+            heading: "2. Strategic Market Adaptability",
+            body: "From fintech adoption to digital supply chains, consumer and enterprise behavior in the Emirates is rapidly advancing.",
+            insight: "Enterprises that align their operations with regional digital agendas achieve sustainable competitive advantage."
+          }
+        ],
+        authorNote: "The UAE provides a living testbed for what the modern digital economy looks like in action."
+      },
+      author: {
+        name: "Innosphere Editorial",
+        bio: "Strategic analysis team at Innosphere Consulting, tracking global trends and their regional business implications."
+      },
+      date: "January 15, 2026",
+      readTime: "6 min",
+      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80",
+      featured: true
+    },
+    {
+      id: "business-process-reengineering-roi",
+      slug: "business-process-reengineering-maximizing-roi",
+      category: "Business Transformation",
+      title: "Re-engineering Operating Models for Maximum Performance & Agility",
+      excerpt: "Why traditional process optimization fails and how structured business architecture and requirements engineering deliver enduring ROI.",
+      content: {
+        intro: "Many digital transformation projects fail not because of flawed technology, but due to unaddressed process bottlenecks and poorly engineered business requirements.",
+        sections: [
+          {
+            heading: "Eliminating Legacy Process Debt",
+            body: "Mapping AS-IS workflows reveals hidden redundancies, manual handoffs, and compliance friction points that drain enterprise resources.",
+            insight: "Fix the workflow before digitizing it; automating a broken process only accelerates inefficiency."
+          }
+        ],
+        authorNote: "Sustainable transformation requires equal focus on people, process, and architectural governance."
+      },
+      author: {
+        name: "Tosin Samuel Ojo",
+        bio: "Lead Business Consultant at Innosphere Consulting."
+      },
+      date: "January 28, 2026",
+      readTime: "7 min",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
+      featured: false
+    },
+    {
+      id: "operational-excellence-workflow-automation",
+      slug: "operational-excellence-workflow-automation",
+      category: "Process & Operations",
+      title: "Streamlining Enterprise Operations: From Bottlenecks to Automated Workflows",
+      excerpt: "A practical guide for COOs and operations directors on identifying friction, designing SOPs, and deploying performance dashboards.",
+      content: {
+        intro: "Operational friction silently erodes profitability. Learn the four-step framework for diagnosing process lag and instituting measurable KPIs.",
+        sections: [
+          {
+            heading: "Measuring What Actually Matters",
+            body: "Standard operating procedures paired with real-time operational telemetry empower leadership to make swift, data-driven decisions.",
+            insight: "Operational clarity is the foundation upon which rapid scaling is built."
+          }
+        ],
+        authorNote: "Streamlined operations directly enhance employee satisfaction and customer lifetime value."
+      },
+      author: {
+        name: "Innosphere Operations Advisory",
+        bio: "Process optimization specialists at Innosphere Consulting."
+      },
+      date: "February 04, 2026",
+      readTime: "5 min",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+      featured: false
+    },
+    {
+      id: "digital-transformation-cloud-strategy",
+      slug: "digital-transformation-cloud-strategy-2026",
+      category: "Digital Transformation",
+      title: "Modernising Legacy Tech Stacks: Digital Strategy in the Multi-Cloud Era",
+      excerpt: "How modern enterprises can migrate legacy architectures without operational disruption while maximizing scalability and security.",
+      content: {
+        intro: "Moving beyond legacy monoliths requires a coordinated strategy that synchronizes CRM, ERP, and middleware architectures.",
+        sections: [
+          {
+            heading: "The Modular Enterprise Blueprint",
+            body: "Transitioning toward API-first, modular systems reduces total cost of ownership and enables rapid feature deployment.",
+            insight: "Technology strategy must be driven by business outcomes, not IT trends."
+          }
+        ],
+        authorNote: "A successful digital strategy bridges technical capability with commercial reality."
+      },
+      author: {
+        name: "Innosphere Tech Advisory",
+        bio: "Technology strategy & systems integration practice."
+      },
+      date: "February 12, 2026",
+      readTime: "8 min",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+      featured: false
+    },
+    {
+      id: "enterprise-ai-automation-readiness",
+      slug: "enterprise-ai-automation-readiness-uae",
+      category: "AI & Automation",
+      title: "Preparing Your Enterprise for Practical AI & Intelligent Automation",
+      excerpt: "Cutting through the hype: How to assess data readiness, govern AI models, and deploy high-ROI automated pipelines.",
+      content: {
+        intro: "As organizations race to adopt artificial intelligence, the winners will be those who establish rigorous data governance and target high-impact business workflows.",
+        sections: [
+          {
+            heading: "Data Hygiene: The Prerequisite for AI Success",
+            body: "LLMs and predictive algorithms are only as good as the underlying data pipelines feeding them. Clean, governed data is non-negotiable.",
+            insight: "Focus on automating narrow, well-defined operational workflows before attempting company-wide autonomous systems."
+          }
+        ],
+        authorNote: "Aligning AI implementations with the UAE AI Strategy 2031 ensures long-term regulatory resilience."
+      },
+      author: {
+        name: "Innosphere AI Labs",
+        bio: "Applied AI & Automation team at Innosphere Consulting."
+      },
+      date: "February 18, 2026",
+      readTime: "6 min",
+      image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=1200&q=80",
+      featured: false
+    },
+    {
+      id: "cybersecurity-pdpl-compliance-guide",
+      slug: "cybersecurity-pdpl-compliance-risk-framework",
+      category: "Cybersecurity",
+      title: "Navigating UAE PDPL & Modern Cyber Risk: A Boardroom Guide",
+      excerpt: "Essential cybersecurity governance, zero-trust principles, and compliance strategies for UAE organizations managing digital data.",
+      content: {
+        intro: "In an era of rising digital threats and strict data protection laws, cybersecurity is no longer an IT concern—it is a core fiduciary responsibility.",
+        sections: [
+          {
+            heading: "Zero-Trust & Data Governance",
+            body: "Implementing role-based access control, encrypted data pipelines, and proactive vulnerability scanning protects reputation and prevents costly penalties.",
+            insight: "Continuous threat modeling and regular employee security awareness are the most effective defenses against digital risk."
+          }
+        ],
+        authorNote: "Proactive compliance transforms cybersecurity from a cost center into a trust accelerator."
+      },
+      author: {
+        name: "Innosphere Cyber Risk Advisory",
+        bio: "Cybersecurity & digital compliance experts at Innosphere Consulting."
+      },
+      date: "February 24, 2026",
+      readTime: "7 min",
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80",
+      featured: false
+    }
+  ]
 };
 
 export default insightsData;

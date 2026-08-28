@@ -4,7 +4,7 @@ import {
   ArrowLeft, Users, Target, TrendingUp, Award, Clock, ChevronRight,
   Package, Lightbulb, BookOpen, UserCheck, FileText, GitBranch,
   CheckSquare, Search, Map, Rocket, RefreshCw, Zap, User, Crown,
-  GraduationCap, Headphones, Settings, Box
+  GraduationCap, Headphones, Settings, Box, CheckCircle2
 } from 'lucide-react';
 
 import servicesData from '../servicesData';
@@ -20,7 +20,7 @@ const ServiceDetail = () => {
 
   // Function to get icon based on item text
   const getItemIcon = (itemText, sectionType) => {
-    const text = itemText.toLowerCase();
+    const text = (itemText || '').toLowerCase();
 
     // Common keywords mapping to icons
     if (text.includes('documentation') || text.includes('document')) return FileText;
@@ -56,9 +56,10 @@ const ServiceDetail = () => {
 
   // Get section configuration
   const getSectionConfig = () => {
+    if (!service) return { title: 'Details', items: [], type: 'deliverables' };
     if (service.deliverables) {
       return {
-        title: 'What You Get',
+        title: 'Key Deliverables & Artefacts',
         Icon: Package,
         iconColor: 'text-[#4a7ba7]',
         iconBg: 'bg-[#4a7ba7]/10',
@@ -69,7 +70,7 @@ const ServiceDetail = () => {
     }
     if (service.solutions) {
       return {
-        title: 'Solutions include',
+        title: 'Solutions Include',
         Icon: Lightbulb,
         iconColor: 'text-purple-400',
         iconBg: 'bg-purple-500/10',
@@ -80,7 +81,7 @@ const ServiceDetail = () => {
     }
     if (service.deliver) {
       return {
-        title: 'We deliver',
+        title: 'We Deliver',
         Icon: Lightbulb,
         iconColor: 'text-purple-400',
         iconBg: 'bg-purple-500/10',
@@ -92,7 +93,7 @@ const ServiceDetail = () => {
 
     if (service.courses) {
       return {
-        title: 'Courses Offereds',
+        title: 'Courses Offered',
         Icon: BookOpen,
         iconColor: 'text-blue-400',
         iconBg: 'bg-blue-500/10',
@@ -108,7 +109,7 @@ const ServiceDetail = () => {
       iconBg: 'bg-emerald-500/10',
       borderColor: 'border-emerald-500/20',
       type: 'access',
-      items: service.access
+      items: service.access || []
     };
   };
 
@@ -152,9 +153,12 @@ const ServiceDetail = () => {
 
   if (!service) {
     return (
-      <div className="bg-gray-950 min-h-screen flex items-center justify-center">
+      <div className="bg-gray-950 min-h-screen flex items-center justify-center text-white">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Service Not Found</h2>
+          <h2 className="text-3xl font-bold mb-4">Service Not Found</h2>
+          <Link to="/our_services" className="text-blue-400 hover:underline">
+            ← Return to Services
+          </Link>
         </div>
       </div>
     );
@@ -163,22 +167,24 @@ const ServiceDetail = () => {
   const sectionConfig = getSectionConfig();
 
   return (
-    <div className="bg-gray-950 min-h-screen">
+    <div className="bg-gray-950 min-h-screen text-white pt-24 pb-20">
       {/* Hero Section */}
-      <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
+      <div className="relative h-[55vh] md:h-[65vh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${service.heroImage})` }}
+          style={{ backgroundImage: `url(${service.heroImage || service.image})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-gray-950/40" />
 
-        <div ref={heroRef} className="absolute bottom-0 left-0 right-0 max-w-7xl mx-auto px-6 pb-12 md:pb-16">
+        <div ref={heroRef} className="absolute bottom-0 left-0 right-0 max-w-7xl mx-auto px-6 pb-12">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+            <Link to="/our_services" className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-semibold mb-4 uppercase tracking-wider">
+              <ArrowLeft className="w-3.5 h-3.5" /> All Services
+            </Link>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
               {service.title}
             </h1>
-            <div className="w-16 h-0.5 bg-[#4a7ba7] mb-6"></div>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl">
               {service.shortDescription}
             </p>
           </div>
@@ -186,30 +192,30 @@ const ServiceDetail = () => {
       </div>
 
       {/* Main Content */}
-      <div ref={contentRef} className="max-w-7xl mx-auto px-6 py-16">
+      <div ref={contentRef} className="max-w-7xl mx-auto px-6 py-12">
         {/* Overview Section */}
-        <div className="fade-in-section mb-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="fade-in-section mb-16">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Overview
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                Executive Overview
               </h2>
-              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6">
                 {service.description}
               </p>
               {service.outcome && (
-                <div className="bg-gradient-to-br from-[#4a7ba7]/20 to-blue-900/20 border border-cyan-800/30 rounded-xl p-6">
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6">
                   <div className="flex items-start gap-3">
-                    <Target className="w-6 h-6 text-[#4a7ba7] flex-shrink-0 mt-1" />
+                    <Target className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-lg font-semibold text-white mb-2">Expected Outcome</h3>
-                      <p className="text-gray-300">{service.outcome}</p>
+                      <h3 className="text-base font-semibold text-white mb-1">Expected Business Outcome</h3>
+                      <p className="text-gray-300 text-sm">{service.outcome}</p>
                     </div>
                   </div>
                 </div>
               )}
             </div>
-            <div className="relative h-[400px] rounded-2xl overflow-hidden">
+            <div className="relative h-[360px] rounded-3xl overflow-hidden shadow-2xl border border-gray-800">
               <img
                 src={service.image}
                 alt={service.title}
@@ -220,75 +226,94 @@ const ServiceDetail = () => {
           </div>
         </div>
 
-        {/* Deliverables/Solutions/Access Section */}
-        <div className="fade-in-section mb-20">
-          {/* Title Section with Icon */}
-          <div className="text-center mb-12">
-
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              {sectionConfig.title}
-            </h2>
+        {/* Sub Services Breakdown if present */}
+        {service.subServices && service.subServices.length > 0 && (
+          <div className="fade-in-section mb-16">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                Core Capabilities & Modules
+              </h2>
+              <p className="text-gray-400 text-sm max-w-xl mx-auto">
+                Specialized practices and technical execution domains delivered under this pillar.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {service.subServices.map((sub, idx) => (
+                <div key={idx} className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all">
+                  <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                    {sub.name}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{sub.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
+        )}
 
-          {/* Items Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sectionConfig.items.map((item, index) => {
-              const ItemIcon = getItemIcon(item, sectionConfig.type);
-              return (
-                <div
-                  key={index}
-                  className=" rounded-xl p-6  transition-all duration-300 hover:shadow-lg  group"
-                >
-                  <div className="flex flex-col  items-center gap-3">
-                    <ItemIcon className="w-15 h-15 text-[#4a7ba7] flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" />
-                    <p className="text-gray-300 leading-relaxed text-xl font-semibold text-center">{item}</p>
+        {/* Deliverables Section */}
+        {sectionConfig.items && sectionConfig.items.length > 0 && (
+          <div className="fade-in-section mb-16">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                {sectionConfig.title}
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sectionConfig.items.map((item, index) => {
+                const ItemIcon = getItemIcon(item, sectionConfig.type);
+                return (
+                  <div
+                    key={index}
+                    className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 hover:border-gray-700 transition-all group flex flex-col justify-between"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+                        <ItemIcon className="w-5 h-5" />
+                      </div>
+                      <p className="text-gray-300 text-sm font-medium leading-relaxed">{item}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {service.designedFor && (
+              <div className="mt-8 bg-gray-900/60 border border-gray-800 rounded-2xl p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 text-blue-400">
+                    <Users className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-white mb-1">Designed For</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">{service.designedFor}</p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          {service.note && (
-            <div className="mt-8 text-center">
-              <p className="text-[#4a7ba7] text-lg font-medium">{service.note}</p>
-            </div>
-          )}
-
-          {service.designedFor && (
-            <div className="mt-10 bg-gradient-to-br from-blue-900/20 to-[#4a7ba7]/20 border border-blue-800/30 rounded-xl p-6 hover:border-blue-700/50 transition-colors">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Designed For</h3>
-                  <p className="text-gray-300 leading-relaxed">{service.designedFor}</p>
-                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
 
         {/* CTA Section */}
-        <div className="fade-in-section">
-          <div className="p-8 md:p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Let's discuss how we can help transform your business with our {service.title.toLowerCase()} services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CalendlyPopup
-                text="BOOK A FREE CONSULTATION"
-                className="inline-flex items-center bg-[#4a7ba7] text-white px-8 py-4 rounded-lg font-semibold hover:bg-cyan-700 transition-all shadow-lg shadow-[#4a7ba7]/30 border-none cursor-pointer"
-              />
-              <Link to="/our_services">
-                <button className="inline-flex items-center bg-gray-800 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-700 transition-all border border-gray-700">
-                  <span>View All Services</span>
-                </button>
-              </Link>
-            </div>
+        <div className="fade-in-section bg-gradient-to-r from-blue-950/40 via-gray-900 to-indigo-950/40 border border-blue-900/30 rounded-3xl p-8 sm:p-12 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+            Ready to implement {service.title}?
+          </h2>
+          <p className="text-gray-300 text-sm sm:text-base mb-8 max-w-xl mx-auto">
+            Book a complimentary consultation with our practice leads to build your strategic implementation roadmap.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <CalendlyPopup
+              text="BOOK A FREE CONSULTATION"
+              className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-500/30 hover:scale-105 transition-all border-none cursor-pointer"
+            />
+            <Link
+              to="/assessment"
+              className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-gray-800 hover:bg-gray-700 text-gray-200 transition-all border border-gray-700 inline-flex items-center justify-center"
+            >
+              Take Free Transformation Assessment
+            </Link>
           </div>
         </div>
       </div>

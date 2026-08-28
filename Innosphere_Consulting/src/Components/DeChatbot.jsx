@@ -7,7 +7,7 @@ import { trackChatbotInteraction, trackKeyEvent } from '../utils/analytics';
 const knowledgeBase = {
   company: {
     keywords: ['who are you', 'about', 'innosphere', 'what is innnosphere', 'company'],
-    response: `We're Innosphere Consulting - a Nigerian IT consultancy delivering digital transformation, SaaS/PaaS solutions, and IT consulting tailored for businesses across Nigeria and internationally. Founded in 2017, we serve tech, finance, education, government, and SMEs with practical, scalable solutions.`
+    response: `We're Innosphere Consulting FZE LLC - a UAE-based consultancy delivering digital transformation, cyber security, AI solutions, and IT advisory tailored for enterprises, SMEs, and government-linked organisations in the UAE, MENA region, and globally. Led by Lead Business Consultant Tosin Samuel Ojo with over 15 years of experience.`
   },
   
   services: {
@@ -36,25 +36,25 @@ Which service interests you?`
   
   pricing: {
     keywords: ['price', 'cost', 'pricing', 'package', 'how much', 'fee', 'payment'],
-    response: `Our Packages:
+    response: `Our Services & Engagements:
 
-**Standard**: From ₦750,000
-**Premium**: Enhanced features & support
-**Enterprise**: Full-scale solutions
-**Custom/Bespoke**: Tailored multi-service packages
+• **Advisory & Consulting**: Tailored strategic roadmaps
+• **Transformation Projects**: End-to-end implementation
+• **Enterprise Solutions**: Full-scale cloud, cyber security & AI systems
+• **Custom Packages**: Bespoke multi-disciplinary engagements
 
-We offer monthly subscriptions, long-term discounts, and flexible payment plans (30% deposit, remainder on milestones). Book a free consultation for a detailed quote!`
+We offer competitive milestone-based engagements and retainer plans. Book a free 30-minute consultation for a custom proposal!`
   },
   
   consultation: {
     keywords: ['consultation', 'schedule', 'appointment', 'meeting', 'book', 'demo', 'free'],
     response: `📞 Book a FREE 30-minute consultation!
 
-📧 Email: info@innosphereconsultiong.com
+📧 Email: connect@innosphereconsulting.ae
 📱 WhatsApp: Available on our website
 🌐 Book Online: Use our "Book a Free Consultation" button
 
-We respond within 24 hours and offer virtual meetings via Zoom, Teams, or Google Meet. Ready to get started?`
+We respond promptly and offer virtual meetings via Zoom, Teams, or Google Meet. Ready to get started?`
   },
   
   process: {
@@ -83,19 +83,18 @@ Typical projects take 4-12 weeks for SMEs. We measure success through KPIs, ROI 
 
 💼 Tech & Startups
 🏦 Finance & Banking
-🎓 Education
+🎓 Education & Training
 🏛️ Government & Public Sector
-🎭 Entertainment
-🏢 SMEs across Nigeria
+🏢 SMEs & Mid-market Enterprises
 
-Every solution considers local challenges and growth potential. What's your industry?`
+Every solution is crafted to meet regulatory standards and strategic growth goals. What's your industry?`
   },
   
   location: {
-    keywords: ['location', 'where', 'office', 'address', 'lagos', 'nigeria'],
-    response: `📍 Main Office: Lagos, Nigeria
+    keywords: ['location', 'where', 'office', 'address', 'uae', 'dubai', 'ajman'],
+    response: `📍 Office: Ajman Media City, UAE
 
-We operate remotely to serve clients across Nigeria and internationally. You can visit our Lagos office by appointment, or we can meet virtually. Contact us to schedule!`
+We serve clients across Dubai, the UAE, MENA region, and internationally. Connect with us to schedule an in-person or virtual consultation!`
   },
   
   founder: {
@@ -319,7 +318,7 @@ trackChatbotInteraction('Chatbot Opened');
 • Industries We Serve
 • Case Studies & Portfolio
 
-📧 contact@innosphereconsulting.com
+📧 connect@innosphereconsulting.ae
 📱 WhatsApp us via our website
 
 What would you like to know?`;
