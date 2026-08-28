@@ -9,33 +9,33 @@ const StatsBar = () => {
   const statsItemsRef = useRef([]);
 
   useEffect(() => {
-    const stats = statsItemsRef.current;
+    statsItemsRef.current.forEach((item, index) => {
+      if (!item) return;
 
-    gsap.fromTo(
-      stats,
-      { 
-        y: 50, 
-        opacity: 0 
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
+      const numberElement = item.querySelector('.stat-number');
+      if (!numberElement) return;
 
-    // Animate numbers counting up
-    stats.forEach((stat) => {
-      const numberElement = stat.querySelector('.stat-number');
       const target = parseInt(numberElement.getAttribute('data-target'));
-      
+
+      gsap.fromTo(
+        item,
+        {
+          opacity: 0,
+          y: 30
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: index * 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: 'top 80%'
+          }
+        }
+      );
+
       gsap.to(numberElement, {
         innerText: target,
         duration: 2,
@@ -52,36 +52,33 @@ const StatsBar = () => {
   }, []);
 
   const stats = [
-    { number: 36, suffix: '+', label: 'Project Delivered' },
+    { number: 36, suffix: '+', label: 'Projects Delivered' },
     { number: 91, suffix: '%', label: 'Client Satisfaction' },
     { number: 11, suffix: '+', label: 'Expert Consultants' },
     { number: 15, suffix: '+', label: 'Years of Experience' }
   ];
 
   return (
-    <div ref={statsRef} className="py-4 bg-gray-950">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <div ref={statsRef} className="py-8 bg-[#000000]">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <div
               key={index}
               ref={(el) => (statsItemsRef.current[index] = el)}
               className="text-center group"
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-[#4a7ba7]/10 blur-xl group-hover:bg-[#4a7ba7]/20 transition-all duration-300"></div>
-                <div className="relative bg-slate-950/50 backdrop-blur-sm border border-[#1e3a5f]/50 rounded-2xl p-8 hover:border-[#4a7ba7]/50 transition-all duration-300 cursor-pointer">
-                  <div className="flex items-center justify-center mb-2">
-                    <span 
-                      className="stat-number text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#6b9dc7] to-[#a8c5e0] bg-clip-text text-transparent"
-                      data-target={stat.number}
-                    >
-                      0
-                    </span>
-                    <span className="text-5xl lg:text-6xl font-bold text-[#6b9dc7]">{stat.suffix}</span>
-                  </div>
-                  <p className="text-[#8ba3ba] text-sm lg:text-base font-medium">{stat.label}</p>
+              <div className="relative bg-[#0a2342]/25 rounded-sm p-6 hover:bg-[#0a2342]/45 transition-all duration-300">
+                <div className="flex items-center justify-center mb-2">
+                  <span 
+                    className="stat-number text-4xl lg:text-5xl font-bold text-[#ffffff]"
+                    data-target={stat.number}
+                  >
+                    0
+                  </span>
+                  <span className="text-4xl lg:text-5xl font-bold text-blue-400">{stat.suffix}</span>
                 </div>
+                <p className="text-gray-300 text-xs lg:text-sm font-medium">{stat.label}</p>
               </div>
             </div>
           ))}

@@ -17,7 +17,6 @@ const defaultCategories = [
 const InsightsList = () => {
   const navigate = useNavigate();
   const heroRef = useRef(null);
-  const cardsRef = useRef([]);
   const [showAll, setShowAll] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
   const [insights, setInsights] = useState(insightsData.insights || []);
@@ -32,7 +31,6 @@ const InsightsList = () => {
       setLoading(true);
       const data = await blogService.getPublishedBlogs();
       if (data && data.length > 0) {
-        // Merge or replace
         const remoteIds = new Set(data.map(d => d.slug || d.id));
         const merged = [...data, ...(insightsData.insights || []).filter(i => !remoteIds.has(i.slug) && !remoteIds.has(i.id))];
         setInsights(merged);
@@ -73,17 +71,17 @@ const InsightsList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white selection:bg-[#6b9dc7]/30 selection:text-[#6b9dc7] pt-32 pb-24">
+    <div className="min-h-screen bg-[#000000] text-[#ffffff] pt-36 pb-24">
       {/* Hero Section */}
       <section className="relative pb-16 overflow-hidden">
         <div ref={heroRef} className="container mx-auto px-6 relative z-10 text-center max-w-5xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-6">
             <Sparkles className="w-4 h-4 text-blue-400" />
             Intelligence Hub & Executive Perspectives
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight">
-            Strategic <span className="text-[#6b9dc7]">Insights & Analysis</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-[#ffffff]">
+            Strategic <span className="text-blue-400">Insights & Analysis</span>
           </h1>
 
           <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
@@ -96,10 +94,10 @@ const InsightsList = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                className={`px-5 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25 scale-105'
-                    : 'bg-gray-900 border border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white'
+                    ? 'bg-[#ffffff] text-[#000000] font-bold shadow-lg scale-105'
+                    : 'bg-[#0a2342]/40 text-gray-300 hover:bg-[#0a2342] hover:text-[#ffffff]'
                 }`}
               >
                 {cat}
@@ -116,7 +114,7 @@ const InsightsList = () => {
             <div
               key={item.id || index}
               onClick={() => handleInsightClick(item.slug || item.id)}
-              className="group bg-gray-900/60 border border-gray-800 hover:border-blue-500/50 rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
+              className="group bg-[#0a2342]/20 rounded-sm overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
             >
               <div>
                 <div className="relative h-48 overflow-hidden">
@@ -126,7 +124,7 @@ const InsightsList = () => {
                     alt={item.title}
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-blue-600 text-white text-[11px] font-semibold tracking-wider uppercase rounded-full">
+                    <span className="px-3 py-1 bg-[#0a2342] text-[#ffffff] text-[11px] font-semibold tracking-wider uppercase rounded-sm">
                       {item.category}
                     </span>
                   </div>
@@ -135,25 +133,25 @@ const InsightsList = () => {
                 <div className="p-6">
                   <div className="flex items-center gap-4 text-xs text-gray-400 mb-3">
                     <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" /> {item.readTime || '5 min'}
+                      <Clock className="w-3.5 h-3.5 text-blue-400" /> {item.readTime || '5 min'}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5" /> {item.date || '2026'}
+                      <Calendar className="w-3.5 h-3.5 text-blue-400" /> {item.date || '2026'}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors mb-3 leading-snug">
+                  <h3 className="text-lg font-bold text-[#ffffff] group-hover:text-blue-300 transition-colors mb-3 leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                  <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
                     {item.excerpt || item.content?.intro}
                   </p>
                 </div>
               </div>
 
               <div className="p-6 pt-0">
-                <div className="pt-4 border-t border-gray-800 flex items-center justify-between text-xs font-semibold text-blue-400 group-hover:text-blue-300">
+                <div className="pt-4 flex items-center justify-between text-xs font-semibold text-blue-400 group-hover:text-blue-300">
                   <span>Read Full Perspective</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>

@@ -178,33 +178,33 @@ export default function Assessment() {
   const isAnswered = answers[currentQ?.id] !== undefined;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#000000] text-white pt-36 pb-24 px-4 sm:px-6 lg:px-8">
       {/* Header / Hero */}
       <div className="max-w-4xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-4">
           <Zap className="w-4 h-4 text-blue-400" />
           Proprietary Diagnostic Framework
         </div>
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4">
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 text-[#ffffff]">
           Business Transformation Assessment™️
         </h1>
-        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
           Evaluate your organisation's operational efficiency, digital strategy, AI readiness, and cybersecurity resilience in under 3 minutes.
         </p>
       </div>
 
       <div className="max-w-3xl mx-auto">
         {!isCompleted ? (
-          <div className="bg-gray-900/70 border border-gray-800 backdrop-blur-xl rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div className="bg-[#0a2342]/20 backdrop-blur-xl rounded-sm p-6 sm:p-10 shadow-2xl relative overflow-hidden">
             {/* Top Progress Bar */}
             <div className="mb-8">
               <div className="flex justify-between items-center text-xs text-gray-400 mb-2">
                 <span>Pillar {Math.floor(currentStep / 2) + 1} of 4: <strong className="text-gray-200">{currentQ.pillar}</strong></span>
                 <span>Question {currentStep + 1} of {questions.length}</span>
               </div>
-              <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-[#0a2342]/40 h-2 rounded-sm overflow-hidden">
                 <div 
-                  className="bg-gradient-to-r from-blue-500 to-indigo-500 h-full transition-all duration-300 rounded-full"
+                  className="bg-blue-500 h-full transition-all duration-300 rounded-sm"
                   style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
                 ></div>
               </div>
@@ -213,7 +213,7 @@ export default function Assessment() {
             {/* Question Card */}
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                <div className="w-10 h-10 rounded-sm bg-[#0a2342] flex items-center justify-center text-blue-400">
                   <Icon className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
@@ -232,14 +232,14 @@ export default function Assessment() {
                     <button
                       key={idx}
                       onClick={() => handleSelectOption(currentQ.id, option.score)}
-                      className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 flex items-start gap-4 ${
+                      className={`w-full text-left p-4 rounded-sm transition-all duration-200 flex items-start gap-4 ${
                         selected
-                          ? 'bg-blue-600/20 border-blue-500 text-white shadow-lg shadow-blue-500/10'
-                          : 'bg-gray-800/40 border-gray-700/60 hover:bg-gray-800/80 hover:border-gray-600 text-gray-300'
+                          ? 'bg-[#0a2342] text-white shadow-lg'
+                          : 'bg-[#0a2342]/20 hover:bg-[#0a2342]/40 text-gray-300'
                       }`}
                     >
-                      <div className={`w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
-                        selected ? 'bg-blue-500 border-blue-400 text-white' : 'border-gray-600 bg-gray-900'
+                      <div className={`w-5 h-5 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                        selected ? 'bg-blue-500 text-white' : 'bg-[#0a2342]'
                       }`}>
                         {selected && <Check className="w-3.5 h-3.5" />}
                       </div>

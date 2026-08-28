@@ -92,7 +92,7 @@ Every solution is crafted to meet regulatory standards and strategic growth goal
   
   location: {
     keywords: ['location', 'where', 'office', 'address', 'uae', 'dubai', 'ajman'],
-    response: `📍 Office: Ajman Media City, UAE
+    response: `📍 Office: Dubai, UAE
 
 We serve clients across Dubai, the UAE, MENA region, and internationally. Connect with us to schedule an in-person or virtual consultation!`
   },

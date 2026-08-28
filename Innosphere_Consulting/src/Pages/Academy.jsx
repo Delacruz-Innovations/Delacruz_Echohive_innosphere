@@ -4,11 +4,9 @@ import {
   Users, 
   Award, 
   Calendar, 
-  ArrowRight, 
   BookOpen, 
   Target, 
   TrendingUp, 
-  Building2,
   Cpu,
   ShieldCheck,
   Zap,
@@ -18,9 +16,6 @@ import CalendlyPopup from '../Components/CalendlyPopup';
 
 const Academy = () => {
   const heroRef = useRef(null);
-  const programsRef = useRef([]);
-  const [flippedCard, setFlippedCard] = useState(null);
-  const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
     if (heroRef.current) {
@@ -200,16 +195,16 @@ const Academy = () => {
   ];
 
   return (
-    <div className="bg-gray-950 min-h-screen text-white pt-28 pb-20">
+    <div className="bg-[#000000] min-h-screen text-[#ffffff] pt-36 pb-24">
       {/* Hero Section */}
-      <div className="relative overflow-hidden border-b border-gray-800/60 pb-16">
+      <div className="relative overflow-hidden pb-16">
         <div ref={heroRef} className="container mx-auto px-6 max-w-7xl relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
-            <Sparkles className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
             Innosphere Academy
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            Empower Your Future with <span className="text-[#6b9dc7]">Executive Training</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#ffffff] mb-6 leading-tight">
+            Empower Your Future with <span className="text-blue-400">Executive Training</span>
           </h1>
           <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
             Innosphere Academy empowers professionals and organizations across the UAE and internationally with the critical skills required to lead in the digital economy.
@@ -217,7 +212,7 @@ const Academy = () => {
 
           <CalendlyPopup
             text="ENQUIRE FOR CORPORATE OR INDIVIDUAL TRAINING"
-            className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-500/30 hover:scale-105 transition-all border-none cursor-pointer"
+            className="px-8 py-3.5 rounded-sm text-xs sm:text-sm font-semibold bg-[#ffffff] hover:bg-gray-200 text-[#000000] shadow-lg hover:scale-105 transition-all cursor-pointer"
           />
         </div>
       </div>
@@ -225,10 +220,10 @@ const Academy = () => {
       {/* Benefits Section */}
       <div className="container mx-auto px-6 py-16 max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#ffffff] mb-3">
             Why Train With Innosphere Academy?
           </h2>
-          <p className="text-gray-400 text-sm max-w-xl mx-auto">
+          <p className="text-gray-300 text-sm max-w-xl mx-auto">
             Practical, transformation-grounded learning designed for immediate workplace impact.
           </p>
         </div>
@@ -236,14 +231,14 @@ const Academy = () => {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between"
+              className="bg-[#0a2342]/20 rounded-sm p-6 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="bg-blue-500/10 border border-blue-500/20 w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-blue-400">
+                <div className="bg-[#0a2342] w-12 h-12 rounded-sm flex items-center justify-center mb-4 text-[#ffffff]">
                   <benefit.icon size={24} />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{benefit.title}</h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">{benefit.description}</p>
+                <h3 className="text-lg font-bold text-[#ffffff] mb-2">{benefit.title}</h3>
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">{benefit.description}</p>
               </div>
             </div>
           ))}
@@ -253,10 +248,10 @@ const Academy = () => {
       {/* Programs Grid */}
       <div className="container mx-auto px-6 py-12 max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#ffffff] mb-3">
             Core Curriculum & Specialized Tracks
           </h2>
-          <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
             Explore our 6 structured training tracks built to develop world-class capability.
           </p>
         </div>
@@ -265,7 +260,7 @@ const Academy = () => {
           {programs.map((program) => (
             <div
               key={program.id}
-              className="bg-gray-900/60 border border-gray-800 hover:border-blue-500/50 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
+              className="bg-[#0a2342]/20 rounded-sm overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col justify-between"
             >
               <div>
                 <div className="relative h-48 overflow-hidden">
@@ -274,14 +269,14 @@ const Academy = () => {
                     alt={program.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent"></div>
                   <div className="absolute top-4 left-4">
-                    <div className="bg-blue-600 text-white p-2 rounded-xl">
+                    <div className="bg-[#0a2342] text-[#ffffff] p-2 rounded-sm">
                       <program.icon size={20} />
                     </div>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <span className="bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-full border border-gray-700">
+                    <span className="bg-[#000000]/90 text-white text-xs font-semibold px-3 py-1 rounded-sm">
                       {program.duration}
                     </span>
                   </div>
@@ -291,16 +286,16 @@ const Academy = () => {
                   <span className="text-blue-400 text-xs font-semibold uppercase tracking-wider block mb-1">
                     {program.level}
                   </span>
-                  <h3 className="text-xl font-bold text-white mb-2">{program.title}</h3>
+                  <h3 className="text-xl font-bold text-[#ffffff] mb-2">{program.title}</h3>
                   <p className="text-gray-300 text-xs font-medium mb-4">{program.subtitle}</p>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
                     {program.description}
                   </p>
 
-                  <div className="space-y-2 pt-2 border-t border-gray-800">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Key Modules:</h4>
+                  <div className="space-y-2 pt-2">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#ffffff] mb-2">Key Modules:</h4>
                     {program.features.slice(0, 3).map((f, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-xs text-gray-400">
+                      <div key={idx} className="flex items-start gap-2 text-xs text-gray-300">
                         <CheckCircle className="w-3.5 h-3.5 text-blue-400 flex-shrink-0 mt-0.5" />
                         <span>{f}</span>
                       </div>
@@ -312,7 +307,7 @@ const Academy = () => {
               <div className="p-6 pt-0">
                 <CalendlyPopup
                   text="Register Interest"
-                  className="w-full text-center py-2.5 rounded-full text-xs font-semibold bg-gray-800 hover:bg-blue-600 text-white transition-colors border border-gray-700 hover:border-blue-500 cursor-pointer"
+                  className="w-full text-center py-2.5 rounded-sm text-xs font-semibold bg-[#0a2342] hover:bg-[#0a2342]/80 text-[#ffffff] transition-colors cursor-pointer"
                 />
               </div>
             </div>

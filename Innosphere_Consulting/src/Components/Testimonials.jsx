@@ -142,15 +142,15 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="bg-gray-950 text-white py-8 px-6 overflow-hidden">
+    <div className="bg-[#000000] text-white py-16 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16" ref={titleRef}>
         
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            What Our <span className=" text-[#6b9dc7]">Clients Say</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#ffffff]">
+            What Our <span className="text-blue-400">Clients Say</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Trusted by leading organizations across the UAE and GCC region
           </p>
         </div>
@@ -173,10 +173,10 @@ const Testimonials = () => {
                     width: `calc((100% - ${(cardsPerView - 1) * 24}px) / ${cardsPerView})`
                   }}
                 >
-                  <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 hover:border-cyan-500/50 transition-all duration-500 h-full flex flex-col hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2">
+                  <div className="relative bg-[#0a2342]/25 backdrop-blur-sm rounded-sm p-8 transition-all duration-500 h-full flex flex-col hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-2">
                     {/* Quote Icon */}
-                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center opacity-20 group-hover:opacity-100 transition-opacity duration-500 rotate-12 group-hover:rotate-0">
-                      <Quote className="w-8 h-8 text-white" />
+                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-[#0a2342] rounded-sm flex items-center justify-center opacity-40 group-hover:opacity-100 transition-opacity duration-500 rotate-12 group-hover:rotate-0">
+                      <Quote className="w-8 h-8 text-[#ffffff]" />
                     </div>
 
                     {/* Rating */}

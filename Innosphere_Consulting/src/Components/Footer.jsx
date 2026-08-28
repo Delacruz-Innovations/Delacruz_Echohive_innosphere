@@ -93,7 +93,7 @@ const handleSubscribe = async (e) => {
     },
     { 
       icon: MapPin, 
-      text: 'Ajman Media City, UAE',
+      text: 'Dubai, UAE',
       href: 'https://maps.google.com/?q=Ajman+Media+City+Free+Zone'
     },
     { 
@@ -105,9 +105,9 @@ const handleSubscribe = async (e) => {
   ];
 
   return (
-    <footer className="bg-gray-950 relative overflow-hidden border-t border-gray-800">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 from-blue-950/20 via-transparent to-purple-950/20"></div>
+    <footer className="bg-[#000000] relative overflow-hidden">
+      {/* Subtle secondary ambient glow */}
+      <div className="absolute inset-0 from-[#0a2342]/15 via-transparent to-[#0a2342]/10 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Main Footer Content */}

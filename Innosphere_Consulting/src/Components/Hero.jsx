@@ -1,263 +1,68 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ChevronRight, Play, X } from 'lucide-react';
-import image from '../assets/hero.png'
-import { gsap } from 'gsap';
-
-import { trackCTAConversion } from '../utils/analytics';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import CalendlyPopup from './CalendlyPopup';
+
 const Hero = () => {
-  const [videoOpen, setVideoOpen] = useState(false);
-  const heroRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const descRef = useRef(null);
-  const playBtnRef = useRef(null);
-  const logosRef = useRef(null);
-  const videoContainerRef = useRef(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      import('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js').then((gsapModule) => {
-        const gsap = gsapModule.default;
-
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-        tl.fromTo(
-          titleRef.current.children,
-          { y: 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
-          0.5
-        )
-          .fromTo(
-            descRef.current,
-            { x: -50, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.8 },
-            1
-          )
-          .fromTo(
-            playBtnRef.current,
-            { scale: 0, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.6 },
-            1.2
-          )
-          .fromTo(
-            logosRef.current.children,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 },
-            1.5
-          );
-
-        // Floating animation for play button
-        gsap.to(playBtnRef.current, {
-          y: -10,
-          duration: 2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'power1.inOut'
-        });
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-    tl.fromTo(
-      titleRef.current.children,
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
-      0.5
-    )
-      .fromTo(
-        descRef.current,
-        { x: -50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8 },
-        1
-      )
-      .fromTo(
-        playBtnRef.current,
-        { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6 },
-        1.2
-      )
-      .fromTo(
-        logosRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 },
-        1.5
-      );
-
-    // Floating animation for play button
-    gsap.to(playBtnRef.current, {
-      y: -10,
-      duration: 2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut'
-    });
-  }, []);
-
-  useEffect(() => {
-    if (videoOpen) {
-      gsap.fromTo(
-        videoContainerRef.current,
-        { y: '-100%' },
-        { y: 0, duration: 0.8, ease: 'power3.out' }
-      );
-    }
-  }, [videoOpen]);
-
-
-
-  const handlePlayClick = () => {
-    setVideoOpen(true);
-  };
-
-  const handleCloseVideo = () => {
-    if (videoContainerRef.current) {
-      gsap.to(videoContainerRef.current, {
-        y: '-100%',
-        duration: 0.6,
-        ease: 'power3.in',
-        onComplete: () => setVideoOpen(false)
-      });
-    } else {
-      setVideoOpen(false);
-    }
-  };
-
   return (
-    <div ref={heroRef} className="relative  bg-black overflow-hidden">
-      {/* Background with gradient overlay */}
-      {/* Background Video */}
-      <img
-        src={image}
-        alt='innnosphare'
-        className="absolute inset-0 w-full h-full object-cover opacity-30" />
-
-
-
-      {/* Animated background shapes */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-slate-950/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-slate-950/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-
-
-
-      {/* Animated Background Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 animate-float">
-          <svg className="w-16 h-16 text-slate-950/20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-          </svg>
-        </div>
-        <div className="absolute top-40 right-20 animate-float-delay-1">
-          <svg className="w-12 h-12 text-slate-950/20" fill="currentColor" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" />
-          </svg>
-        </div>
-        <div className="absolute bottom-40 left-1/4 animate-float-delay-2">
-          <svg className="w-14 h-14 text-slate-950/20" fill="currentColor" viewBox="0 0 24 24">
-            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-          </svg>
-        </div>
-        <div className="absolute top-1/3 right-1/3 animate-float-delay-3">
-          <svg className="w-10 h-10 text-slate-950/20" fill="currentColor" viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-          </svg>
-        </div>
-        <div className="absolute bottom-20 right-10 animate-float">
-          <svg className="w-16 h-16 text-slate-950/20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
-          </svg>
-        </div>
-        <div className="absolute top-1/2 left-10 animate-float-delay-1">
-          <svg className="w-12 h-12 text-[#a8c5e0]/20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-          </svg>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 py-40 flex flex-col items-center justify-center text-center ">
-
-        <div className="max-w-7xl mx-auto w-full text-center flex flex-col items-center">
-          {/* Left Content */}
-          <div className="space-y-8 mb-8 flex flex-col items-center">
-
-            <div ref={titleRef} className="space-y-4">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light text-white leading-tight tracking-tight">
-                Empowering UAE Businesses to Scale Globally.
-
-              </h1>
-
-            </div>
-
-            <div ref={descRef} className="border-l-2 border-slate-950 pl-6">
-              <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-md">
-                We build effective business structures and cultures that foster innovation, strengthen collaboration, and drive measurable results.
-              </p>
-
-            </div>
-          </div>
-
-          {/* Play Button - Bottom Center */}
-          <div className="flex justify-center ">
-            <button
-              ref={playBtnRef}
-              onClick={handlePlayClick}
-              className="group relative w-20 h-20 sm:w-30 sm:h-30 flex items-center justify-center"
-            >
-              {/* Add these wave rings */}
-              <div className="absolute inset-0 bg-slate-950/20 rounded-full animate-ping"></div>
-              <div className="absolute inset-0 bg-950/10 rounded-full animate-pulse"></div>
-
-              <div className="absolute inset-0 bg-slate-950/20 rounded-full blur-xl group-hover:bg-slate-950/30 transition-all duration-300"></div>
-              <div className="opacity-50 hover:opacity-100 relative w-full h-full bg-gradient-to-br from-slate-950/30 to-[#3d6a91]/30 backdrop-blur-sm rounded-full border border-slate-950/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Play className="w-12 h-12 sm:w-16 sm:h-16 text-white fill-white ml-2" />
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* Client Logos */}
-        <CalendlyPopup
-          text="BOOK A FREE CONSULTATION"
-          className="mt-20 p-6 bg-[#6b9dc7] text-white font-semibold rounded-md text-md flex items-center gap-2 border-none cursor-pointer hover:bg-blue-600 transition-colors"
+    <section className="relative min-h-[92vh] flex items-center justify-center bg-[#000000] overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8">
+      {/* 1. Starry Cosmos & Pure Black Backdrop */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Starry cosmos overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=1920&q=80')`
+          }}
         />
+
+        {/* Ambient gradients transitioning to pure #000000 */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/95 via-[#0a2342]/20 to-[#000000]" />
+        
+        {/* Soft Secondary #0a2342 atmospheric illumination */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#000000] via-[#0a2342]/20 to-transparent" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[#0a2342]/25 rounded-sm blur-[130px]" />
       </div>
 
-      {/* Video Modal */}
-      {videoOpen && (
-        <div
-          ref={videoContainerRef}
-          className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md"
-        >
-          <button
-            onClick={handleCloseVideo}
-            className="absolute top-8 right-8 z-50 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-          >
-            <X className="w-6 h-6 text-white" />
-          </button>
-
-          <div className="w-full h-full flex items-center justify-center p-4">
-            <div className="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
+      {/* 2. Hero Center Content */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+        
+        {/* Pill Eyebrow Badge: "• PREMIUM ADVISORY" */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 backdrop-blur-md shadow-sm mb-8 animate-in fade-in duration-700">
+          <span className="w-1.5 h-1.5 rounded-sm bg-[#ffffff] shadow-[0_0_8px_#ffffff]" />
+          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#ffffff] uppercase">
+            PREMIUM ADVISORY
+          </span>
         </div>
-      )}
 
-    </div>
+        {/* Main Hero Headline */}
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal text-[#ffffff] tracking-tight leading-[1.12] sm:leading-[1.15] max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-3 duration-800">
+          PMO Advisory, Digital<br className="hidden sm:inline" /> Transformation &amp;<br className="hidden sm:inline" /> Business Consulting —<br className="hidden sm:inline" /> UAE &amp; Global
+        </h1>
+
+        {/* Subtitle / Description */}
+        <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light mt-6 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-900">
+          Innosphere Consulting helps leadership teams move from ambition to execution across project delivery, business analysis, digital and AI transformation, and operational excellence.
+        </p>
+
+        {/* Action Button Group */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 w-full sm:w-auto animate-in fade-in slide-in-from-bottom-5 duration-1000">
+          {/* Primary CTA (White / Clean High-Contrast Button) */}
+          <CalendlyPopup
+            text="Book a Consultation"
+            className="w-full sm:w-auto bg-[#ffffff] hover:bg-gray-200 text-[#000000] font-semibold text-sm px-8 py-3.5 rounded-sm shadow-lg shadow-white/10 hover:scale-[1.03] transition-all duration-200 cursor-pointer"
+          />
+
+          {/* Secondary CTA (Secondary #0a2342 Button) */}
+          <Link
+            to="/our_services"
+            className="w-full sm:w-auto bg-[#0a2342] hover:bg-[#0a2342]/80 text-[#ffffff] font-medium text-sm px-8 py-3.5 rounded-sm backdrop-blur-md transition-all duration-200 inline-flex items-center justify-center hover:scale-[1.02]"
+          >
+            Explore Our Services
+          </Link>
+        </div>
+      </div>
+    </section>
   );
-
 };
 
-export default Hero
+export default Hero;
