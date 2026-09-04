@@ -112,7 +112,7 @@ const ServiceDetail = () => {
 
   if (!service) {
     return (
-      <div className="bg-[#000000] min-h-screen flex items-center justify-center text-[#ffffff]">
+      <div className="bg-[#080f1d] min-h-screen flex items-center justify-center text-[#ffffff]">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-4">Service Not Found</h2>
           <Link to="/our_services" className="text-blue-400 hover:underline">
@@ -126,20 +126,18 @@ const ServiceDetail = () => {
   const sectionConfig = getSectionConfig();
 
   return (
-    <div className="bg-[#000000] min-h-screen text-[#ffffff] pt-24 pb-20">
+    <div className="bg-[#080f1d] min-h-screen text-[#ffffff] pt-24 pb-20">
       {/* Hero Section */}
       <div className="relative h-[55vh] md:h-[65vh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${service.heroImage || service.image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/80 to-[#000000]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080f1d] via-[#080f1d]/80 to-[#080f1d]/40" />
 
         <div ref={heroRef} className="absolute bottom-0 left-0 right-0 max-w-7xl mx-auto px-6 pb-12">
           <div className="max-w-4xl">
-            <Link to="/our_services" className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-semibold mb-4 uppercase tracking-wider">
-              <ArrowLeft className="w-3.5 h-3.5" /> All Services
-            </Link>
+         
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-[#ffffff] mb-4 leading-tight">
               {service.title}
             </h1>
@@ -180,7 +178,7 @@ const ServiceDetail = () => {
                 alt={service.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080f1d]/60 to-transparent" />
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import CalendlyPopup from './CalendlyPopup';
 
 const CTABanner1 = () => {
   return (
-    <div className="py-20 px-4 text-center bg-[#000000]">
+    <div className="py-20 px-4 text-center bg-[#080f1d]">
       <div className="max-w-4xl mx-auto text-[#ffffff] bg-[#0a2342]/25 rounded-sm p-12 shadow-2xl">
         <h3 className="text-3xl md:text-4xl font-bold mb-4 text-[#ffffff]">
           Ready to <span className="text-blue-400">transform</span> your business?

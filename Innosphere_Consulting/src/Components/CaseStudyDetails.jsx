@@ -91,12 +91,12 @@ const CaseStudyDetails = () => {
 
   if (!currentCase) {
     return (
-      <div className=" bg-gray-950 flex items-center justify-center">
+      <div className="bg-[#080f1d] min-h-screen flex items-center justify-center text-white pt-24">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-6">Case Study Not Found</h1>
           <button
             onClick={() => navigate('/cases')}
-            className="inline-flex items-center text-[#6b9dc7] hover:text-[#6b9dc7] font-semibold transition-colors"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 font-semibold transition-colors"
           >
             <ArrowLeft className="mr-2" size={20} />
             Back to Case Studies
@@ -107,72 +107,86 @@ const CaseStudyDetails = () => {
   }
 
   return (
-    <div className=" bg-slate-950">
-      {/* Hero Section - Mobile with background image */}
-      <div className="relative pt-20 pb-2">
-        {/* Mobile Background Image */}
-        <div className="md:hidden absolute inset-0 h-[500px]">
-          <img
-            src={currentCase.image}
-            alt={currentCase.title}
-            className="w-full h-full object-cover"
+    <div className="bg-[#080f1d] min-h-screen text-[#ffffff]">
+      {/* Hero Section with Case Image Background */}
+      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5">
+        {/* Background Image using currentCase.image with Midnight Navy Overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105 transform filter blur-[1px]"
+            style={{
+              backgroundImage: `url('${currentCase.image}')`
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/95 via-gray-900/90 to-gray-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/95 via-[#080f1d]/85 to-[#080f1d]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[#0a2342]/40 rounded-full blur-[140px]" />
         </div>
 
-        <div ref={heroRef} className="container mx-auto px-6 pb-4 pt-12 md:pt-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative z-10">
-              <span className="inline-block bg-[#6b9dc7] text-white px-4 py-2 rounded text-sm font-semibold mb-6">
+        <div ref={heroRef} className="container mx-auto px-6 max-w-7xl relative z-10">
+          {/* Back link */}
+          <button
+            onClick={() => navigate('/cases')}
+            className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-blue-400 hover:text-blue-300 transition-colors mb-8 group"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to All Case Studies
+          </button>
+
+          <div className="grid md:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div className="md:col-span-7">
+              <span className="inline-block bg-[#0a2342] border border-blue-500/20 text-blue-400 text-xs font-semibold px-3.5 py-1.5 rounded-sm uppercase tracking-wider mb-6">
                 {currentCase.category}
               </span>
               <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
                 {currentCase.title}
               </h1>
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8">
+              <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-8">
                 {currentCase.overview}
               </p>
 
-              <div className="grid grid-cols-2 gap-6 bg-gray-900/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-lg">
+              <div className="grid grid-cols-2 gap-4 bg-[#0a2342]/40 backdrop-blur-md border border-white/5 p-4 rounded-sm">
                 <div>
-                  <p className="text-[#6b9dc7] font-semibold text-sm mb-2 uppercase tracking-wider">Client</p>
-                  <p className="text-white font-medium">{currentCase.client}</p>
+                  <p className="text-blue-400 font-semibold text-xs mb-1 uppercase tracking-wider">Client</p>
+                  <p className="text-white font-medium text-sm md:text-base">{currentCase.client}</p>
                 </div>
                 <div>
-                  <p className="text-[#6b9dc7] font-semibold text-sm mb-2 uppercase tracking-wider">Duration</p>
-                  <p className="text-white font-medium">{currentCase.duration}</p>
+                  <p className="text-blue-400 font-semibold text-xs mb-1 uppercase tracking-wider">Duration</p>
+                  <p className="text-white font-medium text-sm md:text-base">{currentCase.duration}</p>
                 </div>
               </div>
             </div>
 
-            <div className="relative hidden md:block">
-              <img
-                src={currentCase.image}
-                alt={currentCase.title}
-                className="w-full h-[450px] object-cover rounded-lg shadow-2xl border border-gray-800"
-              />
+            <div className="md:col-span-5 relative">
+              <div className="relative rounded-sm overflow-hidden border border-white/10 shadow-2xl shadow-blue-950/50 group">
+                <img
+                  src={currentCase.image}
+                  alt={currentCase.title}
+                  className="w-full h-[360px] md:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080f1d]/60 via-transparent to-transparent pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Content Sections - New Format */}
-      <div ref={contentRef} className=" py-4 ">
+      {/* Content Sections */}
+      <div ref={contentRef} className="py-12">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
 
             {/* Challenge */}
-            <div className="mb-2">
-              <div className="flex items-start mb-6">
-                <div className="w-12 h-12 bg-[#6b9dc7]/10 rounded-lg flex items-center justify-center border border-[#6b9dc7]/30 mr-4 flex-shrink-0">
-                  <div className="w-6 h-6 bg-[#6b9dc7] rounded"></div>
+            <div className="mb-6">
+              <div className="flex items-start mb-4">
+                <div className="w-10 h-10 bg-[#0a2342] rounded-sm flex items-center justify-center border border-blue-500/30 mr-4 flex-shrink-0">
+                  <div className="w-4 h-4 bg-blue-400 rounded-sm"></div>
                 </div>
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">The Challenge</h2>
-                  <div className="w-16 h-0.5 bg-[#6b9dc7]"></div>
+                  <div className="w-16 h-0.5 bg-blue-400"></div>
                 </div>
               </div>
-              <div className="ml-0 md:ml-16">
+              <div className="ml-0 md:ml-14">
                 <p className="text-gray-300 leading-relaxed text-base md:text-lg whitespace-pre-line">
                   {currentCase.details.challenge}
                 </p>
@@ -180,17 +194,17 @@ const CaseStudyDetails = () => {
             </div>
 
             {/* Approach */}
-            <div className="mb-2">
-              <div className="flex items-start mb-6">
-                <div className="w-12 h-12 bg-[#6b9dc7]/10 rounded-lg flex items-center justify-center border border-[#6b9dc7]/30 mr-4 flex-shrink-0">
-                  <div className="w-6 h-6 bg-[#6b9dc7] rounded"></div>
+            <div className="mb-6">
+              <div className="flex items-start mb-4">
+                <div className="w-10 h-10 bg-[#0a2342] rounded-sm flex items-center justify-center border border-blue-500/30 mr-4 flex-shrink-0">
+                  <div className="w-4 h-4 bg-blue-400 rounded-sm"></div>
                 </div>
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Our Approach</h2>
-                  <div className="w-16 h-0.5 bg-[#6b9dc7]"></div>
+                  <div className="w-16 h-0.5 bg-blue-400"></div>
                 </div>
               </div>
-              <div className="ml-0 md:ml-16">
+              <div className="ml-0 md:ml-14">
                 <p className="text-gray-300 leading-relaxed text-base md:text-lg whitespace-pre-line">
                   {currentCase.details.approach}
                 </p>
@@ -198,17 +212,17 @@ const CaseStudyDetails = () => {
             </div>
 
             {/* Result */}
-            <div className="mb-2">
-              <div className="flex items-start mb-6">
-                <div className="w-12 h-12 bg-[#6b9dc7]/10 rounded-lg flex items-center justify-center border border-[#6b9dc7]/30 mr-4 flex-shrink-0">
-                  <div className="w-6 h-6 bg-[#6b9dc7] rounded"></div>
+            <div className="mb-6">
+              <div className="flex items-start mb-4">
+                <div className="w-10 h-10 bg-[#0a2342] rounded-sm flex items-center justify-center border border-blue-500/30 mr-4 flex-shrink-0">
+                  <div className="w-4 h-4 bg-blue-400 rounded-sm"></div>
                 </div>
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">The Result</h2>
-                  <div className="w-16 h-0.5 bg-[#6b9dc7]"></div>
+                  <div className="w-16 h-0.5 bg-blue-400"></div>
                 </div>
               </div>
-              <div className="ml-0 md:ml-16">
+              <div className="ml-0 md:ml-14">
                 <p className="text-gray-300 leading-relaxed text-base md:text-lg whitespace-pre-line">
                   {currentCase.details.result}
                 </p>
@@ -216,23 +230,21 @@ const CaseStudyDetails = () => {
             </div>
 
             {/* Impact Metrics */}
-            <div className="mb-2">
-              <div className="flex items-start mb-6">
-                <div className="w-12 h-12 bg-[#6b9dc7]/10 rounded-lg flex items-center justify-center border border-[#6b9dc7]/30 mr-4 flex-shrink-0">
-                  <div className="w-6 h-6 bg-[#6b9dc7] rounded"></div>
+            <div className="mb-6">
+              <div className="flex items-start mb-4">
+                <div className="w-10 h-10 bg-[#0a2342] rounded-sm flex items-center justify-center border border-blue-500/30 mr-4 flex-shrink-0">
+                  <div className="w-4 h-4 bg-blue-400 rounded-sm"></div>
                 </div>
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Impact Metrics</h2>
-                  <div className="w-16 h-0.5 bg-[#6b9dc7]"></div>
+                  <div className="w-16 h-0.5 bg-blue-400"></div>
                 </div>
               </div>
-              <div className="ml-0 md:ml-16">
+              <div className="ml-0 md:ml-14">
                 <div className="grid md:grid-cols-2 gap-6">
                   {currentCase.details.impactMetrics && currentCase.details.impactMetrics.map((metric, index) => {
-                    // Assign icons based on metric value/label keywords
                     const getIcon = (value, label) => {
                       const text = `${value} ${label}`.toLowerCase();
-
                       if (text.includes('revenue') || text.includes('ancillary')) return DollarSign;
                       if (text.includes('process') || text.includes('faster') || text.includes('speed')) return Clock;
                       if (text.includes('align') || text.includes('collaboration') || text.includes('cross')) return Users;
@@ -245,20 +257,19 @@ const CaseStudyDetails = () => {
                       if (text.includes('scalable') || text.includes('framework')) return RefreshCw;
                       if (text.includes('personalization') || text.includes('insights')) return LineChart;
                       if (text.includes('systems') || text.includes('consolidated')) return Package;
-
-                      return Zap; // Default icon
+                      return Zap;
                     };
 
                     const Icon = getIcon(metric.value, metric.label);
 
                     return (
-                      <div key={index} className="rounded-lg p-6 transition-colors">
+                      <div key={index} className="bg-[#0a2342]/30 border border-white/5 rounded-sm p-6">
                         <div className="flex items-start gap-4">
-                          <div className="w-10 h-10  rounded-lg flex items-center justify-center  flex-shrink-0">
-                            <Icon className="text-[#6b9dc7]" size={20} />
+                          <div className="w-10 h-10 rounded-sm bg-[#0a2342] flex items-center justify-center flex-shrink-0 border border-blue-500/20">
+                            <Icon className="text-blue-400" size={20} />
                           </div>
                           <div className="flex-1">
-                            <div className="text-3xl md:text-4xl font-bold text-[#6b9dc7] mb-2">
+                            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">
                               {metric.value}
                             </div>
                             <p className="text-gray-300 text-sm md:text-base">
@@ -277,18 +288,18 @@ const CaseStudyDetails = () => {
       </div>
 
       {/* Related Case Studies */}
-      <div className=" py-4 ">
+      <div className="py-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Related Case Studies</h2>
-          <p className="text-gray-400 mb-12">Explore more success stories from our portfolio</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Related Case Studies</h2>
+          <p className="text-gray-400 mb-10 text-sm md:text-base">Explore more success stories from our portfolio</p>
 
-          <div className="grid md:grid-cols-2  gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {relatedCases.map((study, index) => (
               <div
                 key={study.slug}
                 ref={el => relatedRef.current[index] = el}
                 onClick={() => navigate(`/cases/${study.slug}`)}
-                className="group bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-[#6b9dc7] cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-[#6b9dc7]/20"
+                className="group bg-[#0a2342]/20 rounded-sm overflow-hidden border border-white/5 hover:border-blue-500/40 cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10"
               >
                 <div className="relative overflow-hidden h-56">
                   <img
@@ -296,22 +307,22 @@ const CaseStudyDetails = () => {
                     alt={study.title}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
-                  <span className="absolute top-4 left-4 bg-[#6b9dc7] text-white px-3 py-1 rounded text-xs font-semibold">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080f1d] via-[#080f1d]/40 to-transparent"></div>
+                  <span className="absolute top-4 left-4 bg-[#0a2342] text-white px-3 py-1 rounded-sm text-xs font-semibold uppercase tracking-wider border border-white/10">
                     {study.category}
                   </span>
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-[#6b9dc7] transition-colors">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
                     {study.title}
                   </h3>
-                  <p className="text-gray-400 mb-4 line-clamp-2">
+                  <p className="text-gray-400 mb-4 line-clamp-2 text-sm">
                     {study.overview}
                   </p>
-                  <div className="flex items-center text-[#6b9dc7] font-semibold hover:text-[#6b9dc7] transition-colors group/btn text-sm">
+                  <div className="flex items-center text-blue-400 font-semibold group-hover:text-blue-300 transition-colors text-sm">
                     <span className="mr-2">Read Case Study</span>
-                    <ChevronRight className="transform group-hover/btn:translate-x-1 transition-transform" size={18} />
+                    <ChevronRight className="transform group-hover:translate-x-1 transition-transform" size={18} />
                   </div>
                 </div>
               </div>
@@ -321,18 +332,18 @@ const CaseStudyDetails = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="">
+      <div className="border-t border-white/5 bg-[#0a2342]/15">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Achieve Similar Results?
             </h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-gray-300 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
               Let's discuss how we can help transform your organization and deliver measurable outcomes.
             </p>
             <CalendlyPopup
               text="BOOK A FREE CONSULTATION"
-              className="inline-flex items-center bg-[#6b9dc7] text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-lg shadow-[#6b9dc7]/30 border-none cursor-pointer"
+              className="inline-flex items-center bg-[#ffffff] text-[#000000] px-8 py-4 rounded-sm font-semibold hover:bg-gray-200 transition-all shadow-lg hover:scale-105 cursor-pointer text-sm"
             />
           </div>
         </div>

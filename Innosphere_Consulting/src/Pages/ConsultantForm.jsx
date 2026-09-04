@@ -23,7 +23,7 @@ export default function ConsultantForm() {
 
   const handleChange = (field, value) => {
     if (field === 'businessGoal') {
-      const notSureOption = 'Not sure — I need expert advice';
+      const notSureOption = 'Not sure   I need expert advice';
       
       // If clicking "Not sure" option
       if (value === notSureOption) {
@@ -118,7 +118,7 @@ export default function ConsultantForm() {
     { label: 'Automate and digitize our operations', icon: <Cpu size={20} /> },
     { label: 'Develop a digital product or SaaS platform', icon: <Layers size={20} /> },
     { label: 'Improve team efficiency & performance', icon: <Users size={20} /> },
-    { label: 'Not sure — I need expert advice', icon: <Phone size={20} /> }
+    { label: 'Not sure   I need expert advice', icon: <Phone size={20} /> }
   ];
 
   const businessSizeOptions = [

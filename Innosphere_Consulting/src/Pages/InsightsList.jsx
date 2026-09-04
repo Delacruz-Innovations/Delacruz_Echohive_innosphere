@@ -4,21 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { blogService } from '../services/blogService';
 import insightsData from '../Components/insightsData';
 
-const defaultCategories = [
-  'All',
-  'Business Transformation',
-  'Process & Operations',
-  'Digital Transformation',
-  'AI & Automation',
-  'Cybersecurity',
-  'UAE Business'
-];
-
 const InsightsList = () => {
   const navigate = useNavigate();
   const heroRef = useRef(null);
-  const [showAll, setShowAll] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('All');
   const [insights, setInsights] = useState(insightsData.insights || []);
   const [loading, setLoading] = useState(true);
 
@@ -58,52 +46,40 @@ const InsightsList = () => {
         heroRef.current.style.transform = 'translateY(0)';
       }, 100);
     }
-  }, [showAll, activeCategory]);
+  }, []);
 
-  const filteredInsights = activeCategory === 'All'
-    ? insights
-    : insights.filter(i => i.category?.toLowerCase() === activeCategory.toLowerCase());
-
-  const displayedInsights = showAll ? filteredInsights : filteredInsights.slice(0, 9);
+  const displayedInsights = insights;
 
   const handleInsightClick = (slug) => {
     navigate(`/insights/${slug}`);
   };
 
   return (
-    <div className="min-h-screen bg-[#000000] text-[#ffffff] pt-36 pb-24">
-      {/* Hero Section */}
-      <section className="relative pb-16 overflow-hidden">
+    <div className="min-h-screen bg-[#080f1d] text-[#ffffff] pb-24">
+      {/* Hero Section with Image Background */}
+      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-16">
+        {/* Background Image with Midnight Navy Overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80')`
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/90 via-[#080f1d]/75 to-[#080f1d]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#0a2342]/40 rounded-full blur-[130px]" />
+        </div>
+
         <div ref={heroRef} className="container mx-auto px-6 relative z-10 text-center max-w-5xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-6">
-            <Sparkles className="w-4 h-4 text-blue-400" />
-            Intelligence Hub & Executive Perspectives
-          </div>
+        
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-[#ffffff]">
             Strategic <span className="text-blue-400">Insights & Analysis</span>
           </h1>
 
-          <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             Decoding digital acceleration, operating models, and technology transformation across the UAE and global markets.
           </p>
-
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {defaultCategories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 rounded-sm text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
-                  activeCategory === cat
-                    ? 'bg-[#ffffff] text-[#000000] font-bold shadow-lg scale-105'
-                    : 'bg-[#0a2342]/40 text-gray-300 hover:bg-[#0a2342] hover:text-[#ffffff]'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 

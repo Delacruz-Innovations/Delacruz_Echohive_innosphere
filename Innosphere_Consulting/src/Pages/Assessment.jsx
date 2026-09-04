@@ -22,7 +22,8 @@ const questions = [
     id: 1,
     pillar: "Business Transformation & Performance",
     icon: Layers,
-    question: "How clearly defined and documented are your core operational processes (e.g., AS-IS / TO-BE workflows)?",
+    question: "How clearly defined and documented are your core operational processes?",
+    multiSelect: true,
     options: [
       { text: "Mostly ad-hoc or tribal knowledge; limited written documentation.", score: 1 },
       { text: "Partially documented in silos; rarely updated or reviewed.", score: 2 },
@@ -127,8 +128,21 @@ export default function Assessment() {
   const [answers, setAnswers] = useState({});
   const [isCompleted, setIsCompleted] = useState(false);
 
-  const handleSelectOption = (questionId, score) => {
-    setAnswers(prev => ({ ...prev, [questionId]: score }));
+  const handleSelectOption = (questionId, score, isMulti = false) => {
+    if (isMulti) {
+      setAnswers(prev => {
+        const current = Array.isArray(prev[questionId])
+          ? prev[questionId]
+          : (prev[questionId] !== undefined ? [prev[questionId]] : []);
+        const exists = current.includes(score);
+        const updated = exists
+          ? current.filter(s => s !== score)
+          : [...current, score];
+        return { ...prev, [questionId]: updated };
+      });
+    } else {
+      setAnswers(prev => ({ ...prev, [questionId]: score }));
+    }
   };
 
   const handleNext = () => {
@@ -152,7 +166,14 @@ export default function Assessment() {
   };
 
   // Calculate results
-  const totalScore = Object.values(answers).reduce((acc, curr) => acc + curr, 0);
+  const totalScore = questions.reduce((acc, q) => {
+    const ans = answers[q.id];
+    if (Array.isArray(ans)) {
+      if (ans.length === 0) return acc;
+      return acc + (ans.reduce((sum, val) => sum + val, 0) / ans.length);
+    }
+    return acc + (ans || 0);
+  }, 0);
   const maxScore = questions.length * 4;
   const percentage = Math.round((totalScore / maxScore) * 100);
 
@@ -175,25 +196,38 @@ export default function Assessment() {
 
   const currentQ = questions[currentStep];
   const Icon = currentQ ? currentQ.icon : Layers;
-  const isAnswered = answers[currentQ?.id] !== undefined;
+  const currentAnswer = answers[currentQ?.id];
+  const isAnswered = currentQ?.multiSelect
+    ? Array.isArray(currentAnswer) && currentAnswer.length > 0
+    : currentAnswer !== undefined;
 
   return (
-    <div className="min-h-screen bg-[#000000] text-white pt-36 pb-24 px-4 sm:px-6 lg:px-8">
-      {/* Header / Hero */}
-      <div className="max-w-4xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-4">
-          <Zap className="w-4 h-4 text-blue-400" />
-          Proprietary Diagnostic Framework
+    <div className="min-h-screen bg-[#080f1d] text-white pb-24">
+      {/* Hero Section with Image Background */}
+      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-14">
+        {/* Background Image with Midnight Navy Overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80')`
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/90 via-[#080f1d]/75 to-[#080f1d]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#0a2342]/40 rounded-full blur-[130px]" />
         </div>
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 text-[#ffffff]">
-          Business Transformation Assessment™️
-        </h1>
-        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-          Evaluate your organisation's operational efficiency, digital strategy, AI readiness, and cybersecurity resilience in under 3 minutes.
-        </p>
-      </div>
 
-      <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center relative z-10 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 text-[#ffffff]">
+            Business Transformation Assessment™️
+          </h1>
+          <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Evaluate your organisation's operational efficiency, digital strategy, AI readiness, and cybersecurity resilience in under 3 minutes.
+          </p>
+        </div>
+      </section>
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {!isCompleted ? (
           <div className="bg-[#0a2342]/20 backdrop-blur-xl rounded-sm p-6 sm:p-10 shadow-2xl relative overflow-hidden">
             {/* Top Progress Bar */}
@@ -212,13 +246,20 @@ export default function Assessment() {
 
             {/* Question Card */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-sm bg-[#0a2342] flex items-center justify-center text-blue-400">
-                  <Icon className="w-5 h-5" />
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-sm bg-[#0a2342] flex items-center justify-center text-blue-400">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+                    {currentQ.pillar}
+                  </span>
                 </div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
-                  {currentQ.pillar}
-                </span>
+                {currentQ.multiSelect && (
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 font-medium">
+                    Select all that apply
+                  </span>
+                )}
               </div>
               <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
                 {currentQ.question}
@@ -227,21 +268,31 @@ export default function Assessment() {
               {/* Options */}
               <div className="space-y-3">
                 {currentQ.options.map((option, idx) => {
-                  const selected = answers[currentQ.id] === option.score;
+                  const selected = currentQ.multiSelect
+                    ? Array.isArray(answers[currentQ.id]) && answers[currentQ.id].includes(option.score)
+                    : answers[currentQ.id] === option.score;
+
                   return (
                     <button
                       key={idx}
-                      onClick={() => handleSelectOption(currentQ.id, option.score)}
-                      className={`w-full text-left p-4 rounded-sm transition-all duration-200 flex items-start gap-4 ${
+                      type="button"
+                      onClick={() => handleSelectOption(currentQ.id, option.score, currentQ.multiSelect)}
+                      className={`w-full text-left p-4 rounded-sm transition-all duration-200 flex items-start gap-4 cursor-pointer border ${
                         selected
-                          ? 'bg-[#0a2342] text-white shadow-lg'
-                          : 'bg-[#0a2342]/20 hover:bg-[#0a2342]/40 text-gray-300'
+                          ? 'bg-[#0a2342] border-blue-500/60 text-white shadow-lg'
+                          : 'bg-[#0a2342]/20 border-transparent hover:bg-[#0a2342]/40 hover:border-gray-800 text-gray-300'
                       }`}
                     >
-                      <div className={`w-5 h-5 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
-                        selected ? 'bg-blue-500 text-white' : 'bg-[#0a2342]'
+                      <div className={`w-5 h-5 ${currentQ.multiSelect ? 'rounded-sm' : 'rounded-full'} border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                        selected 
+                          ? 'bg-blue-500 border-blue-500 text-white' 
+                          : 'bg-[#0a2342]/40 border-gray-600'
                       }`}>
-                        {selected && <Check className="w-3.5 h-3.5" />}
+                        {selected && (
+                          currentQ.multiSelect 
+                            ? <Check className="w-3.5 h-3.5 stroke-[3]" />
+                            : <div className="w-2 h-2 rounded-full bg-white" />
+                        )}
                       </div>
                       <span className="text-sm sm:text-base leading-relaxed">{option.text}</span>
                     </button>

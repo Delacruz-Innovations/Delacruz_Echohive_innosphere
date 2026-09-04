@@ -50,7 +50,7 @@ We offer competitive milestone-based engagements and retainer plans. Book a free
     keywords: ['consultation', 'schedule', 'appointment', 'meeting', 'book', 'demo', 'free'],
     response: `📞 Book a FREE 30-minute consultation!
 
-📧 Email: connect@innosphereconsulting.ae
+📧 Email: info@innosphereconsulting.ae
 📱 WhatsApp: Available on our website
 🌐 Book Online: Use our "Book a Free Consultation" button
 
@@ -91,8 +91,8 @@ Every solution is crafted to meet regulatory standards and strategic growth goal
   },
   
   location: {
-    keywords: ['location', 'where', 'office', 'address', 'uae', 'dubai', 'ajman'],
-    response: `📍 Office: Dubai, UAE
+    keywords: ['location', 'where', 'office', 'address', 'uae', 'dubai', 'ajman', 'internet city'],
+    response: `📍 Office: Dubai Internet City, UAE
 
 We serve clients across Dubai, the UAE, MENA region, and internationally. Connect with us to schedule an in-person or virtual consultation!`
   },
@@ -182,7 +182,7 @@ const allQuestions = [
   "Can I schedule a consultation online?",
   "Do you respond to emails quickly?",
   "Are virtual consultations available?",
-  "Can I visit your office in Lagos?",
+  "Can I visit your office in Dubai Internet City?",
   "How do I request a demo?",
   "How do I subscribe to your newsletter?",
   "Can you provide testimonials?",
@@ -318,7 +318,7 @@ trackChatbotInteraction('Chatbot Opened');
 • Industries We Serve
 • Case Studies & Portfolio
 
-📧 connect@innosphereconsulting.ae
+📧 info@innosphereconsulting.ae
 📱 WhatsApp us via our website
 
 What would you like to know?`;

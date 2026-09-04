@@ -9,29 +9,34 @@ import {
   Instagram, 
   Youtube,
   Send,
+  Loader2,
+  CheckCircle2
 } from 'lucide-react';
-import Logo from '../assets/Logo.png'
+import Logo from '../assets/Logo.png';
 import { Link } from 'react-router-dom';
-import { trackSocialEngagement } from '../utils/analytics';
+import { trackSocialEngagement, trackNewsletterSignup } from '../utils/analytics';
+import { newsletterService } from '../services/newsletterService';
+
 const Footer = () => {
 const [email, setEmail] = useState('');
 const [subscribed, setSubscribed] = useState(false);
+const [successMsg, setSuccessMsg] = useState('');
 const [isSubmitting, setIsSubmitting] = useState(false);
 const [error, setError] = useState('');
 
 const handleSubscribe = async (e) => {
   e.preventDefault();
   
-  if (!email) {
-    setError('Please enter your email');
-    setTimeout(() => setError(''), 3000);
+  if (!email || !email.trim()) {
+    setError('Please enter your email address');
+    setTimeout(() => setError(''), 4000);
     return;
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    setError('Please enter a valid email');
-    setTimeout(() => setError(''), 3000);
+  if (!emailRegex.test(email.trim())) {
+    setError('Please enter a valid email address');
+    setTimeout(() => setError(''), 4000);
     return;
   }
 
@@ -39,35 +44,27 @@ const handleSubscribe = async (e) => {
   setError('');
 
   try {
-    // Your Google Apps Script Web App URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxnE1s_tnRV4lNJOcqtHqBNpsxvxnqd2tyNF-7bUkjB/dev';
-
-    // Send to Google Sheets
-    const response = await fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        subscribedAt: new Date().toLocaleString(),
-        status: 'active'
-      })
-    });
-
-    // Since mode is 'no-cors', we assume success if no error is thrown
-    console.log('Newsletter subscription successful');
+    const result = await newsletterService.subscribe(email.trim(), 'footer');
+    
+    trackNewsletterSignup(email.trim());
+    
+    if (result.alreadySubscribed) {
+      setSuccessMsg('You are already subscribed to our executive briefings.');
+    } else {
+      setSuccessMsg('Thank you for subscribing to Innosphere intelligence.');
+    }
+    
     setSubscribed(true);
     setEmail('');
     
-    // Hide success message after 5 seconds
-    setTimeout(() => setSubscribed(false), 5000);
-    
-  } catch (error) {
-    console.error('Error subscribing to newsletter: ', error);
-    setError('Failed to subscribe. Please try again.');
-    setTimeout(() => setError(''), 3000);
+    setTimeout(() => {
+      setSubscribed(false);
+      setSuccessMsg('');
+    }, 6000);
+  } catch (err) {
+    console.error('Error subscribing to newsletter via Firebase: ', err);
+    setError('Subscription failed. Please try again.');
+    setTimeout(() => setError(''), 4000);
   } finally {
     setIsSubmitting(false);
   }
@@ -83,8 +80,8 @@ const handleSubscribe = async (e) => {
   const contactInfo = [
     { 
       icon: Mail, 
-      text: 'connect@innosphereconsulting.ae',
-      href: 'mailto:connect@innosphereconsulting.ae'
+      text: 'info@innosphereconsulting.ae',
+      href: 'mailto:info@innosphereconsulting.ae'
     },
     { 
       icon: Phone, 
@@ -93,8 +90,8 @@ const handleSubscribe = async (e) => {
     },
     { 
       icon: MapPin, 
-      text: 'Dubai, UAE',
-      href: 'https://maps.google.com/?q=Ajman+Media+City+Free+Zone'
+      text: 'Dubai Internet City, UAE',
+      href: 'https://maps.google.com/?q=Dubai+Internet+City+UAE'
     },
     { 
       icon: Linkedin, 
@@ -105,7 +102,7 @@ const handleSubscribe = async (e) => {
   ];
 
   return (
-    <footer className="bg-[#000000] relative overflow-hidden">
+    <footer className="bg-[#080f1d] relative overflow-hidden border-t border-white/5">
       {/* Subtle secondary ambient glow */}
       <div className="absolute inset-0 from-[#0a2342]/15 via-transparent to-[#0a2342]/10 pointer-events-none"></div>
 
@@ -127,37 +124,42 @@ const handleSubscribe = async (e) => {
               </p>
 
               {/* Newsletter */}
-           <div className="max-w-md">
-
-  <form onSubmit={handleSubscribe} className="relative">
-    <input
-      type="email"a
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      placeholder="Enter your email"
-      required
-      disabled={isSubmitting}
-      className="w-full px-4 py-2.5 pr-12 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-300 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:bg-gray-900 transition-all disabled:opacity-50"
-    />
-    <button
-      type="submit"
-      disabled={isSubmitting}
-      className="absolute right-1.5 top-1/2 -translate-y-1/2 from-blue-600 to-blue-500 text-gray-300 p-2 rounded-md hover:shadow-lg hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-    >
-      <Send className="w-4 h-4" />
-    </button>
-  </form>
-  {subscribed && (
-    <p className="text-green-400 text-xs mt-2 animate-pulse">
-      ✓ Successfully subscribed!
-    </p>
-  )}
-  {error && (
-    <p className="text-red-400 text-xs mt-2">
-      {error}
-    </p>
-  )}
-</div>
+            <div className="max-w-md">
+              <form onSubmit={handleSubscribe} className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your executive email"
+                  required
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-2.5 pr-12 bg-[#0a2342]/40 border border-gray-700/60 rounded-lg text-gray-200 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-400 focus:bg-[#0a2342]/70 transition-all disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  aria-label="Subscribe to newsletter"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-md transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center shadow-md shadow-blue-900/30"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                </button>
+              </form>
+              {subscribed && (
+                <div className="flex items-center gap-1.5 text-emerald-400 text-xs mt-2.5 font-medium">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
+                  <span>{successMsg || 'Successfully subscribed!'}</span>
+                </div>
+              )}
+              {error && (
+                <p className="text-red-400 text-xs mt-2.5 font-medium">
+                  {error}
+                </p>
+              )}
+            </div>
   <div className="flex flex-wrap gap-3">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;

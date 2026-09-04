@@ -4,8 +4,8 @@ import CalendlyPopup from './CalendlyPopup';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center bg-[#000000] overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8">
-      {/* 1. Starry Cosmos & Pure Black Backdrop */}
+    <section className="relative min-h-[92vh] flex items-center justify-center bg-[#080f1d] overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8">
+      {/* 1. Starry Cosmos & Midnight Navy Backdrop */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Starry cosmos overlay */}
         <div 
@@ -15,12 +15,12 @@ const Hero = () => {
           }}
         />
 
-        {/* Ambient gradients transitioning to pure #000000 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#000000]/95 via-[#0a2342]/20 to-[#000000]" />
+        {/* Ambient gradients transitioning to #080f1d */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/95 via-[#0a2342]/30 to-[#080f1d]" />
         
         {/* Soft Secondary #0a2342 atmospheric illumination */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#000000] via-[#0a2342]/20 to-transparent" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[#0a2342]/25 rounded-sm blur-[130px]" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#080f1d] via-[#0a2342]/30 to-transparent" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[#0a2342]/35 rounded-sm blur-[130px]" />
       </div>
 
       {/* 2. Hero Center Content */}
@@ -36,7 +36,7 @@ const Hero = () => {
 
         {/* Main Hero Headline */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal text-[#ffffff] tracking-tight leading-[1.12] sm:leading-[1.15] max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-3 duration-800">
-          PMO Advisory, Digital<br className="hidden sm:inline" /> Transformation &amp;<br className="hidden sm:inline" /> Business Consulting —<br className="hidden sm:inline" /> UAE &amp; Global
+          UAE(GCC) Digital<br className="hidden sm:inline" /> Transformation &amp;<br className="hidden sm:inline" /> Business Consulting <br className="hidden sm:inline" />&amp; PMO Advisory
         </h1>
 
         {/* Subtitle / Description */}

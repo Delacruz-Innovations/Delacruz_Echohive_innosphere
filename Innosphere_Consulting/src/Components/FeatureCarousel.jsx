@@ -9,24 +9,24 @@ const FeatureCarousel = () => {
     {
       id: 1,
       title: "Manage content that converts, at scale",
-      description: "Webflow's visual, composable CMS lets you create and manage content that drives results — while built-in SEO and AEO tools help you optimize content for both traditional and AI-driven search.",
-      cta: "Get started — it's free",
+      description: "Webflow's visual, composable CMS lets you create and manage content that drives results   while built-in SEO and AEO tools help you optimize content for both traditional and AI-driven search.",
+      cta: "Get started   it's free",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
       color: "bg-[#0a1929]/90"
     },
     {
       id: 2,
       title: "Manage content that converts, at scale",
-      description: "Webflow's visual, composable CMS lets you create and manage content that drives results — while built-in SEO and AEO tools help you optimize content for both traditional and AI-driven search.",
-      cta: "Get started — it's free",
+      description: "Webflow's visual, composable CMS lets you create and manage content that drives results   while built-in SEO and AEO tools help you optimize content for both traditional and AI-driven search.",
+      cta: "Get started   it's free",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
       color: "bg-[#0a1929]/90"
     },
     {
       id: 3,
       title: "Manage content that converts, at scale",
-      description: "Webflow's visual, composable CMS lets you create and manage content that drives results — while built-in SEO and AEO tools help you optimize content for both traditional and AI-driven search.",
-      cta: "Get started — it's free",
+      description: "Webflow's visual, composable CMS lets you create and manage content that drives results   while built-in SEO and AEO tools help you optimize content for both traditional and AI-driven search.",
+      cta: "Get started   it's free",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
       color: "bg-[#0a1929]/90"
     }

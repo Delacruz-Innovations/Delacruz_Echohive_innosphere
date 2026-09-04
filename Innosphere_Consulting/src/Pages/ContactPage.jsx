@@ -1,241 +1,179 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, Mail, Phone, MapPin } from 'lucide-react';
+import React from 'react';
+import { Mail, MapPin, Calendar, Clock, ArrowRight, MessageSquare } from 'lucide-react';
 import { trackPhoneClick, trackEmailClick } from '../utils/analytics';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import { trackContactSubmission } from '../utils/analytics';
 import CalendlyPopup from '../Components/CalendlyPopup';
 
+const WhatsAppIcon = ({ className = "w-6 h-6" }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+  </svg>
+);
+
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    countryCode: '+971',
-    phone: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError('');
-    setSubmitSuccess(false);
-
-    trackContactSubmission('Contact Form');
-
-    try {
-      const response = await fetch('https://formspree.io/f/mjkpnawy', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: `${formData.countryCode}${formData.phone}`,
-          subject: formData.subject,
-          message: formData.message
-        })
-      });
-
-      if (response.ok) {
-        setSubmitSuccess(true);
-        setFormData({
-          fullName: '',
-          email: '',
-          countryCode: '+971',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        setSubmitError('Something went wrong. Please try again later.');
-      }
-    } catch (error) {
-      setSubmitError('Failed to send message. Please check your internet connection.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '447342274470';
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    'Hello Innosphere Consulting, I would like to inquire about your advisory and consulting services.'
+  )}`;
 
   return (
-    <div className="min-h-screen bg-[#000000] text-[#ffffff] pt-32 pb-20">
-      {/* Main Content */}
-      <div className="container mx-auto px-8 py-16">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl sm:text-6xl font-bold text-[#ffffff] mb-4">Contact Us</h1>
-          <p className="text-gray-300 text-lg">Connect with our executive advisory team across the UAE &amp; globally</p>
+    <div className="min-h-screen bg-[#080f1d] text-[#ffffff] pb-24">
+      {/* Hero Section with Image Background */}
+      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-14">
+        {/* Background Image with Midnight Navy Overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80')`
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/90 via-[#080f1d]/75 to-[#080f1d]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-[#0a2342]/40 rounded-full blur-[130px]" />
         </div>
 
-        {/* Contact Form and Info */}
-        <div className="max-w-5xl mx-auto bg-[#0a2342]/20 backdrop-blur-sm rounded-sm p-6 md:p-12 shadow-2xl">
-          <div className="gap-12">
-            {/* Left Side - Contact Info */}
+        <div className="container mx-auto px-4 sm:px-8 relative z-10 text-center max-w-4xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-500/20">
+            <MessageSquare className="w-4 h-4 text-blue-400" />
+            Executive Advisory & Inquiries
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-bold text-[#ffffff] tracking-tight mb-4">
+            Get in Touch
+          </h1>
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            Connect directly with our senior consultants across Dubai Internet City, the UAE, and global markets. Choose the channel that best suits your timeline.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Action Grid */}
+      <div className="container mx-auto px-4 sm:px-8">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Left Card: WhatsApp Direct DM (Featured Hero CTA) */}
+          <div className="lg:col-span-7 bg-gradient-to-br from-[#0c2b20]/60 via-[#0a2342]/40 to-[#04121e]/80 backdrop-blur-xl rounded-sm p-8 sm:p-10 border border-[#25D366]/30 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+            {/* Ambient Background Glow */}
+            <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#25D366]/15 rounded-full blur-3xl pointer-events-none" />
+            
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#ffffff] mb-6">Let's talk!</h2>
-              <div className="mb-8">
-                <CalendlyPopup
-                  text="BOOK A FREE CONSULTATION"
-                  className="w-full py-4 bg-[#ffffff] hover:bg-gray-200 text-[#000000] font-semibold rounded-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 cursor-pointer text-sm"
-                />
-                <div className="flex items-center my-6">
-                  <div className="flex-1 bg-[#0a2342]/50 h-px"></div>
-                  <span className="px-4 text-gray-400 text-xs font-semibold uppercase tracking-wider">OR SEND A MESSAGE</span>
-                  <div className="flex-1 bg-[#0a2342]/50 h-px"></div>
-                </div>
+              {/* Active Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] text-xs font-semibold uppercase tracking-wider mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+                Fastest Response • Direct WhatsApp DM
               </div>
-              <p className="text-gray-300 mb-8">
-                Prefer to talk directly? Book a call using the button above for the fastest response.
+
+              <h2 className="text-2xl sm:text-4xl font-bold text-white mb-3">
+                Chat Directly with Our Team
+              </h2>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-8">
+                Skip the traditional contact forms. Message our consulting advisory desk on WhatsApp for instant discussions, proposal inquiries, or urgent project alignment.
               </p>
 
-              <div className="space-y-6" onClick={trackPhoneClick}>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0">
-                    <Mail size={20} className="text-[#ffffff]" />
+              {/* Highlights */}
+              <div className="space-y-3.5 mb-8">
+                <div className="flex items-start gap-3 text-sm text-gray-200">
+                  <div className="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] text-xs flex-shrink-0 mt-0.5">
+                    ✓
                   </div>
-                  <div>
-                    <p className="text-white font-medium">connect@innosphereconsulting.ae</p>
-                  </div>
+                  <span>Instant communication with Senior Business & IT Advisors</span>
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0">
-                    <MapPin size={20} className="text-[#ffffff]" />
+                <div className="flex items-start gap-3 text-sm text-gray-200">
+                  <div className="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] text-xs flex-shrink-0 mt-0.5">
+                    ✓
                   </div>
-                  <div>
-                    <p className="text-white font-medium">
-                      Dubai, UAE
-                    </p>
+                  <span>Rapid turnaround for RFPs, scoping calls, and custom proposals</span>
+                </div>
+                <div className="flex items-start gap-3 text-sm text-gray-200">
+                  <div className="w-5 h-5 rounded-full bg-[#25D366]/20 flex items-center justify-center text-[#25D366] text-xs flex-shrink-0 mt-0.5">
+                    ✓
                   </div>
+                  <span>Direct, confidential & enterprise NDA-compliant communication</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Side - Form */}
-            <div className="space-y-6 mt-8" onClick={trackEmailClick}>
-              <div>
-                <label className="block text-gray-400 text-sm mb-2">FULL NAME</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-[#0a2342]/30 rounded-sm text-white placeholder-gray-500 focus:outline-none transition"
-                  placeholder="Enter your full name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-400 text-sm mb-2">EMAIL</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-[#0a2342]/30 rounded-sm text-white placeholder-gray-500 focus:outline-none transition"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-400 text-sm mb-2">PHONE</label>
-                <PhoneInput
-                  country={'ae'}
-                  value={formData.phone}
-                  onChange={(phone, country) => {
-                    setFormData({
-                      ...formData,
-                      phone: phone,
-                      countryCode: '+' + (country.dialCode || '971')
-                    });
-                  }}
-                  containerClass="w-full"
-                  inputClass="w-full !rounded-sm"
-                  inputStyle={{
-                    width: '100%',
-                    height: '48px',
-                    backgroundColor: 'rgba(10, 35, 66, 0.3)',
-                    borderRadius: '2px',
-                    color: 'white',
-                    fontSize: '1rem',
-                    paddingLeft: '48px',
-                    border: 'none'
-                  }}
-                  buttonStyle={{
-                    backgroundColor: 'rgba(10, 35, 66, 0.3)',
-                    borderRadius: '2px',
-                    border: 'none'
-                  }}
-                  dropdownStyle={{
-                    backgroundColor: '#000000',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '2px'
-                  }}
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-400 text-sm mb-2">SUBJECT</label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-[#0a2342]/30 rounded-sm text-white placeholder-gray-500 focus:outline-none transition"
-                  placeholder="Subject"
-                />
-              </div>
-
-              <div>
-                <label className="block text-gray-400 text-sm mb-2">MESSAGE</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="5"
-                  className="w-full px-4 py-3 bg-[#0a2342]/30 rounded-sm text-white placeholder-gray-500 focus:outline-none transition resize-none"
-                  placeholder="Your message"
-                />
-              </div>
-
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className="w-full py-4 bg-[#ffffff] text-[#000000] font-semibold rounded-sm hover:bg-gray-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            {/* WhatsApp CTA Action */}
+            <div>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={trackPhoneClick}
+                className="w-full py-4 px-6 bg-[#25D366] hover:bg-[#20bd5a] text-[#000000] font-bold rounded-sm flex items-center justify-center gap-3 text-sm sm:text-base tracking-wide shadow-xl shadow-[#25D366]/25 hover:shadow-[#25D366]/40 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
               >
-                {isSubmitting ? 'Sending...' : 'Get in touch'}
-              </button>
-
-              {/* Success Message */}
-              {submitSuccess && (
-                <div className="p-4 bg-[#0a2342]/40 rounded-sm text-blue-400 text-center">
-                  ✓ Message sent successfully! We'll get back to you soon.
-                </div>
-              )}
-
-              {/* Error Message */}
-              {submitError && (
-                <div className="p-4 bg-red-500/20 rounded-sm text-red-400 text-center">
-                  {submitError}
-                </div>
-              )}
+                <WhatsAppIcon className="w-6 h-6 fill-current flex-shrink-0" />
+                <span>CHAT ON WHATSAPP NOW</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </a>
+              <p className="text-center text-xs text-gray-400 mt-3">
+                Official WhatsApp Channel • Typically replies within minutes
+              </p>
             </div>
           </div>
+
+          {/* Right Card: Calendly & Channels */}
+          <div className="lg:col-span-5 bg-[#0a2342]/20 backdrop-blur-xl rounded-sm p-8 sm:p-10 border border-blue-900/40 shadow-2xl flex flex-col justify-between">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-6">
+                <Calendar className="w-3.5 h-3.5" />
+                Structured Discovery
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                Book a Consultation
+              </h2>
+              <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                Prefer a scheduled session? Pick a convenient time on our calendar for a 30-minute introductory strategy consultation.
+              </p>
+
+              <CalendlyPopup
+                text="SCHEDULE 30-MIN STRATEGY CALL"
+                className="w-full py-3.5 px-5 bg-white hover:bg-gray-200 text-black font-semibold rounded-sm hover:shadow-xl hover:scale-[1.01] transition-all duration-300 cursor-pointer text-xs sm:text-sm tracking-wide"
+              />
+            </div>
+
+            {/* Direct Info List */}
+            <div className="pt-8 mt-8 border-t border-gray-800 space-y-5">
+              <div className="flex items-start gap-4" onClick={trackEmailClick}>
+                <div className="w-11 h-11 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0 text-blue-400">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Email Desk</p>
+                  <a 
+                    href="mailto:info@innosphereconsulting.ae" 
+                    className="text-white font-medium hover:text-blue-400 transition-colors text-sm break-all"
+                  >
+                    info@innosphereconsulting.ae
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0 text-blue-400">
+                  <MapPin size={18} />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Headquarters</p>
+                  <p className="text-white font-medium text-sm">
+                    Dubai Internet City, UAE
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0 text-blue-400">
+                  <Clock size={18} />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Operating Hours</p>
+                  <p className="text-white font-medium text-sm">
+                    Mon - Fri: 9:00 AM - 6:00 PM (GST)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

@@ -142,7 +142,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="bg-[#000000] text-white py-16 px-6 overflow-hidden">
+    <div className="bg-[#080f1d] text-white py-16 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16" ref={titleRef}>

@@ -39,7 +39,7 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="bg-[#000000] min-h-screen text-[#ffffff] pt-24 pb-20">
+    <div className="bg-[#080f1d] min-h-screen text-[#ffffff] pt-24 pb-20">
       {/* Hero Section */}
       <div className="relative pt-16 pb-16 px-6 max-w-7xl mx-auto">
         <div ref={heroRef} className="max-w-3xl">
@@ -81,10 +81,10 @@ const ServicesPage = () => {
                 />
 
                 {/* Dark Overlay for contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/70 to-[#000000]/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080f1d] via-[#080f1d]/70 to-[#080f1d]/40" />
 
                 {/* Secondary Accent Overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br from-[#0a2342]/70 to-[#000000]/90 transition-opacity duration-500 ${showContent ? 'opacity-95' : 'opacity-0'}`} />
+                <div className={`absolute inset-0 bg-gradient-to-br from-[#0a2342]/70 to-[#080f1d]/90 transition-opacity duration-500 ${showContent ? 'opacity-95' : 'opacity-0'}`} />
 
                 {/* Title - Always visible when collapsed */}
                 <div className={`absolute bottom-0 left-0 right-0 p-8 text-[#ffffff] transition-all duration-500 ${showContent ? 'opacity-0 transform -translate-y-4' : 'opacity-100'}`}>
@@ -163,10 +163,7 @@ const ServicesPage = () => {
           <p className="text-gray-300 text-base mb-8 max-w-xl mx-auto leading-relaxed">
             Our team of experts can help you design and implement tailored enterprise roadmaps with measurable business impact.
           </p>
-          <CalendlyPopup
-            text="BOOK A FREE CONSULTATION"
-            className="inline-flex items-center bg-[#ffffff] hover:bg-gray-200 text-[#000000] px-8 py-3.5 rounded-sm font-semibold transition-all shadow-lg hover:scale-105 cursor-pointer text-sm"
-          />
+       
         </div>
       </div>
     </div>

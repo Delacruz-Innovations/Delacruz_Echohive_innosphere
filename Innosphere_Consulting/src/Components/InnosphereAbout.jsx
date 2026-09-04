@@ -18,7 +18,7 @@ const InnosphereAbout = () => {
     {
       type: "RESEARCH REPORT",
       title: "Sovereign AI: From managing risk to accelerating growth",
-      description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+      description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
       image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=400&h=300&fit=crop",
       color: "bg-slate-900/95"
     },
@@ -27,42 +27,42 @@ const InnosphereAbout = () => {
       title: "Holiday Shopping 2025: Tis the season for smarter spending and personalized joy",
       image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop",
       color: "bg-slate-900/95",
-       description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+       description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
     },
     {
       type: "CASE STUDY",
       title: "Poste Italiane pivots from postal service to national platform",
       image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=400&h=300&fit=crop",
       color: "bg-slate-900/95",
-       description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+       description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
     },
     {
       type: "RESEARCH REPORT",
       title: "Learning, reinvented. Accelerating human-AI collaboration",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
       color: "bg-slate-900/95",
-       description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+       description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
     },
     {
       type: "CASE STUDY",
       title: "Bristol Myers Squibb accelerates drug development with generative AI",
       image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop",
       color: "bg-slate-900/95",
-       description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+       description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
     },
     {
       type: "RESEARCH REPORT",
       title: "4 critical actions to take now to strengthen your cyber defenses",
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=300&fit=crop",
       color: "bg-slate-900/95",
-       description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+       description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
     },
     {
       type: "RESEARCH REPORT",
       title: "AI and your operating model: Radically new ways of working",
       image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop",
       color: "bg-slate-900/95",
-       description: "Sovereign AI isn't just a control play—it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
+       description: "Sovereign AI isn't just a control play it's a game-changer for global competitiveness and cultural value. Discover how organizations are moving fast to secure their advantage and shape AI's future, following four bold moves.",
     }
   ];
 

@@ -195,7 +195,7 @@ const Academy = () => {
   ];
 
   return (
-    <div className="bg-[#000000] min-h-screen text-[#ffffff] pt-36 pb-24">
+    <div className="bg-[#080f1d] min-h-screen text-[#ffffff] pt-36 pb-24">
       {/* Hero Section */}
       <div className="relative overflow-hidden pb-16">
         <div ref={heroRef} className="container mx-auto px-6 max-w-7xl relative z-10 text-center">
@@ -269,14 +269,14 @@ const Academy = () => {
                     alt={program.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/50 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080f1d] via-[#080f1d]/50 to-transparent"></div>
                   <div className="absolute top-4 left-4">
                     <div className="bg-[#0a2342] text-[#ffffff] p-2 rounded-sm">
                       <program.icon size={20} />
                     </div>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <span className="bg-[#000000]/90 text-white text-xs font-semibold px-3 py-1 rounded-sm">
+                    <span className="bg-[#080f1d]/90 text-white text-xs font-semibold px-3 py-1 rounded-sm">
                       {program.duration}
                     </span>
                   </div>

@@ -6,7 +6,7 @@ import RequestCallBack from '../Components/CTABanner1';
 
 const Homepage = () => {
   return (
-    <div className="bg-[#000000] min-h-screen text-[#ffffff]">
+    <div className="bg-[#080f1d] min-h-screen text-[#ffffff]">
       <Hero />
       <StatsBar />
       <Testimonials />

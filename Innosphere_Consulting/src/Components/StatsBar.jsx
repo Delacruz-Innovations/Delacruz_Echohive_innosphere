@@ -59,7 +59,7 @@ const StatsBar = () => {
   ];
 
   return (
-    <div ref={statsRef} className="py-8 bg-[#000000]">
+    <div ref={statsRef} className="py-8 bg-[#080f1d]">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (

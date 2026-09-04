@@ -4,7 +4,7 @@ const insightsData = {
       id: "uae-trends-business-2025",
       slug: "uae-trends-strategic-look-business-2025",
       category: "UAE Business",
-      title: "A Strategic Look at What’s Trending in the UAE — With a Dash of Business",
+      title: "A Strategic Look at What’s Trending in the UAE   With a Dash of Business",
       excerpt: "The UAE is at the forefront of innovation, from groundbreaking healthcare tech to visionary AI summits. Discover what these momentum-driven shifts mean for enterprise leaders.",
       content: {
         intro: "The UAE continues to set global benchmarks in digital government, economic diversification, and business innovation. For regional leaders, understanding these macroeconomic and technological tailwinds is critical to driving strategic growth.",
@@ -142,7 +142,7 @@ const insightsData = {
       title: "Navigating UAE PDPL & Modern Cyber Risk: A Boardroom Guide",
       excerpt: "Essential cybersecurity governance, zero-trust principles, and compliance strategies for UAE organizations managing digital data.",
       content: {
-        intro: "In an era of rising digital threats and strict data protection laws, cybersecurity is no longer an IT concern—it is a core fiduciary responsibility.",
+        intro: "In an era of rising digital threats and strict data protection laws, cybersecurity is no longer an IT concern it is a core fiduciary responsibility.",
         sections: [
           {
             heading: "Zero-Trust & Data Governance",

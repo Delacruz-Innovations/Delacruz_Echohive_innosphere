@@ -24,7 +24,7 @@ const LeadershipTeam = () => {
       contact: {
         email: "delacruzltd.sam@gmail.com",
         phone: "+44 7342 274470",
-        location: "United Arab Emirates"
+        location: "Dubai Internet City, UAE"
       },
       linkedin: "#"
     },
@@ -34,7 +34,7 @@ const LeadershipTeam = () => {
       title: "Junior Software Developer",
       specialty: "Expert Full Stack Developer",
       image: "https://codex65.netlify.app/assets/ME-B-9Umdx_.jpg",
-      bio: "I am a passionate full stack developer dedicated to building seamless, intuitive, and high-performing digital experiences. I transform complex ideas into sleek, responsive, and scalable web applications — from pixel-perfect user interfaces to robust backend architectures. I believe every line of code tells a story, and I'm committed to making yours exceptional.",
+      bio: "I am a passionate full stack developer dedicated to building seamless, intuitive, and high-performing digital experiences. I transform complex ideas into sleek, responsive, and scalable web applications   from pixel-perfect user interfaces to robust backend architectures. I believe every line of code tells a story, and I'm committed to making yours exceptional.",
       achievements: [
         "Developed and deployed over 15 high-quality websites in the last 5 years",
         "Contributed to multiple successful projects both locally and internationally",

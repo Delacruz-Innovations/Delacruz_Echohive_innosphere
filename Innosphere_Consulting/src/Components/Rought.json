@@ -111,7 +111,7 @@ export default function ConsultantForm() {
     { label: 'Automate and digitize our operations', icon: <Cpu size={20} /> },
     { label: 'Develop a digital product or SaaS platform', icon: <Layers size={20} /> },
     { label: 'Improve team efficiency & performance', icon: <Users size={20} /> },
-    { label: 'Not sure — I need expert advice', icon: <Phone size={20} /> }
+    { label: 'Not sure   I need expert advice', icon: <Phone size={20} /> }
   ];
 
   if (submitted) {
@@ -219,7 +219,7 @@ export default function ConsultantForm() {
                     placeholder="your@email.com or +1234567890"
                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
                   />
-                  <p className="text-gray-500 text-xs mt-2">👉 One contact point only — reduces friction</p>
+                  <p className="text-gray-500 text-xs mt-2">👉 One contact point only   reduces friction</p>
                 </div>
 
                 <button
