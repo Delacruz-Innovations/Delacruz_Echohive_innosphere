@@ -23,7 +23,7 @@ const LeadershipTeam = () => {
       ],
       contact: {
         email: "delacruzltd.sam@gmail.com",
-        phone: "+44 7342 274470",
+        phone: "+971 55 983 6354",
         location: "Dubai Internet City, UAE"
       },
       linkedin: "#"

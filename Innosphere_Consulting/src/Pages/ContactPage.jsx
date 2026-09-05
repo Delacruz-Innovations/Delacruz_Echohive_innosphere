@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Calendar, Clock, ArrowRight, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Calendar, Clock, ArrowRight, MessageSquare } from 'lucide-react';
 import { trackPhoneClick, trackEmailClick } from '../utils/analytics';
 import CalendlyPopup from '../Components/CalendlyPopup';
 
@@ -10,7 +10,7 @@ const WhatsAppIcon = ({ className = "w-6 h-6" }) => (
 );
 
 export default function ContactPage() {
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '447342274470';
+  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '971559836354';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     'Hello Innosphere Consulting, I would like to inquire about your advisory and consulting services.'
   )}`;
@@ -18,13 +18,13 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#080f1d] text-[#ffffff] pb-24">
       {/* Hero Section with Image Background */}
-      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-14">
+      <section data-hero="true" className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-14">
         {/* Background Image with Midnight Navy Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div 
             className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80')`
+              backgroundImage: `url('https://i.pinimg.com/736x/6e/84/b8/6e84b8d4437a03c48b049a42f391b33f.jpg')`
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/90 via-[#080f1d]/75 to-[#080f1d]" />
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 <ArrowRight className="w-4 h-4 ml-1" />
               </a>
               <p className="text-center text-xs text-gray-400 mt-3">
-                Official WhatsApp Channel • Typically replies within minutes
+                Official WhatsApp: <span className="text-gray-200 font-medium">+971 55 983 6354</span> • Typically replies within minutes
               </p>
             </div>
           </div>
@@ -133,6 +133,21 @@ export default function ContactPage() {
 
             {/* Direct Info List */}
             <div className="pt-8 mt-8 border-t border-gray-800 space-y-5">
+              <div className="flex items-start gap-4" onClick={trackPhoneClick}>
+                <div className="w-11 h-11 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0 text-blue-400">
+                  <Phone size={18} />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Phone &amp; WhatsApp</p>
+                  <a 
+                    href="tel:+971559836354" 
+                    className="text-white font-medium hover:text-blue-400 transition-colors text-sm"
+                  >
+                    +971 55 983 6354
+                  </a>
+                </div>
+              </div>
+
               <div className="flex items-start gap-4" onClick={trackEmailClick}>
                 <div className="w-11 h-11 bg-[#0a2342] rounded-sm flex items-center justify-center flex-shrink-0 text-blue-400">
                   <Mail size={18} />

@@ -12,9 +12,67 @@ import {
   FileText, 
   Zap,
   BarChart3,
-  Check
+  Check,
+  Code2,
+  Building2,
+  User,
+  Mail,
+  Phone,
+  Lock,
+  Printer,
+  AlertTriangle,
+  Sparkles,
+  ChevronRight
 } from 'lucide-react';
 import CalendlyPopup from '../Components/CalendlyPopup';
+
+const PILLARS_CONFIG = [
+  {
+    name: "Business Transformation & Performance",
+    icon: Layers,
+    recommendations: {
+      high: "Maintain agile operational governance and explore process mining intelligence to preserve competitive advantage.",
+      medium: "Standardize process mapping across cross-functional teams with formal BPMN standards and structured requirements engineering.",
+      low: "Prioritize establishing formal Standard Operating Procedures (SOPs) and eliminate tribal knowledge silos across critical operations."
+    }
+  },
+  {
+    name: "Digital Transformation & Technology Strategy",
+    icon: TrendingUp,
+    recommendations: {
+      high: "Leverage API-led enterprise architecture and optimize multi-cloud infrastructure economics for scale.",
+      medium: "Formulate a unified 2-3 year digital roadmap aligning departmental IT spending with executive growth metrics.",
+      low: "Break down departmental software silos and transition from reactive point-to-point IT fixes to a strategic technology roadmap."
+    }
+  },
+  {
+    name: "AI & Business Automation",
+    icon: Cpu,
+    recommendations: {
+      high: "Scale custom domain-specific LLMs and autonomous multi-agent pipelines across executive decision-making.",
+      medium: "Centralize corporate data into clean, governed data pipelines to unlock enterprise-grade machine learning.",
+      low: "Conduct an AI Opportunity Discovery Sprint to identify high-ROI repetitive workflows suitable for immediate RPA and LLM automation."
+    }
+  },
+  {
+    name: "Cybersecurity & Digital Risk",
+    icon: ShieldCheck,
+    recommendations: {
+      high: "Adopt continuous zero-trust security postures, automated threat hunting, and red-team resilience testing.",
+      medium: "Formalize an executive incident response playbook and roll out bi-weekly simulated phishing drills.",
+      low: "Urgently conduct a UAE PDPL & NESA compliance audit, establish vCISO governance, and implement automated vulnerability scanning."
+    }
+  },
+  {
+    name: "Digital Solutions & Software Engineering",
+    icon: Code2,
+    recommendations: {
+      high: "Implement advanced DevSecOps observability, automated chaos engineering, and continuous microservices governance.",
+      medium: "Expand automated regression test suites and decouple legacy monolithic dependencies with clean REST/GraphQL APIs.",
+      low: "Modernize legacy application technical debt and implement automated CI/CD deployment pipelines to eliminate production outages."
+    }
+  }
+];
 
 const questions = [
   // Pillar 1: Business Transformation & Performance
@@ -23,7 +81,7 @@ const questions = [
     pillar: "Business Transformation & Performance",
     icon: Layers,
     question: "How clearly defined and documented are your core operational processes?",
-    multiSelect: true,
+    multiSelect: false,
     options: [
       { text: "Mostly ad-hoc or tribal knowledge; limited written documentation.", score: 1 },
       { text: "Partially documented in silos; rarely updated or reviewed.", score: 2 },
@@ -120,13 +178,50 @@ const questions = [
       { text: "Annual vulnerability testing and annual security awareness.", score: 3 },
       { text: "Continuous vulnerability management, simulated phishing drills, and proactive threat monitoring.", score: 4 }
     ]
+  },
+
+  // Pillar 5: Digital Solutions & Software Engineering
+  {
+    id: 9,
+    pillar: "Digital Solutions & Software Engineering",
+    icon: Code2,
+    question: "How modern, decoupled, and scalable is your custom application architecture?",
+    options: [
+      { text: "Monolithic legacy systems with heavy technical debt and frequent outages.", score: 1 },
+      { text: "Tightly coupled services; adjustments in one module often break other features.", score: 2 },
+      { text: "Partially containerized cloud applications connected via standard REST APIs.", score: 3 },
+      { text: "Fully modular cloud-native microservices architecture with automated elasticity and high availability.", score: 4 }
+    ]
+  },
+  {
+    id: 10,
+    pillar: "Digital Solutions & Software Engineering",
+    icon: Code2,
+    question: "How automated and robust are your software testing, DevSecOps, and release pipelines?",
+    options: [
+      { text: "Entirely manual testing; deployments are stressful and done outside business hours.", score: 1 },
+      { text: "Basic developer unit tests; frequent regressions slip into production.", score: 2 },
+      { text: "Automated test suites with structured staging and pre-production release gates.", score: 3 },
+      { text: "End-to-end automated testing, integrated DevSecOps scanning, and automated zero-downtime CI/CD.", score: 4 }
+    ]
   }
 ];
 
 export default function Assessment() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [showLeadGate, setShowLeadGate] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+
+  // Lead capture state
+  const [leadInfo, setLeadInfo] = useState({
+    fullName: '',
+    workEmail: '',
+    companyName: '',
+    phone: '',
+    industry: 'Banking & Financial Services'
+  });
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
 
   const handleSelectOption = (questionId, score, isMulti = false) => {
     if (isMulti) {
@@ -149,7 +244,8 @@ export default function Assessment() {
     if (currentStep < questions.length - 1) {
       setCurrentStep(prev => prev + 1);
     } else {
-      setIsCompleted(true);
+      // Finished all 10 questions -> Prompt Lead Capture Gate
+      setShowLeadGate(true);
     }
   };
 
@@ -159,13 +255,26 @@ export default function Assessment() {
     }
   };
 
+  const handleLeadSubmit = (e) => {
+    if (e) e.preventDefault();
+    setLeadSubmitted(true);
+    setShowLeadGate(false);
+    setIsCompleted(true);
+  };
+
+  const handleSkipLead = () => {
+    setShowLeadGate(false);
+    setIsCompleted(true);
+  };
+
   const handleReset = () => {
     setAnswers({});
     setCurrentStep(0);
+    setShowLeadGate(false);
     setIsCompleted(false);
   };
 
-  // Calculate results
+  // Overall Score Calculation
   const totalScore = questions.reduce((acc, q) => {
     const ans = answers[q.id];
     if (Array.isArray(ans)) {
@@ -174,25 +283,67 @@ export default function Assessment() {
     }
     return acc + (ans || 0);
   }, 0);
-  const maxScore = questions.length * 4;
+
+  const maxScore = questions.length * 4; // 10 * 4 = 40
   const percentage = Math.round((totalScore / maxScore) * 100);
 
   let maturityLevel = "Ad-Hoc / Foundation Stage";
-  let maturityColor = "text-amber-400";
   let maturityBadge = "bg-amber-500/10 border-amber-500/30 text-amber-300";
-  let maturitySummary = "Your organization has substantial opportunity to streamline operations, eliminate manual bottlenecks, and implement modern digital and AI frameworks to accelerate efficiency.";
+  let maturitySummary = "Your organization exhibits notable operational bottlenecks and manual processes. Focused interventions in standard operating procedures, data integration, and cloud architecture will unlock immediate efficiency gains.";
 
   if (percentage >= 75) {
     maturityLevel = "Optimized / Market Leader";
-    maturityColor = "text-emerald-400";
     maturityBadge = "bg-emerald-500/10 border-emerald-500/30 text-emerald-300";
-    maturitySummary = "Your organization exhibits strong digital maturity and structured governance. Focus on advanced AI automation, enterprise integrations, and continuous risk mitigation to maintain market leadership.";
+    maturitySummary = "Your organization demonstrates strong digital governance and scalable operational architecture. Focus on continuous AI automation, advanced DevSecOps resilience, and proactive compliance to sustain your competitive edge.";
   } else if (percentage >= 50) {
     maturityLevel = "Structured / Scaling Stage";
-    maturityColor = "text-blue-400";
     maturityBadge = "bg-blue-500/10 border-blue-500/30 text-blue-300";
-    maturitySummary = "You have solid foundational processes in place. The next strategic step is unifying cross-functional data, automating repetitive workflows, and hardening security governance.";
+    maturitySummary = "Your foundational workflows are in place. The next strategic phase requires unifying cross-functional software silos, automating repetitive tasks with AI, and institutionalizing continuous security governance.";
   }
+
+  // Calculate Pillar-by-Pillar Breakdown
+  const pillarResults = PILLARS_CONFIG.map(pConfig => {
+    const pillarQuestions = questions.filter(q => q.pillar === pConfig.name);
+    const pillarMax = pillarQuestions.length * 4;
+    const pillarTotal = pillarQuestions.reduce((acc, q) => {
+      const ans = answers[q.id];
+      if (Array.isArray(ans)) {
+        if (ans.length === 0) return acc;
+        return acc + (ans.reduce((sum, val) => sum + val, 0) / ans.length);
+      }
+      return acc + (ans || 0);
+    }, 0);
+
+    const pillarPct = Math.round((pillarTotal / pillarMax) * 100) || 0;
+
+    let status = "Needs Immediate Focus";
+    let statusColor = "text-amber-400";
+    let badgeColor = "bg-amber-500/10 border-amber-500/30 text-amber-300";
+    let rec = pConfig.recommendations.low;
+
+    if (pillarPct >= 75) {
+      status = "Mature / Optimized";
+      statusColor = "text-emerald-400";
+      badgeColor = "bg-emerald-500/10 border-emerald-500/30 text-emerald-300";
+      rec = pConfig.recommendations.high;
+    } else if (pillarPct >= 50) {
+      status = "Structured / Scaling";
+      statusColor = "text-blue-400";
+      badgeColor = "bg-blue-500/10 border-blue-500/30 text-blue-300";
+      rec = pConfig.recommendations.medium;
+    }
+
+    return {
+      ...pConfig,
+      score: pillarTotal,
+      max: pillarMax,
+      percentage: pillarPct,
+      status,
+      statusColor,
+      badgeColor,
+      recommendation: rec
+    };
+  });
 
   const currentQ = questions[currentStep];
   const Icon = currentQ ? currentQ.icon : Layers;
@@ -201,16 +352,19 @@ export default function Assessment() {
     ? Array.isArray(currentAnswer) && currentAnswer.length > 0
     : currentAnswer !== undefined;
 
+  // Determine current pillar number (1 to 5)
+  const currentPillarIndex = PILLARS_CONFIG.findIndex(p => p.name === currentQ?.pillar);
+
   return (
     <div className="min-h-screen bg-[#080f1d] text-white pb-24">
       {/* Hero Section with Image Background */}
-      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-14">
+      <section data-hero="true" className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-14">
         {/* Background Image with Midnight Navy Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div 
             className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80')`
+              backgroundImage: `url('https://i.pinimg.com/1200x/29/64/d1/2964d1cb19c95bae8fa41d607070092c.jpg')`
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/90 via-[#080f1d]/75 to-[#080f1d]" />
@@ -218,37 +372,44 @@ export default function Assessment() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 text-[#ffffff] text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-500/20">
+            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+            Executive Transformation Diagnostic
+          </div>
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 text-[#ffffff]">
             Business Transformation Assessment™️
           </h1>
           <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Evaluate your organisation's operational efficiency, digital strategy, AI readiness, and cybersecurity resilience in under 3 minutes.
+            Evaluate your enterprise across 5 core pillars: Operations, Cloud Strategy, AI Automation, Cybersecurity, and Software Engineering.
           </p>
         </div>
       </section>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        {!isCompleted ? (
-          <div className="bg-[#0a2342]/20 backdrop-blur-xl rounded-sm p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* STEP 1: 10-Question Diagnostic Wizard */}
+        {!showLeadGate && !isCompleted && (
+          <div className="bg-[#0a2342]/20 backdrop-blur-xl rounded-sm p-6 sm:p-10 border border-white/5 shadow-2xl relative overflow-hidden">
             {/* Top Progress Bar */}
             <div className="mb-8">
               <div className="flex justify-between items-center text-xs text-gray-400 mb-2">
-                <span>Pillar {Math.floor(currentStep / 2) + 1} of 4: <strong className="text-gray-200">{currentQ.pillar}</strong></span>
+                <span>
+                  Pillar {currentPillarIndex + 1} of {PILLARS_CONFIG.length}: <strong className="text-blue-300">{currentQ.pillar}</strong>
+                </span>
                 <span>Question {currentStep + 1} of {questions.length}</span>
               </div>
               <div className="w-full bg-[#0a2342]/40 h-2 rounded-sm overflow-hidden">
                 <div 
-                  className="bg-blue-500 h-full transition-all duration-300 rounded-sm"
+                  className="bg-gradient-to-r from-blue-600 to-blue-400 h-full transition-all duration-300 rounded-sm shadow-[0_0_12px_rgba(59,130,246,0.5)]"
                   style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
                 ></div>
               </div>
             </div>
 
-            {/* Question Card */}
+            {/* Question Header Card */}
             <div className="mb-8">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-sm bg-[#0a2342] flex items-center justify-center text-blue-400">
+                  <div className="w-10 h-10 rounded-sm bg-[#0a2342] border border-blue-500/20 flex items-center justify-center text-blue-400 shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
@@ -261,7 +422,7 @@ export default function Assessment() {
                   </span>
                 )}
               </div>
-              <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6">
+              <h2 className="text-xl sm:text-2xl font-semibold text-white mb-6 leading-snug">
                 {currentQ.question}
               </h2>
 
@@ -279,8 +440,8 @@ export default function Assessment() {
                       onClick={() => handleSelectOption(currentQ.id, option.score, currentQ.multiSelect)}
                       className={`w-full text-left p-4 rounded-sm transition-all duration-200 flex items-start gap-4 cursor-pointer border ${
                         selected
-                          ? 'bg-[#0a2342] border-blue-500/60 text-white shadow-lg'
-                          : 'bg-[#0a2342]/20 border-transparent hover:bg-[#0a2342]/40 hover:border-gray-800 text-gray-300'
+                          ? 'bg-[#0a2342] border-blue-500/80 text-white shadow-lg shadow-blue-950/50'
+                          : 'bg-[#0a2342]/20 border-white/5 hover:bg-[#0a2342]/40 hover:border-blue-500/30 text-gray-300'
                       }`}
                     >
                       <div className={`w-5 h-5 ${currentQ.multiSelect ? 'rounded-sm' : 'rounded-full'} border flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
@@ -301,12 +462,12 @@ export default function Assessment() {
               </div>
             </div>
 
-            {/* Nav Buttons */}
-            <div className="flex items-center justify-between pt-6 border-t border-gray-800">
+            {/* Nav Controls */}
+            <div className="flex items-center justify-between pt-6 border-t border-white/10">
               <button
                 onClick={handlePrev}
                 disabled={currentStep === 0}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm font-medium text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition"
               >
                 <ArrowLeft className="w-4 h-4" /> Previous
               </button>
@@ -314,79 +475,296 @@ export default function Assessment() {
               <button
                 onClick={handleNext}
                 disabled={!isAnswered}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:hover:bg-blue-600 disabled:cursor-not-allowed text-white transition-all shadow-lg shadow-blue-600/20 hover:scale-105"
+                className="flex items-center gap-2 px-6 py-2.5 rounded-sm text-sm font-semibold bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:hover:bg-blue-600 disabled:cursor-not-allowed text-white transition-all shadow-lg shadow-blue-600/30 hover:scale-[1.02] cursor-pointer"
               >
-                {currentStep === questions.length - 1 ? 'View Transformation Score' : 'Next Question'}
+                {currentStep === questions.length - 1 ? 'Complete Assessment' : 'Next Question'}
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
-        ) : (
-          /* Results Scorecard */
-          <div className="bg-gray-900/80 border border-gray-800 backdrop-blur-xl rounded-3xl p-8 sm:p-12 shadow-2xl text-center animate-fade-in">
-            <div className="inline-flex p-4 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 mb-6">
-              <Award className="w-12 h-12" />
-            </div>
+        )}
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-              Your Transformation Diagnostic Score
-            </h2>
-            <p className="text-gray-400 text-sm mb-8">
-              Based on the Innosphere Business Transformation Assessment™️ Framework
-            </p>
-
-            {/* Score Ring / Pill */}
-            <div className="flex flex-col items-center justify-center mb-8">
-              <div className="text-6xl sm:text-7xl font-extrabold tracking-tight text-white mb-2">
-                {percentage}<span className="text-3xl text-blue-400">%</span>
+        {/* STEP 2: Lead Capture Gate (Executive Identification) */}
+        {showLeadGate && !isCompleted && (
+          <div className="bg-[#0a2342]/20 backdrop-blur-xl rounded-sm p-6 sm:p-10 border border-white/10 shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
+            <div className="max-w-xl mx-auto text-center mb-8">
+              <div className="inline-flex p-3 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 mb-4">
+                <Lock className="w-8 h-8" />
               </div>
-              <div className={`px-4 py-1.5 rounded-full border text-xs font-semibold uppercase tracking-wider ${maturityBadge}`}>
-                {maturityLevel}
-              </div>
-            </div>
-
-            {/* Summary Box */}
-            <div className="bg-gray-800/40 border border-gray-700/60 rounded-2xl p-6 text-left mb-8 space-y-4">
-              <h3 className="text-white font-semibold flex items-center gap-2">
-                <BarChart3 className="w-5 h-5 text-blue-400" />
-                Strategic Diagnostic Summary
-              </h3>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                Your Assessment is Complete!
+              </h2>
               <p className="text-gray-300 text-sm leading-relaxed">
-                {maturitySummary}
+                Where should we send your official **Executive Diagnostic Scorecard** & strategic breakdown?
+              </p>
+            </div>
+
+            <form onSubmit={handleLeadSubmit} className="max-w-xl mx-auto space-y-4">
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">
+                  Full Name <span className="text-blue-400">*</span>
+                </label>
+                <div className="relative">
+                  <User className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    required
+                    value={leadInfo.fullName}
+                    onChange={(e) => setLeadInfo({ ...leadInfo, fullName: e.target.value })}
+                    placeholder="e.g. Tariq Al Mansoori"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-[#080f1d]/80 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">
+                    Corporate Email <span className="text-blue-400">*</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      required
+                      value={leadInfo.workEmail}
+                      onChange={(e) => setLeadInfo({ ...leadInfo, workEmail: e.target.value })}
+                      placeholder="tariq@enterprise.ae"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-[#080f1d]/80 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">
+                    Company Name <span className="text-blue-400">*</span>
+                  </label>
+                  <div className="relative">
+                    <Building2 className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      required
+                      value={leadInfo.companyName}
+                      onChange={(e) => setLeadInfo({ ...leadInfo, companyName: e.target.value })}
+                      placeholder="e.g. Emirates Logistics Group"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-[#080f1d]/80 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">
+                    Phone / WhatsApp Number
+                  </label>
+                  <div className="relative">
+                    <Phone className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="tel"
+                      value={leadInfo.phone}
+                      onChange={(e) => setLeadInfo({ ...leadInfo, phone: e.target.value })}
+                      placeholder="+971 50 123 4567"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-[#080f1d]/80 border border-white/10 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-1.5">
+                    Industry Sector
+                  </label>
+                  <select
+                    value={leadInfo.industry}
+                    onChange={(e) => setLeadInfo({ ...leadInfo, industry: e.target.value })}
+                    className="w-full px-3 py-2.5 rounded-sm bg-[#080f1d] border border-white/10 text-white text-sm focus:outline-none focus:border-blue-500 transition-colors cursor-pointer"
+                  >
+                    <option value="Banking & Financial Services">Banking & Financial Services</option>
+                    <option value="Government & Public Sector">Government & Public Sector</option>
+                    <option value="Real Estate & Construction">Real Estate & Construction</option>
+                    <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                    <option value="Retail & E-commerce">Retail & E-commerce</option>
+                    <option value="Supply Chain & Logistics">Supply Chain & Logistics</option>
+                    <option value="Technology & Telecommunications">Technology & Telecommunications</option>
+                    <option value="Other Corporate Enterprise">Other Corporate Enterprise</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Trust Badge */}
+              <div className="pt-2 flex items-center justify-center gap-2 text-xs text-gray-400">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span>UAE PDPL &amp; GDPR Compliant • Strictly Confidential Diagnostic</span>
+              </div>
+
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={handleSkipLead}
+                  className="text-xs text-gray-400 hover:text-white transition-colors cursor-pointer underline order-2 sm:order-1"
+                >
+                  Skip for now &amp; preview score
+                </button>
+
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto px-8 py-3 rounded-sm font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-sm transition-all shadow-lg shadow-blue-600/30 hover:scale-[1.02] cursor-pointer order-1 sm:order-2 flex items-center justify-center gap-2"
+                >
+                  <span>Reveal Full Diagnostic Scorecard</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* STEP 3: Full Diagnostic Results Scorecard */}
+        {isCompleted && (
+          <div className="space-y-8 animate-in fade-in duration-500">
+            {/* Top Score Banner */}
+            <div className="bg-[#0a2342]/20 border border-white/10 backdrop-blur-xl rounded-sm p-8 sm:p-12 shadow-2xl text-center relative overflow-hidden">
+              <div className="inline-flex p-4 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 mb-6">
+                <Award className="w-12 h-12" />
+              </div>
+
+              {leadInfo.fullName && (
+                <div className="text-xs font-semibold uppercase tracking-wider text-blue-400 mb-2">
+                  Diagnostic Prepared for {leadInfo.fullName} {leadInfo.companyName ? `• ${leadInfo.companyName}` : ''}
+                </div>
+              )}
+
+              <h2 className="text-2xl sm:text-4xl font-bold text-white mb-2">
+                Your Transformation Maturity Rating
+              </h2>
+              <p className="text-gray-400 text-sm max-w-xl mx-auto mb-8">
+                Evaluated against the Innosphere Enterprise Transformation Framework (UAE / GCC Benchmark)
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="flex items-start gap-2 text-xs text-gray-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>Prioritized roadmap tailored for UAE & MENA business expansion</span>
+              {/* Overall Score Circle / Indicator */}
+              <div className="flex flex-col items-center justify-center mb-8">
+                <div className="text-6xl sm:text-7xl font-extrabold tracking-tight text-white mb-2">
+                  {percentage}<span className="text-3xl text-blue-400">%</span>
                 </div>
-                <div className="flex items-start gap-2 text-xs text-gray-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>Targeted architecture to eliminate manual process bottlenecks</span>
+                <div className={`px-4 py-1.5 rounded-sm border text-xs font-semibold uppercase tracking-wider ${maturityBadge}`}>
+                  {maturityLevel}
                 </div>
-                <div className="flex items-start gap-2 text-xs text-gray-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>AI & Automation readiness framework alignment</span>
-                </div>
-                <div className="flex items-start gap-2 text-xs text-gray-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                  <span>Regulatory compliance (UAE PDPL / NESA / ISO standards)</span>
-                </div>
+              </div>
+
+              {/* Strategic Diagnostic Summary */}
+              <div className="bg-[#080f1d]/80 border border-white/10 rounded-sm p-6 text-left max-w-2xl mx-auto space-y-3">
+                <h3 className="text-white font-semibold flex items-center gap-2 text-sm">
+                  <BarChart3 className="w-4 h-4 text-blue-400" />
+                  Executive Summary
+                </h3>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {maturitySummary}
+                </p>
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <CalendlyPopup
-                text="Schedule Free Consultation to Review Your Score"
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white transition-all shadow-lg shadow-blue-600/30 hover:scale-105 border-none cursor-pointer text-sm"
-              />
-              <button
-                onClick={handleReset}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm transition"
-              >
-                <RefreshCw className="w-4 h-4" /> Retake Assessment
-              </button>
+            {/* Pillar-by-Pillar Breakdown Section */}
+            <div className="bg-[#0a2342]/20 border border-white/10 backdrop-blur-xl rounded-sm p-6 sm:p-10 shadow-2xl">
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 mb-8">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    5 Strategic Practice Area Diagnostic Breakdown
+                  </h3>
+                  <p className="text-gray-400 text-xs sm:text-sm mt-1">
+                    Granular maturity scores across each of Innosphere's core consulting pillars
+                  </p>
+                </div>
+                <div className="text-xs text-blue-400 font-semibold uppercase tracking-wider bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-sm">
+                  Benchmark Analysis
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                {pillarResults.map((pillar, idx) => {
+                  const PillarIcon = pillar.icon;
+                  return (
+                    <div 
+                      key={idx}
+                      className="bg-[#080f1d]/80 border border-white/5 hover:border-blue-500/30 rounded-sm p-5 transition-all"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-sm bg-[#0a2342] border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0">
+                            <PillarIcon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <h4 className="text-white font-semibold text-sm sm:text-base">
+                              {pillar.name}
+                            </h4>
+                            <span className="text-[11px] text-gray-400">
+                              Score: {pillar.score} / {pillar.max} Points
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 self-end sm:self-auto">
+                          <span className={`text-xs px-2.5 py-0.5 rounded-sm border uppercase font-medium tracking-wider ${pillar.badgeColor}`}>
+                            {pillar.status}
+                          </span>
+                          <span className="text-base font-bold text-white min-w-[45px] text-right">
+                            {pillar.percentage}%
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Score Bar */}
+                      <div className="w-full bg-[#0a2342]/40 h-2 rounded-sm overflow-hidden mb-3">
+                        <div 
+                          className="bg-blue-500 h-full transition-all duration-700 rounded-sm"
+                          style={{ width: `${pillar.percentage}%` }}
+                        />
+                      </div>
+
+                      {/* Recommended Intervention */}
+                      <div className="flex items-start gap-2 text-xs text-gray-300 bg-[#0a2342]/30 p-2.5 rounded-sm border border-white/5">
+                        <ChevronRight className="w-3.5 h-3.5 text-blue-400 flex-shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-blue-300">Strategic Recommendation: </strong>
+                          {pillar.recommendation}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Conversion CTA & Actions Card */}
+            <div className="bg-[#0a2342]/20 border border-white/10 backdrop-blur-xl rounded-sm p-8 sm:p-10 shadow-2xl text-center space-y-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                Ready to Close Your Operational &amp; Technology Gaps?
+              </h3>
+              <p className="text-gray-300 text-sm max-w-2xl mx-auto leading-relaxed">
+                Innosphere Consulting provides executive-led PMO advisory, enterprise architecture, AI automation frameworks, and compliance engineering across the UAE and global markets.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <CalendlyPopup
+                  text="Book Executive Consultation to Review Scorecard →"
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-sm font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white transition-all shadow-lg shadow-blue-600/30 hover:scale-[1.02] border-none cursor-pointer text-sm"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm font-medium bg-[#080f1d] hover:bg-[#080f1d]/80 text-gray-200 border border-white/10 text-sm transition cursor-pointer"
+                >
+                  <Printer className="w-4 h-4 text-blue-400" />
+                  Print / Save Diagnostic Summary
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-sm font-medium bg-[#0a2342]/40 hover:bg-[#0a2342]/80 text-gray-300 text-sm transition cursor-pointer"
+                >
+                  <RefreshCw className="w-4 h-4" /> Retake Assessment
+                </button>
+              </div>
             </div>
           </div>
         )}

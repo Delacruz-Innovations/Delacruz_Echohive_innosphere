@@ -51,7 +51,7 @@ We offer competitive milestone-based engagements and retainer plans. Book a free
     response: `📞 Book a FREE 30-minute consultation!
 
 📧 Email: info@innosphereconsulting.ae
-📱 WhatsApp: Available on our website
+📱 WhatsApp / Phone: +971 55 983 6354
 🌐 Book Online: Use our "Book a Free Consultation" button
 
 We respond promptly and offer virtual meetings via Zoom, Teams, or Google Meet. Ready to get started?`
@@ -319,7 +319,7 @@ trackChatbotInteraction('Chatbot Opened');
 • Case Studies & Portfolio
 
 📧 info@innosphereconsulting.ae
-📱 WhatsApp us via our website
+📱 WhatsApp / Phone: +971 55 983 6354
 
 What would you like to know?`;
   };

@@ -109,7 +109,7 @@ const CaseStudyDetails = () => {
   return (
     <div className="bg-[#080f1d] min-h-screen text-[#ffffff]">
       {/* Hero Section with Case Image Background */}
-      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5">
+      <section data-hero="true" className="relative overflow-hidden pt-36 pb-20 border-b border-white/5">
         {/* Background Image using currentCase.image with Midnight Navy Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div 

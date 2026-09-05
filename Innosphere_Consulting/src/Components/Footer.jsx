@@ -85,8 +85,8 @@ const handleSubscribe = async (e) => {
     },
     { 
       icon: Phone, 
-      text: '+971 4 123 4567',
-      href: 'tel:+97141234567'
+      text: '+971 55 983 6354',
+      href: 'tel:+971559836354'
     },
     { 
       icon: MapPin, 

@@ -41,7 +41,7 @@ const ServicesPage = () => {
   return (
     <div className="bg-[#080f1d] min-h-screen text-[#ffffff] pt-24 pb-20">
       {/* Hero Section */}
-      <div className="relative pt-16 pb-16 px-6 max-w-7xl mx-auto">
+      <div data-hero="true" className="relative pt-16 pb-16 px-6 max-w-7xl mx-auto bg-[url('https://i.pinimg.com/1200x/10/bd/ce/10bdcee5acece5da5ea77a89d61ee653.jpg')]">
         <div ref={heroRef} className="max-w-3xl">
           <span className="text-xs font-semibold uppercase tracking-wider text-blue-400 block mb-2">
             Strategic Practice Areas

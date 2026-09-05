@@ -57,7 +57,7 @@ const InsightsList = () => {
   return (
     <div className="min-h-screen bg-[#080f1d] text-[#ffffff] pb-24">
       {/* Hero Section with Image Background */}
-      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-16">
+      <section data-hero="true" className="relative overflow-hidden pt-36 pb-20 border-b border-white/5 mb-16">
         {/* Background Image with Midnight Navy Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div 

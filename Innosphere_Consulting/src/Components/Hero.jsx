@@ -4,14 +4,14 @@ import CalendlyPopup from './CalendlyPopup';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center bg-[#080f1d] overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8">
+    <section data-hero="true" className="relative min-h-[92vh] flex items-center justify-center bg-[#080f1d] overflow-hidden pt-36 pb-24 px-4 sm:px-6 lg:px-8">
       {/* 1. Starry Cosmos & Midnight Navy Backdrop */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Starry cosmos overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=1920&q=80')`
+            backgroundImage: `url('https://i.pinimg.com/1200x/c6/ca/cd/c6cacd7a728423aede3eec4a9a04eb6f.jpg')`
           }}
         />
 

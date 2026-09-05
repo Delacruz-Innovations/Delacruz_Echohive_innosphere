@@ -29,13 +29,13 @@ const CaseStudiesList = () => {
   return (
     <div className="bg-[#080f1d] min-h-screen text-[#ffffff]">
       {/* Hero Section with Image Background */}
-      <section className="relative overflow-hidden pt-36 pb-20 border-b border-white/5">
+      <section data-hero="true" className="relative overflow-hidden pt-36 pb-20 border-b border-white/5">
         {/* Background Image with Midnight Navy Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div 
             className="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80')`
+              backgroundImage: `url('https://i.pinimg.com/736x/75/02/ec/7502ec9025316287991c0cd84eba8d8e.jpg')`
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#080f1d]/90 via-[#080f1d]/75 to-[#080f1d]" />

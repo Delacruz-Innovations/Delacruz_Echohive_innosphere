@@ -135,6 +135,77 @@ const Navbar = () => {
     }
   }, [mobileMenuOpen]);
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [isPastHero, setIsPastHero] = useState(false);
+  const lastScrollY = useRef(0);
+
+  // React useEffect: detect when scrolling past the hero section height dynamically
+  useEffect(() => {
+    const handleScrollHero = () => {
+      // Find the hero element on the current page
+      const heroElement = 
+        document.querySelector('[data-hero="true"]') || 
+        document.querySelector('#hero') ||
+        document.querySelector('section') ||
+        document.querySelector('.pt-36');
+
+      // Calculate dynamic hero height or fallback to responsive default
+      const heroHeight = heroElement && heroElement.offsetHeight > 120 
+        ? heroElement.offsetHeight 
+        : (window.innerHeight * 0.75);
+
+      // Trigger transition right as the hero section exits (~80px navbar offset)
+      const threshold = Math.max(heroHeight - 80, 100);
+
+      setIsPastHero(window.scrollY > threshold);
+    };
+
+    window.addEventListener('scroll', handleScrollHero, { passive: true });
+    window.addEventListener('resize', handleScrollHero, { passive: true });
+    handleScrollHero();
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollHero);
+      window.removeEventListener('resize', handleScrollHero);
+    };
+  }, [location.pathname]);
+
+  // Scroll listener: hide on scroll down, show on scroll up with fade in
+  useEffect(() => {
+    const handleScroll = () => {
+      // If mobile menu is open, keep navbar visible
+      if (mobileMenuOpen) return;
+
+      const currentScrollY = window.scrollY;
+
+      // Always show at the top of the page
+      if (currentScrollY <= 60) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Require minimum scroll distance to avoid flickering
+      const scrollDifference = currentScrollY - lastScrollY.current;
+      if (Math.abs(scrollDifference) < 8) return;
+
+      if (scrollDifference > 0) {
+        // Scrolling down -> hide navbar & close dropdowns
+        setIsVisible(false);
+        setServicesDropdownOpen(false);
+        setLangDropdownOpen(false);
+      } else {
+        // Scrolling up -> show navbar with fade in
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen]);
+
   // Clean up body overflow on component unmount
   useEffect(() => {
     return () => {
@@ -142,8 +213,11 @@ const Navbar = () => {
     };
   }, []);
 
-  // Close menus on route change
+  // Close menus & ensure navbar is visible on route change
   useEffect(() => {
+    setIsVisible(true);
+    setIsPastHero(false);
+    lastScrollY.current = 0;
     setServicesDropdownOpen(false);
     setMobileMenuOpen(false);
     setMobileServicesOpen(false);
@@ -157,9 +231,19 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#080f1d]/98 backdrop-blur-2xl text-[#ffffff]">
+    <header className={`fixed top-0 left-0 right-0 z-50 text-[#ffffff] transition-all duration-500 ease-in-out ${
+      isVisible 
+        ? 'translate-y-0 opacity-100 pointer-events-auto' 
+        : '-translate-y-full opacity-0 pointer-events-none'
+    } ${
+      isPastHero 
+        ? 'bg-[#080f1d]/95 backdrop-blur-2xl shadow-xl shadow-black/30 border-b border-white/10' 
+        : 'bg-transparent backdrop-blur-none shadow-none border-b border-transparent'
+    }`}>
       {/* 1. Top Utility Micro-Bar */}
-      <div className="bg-[#080f1d] text-[11px] sm:text-xs text-gray-300 py-1.5 px-4 sm:px-8 border-b border-white/5">
+      <div className={`transition-all duration-500 text-[11px] sm:text-xs text-gray-300 py-1.5 px-4 sm:px-8 border-b border-white/5 ${
+        isPastHero ? 'bg-[#080f1d]/95' : 'bg-transparent'
+      }`}>
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           {/* Left: Location & Email */}
           <div className="flex items-center gap-3 sm:gap-5 flex-wrap">
@@ -221,7 +305,7 @@ const Navbar = () => {
       </div>
 
       {/* 2. Main Navigation Bar */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-3 sm:py-3.5 bg-[#080f1d]">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 py-3 sm:py-3.5 bg-transparent">
         <div className="flex items-center justify-between">
           {/* Company Brand Logo */}
           <Link to="/" className="flex items-center gap-3 flex-shrink-0 group">

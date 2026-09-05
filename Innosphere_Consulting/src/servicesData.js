@@ -5,8 +5,8 @@ export const servicePillars = [
     title: "Business Transformation & Performance",
     shortDescription: "Align strategy, streamline operations, and redesign business models for high-impact performance.",
     description: "We help organisations optimize operating models, re-engineer business processes, and clarify requirements to eliminate operational friction and accelerate sustainable growth.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
-    heroImage: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80",
+    image: "https://i.pinimg.com/736x/14/f2/8c/14f28cae07ad70d4c1600e1a4beb4eeb.jpg",
+    heroImage: "https://i.pinimg.com/736x/38/44/0c/38440ce4961830925b2410f7181eac43.jpg",
     subServices: [
       {
         name: "Business Analysis",
@@ -26,8 +26,8 @@ export const servicePillars = [
       }
     ],
     deliverables: [
+      "End-to-end Process Blueprint & BPMN 2.0 Mapping",   
       "Comprehensive Business Requirements & Architecture (BRD, SRS, User Stories)",
-      "End-to-end Process Blueprinting & BPMN 2.0 Mapping",
       "Operating Model Redesign & Organisational Governance Roadmaps",
       "Performance Dashboards & Process Bottleneck Diagnostics",
       "Executive & Cross-Functional Stakeholder Alignment Workshops"
@@ -41,8 +41,8 @@ export const servicePillars = [
     title: "Digital Transformation & Technology Strategy",
     shortDescription: "Modernise legacy systems, formulate digital roadmaps, and integrate core enterprise architectures.",
     description: "We orchestrate end-to-end digital transformation programs that align your technology investments with strategic business goals, ensuring seamless adoption and high ROI.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    heroImage: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80",
+    image: "https://i.pinimg.com/1200x/24/e2/69/24e269c9dc5b92cb0111bf954cdf34bc.jpg",
+    heroImage: "https://i.pinimg.com/1200x/cf/7f/32/cf7f323444aa2ff042058977ffa64335.jpg",
     subServices: [
       {
         name: "Digital Transformation",
@@ -77,8 +77,8 @@ export const servicePillars = [
     title: "AI & Business Automation",
     shortDescription: "Harness artificial intelligence, intelligent workflows, and robotic automation to drive exponential efficiency.",
     description: "From strategy to production implementation, we help forward-thinking leaders integrate AI and process automation safely and effectively into their core operations.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=1200&q=80",
-    heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&q=80",
+    image: "https://i.pinimg.com/736x/70/0c/db/700cdbc19474069cde64fde2c4944a53.jpg",
+    heroImage: "https://i.pinimg.com/1200x/5d/32/1f/5d321fe9dd565dd548a9788e42d1723b.jpg",
     subServices: [
       {
         name: "AI Readiness Assessment",
@@ -113,8 +113,8 @@ export const servicePillars = [
     title: "Cybersecurity & Digital Risk",
     shortDescription: "Protect critical assets, ensure regulatory compliance, and build resilient digital defenses.",
     description: "We provide comprehensive cybersecurity assessments, digital risk management, and governance advisory compliant with UAE PDPL, NESA, and international security standards.",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80",
-    heroImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80",
+    image: "https://i.pinimg.com/1200x/65/75/d8/6575d89a2019caf439ba11bb2a17753a.jpg",
+    heroImage: "https://i.pinimg.com/1200x/14/8f/ae/148fae2a3f51350ec4f637f3c4cc4f61.jpg",
     subServices: [
       {
         name: "Cyber Assessment",
@@ -145,8 +145,8 @@ export const servicePillars = [
     title: "Digital Solutions & Software",
     shortDescription: "Engineer bespoke web portals, custom software, business apps, and secure integrations.",
     description: "We design, build, and deploy high-performance custom digital products, client portals, and bespoke applications engineered for scalability, speed, and exceptional user experience.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-    heroImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1920&q=80",
+    image: "https://i.pinimg.com/736x/5d/10/6b/5d106b5e51dbd78af1319183b968a9f4.jpg",
+    heroImage: "https://i.pinimg.com/736x/2b/c1/c9/2bc1c9c6efc3c194e67f30bfb0aa5e22.jpg",
     subServices: [
       {
         name: "Web Portals",

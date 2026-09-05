@@ -93,7 +93,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="relative pt-40 min-h-screen bg-black text-white overflow-hidden">
+    <div data-hero="true" className="relative pt-40 min-h-screen bg-black text-white overflow-hidden">
 {/* Background Video - Component Only */}
 <div className="absolute inset-0 z-0 overflow-hidden">
   <video 
@@ -108,7 +108,7 @@ const AboutUs = () => {
   <div className="absolute inset-0 bg-black/50"></div>
 </div>
       {/* About Us Section */}
-      <section ref={sectionRef} className="relative z-10 py-4 px-6 bg-black/30">
+      <section ref={sectionRef} className="relative z-10 py-4 px-6 ">
         <div className="max-w-7xl mx-auto">
           {/* Title */}
           <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold mb-16">
