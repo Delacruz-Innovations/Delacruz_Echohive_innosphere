@@ -160,6 +160,62 @@ const insightsData = {
       readTime: "7 min",
       image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80",
       featured: false
+    },
+    {
+      id: "ai-adoption-uae-businesses-turning-ai-into-business-value",
+      slug: "ai-adoption-uae-businesses-turning-ai-into-business-value",
+      category: "AI & Automation",
+      title: "AI Adoption in UAE Businesses: Turning AI Into Business Value",
+      status: "draft",
+      excerpt: "Artificial Intelligence is moving quickly from experimentation to practical business use across the UAE. Discover how businesses can turn AI into measurable business outcomes.",
+      content: {
+        intro: "Artificial Intelligence is moving quickly from experimentation to practical business use across the UAE.\n\nFor businesses, the opportunity is not simply to introduce another AI tool. It is to identify where AI can reduce operational friction, improve productivity, strengthen decision-making, and support sustainable growth.\n\nThe UAE’s continued investment in AI and digital transformation is accelerating this shift, with organisations increasingly moving from AI pilots towards wider enterprise adoption and measurable business outcomes.",
+        sections: [
+          {
+            id: "what-this-means-for-uae-businesses",
+            heading: "What This Means for UAE Businesses",
+            subtitle: "Starting With the Business Problem, Not the Technology",
+            body: "AI adoption should start with the business problem, not the technology.\n\nFor SMEs and growth-stage businesses, this approach is particularly important. The objective isn’t to implement AI everywhere. It’s to identify the right opportunities and build a practical path to adoption.",
+            hasPoints: true,
+            points: [
+              { title: "Time Consumption", description: "Which processes consume too much time?" },
+              { title: "Repetitive Work", description: "Where are teams performing repetitive work?" },
+              { title: "Customer Experience", description: "Where can automation improve customer experience?" },
+              { title: "Data-Driven Decisions", description: "What business decisions could benefit from better data?" },
+              { title: "Measurable ROI", description: "Which AI opportunities can deliver measurable ROI?" }
+            ],
+            insight: "Don’t start with AI. Start with the business opportunity.",
+            takeaway: "Don’t start with AI. Start with the business opportunity.",
+            sources: ["https://ai.gov.ae/"]
+          },
+          {
+            id: "how-innosphere-can-support",
+            heading: "How Innosphere Can Support",
+            subtitle: "From Process Analysis to Practical Execution",
+            body: "Innosphere helps UAE businesses assess where AI can create genuine business value.\n\nWe can help you navigate the journey:\nAssess → Identify → Prioritise → Transform → Measure\n\nFrom business process analysis and AI use-case identification to automation and transformation roadmaps, we connect strategy, processes, and technology to business outcomes.",
+            references: [
+              { label: "Explore AI & Business Automation", url: "/solutions" }
+            ]
+          }
+        ],
+        authorNote: "Don’t start with AI. Start with the business opportunity. Organizations that succeed with AI ground implementation in rigorous workflow diagnosis and tangible business outcomes."
+      },
+      author: {
+        name: "Innosphere AI Advisory",
+        role: "Applied AI & Automation Practice",
+        bio: "Advisory specialists at Innosphere Consulting helping regional organizations connect AI strategy, business processes, and technology to measurable outcomes."
+      },
+      authors: [
+        {
+          name: "Innosphere AI Advisory",
+          role: "Applied AI & Automation Practice",
+          bio: "Advisory specialists at Innosphere Consulting helping regional organizations connect AI strategy, business processes, and technology to measurable outcomes."
+        }
+      ],
+      date: "September 6, 2026",
+      readTime: "4 min",
+      image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=1200&q=80",
+      featured: false
     }
   ]
 };

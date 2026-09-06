@@ -2,14 +2,15 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics, isSupported } from "firebase/analytics";
 
+// Unified Firebase configuration matching Blog_Admin_Dashboard
 const firebaseConfig = {
-  apiKey: "AIzaSyAZhhCCRWGQ-qUw8xjoUMXyzBBWq3VzVf0",
-  authDomain: "innosphereconsulting-7a5e6.firebaseapp.com",
-  projectId: "innosphereconsulting-7a5e6",
-  storageBucket: "innosphereconsulting-7a5e6.firebasestorage.app",
-  messagingSenderId: "539954518372",
-  appId: "1:539954518372:web:54134b5107d214da2a4271",
-  measurementId: "G-CTQB0KL4T9"
+  apiKey: import.meta.env?.VITE_FIREBASE_API_KEY || "AIzaSyCX1BkFYOkcugd1CL00usfLnwaVejpn4GM",
+  authDomain: import.meta.env?.VITE_FIREBASE_AUTH_DOMAIN || "delacruzxinnospherxechohive.firebaseapp.com",
+  projectId: import.meta.env?.VITE_FIREBASE_PROJECT_ID || "delacruzxinnospherxechohive",
+  storageBucket: import.meta.env?.VITE_FIREBASE_STORAGE_BUCKET || "delacruzxinnospherxechohive.firebasestorage.app",
+  messagingSenderId: import.meta.env?.VITE_FIREBASE_MESSAGING_SENDER_ID || "337003804857",
+  appId: import.meta.env?.VITE_FIREBASE_APP_ID || "1:337003804857:web:09e010137be55095a94368",
+  measurementId: import.meta.env?.VITE_FIREBASE_MEASUREMENT_ID || "G-PJM1ZDNSGG"
 };
 
 // Initialize Firebase

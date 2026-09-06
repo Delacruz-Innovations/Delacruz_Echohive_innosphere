@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import CalendlyPopup from './CalendlyPopup';
 
 const Hero = () => {
@@ -26,38 +27,42 @@ const Hero = () => {
       {/* 2. Hero Center Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
         
-        {/* Pill Eyebrow Badge: "• PREMIUM ADVISORY" */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-[#0a2342]/70 backdrop-blur-md shadow-sm mb-8 animate-in fade-in duration-700">
-          <span className="w-1.5 h-1.5 rounded-sm bg-[#ffffff] shadow-[0_0_8px_#ffffff]" />
-          <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#ffffff] uppercase">
-            PREMIUM ADVISORY
+        {/* Sub-tagline Pill Eyebrow Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm bg-[#0a2342]/70 backdrop-blur-md border border-blue-500/20 shadow-sm mb-6 animate-in fade-in duration-700">
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_#3b82f6]" />
+          <span className="text-[11px] sm:text-xs font-semibold tracking-wider text-blue-200 uppercase">
+            Strategy. Innovation. Digital Transformation — Built in the UAE
           </span>
         </div>
 
         {/* Main Hero Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal text-[#ffffff] tracking-tight leading-[1.12] sm:leading-[1.15] max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-3 duration-800">
-          UAE(GCC) Digital<br className="hidden sm:inline" /> Transformation &amp;<br className="hidden sm:inline" /> Business Consulting <br className="hidden sm:inline" />&amp; PMO Advisory
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[66px] font-normal text-[#ffffff] tracking-tight leading-[1.12] sm:leading-[1.15] max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-3 duration-800">
+          Business Transformation for <br className="hidden sm:inline" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-blue-300 font-medium">
+            UAE Growth-Stage Businesses
+          </span>
         </h1>
 
         {/* Subtitle / Description */}
         <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light mt-6 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-900">
-          Innosphere Consulting helps leadership teams move from ambition to execution across project delivery, business analysis, digital and AI transformation, and operational excellence.
+          We help UAE businesses remove operational bottlenecks, redesign processes and implement the technology needed to scale with confidence.
         </p>
 
         {/* Action Button Group */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 w-full sm:w-auto animate-in fade-in slide-in-from-bottom-5 duration-1000">
-          {/* Primary CTA (White / Clean High-Contrast Button) */}
+          {/* Primary CTA: Book a Consultation */}
           <CalendlyPopup
             text="Book a Consultation"
-            className="w-full sm:w-auto bg-[#ffffff] hover:bg-gray-200 text-[#000000] font-semibold text-sm px-8 py-3.5 rounded-sm shadow-lg shadow-white/10 hover:scale-[1.03] transition-all duration-200 cursor-pointer"
+            className="w-full sm:w-auto bg-[#ffffff] hover:bg-gray-200 text-[#000000] font-semibold text-sm px-8 py-3.5 rounded-sm shadow-lg shadow-white/10 hover:scale-[1.03] transition-all duration-200 cursor-pointer text-center"
           />
 
-          {/* Secondary CTA (Secondary #0a2342 Button) */}
+          {/* Secondary CTA: Assess Your Business */}
           <Link
-            to="/our_services"
-            className="w-full sm:w-auto bg-[#0a2342] hover:bg-[#0a2342]/80 text-[#ffffff] font-medium text-sm px-8 py-3.5 rounded-sm backdrop-blur-md transition-all duration-200 inline-flex items-center justify-center hover:scale-[1.02]"
+            to="/assessment"
+            className="w-full sm:w-auto bg-[#0a2342] hover:bg-blue-900/80 border border-blue-500/30 text-[#ffffff] font-medium text-sm px-8 py-3.5 rounded-sm backdrop-blur-md transition-all duration-200 inline-flex items-center justify-center gap-2 hover:scale-[1.02] shadow-lg shadow-blue-950/40 text-center"
           >
-            Explore Our Services
+            <span>Assess Your Business</span>
+            <ArrowRight className="w-4 h-4 text-blue-400" />
           </Link>
         </div>
       </div>

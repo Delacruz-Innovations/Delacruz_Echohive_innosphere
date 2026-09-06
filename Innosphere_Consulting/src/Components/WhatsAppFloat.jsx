@@ -11,7 +11,7 @@ const WhatsAppFloat = () => {
   const [isHovered, setIsHovered] = useState(false);
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '971559836354';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'Hello Innosphere Consulting, I would like to inquire about your advisory and consulting services.'
+    "Hello Innosphere Consulting, I’d like to learn more about your business transformation and consulting services. I’d be interested in discussing how you could support my business."
   )}`;
 
   return (

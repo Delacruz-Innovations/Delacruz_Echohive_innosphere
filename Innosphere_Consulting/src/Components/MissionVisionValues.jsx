@@ -270,12 +270,12 @@ const valuePoints = [
                   <p className="text-gray-300 text-lg leading-relaxed mb-4">
                     Innosphere Consulting is not here to compete. We are here to set a new standard. Our goal is clear:
                   </p>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#6b9dc7] flex-shrink-0 mt-1" />
-                    <p className="text-gray-300 leading-relaxed">
-                      To become one of Nigeria's top IT consultancy firms in Nigeria.
-                    </p>
-                  </div>
+                    <div className="flex items-start space-x-3">
+                      <CheckCircle2 className="w-5 h-5 text-[#6b9dc7] flex-shrink-0 mt-1" />
+                      <p className="text-gray-300 leading-relaxed">
+                        To become one of the UAE & GCC's premier IT and business transformation consultancy firms.
+                      </p>
+                    </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle2 className="w-5 h-5 text-[#6b9dc7] flex-shrink-0 mt-1" />
                     <p className="text-gray-300 leading-relaxed">

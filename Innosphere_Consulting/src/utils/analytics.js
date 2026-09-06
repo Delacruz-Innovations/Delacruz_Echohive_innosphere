@@ -471,6 +471,39 @@ export const setupTimeTracking = (pageTitle) => {
   };
 };
 
+// Dedicated Blog / Insights Tracking
+export const trackArticleView = ({ slug, title, category, authorNames }) => {
+  try {
+    logEvent('Blog', 'article_view', slug);
+    if (window.gtag) {
+      window.gtag('event', 'article_view', {
+        slug,
+        title,
+        category,
+        authors: authorNames
+      });
+    }
+  } catch (error) {
+    console.error("Error logging article view:", error);
+  }
+};
+
+export const trackBlogScrollDepth = (slug, depth) => {
+  logEvent('Blog', 'scroll_depth', `${slug} - ${depth}%`, depth);
+};
+
+export const trackBlogTimeOnPage = (slug, seconds) => {
+  logEvent('Blog', 'time_on_page', slug, seconds);
+};
+
+export const trackSocialShareClick = (slug, network) => {
+  logEvent('Blog', 'social_share_click', `${slug} - ${network}`);
+};
+
+export const trackRelatedPostClick = (fromSlug, toSlug) => {
+  logEvent('Blog', 'related_post_click', `from: ${fromSlug} -> to: ${toSlug}`);
+};
+
 export default {
   initGA,
   logPageView,
@@ -512,4 +545,10 @@ export default {
   trackSolutionView,
   trackVideoEngagement,
   trackChatbotInteraction,
+  // Blog Events
+  trackArticleView,
+  trackBlogScrollDepth,
+  trackBlogTimeOnPage,
+  trackSocialShareClick,
+  trackRelatedPostClick
 };
