@@ -19,7 +19,7 @@ const MissionVisionValues = () => {
 
   const missionText = 'To deliver reliable, scalable, and context-relevant digital systems for organisations in transition from traditional operations to modern, automated ecosystems.';
 
-  const visionText = 'A digitally empowered Africa where innovation drives inclusion, efficiency, and sustainable growth.';
+  const visionText = 'A digitally empowered UAE(GCC) where innovation drives inclusion, efficiency, and sustainable growth.';
 
 const valuePoints = [
   'Impact: Creating digital solutions that drive real business growth and transformation.',
@@ -30,10 +30,10 @@ const valuePoints = [
 
   const Ambition = [
     {
-      description: 'Delacruz Innovations is not here to compete. We are here to set a new standard. Our goal is clear:',
+      description: 'Innosphere Consulting is not here to compete. We are here to set a new standard. Our goal is clear:',
       points: [
-        'To become one of Nigeria\'s top IT consultancy firms in Nigeria.',
-        'To be recognised for our innovation, delivery excellence, and social impact.',
+        'To become one of the UAE & GCC\'s premier IT and business transformation consultancy firms.',
+        'To be recognised for our innovation, delivery excellence, and measurable client impact.',
       ]
     }
   ];
@@ -268,7 +268,7 @@ const valuePoints = [
                 <div className="h-1 w-20 bg-gradient-to-r from-[#2c5282] to-[#1e3a5f] mb-6"></div>
                 <div className="grid grid-cols-1 gap-4">
                   <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                    Delacruz Innovations is not here to compete. We are here to set a new standard. Our goal is clear:
+                    Innosphere Consulting is not here to compete. We are here to set a new standard. Our goal is clear:
                   </p>
                   <div className="flex items-start space-x-3">
                     <CheckCircle2 className="w-5 h-5 text-[#6b9dc7] flex-shrink-0 mt-1" />

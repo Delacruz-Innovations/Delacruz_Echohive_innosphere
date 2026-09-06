@@ -16,6 +16,7 @@ import InsightDetails from './Components/InsightDetails';
 import ContactPage from './Pages/ContactPage';
 import ConsultantForm from './Pages/ConsultantForm';
 import DeChatbot from './Components/DeChatbot';
+import WhatsAppFloat from './Components/WhatsAppFloat';
 import TermsAndConditions from './Components/TermsAndConditions';
 import Policy from './Pages/Policy';
 import Academy from './Pages/Academy';
@@ -346,6 +347,7 @@ const App = () => {
 
       <Footer />
       <DeChatbot />
+      <WhatsAppFloat />
     </Router>
   );
 };

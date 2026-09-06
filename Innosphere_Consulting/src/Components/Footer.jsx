@@ -120,7 +120,7 @@ const handleSubscribe = async (e) => {
               
               {/* Description */}
               <p className="text-gray-300 text-sm max-w-md ">
-               Strategy. Innovation. Digital Transformation - Built in the UAE.
+               Strategy. Innovation. Digital Transformation - Built in UAE.
               </p>
 
               {/* Newsletter */}
