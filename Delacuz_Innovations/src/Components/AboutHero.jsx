@@ -59,7 +59,7 @@ const AboutHero = () => {
       ref={heroRef}
       className="relative flex min-h-screen w-full items-end overflow-hidden bg-black"
     >
-      {/* Background photo — full-bleed, edge to edge */}
+      {/* Background photo   full-bleed, edge to edge */}
       <div className="absolute inset-0">
         <img
           src={heroContent.heroImage}
@@ -70,7 +70,7 @@ const AboutHero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-purple-900/30"></div>
 
-        {/* Oversized ghost word — ambient brand motif */}
+        {/* Oversized ghost word   ambient brand motif */}
         <span
           aria-hidden="true"
           className="pointer-events-none absolute -left-2 top-24 select-none whitespace-nowrap text-[7rem] font-bold uppercase leading-none text-purple-900/25 sm:top-28 sm:text-[11rem] lg:top-32 lg:text-[15rem]"

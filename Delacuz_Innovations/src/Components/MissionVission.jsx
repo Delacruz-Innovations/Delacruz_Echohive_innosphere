@@ -17,15 +17,15 @@ const prevSlide = () => {
   setCurrentSlide((prev) => (prev - 1 + 4) % 4);
 };
 
-  const missionText = 'To deliver reliable, scalable, and context-relevant digital systems for organisations in transition — from traditional operations to modern, automated ecosystems.';
+  const missionText = 'To deliver reliable, scalable, and context-relevant digital systems for organisations in transition   from traditional operations to modern, automated ecosystems.';
 
   const visionText = 'A digitally empowered Africa where innovation drives inclusion, efficiency, and sustainable growth.';
 
   const valuePoints = [
-    'Excellence: Every line of code, every consultation, every project — delivered to global standards.',
+    'Excellence: Every line of code, every consultation, every project   delivered to global standards.',
     'Integrity: We believe trust is the foundation of every successful digital partnership.',
     'Innovation: We never replicate; we rethink, reimagine, and rebuild better',
-    'Collaboration: We succeed together — with our clients, partners, and people.',
+    'Collaboration: We succeed together   with our clients, partners, and people.',
     'Impact: Every solution we create must make life or work meaningfully better.',
   ];
  const Ambition = [

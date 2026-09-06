@@ -6,10 +6,11 @@ import {
     Trash2,
     CheckCircle,
     Clock,
-    Search
+    Search,
+    ExternalLink
 } from 'lucide-react';
 import { getServiceByOrgId } from '../services/serviceFactory';
-import { formatFirebaseDate } from '../utils/blogUtils';
+import { formatFirebaseDate, formatFirebaseTime } from '../utils/blogUtils';
 import NetworkError from './NetworkError';
 import { useNotifications } from '../context/NotificationContext';
 import Modal from './Modal';
@@ -261,19 +262,30 @@ const BlogList = () => {
                                     )}
                                 </td>
                                 <td className="px-6 py-5 text-[11px] font-medium text-gray-500">
-                                    {blog.status === 'scheduled' && blog.dates?.scheduledAt ? (
+                                    {blog.status === 'scheduled' && (blog.dates?.scheduledAt || blog.scheduledPublishAt) ? (
                                         <span className="text-blue-600 flex flex-col">
-                                            <span>{formatFirebaseDate(blog.dates.scheduledAt)}</span>
+                                            <span>{formatFirebaseDate(blog.dates?.scheduledAt || blog.scheduledPublishAt)}</span>
                                             <span className="text-[9px] uppercase tracking-tighter opacity-70">
-                                                {blog.dates.scheduledAt.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                {formatFirebaseTime(blog.dates?.scheduledAt || blog.scheduledPublishAt)}
                                             </span>
                                         </span>
                                     ) : (
-                                        formatFirebaseDate(blog.dates?.publishedAt || blog.dates?.updatedAt)
+                                        formatFirebaseDate(blog.dates?.publishedAt || blog.publishedAt || blog.dates?.updatedAt || blog.date)
                                     )}
                                 </td>
                                 <td className="px-6 py-5 text-right">
                                     <div className="flex items-center justify-end gap-3 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                                        {blog.slug && (
+                                            <a
+                                                href={`http://localhost:8000/insights/${blog.slug}?preview=true`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-gray-400 hover:text-blue-500 transition-colors"
+                                                title="View in Reader"
+                                            >
+                                                <ExternalLink className="h-4 w-4" />
+                                            </a>
+                                        )}
                                         <Link
                                             to={`/${orgId}/edit/${blog.id}`}
                                             className={`text-gray-400 hover:${orgTheme.text} transition-colors`}

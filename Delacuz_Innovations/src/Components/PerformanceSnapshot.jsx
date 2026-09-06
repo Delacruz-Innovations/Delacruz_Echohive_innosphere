@@ -17,7 +17,7 @@ const snapshotContent = {
     'Business performance is rarely limited by ambition.\n\n' +
     'It is limited when strategy, governance, people, processes, data and technology no longer work together to achieve the outcomes the organisation was created to deliver.\n\n' +
     'Many organisations invest significantly in transformation, yet continue to face operational inefficiencies, fragmented decision-making, inconsistent execution, rising costs and unrealised value.\n\n' +
-    'At Delacruz Innovations, we help organisations across Nigeria and Africa solve these challenges through Business Performance Engineering™—our proprietary methodology for improving organisational performance by aligning strategy, governance, operations, people, data, artificial intelligence and technology around measurable business outcomes.\n\n' +
+    'At Delacruz Innovations, we help organisations across Nigeria and Africa solve these challenges through Business Performance Engineering™ our proprietary methodology for improving organisational performance by aligning strategy, governance, operations, people, data, artificial intelligence and technology around measurable business outcomes.\n\n' +
     'Whether your priority is improving operational efficiency, strengthening governance, accelerating growth, modernising technology or preparing your organisation for AI, we help you transform business ambition into measurable performance.',
   trustStatement:
     'Helping organisations improve business performance through strategy, governance, operational excellence, artificial intelligence and enterprise technology.',
@@ -202,7 +202,7 @@ const PerformanceSnapshot = () => {
 
   return (
     <>
-      {/* Second hero — full-height intro + dashboard */}
+      {/* Second hero   full-height intro + dashboard */}
       <section className="relative flex min-h-screen items-center bg-black px-3 py-2 sm:px-5 lg:px-6">
         <div className="mx-auto w-full max-w-7xl">
           <div ref={introRef} className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">

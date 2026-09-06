@@ -267,7 +267,7 @@ const services = servicesData.services.map((area) => ({ name: area.title, slug: 
         </div>
       </header>
 
-      {/* Mobile Navigation — full-screen blurred overlay */}
+      {/* Mobile Navigation   full-screen blurred overlay */}
       <div
         className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 overflow-y-auto bg-black/95 py-20 backdrop-blur-xl transition-opacity duration-300 lg:hidden ${
           isMobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'

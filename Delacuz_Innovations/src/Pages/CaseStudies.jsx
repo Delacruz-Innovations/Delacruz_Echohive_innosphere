@@ -247,7 +247,7 @@ const CaseStudies = () => {
   return (
     <>
       <SEO
-        title="Case Studies | Delacruz Innovations — Real Client Results"
+        title="Case Studies | Delacruz Innovations   Real Client Results"
         description="See how Delacruz Innovations helped UK Government, NHS England, easyJet, Sky Betting & Gaming, and Lloyds Banking Group transform operations and drive measurable results."
         jsonLd={{
           '@context': 'https://schema.org',

@@ -12,7 +12,7 @@ import useHoverGlow from '../utils/useHoverGlow';
 // eyebrow, headline, subheadline, primaryCTA, secondaryCTA,
 // trustStatement, heroGraphic, backgroundVideo, scrollLabel)
 // The fuller subheadline/secondary CTA/trust statement/dashboard now live in
-// PerformanceSnapshot.jsx — this compact block matches the reference layout.
+// PerformanceSnapshot.jsx   this compact block matches the reference layout.
 // ----------------------------------------------------------------------------
 const heroContent = {
   eyebrow: 'BUSINESS PERFORMANCE ENGINEERING™',
@@ -64,7 +64,7 @@ const Hero = () => {
       ref={heroRef}
       className="relative flex min-h-screen w-full items-end overflow-hidden bg-black"
     >
-      {/* Background photo — full-bleed, edge to edge */}
+      {/* Background photo   full-bleed, edge to edge */}
       <div className="absolute inset-0">
         <img
           src={heroContent.heroImage}

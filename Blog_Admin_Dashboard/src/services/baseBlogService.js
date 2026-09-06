@@ -24,14 +24,18 @@ export const createBaseBlogService = (db, orgId) => {
     return {
         // Create
         async createBlog(blogData, userId) {
+            const scheduledPublishAt = blogData.status === 'scheduled' ? (blogData.scheduledPublishAt || blogData.scheduledAt || null) : null;
+            const publishedAt = blogData.status === 'published' ? (blogData.publishedAt || new Date().toISOString()) : null;
             const docData = {
                 ...blogData,
                 orgId,
+                publishedAt,
+                scheduledPublishAt,
                 dates: {
                     createdAt: serverTimestamp(),
                     updatedAt: serverTimestamp(),
                     publishedAt: blogData.status === 'published' ? serverTimestamp() : null,
-                    scheduledAt: blogData.status === 'scheduled' ? blogData.scheduledAt : null
+                    scheduledAt: scheduledPublishAt
                 },
                 admin: {
                     createdBy: userId,
@@ -59,11 +63,20 @@ export const createBaseBlogService = (db, orgId) => {
                     const blogs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
                     // Sort in memory to avoid requiring a composite index
-                    return blogs.sort((a, b) => {
-                        const dateA = a.dates?.updatedAt?.toMillis?.() || (a.dates?.updatedAt instanceof Date ? a.dates.updatedAt.getTime() : 0);
-                        const dateB = b.dates?.updatedAt?.toMillis?.() || (b.dates?.updatedAt instanceof Date ? b.dates.updatedAt.getTime() : 0);
-                        return dateB - dateA;
-                    });
+                    const getSortTime = (item) => {
+                        const ts = item.dates?.updatedAt || item.dates?.publishedAt || item.publishedAt || item.date;
+                        if (typeof ts?.toMillis === 'function') return ts.toMillis();
+                        if (typeof ts?.toDate === 'function') return ts.toDate().getTime();
+                        if (ts instanceof Date) return ts.getTime();
+                        if (ts?.seconds !== undefined) return ts.seconds * 1000;
+                        if (typeof ts === 'string' || typeof ts === 'number') {
+                            const ms = new Date(ts).getTime();
+                            return isNaN(ms) ? 0 : ms;
+                        }
+                        return 0;
+                    };
+
+                    return blogs.sort((a, b) => getSortTime(b) - getSortTime(a));
                 } catch (error) {
                     if (error.code === 'unavailable') {
                         throw new Error(`Unable to connect to the server (${error.code}). Please check your internet connection.`);
@@ -101,19 +114,24 @@ export const createBaseBlogService = (db, orgId) => {
                 "admin.lastEditedBy": userId
             };
 
-            if (blogData.status === 'published' && !blogData.dates?.publishedAt) {
+            if (blogData.status === 'published') {
+                updateData["publishedAt"] = blogData.publishedAt || new Date().toISOString();
+                updateData["scheduledPublishAt"] = null;
                 updateData["dates.publishedAt"] = serverTimestamp();
                 updateData["dates.scheduledAt"] = null;
             }
 
             if (blogData.status === 'scheduled') {
-                updateData["dates.scheduledAt"] = blogData.scheduledAt;
+                const scheduledTime = blogData.scheduledPublishAt || blogData.scheduledAt;
+                updateData["scheduledPublishAt"] = scheduledTime;
+                updateData["publishedAt"] = null;
+                updateData["dates.scheduledAt"] = scheduledTime;
                 updateData["dates.publishedAt"] = null;
             }
 
-            if (blogData.status === 'draft') {
+            if (blogData.status === 'draft' || blogData.status === 'archived') {
+                updateData["scheduledPublishAt"] = null;
                 updateData["dates.scheduledAt"] = null;
-                updateData["dates.publishedAt"] = null;
             }
 
             return await updateDoc(docRef, updateData);

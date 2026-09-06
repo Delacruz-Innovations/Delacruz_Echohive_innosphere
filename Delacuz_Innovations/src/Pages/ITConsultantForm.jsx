@@ -400,7 +400,7 @@ const handleSubmit = async () => {
                     'Automate and digitize our operations',
                     'Develop a digital product or SaaS platform',
                     'Improve team efficiency & performance',
-                    'Not sure — I need expert advice'
+                    'Not sure   I need expert advice'
                   ].map((goal) => (
                     <label key={goal} className="flex items-start p-4 bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-750 border-2 transition-all" style={{
                       borderColor: formData.businessGoal === goal ? '#7c3aed' : 'transparent'

@@ -114,7 +114,7 @@ const handleSubmit = async (e) => {
   return (
     <div className="bg-black py-10 min-h-screen">
       <SEO
-        title="Contact Us | Delacruz Innovations — Lagos & UAE"
+        title="Contact Us | Delacruz Innovations   Lagos & UAE"
         description="Get in touch with Delacruz Innovations. Email, call, or visit our offices in Lagos, Nigeria or Ajman, UAE. Mon-Fri 9AM-6PM."
         jsonLd={{
           '@context': 'https://schema.org',

@@ -11,9 +11,9 @@ const jobsData = [
     company: "McKinsey",
     type: "Consulting",
     locations: ["Abu Dhabi", "Addis Ababa", "Almaty", "Amsterdam", "Astana", "Athens", "Atlanta"],
-    description: "Do you want to work on complex and pressing challenges—the kind that bring together curious, ambitious, and determined leaders who strive to become better every day?",
+    description: "Do you want to work on complex and pressing challenges the kind that bring together curious, ambitious, and determined leaders who strive to become better every day?",
     impact: "As an associate, you will join a client service team and take ownership of a workstream to solve some of the toughest challenges our clients face.",
-    impactDetails: "And these aren't just any clients—they're some of the most influential organizations around, from Fortune 500 giants to innovative startups.",
+    impactDetails: "And these aren't just any clients they're some of the most influential organizations around, from Fortune 500 giants to innovative startups.",
     responsibilities: [
       "Working with clients and other McKinsey colleagues",
       "Conducting research, analyzing data, interviews, and brainstorming",

@@ -456,7 +456,7 @@ const IndustryCard = ({ industry }) => {
         type="button"
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
-        aria-label={`${industry.title} — view industry challenges and how we help`}
+        aria-label={`${industry.title}   view industry challenges and how we help`}
         className="group relative block h-[27rem] w-full overflow-hidden rounded-3xl border border-white/10 bg-gray-900 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
       >
         <img

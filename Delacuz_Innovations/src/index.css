@@ -1,6 +1,31 @@
 @import "tailwindcss";
 
-/* Navbar — cinematic curtain-wipe page transition */
+/* Brand scrollbar   applies to the page and any scrollable container (e.g. popups) */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #0a0014;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0014;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c084fc, #7e22ce);
+  border-radius: 9999px;
+  border: 2px solid #0a0014;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #d8b4fe, #9333ea);
+}
+
+/* Navbar   cinematic curtain-wipe page transition */
 .nav-curtain {
   position: fixed;
   inset: 0;
@@ -58,7 +83,7 @@
   }
 }
 
-/* Industries page — "Industries We Are Expanding Into" 3D rotating carousel */
+/* Industries page   "Industries We Are Expanding Into" 3D rotating carousel */
 @keyframes expanding3dSpin {
   from {
     transform: rotateY(-360deg);
@@ -109,7 +134,7 @@
   }
 }
 
-/* About page — "What We Believe" click-to-expand image card carousel */
+/* About page   "What We Believe" click-to-expand image card carousel */
 .belief-carousel {
   --belief-active-width: 320px;
   --belief-inactive-width: 48px;

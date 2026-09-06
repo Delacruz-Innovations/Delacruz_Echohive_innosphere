@@ -61,7 +61,7 @@ const PageHero = ({
       ref={heroRef}
       className="relative flex min-h-screen w-full items-end overflow-hidden bg-black"
     >
-      {/* Background photo — full-bleed, edge to edge */}
+      {/* Background photo   full-bleed, edge to edge */}
       <div className="absolute inset-0">
         <img
           src={heroImage}

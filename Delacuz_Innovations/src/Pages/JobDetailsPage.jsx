@@ -45,7 +45,7 @@ const handleShare = async () => {
    return (
       <div className="py-24 bg-black text-white">
         <SEO
-          title={`${job.title} — Careers | Delacruz Innovations`}
+          title={`${job.title}   Careers | Delacruz Innovations`}
           description={job.description ? job.description.substring(0, 155) : undefined}
           jsonLd={{
             '@context': 'https://schema.org',

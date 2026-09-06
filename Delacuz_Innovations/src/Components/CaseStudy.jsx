@@ -47,7 +47,7 @@ const featuredCases = [
 const caseSlides = featuredCases.map((item) => ({
   icon: item.icon,
   title: item.title,
-  description: `${item.client} — ${item.metricValue}: ${item.metricDescription}`,
+  description: `${item.client}   ${item.metricValue}: ${item.metricDescription}`,
   image: item.image,
   to: `/case-studies#case-${item.id}`,
 }));

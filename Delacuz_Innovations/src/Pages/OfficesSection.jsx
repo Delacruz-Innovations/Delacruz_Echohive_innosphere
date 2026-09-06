@@ -70,7 +70,7 @@ const OfficesSection = () => {
   return (
     <>
       <SEO
-        title="Our Offices | Delacruz Innovations — Lagos & Ajman"
+        title="Our Offices | Delacruz Innovations   Lagos & Ajman"
         description="Delacruz Innovations operates from Lagos, Nigeria and Ajman, UAE, serving clients across Africa, the Middle East, and Europe."
         jsonLd={{
           '@context': 'https://schema.org',

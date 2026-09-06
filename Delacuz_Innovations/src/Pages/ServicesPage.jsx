@@ -61,7 +61,7 @@ const ServicesPage = () => {
             </p>
             <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg">
               At Delacruz Innovations, we help organisations solve these challenges through
-              Business Performance Engineering™—our proprietary methodology for improving
+              Business Performance Engineering™ our proprietary methodology for improving
               organisational performance by aligning strategy, governance, operations, data,
               artificial intelligence, people and technology around measurable business outcomes.
             </p>

@@ -280,7 +280,7 @@ const PrivacyPolicy = () => {
                 For privacy-related enquiries, please contact:
               </p>
               <div className="space-y-1 rounded-2xl border border-white/10 bg-gray-900/60 p-6 text-sm text-gray-300">
-                <p className="mb-2 font-semibold text-white">Privacy Officer — Delacruz Innovations</p>
+                <p className="mb-2 font-semibold text-white">Privacy Officer   Delacruz Innovations</p>
                 <p>
                   <span className="font-semibold text-purple-300">Email:</span>{' '}
                   <a href={`mailto:${ORG.email}`} className="hover:text-purple-300">{ORG.email}</a>

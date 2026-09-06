@@ -128,7 +128,7 @@ const BusinessPerformancePlatformPage = () => {
     <div className="min-h-screen bg-black">
       <SEO
         title="Business Performance Platform™ | Delacruz Innovations"
-        description="Discover the Business Performance Platform™—an integrated ecosystem of executive diagnostics, proprietary frameworks, advisory services and digital platforms designed to improve business performance and accelerate transformation."
+        description="Discover the Business Performance Platform™ an integrated ecosystem of executive diagnostics, proprietary frameworks, advisory services and digital platforms designed to improve business performance and accelerate transformation."
         canonical={`${SITE_URL}/business-performance-platform`}
         jsonLd={[webPageSchema, serviceSchema]}
       />
@@ -163,7 +163,7 @@ const BusinessPerformancePlatformPage = () => {
             </p>
             <p className="text-base leading-relaxed text-gray-300 sm:text-lg">
               Rather than offering disconnected consulting services, the platform provides a
-              structured journey—from executive insight and strategic planning to implementation,
+              structured journey from executive insight and strategic planning to implementation,
               governance and continuous performance improvement.
             </p>
           </div>
@@ -195,7 +195,7 @@ const BusinessPerformancePlatformPage = () => {
         </div>
       </section>
 
-      {/* Layer One — Executive Intelligence */}
+      {/* Layer One   Executive Intelligence */}
       <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div ref={layerOneHeaderRef} className="mx-auto mb-10 max-w-3xl">
@@ -255,7 +255,7 @@ const BusinessPerformancePlatformPage = () => {
         </div>
       </section>
 
-      {/* Layer Two — Business Performance Frameworks */}
+      {/* Layer Two   Business Performance Frameworks */}
       <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div ref={layerTwoHeaderRef} className="mx-auto mb-10 max-w-3xl">
@@ -303,7 +303,7 @@ const BusinessPerformancePlatformPage = () => {
         </div>
       </section>
 
-      {/* Layer Three — Advisory Solutions */}
+      {/* Layer Three   Advisory Solutions */}
       <section className="bg-black px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <div ref={layerThreeHeaderRef}>

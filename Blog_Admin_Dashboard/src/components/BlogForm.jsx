@@ -24,7 +24,8 @@ import {
     Link2,
     Share2,
     Tag,
-    Globe
+    Globe,
+    ExternalLink
 } from 'lucide-react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
@@ -176,7 +177,30 @@ const BlogForm = () => {
         try {
             const blog = await blogService.getBlogById(id);
             if (blog) {
-                setFormData(blog);
+                // Merge over defaults so docs missing fields (tags, authors,
+                // nested objects) don't leave undefined values in form state
+                setFormData(prev => ({
+                    ...prev,
+                    ...blog,
+                    tags: blog.tags || [],
+                    relatedPosts: blog.relatedPosts || [],
+                    authors: blog.authors && blog.authors.length > 0
+                        ? blog.authors
+                        : blog.author
+                            ? [{ name: '', bio: '', image: '', ...blog.author }]
+                            : prev.authors,
+                    media: { ...prev.media, ...(blog.media || {}) },
+                    reading: { ...prev.reading, ...(blog.reading || {}) },
+                    content: {
+                        ...prev.content,
+                        ...(blog.content || {}),
+                        sections: blog.content?.sections?.length > 0
+                            ? blog.content.sections
+                            : prev.content.sections,
+                        faqs: blog.content?.faqs || []
+                    },
+                    seo: { ...prev.seo, ...(blog.seo || {}) }
+                }));
             } else {
                 navigate('/');
             }
@@ -413,6 +437,10 @@ const BlogForm = () => {
             if (formData.content.sections.length === 0 || !formData.content.sections[0].body) {
                 return "At least one content section with body text is required for publishing";
             }
+            const hasTakeaway = formData.content.sections.some(s => (s.insight && s.insight.trim().length > 0) || (s.takeaway && s.takeaway.trim().length > 0));
+            if (!hasTakeaway) {
+                return "At least one Strategic Takeaway is required before publishing";
+            }
         }
         return null;
     };
@@ -430,6 +458,7 @@ const BlogForm = () => {
             subtitle: s.hasSubtitle ? s.subtitle : '',
             subSubtitle: s.hasSubSubtitle ? s.subSubtitle : '',
             insight: s.hasInsight ? s.insight : '',
+            takeaway: s.hasInsight ? s.insight : '',
             sources: s.hasInsight ? s.sources : []
         }));
 
@@ -444,6 +473,10 @@ const BlogForm = () => {
             ...sanitizedFAQs.map(f => `${f.question} ${f.answer} `)
         ].join(' ');
 
+        const readTimeStr = calculateReadTime(fullText);
+        const readTimeMinutes = parseInt(readTimeStr) || 5;
+        const wordCount = calculateWordCount(fullText);
+
         const finalData = {
             ...formData,
             status,
@@ -453,13 +486,24 @@ const BlogForm = () => {
                 authorNote: sanitizedAuthorNote,
                 faqs: sanitizedFAQs
             },
-            image: formData.media.coverImage, // For compatibility with InsightDetails.jsx
-            readTime: calculateReadTime(fullText), // For compatibility with InsightDetails.jsx
-            reading: {
-                readTime: calculateReadTime(fullText),
-                wordCount: calculateWordCount(fullText)
+            sections: sanitizedSections,
+            faq: sanitizedFAQs,
+            coverImage: {
+                url: formData.media.coverImage,
+                alt: formData.media.coverImageAlt || formData.title,
+                caption: ''
             },
-            scheduledAt: status === 'scheduled' ? new Date(formData.scheduledAt) : null
+            image: formData.media.coverImage, // For compatibility with InsightDetails.jsx
+            readTime: readTimeStr, // For compatibility with InsightDetails.jsx
+            readTimeMinutes,
+            wordCount,
+            reading: {
+                readTime: readTimeStr,
+                wordCount
+            },
+            scheduledAt: status === 'scheduled' ? new Date(formData.scheduledAt) : null,
+            scheduledPublishAt: status === 'scheduled' && formData.scheduledAt ? new Date(formData.scheduledAt).toISOString() : null,
+            publishedAt: status === 'published' ? (formData.publishedAt || new Date().toISOString()) : null
         };
 
 
@@ -505,6 +549,17 @@ const BlogForm = () => {
                             <Eye className="h-4 w-4 mr-2" />
                             Preview
                         </button>
+                        {formData.slug && (
+                            <a
+                                href={`http://localhost:8000/insights/${formData.slug}?preview=true`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-5 py-3 border border-blue-200 rounded-sm text-sm font-bold text-blue-600 bg-blue-50 hover:bg-blue-100 focus:outline-none transition-all uppercase tracking-widest flex items-center"
+                            >
+                                <ExternalLink className="h-4 w-4 mr-2" />
+                                Reader View
+                            </a>
+                        )}
                         <button
                             disabled={loading}
                             onClick={() => handleSave(formData.status === 'scheduled' ? 'scheduled' : 'published')}
@@ -529,6 +584,7 @@ const BlogForm = () => {
                             <option value="draft">STAGING / DRAFT</option>
                             <option value="scheduled">RESERVED / SCHEDULED</option>
                             <option value="published">LIVE / PUBLIC</option>
+                            <option value="archived">ARCHIVED / UNLISTED</option>
                         </select>
                     </div>
 
