@@ -249,7 +249,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3 sm:gap-5 flex-wrap">
             <div className="flex items-center gap-1.5 hover:text-[#ffffff] transition-colors">
               <MapPin className="w-3.5 h-3.5 text-[#3b82f6]" />
-              <span>Dubai Internet City, UAE</span>
+              <span>Ajman Media City, UAE</span>
             </div>
 
             <span className="text-[#0a2342] hidden sm:inline">|</span>
@@ -753,7 +753,7 @@ const Navbar = () => {
             <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-400 pt-1">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#3b82f6]" />
-                <span>Dubai Internet City, UAE</span>
+                <span>Ajman Media City, UAE</span>
               </div>
               <a 
                 href="mailto:info@innosphereconsulting.ae" 

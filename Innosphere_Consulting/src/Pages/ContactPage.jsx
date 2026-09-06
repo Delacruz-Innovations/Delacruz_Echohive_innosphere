@@ -40,7 +40,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Connect directly with our senior consultants across Dubai Internet City, the UAE, and global markets. Choose the channel that best suits your timeline.
+            Connect directly with our senior consultants across Ajman Media City, the UAE, and global markets. Choose the channel that best suits your timeline.
           </p>
         </div>
       </section>
@@ -138,12 +138,12 @@ export default function ContactPage() {
                   <Phone size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Phone &amp; WhatsApp</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Direct Phone Line</p>
                   <a 
-                    href="tel:+971559836354" 
+                    href="tel:+971588039578" 
                     className="text-white font-medium hover:text-blue-400 transition-colors text-sm"
                   >
-                    +971 55 983 6354
+                    +971 58 803 9578
                   </a>
                 </div>
               </div>
@@ -168,9 +168,12 @@ export default function ContactPage() {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Headquarters</p>
-                  <p className="text-white font-medium text-sm">
-                    Dubai Internet City, UAE
+                  <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-0.5">Headquarters &amp; Registration</p>
+                  <p className="text-white font-medium text-sm leading-snug">
+                    AMC-BLA-SM0812, AMC - Boulevard-A Building, Ajman Media City, UAE
+                  </p>
+                  <p className="text-xs text-blue-400 font-semibold mt-1">
+                    Registration No: 44357 • Licence No: 44357
                   </p>
                 </div>
               </div>

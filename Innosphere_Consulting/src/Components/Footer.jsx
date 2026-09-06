@@ -85,13 +85,13 @@ const handleSubscribe = async (e) => {
     },
     { 
       icon: Phone, 
-      text: '+971 55 983 6354',
-      href: 'tel:+971559836354'
+      text: '+971 58 803 9578',
+      href: 'tel:+971588039578'
     },
     { 
       icon: MapPin, 
-      text: 'Dubai Internet City, UAE',
-      href: 'https://maps.google.com/?q=Dubai+Internet+City+UAE'
+      text: 'AMC-BLA-SM0812, AMC - Boulevard-A Building, Ajman Media City, UAE',
+      href: 'https://maps.google.com/?q=Ajman+Media+City+UAE'
     },
     { 
       icon: Linkedin, 
@@ -222,7 +222,7 @@ const handleSubscribe = async (e) => {
         <div className="py-5 border-t border-gray-800/50">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
             <p className="text-gray-400">
-              © {new Date().getFullYear()} Innosphere Consulting FZE LLC. Licence No. 44357. All rights reserved.
+              © {new Date().getFullYear()} Innosphere Consulting FZE LLC. Registration No. 44357. Licence No. 44357. All rights reserved.
             </p>
             
             <div className="flex items-center gap-4">
